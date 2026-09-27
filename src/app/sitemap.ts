@@ -1,10 +1,24 @@
 import type { MetadataRoute } from "next";
+import { getAllToolSlugs } from "@/lib/tools";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const currentDate = new Date().toISOString();
+  const toolSlugs = getAllToolSlugs();
+
+  const toolEntries: MetadataRoute.Sitemap = toolSlugs.map((slug) => ({
+    url: `${SITE_URL}/tool/${slug}`,
+    lastModified: currentDate,
+    changeFrequency: "weekly",
+    priority: 0.9,
+    alternates: {
+      languages: {
+        "en-GB": `${SITE_URL}/tool/${slug}`,
+      },
+    },
+  }));
 
   return [
     {
@@ -95,5 +109,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
       },
     },
+    ...toolEntries,
   ];
 }

@@ -4,9 +4,10 @@
 @import "tailwindcss";
 
 /* ========================================
-   2. DaisyUI Plugin Configuration
+   2. DaisyUI & Typography Plugin Configuration
    ======================================== */
 @plugin "daisyui";
+@plugin "@tailwindcss/typography";
 
 /* ========================================
    3. Custom DaisyUI Theme — pixpassport
@@ -322,4 +323,188 @@ img {
     border: none !important;
     box-shadow: none !important;
   }
+}
+
+/* ========================================
+   10. Markdown Content & Article Typography
+   ======================================== */
+.markdown-content {
+  color: #334155;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+@media (min-width: 640px) {
+  .markdown-content {
+    font-size: 1rem;
+  }
+}
+
+.markdown-content h2 {
+  color: #0f172a;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+@media (min-width: 640px) {
+  .markdown-content h2 {
+    font-size: 1.75rem;
+  }
+}
+
+.markdown-content h3 {
+  color: #0f172a;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .markdown-content h3 {
+    font-size: 1.3rem;
+  }
+}
+
+.markdown-content h4 {
+  color: #0f172a;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content p {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  color: #334155;
+  line-height: 1.7;
+}
+
+.markdown-content strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.markdown-content a {
+  color: #4d7c0f;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 150ms ease;
+}
+
+.markdown-content a:hover {
+  color: #365314;
+}
+
+.markdown-content ul {
+  list-style-type: disc !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 1rem !important;
+  padding-left: 1.5rem !important;
+  display: block !important;
+}
+
+.markdown-content ol {
+  list-style-type: decimal !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 1rem !important;
+  padding-left: 1.5rem !important;
+  display: block !important;
+}
+
+.markdown-content li {
+  margin-top: 0.375rem !important;
+  margin-bottom: 0.375rem !important;
+  padding-left: 0.25rem !important;
+  line-height: 1.6 !important;
+  display: list-item !important;
+}
+
+.markdown-content li::marker {
+  color: #65a30d;
+  font-weight: bold;
+}
+
+.markdown-content table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 1.5rem !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 0.75rem !important;
+  overflow: hidden !important;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05) !important;
+  font-size: 0.875rem !important;
+  display: table !important;
+}
+
+.markdown-content thead {
+  background-color: #f8fafc !important;
+}
+
+.markdown-content th {
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  border-bottom: 1px solid #cbd5e1 !important;
+  background-color: #f1f5f9 !important;
+}
+
+.markdown-content th:not(:last-child),
+.markdown-content td:not(:last-child) {
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+.markdown-content td {
+  padding: 0.75rem 1rem !important;
+  color: #334155 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  background-color: #ffffff !important;
+}
+
+.markdown-content tr:last-child td {
+  border-bottom: none !important;
+}
+
+.markdown-content tr:nth-child(even) td {
+  background-color: #f8fafc !important;
+}
+
+.markdown-content hr {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+  border: 0 !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+.markdown-content code {
+  font-family: var(--font-mono) !important;
+  font-size: 0.85em !important;
+  font-weight: 600 !important;
+  color: #0f172a !important;
+  background-color: #f1f5f9 !important;
+  padding: 0.15rem 0.4rem !important;
+  border-radius: 0.375rem !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid #65a30d !important;
+  background-color: #f7fee7 !important;
+  padding: 0.75rem 1rem !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  border-radius: 0 0.5rem 0.5rem 0 !important;
+  color: #365314 !important;
+  font-style: italic !important;
 }
