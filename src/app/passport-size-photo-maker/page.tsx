@@ -215,7 +215,7 @@ export default function PassportSizePhotoMakerPage() {
         original_preview: preview,
       };
 
-      // Store result in sessionStorage & localStorage
+      // Store result in sessionStorage
       if (typeof window !== "undefined") {
         try {
           sessionStorage.setItem(`pixpassport_${resultId}`, JSON.stringify(payload));
@@ -244,16 +244,16 @@ export default function PassportSizePhotoMakerPage() {
         description={`Create official passport size photos for ${selectedCountry.country_name} (${selectedCountry.dimensions} px). In-browser 3MB compression and instant compliance verification.`}
       />
 
-      <Navbar ctaText="Upload Photo" ctaHref="#studio" />
+      <Navbar ctaText="Home" ctaHref="/" />
 
-      <main className="flex-1 bg-base-100 min-h-screen py-10" id="studio">
+      <main className="flex-1 bg-base-100 min-h-screen py-8 sm:py-12" id="studio">
         <div className="container-narrow">
           {/* Breadcrumb & Header */}
           <div className="mb-8">
-            <div className="text-sm breadcrumbs text-base-content/60 mb-2">
-              <ul className="flex items-center gap-2">
+            <nav className="text-xs sm:text-sm text-base-content/60 mb-3" aria-label="Breadcrumbs">
+              <ol className="flex items-center gap-1.5 list-none p-0 m-0">
                 <li>
-                  <Link href="/" className="hover:text-primary">
+                  <Link href="/" className="hover:text-primary transition-colors">
                     Home
                   </Link>
                 </li>
@@ -261,22 +261,22 @@ export default function PassportSizePhotoMakerPage() {
                 <li className="text-base-content font-medium">
                   Passport Size Photo Maker
                 </li>
-              </ul>
-            </div>
+              </ol>
+            </nav>
 
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-base-content">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-base-content tracking-tight">
                   Passport Size Photo Maker
                 </h1>
-                <p className="text-base-content/60 text-base mt-1">
+                <p className="text-base-content/70 text-sm sm:text-base mt-1.5">
                   Select your country, upload your photo, and let AI format
                   official biometric dimensions.
                 </p>
               </div>
 
-              <div className="badge badge-primary badge-outline py-3 px-4 font-mono text-sm self-start md:self-auto">
-                <Globe className="w-4 h-4 mr-1.5" />
+              <div className="badge badge-primary badge-outline py-3 px-3.5 font-mono text-xs sm:text-sm self-start md:self-auto rounded-full">
+                <Globe className="w-3.5 h-3.5 mr-1.5" />
                 {selectedCountry.country_name}: {selectedCountry.dimensions} px
               </div>
             </div>
@@ -284,9 +284,9 @@ export default function PassportSizePhotoMakerPage() {
 
           <div className="grid lg:grid-cols-12 gap-8 items-start">
             {/* Main Interactive Studio Column */}
-            <div className="lg:col-span-8">
-              <div className="card bg-base-100 border border-base-300 card-shadow">
-                <div className="card-body gap-6 p-6 sm:p-8">
+            <div className="lg:col-span-8 space-y-6">
+              <div className="card bg-base-100 border border-base-300 rounded-2xl card-shadow">
+                <div className="card-body gap-6 p-5 sm:p-8">
                   {/* Step 1: Country Selector */}
                   <div>
                     <label
@@ -297,8 +297,8 @@ export default function PassportSizePhotoMakerPage() {
                         <Globe className="w-4 h-4 text-primary" />
                         1. Select Destination / Nationality:
                       </span>
-                      <span className="badge badge-primary badge-sm">
-                        Default: United Kingdom (GB)
+                      <span className="badge badge-primary badge-sm text-xs font-semibold">
+                        UK Default
                       </span>
                     </label>
 
@@ -307,7 +307,7 @@ export default function PassportSizePhotoMakerPage() {
                       value={selectedCountryCode}
                       onChange={(e) => setSelectedCountryCode(e.target.value)}
                       disabled={isProcessing}
-                      className="select select-bordered w-full text-base-content font-medium bg-base-100 text-base"
+                      className="select select-bordered w-full text-base-content font-medium bg-base-100 text-sm sm:text-base rounded-xl"
                       aria-label="Select target country"
                     >
                       {COUNTRIES.map((c) => (
@@ -318,11 +318,11 @@ export default function PassportSizePhotoMakerPage() {
                       ))}
                     </select>
 
-                    <div className="mt-2.5 flex flex-wrap items-center gap-2 text-xs text-base-content/70 bg-base-200 p-3 rounded-lg border border-base-300">
+                    <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-base-content/75 bg-base-200/80 p-3 rounded-xl border border-base-300/60">
                       <span className="font-semibold text-base-content">
                         Preset Dimensions:
                       </span>
-                      <span className="badge badge-neutral badge-sm font-mono">
+                      <span className="badge badge-neutral badge-sm font-mono font-bold">
                         {selectedCountry.dimensions} px
                       </span>
                       <span className="badge badge-outline badge-sm capitalize">
@@ -338,12 +338,12 @@ export default function PassportSizePhotoMakerPage() {
                     <div
                       role="alert"
                       aria-live="polite"
-                      className="alert alert-error"
+                      className="alert alert-error rounded-xl text-sm"
                     >
                       <AlertCircle className="w-5 h-5 shrink-0" />
-                      <span className="flex-1 text-sm">{error}</span>
+                      <span className="flex-1">{error}</span>
                       <button
-                        className="btn btn-ghost btn-xs"
+                        className="btn btn-ghost btn-xs btn-circle"
                         onClick={() => setError(null)}
                         aria-label="Dismiss error"
                       >
@@ -361,10 +361,10 @@ export default function PassportSizePhotoMakerPage() {
 
                     {!preview ? (
                       <div
-                        className={`border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-colors ${
+                        className={`border-2 border-dashed rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-colors ${
                           isDragging
                             ? "border-primary bg-primary/5"
-                            : "border-base-300 hover:border-primary/50"
+                            : "border-base-300 hover:border-primary/50 bg-base-200/30"
                         }`}
                         onDragOver={onDragOver}
                         onDragLeave={onDragLeave}
@@ -380,29 +380,29 @@ export default function PassportSizePhotoMakerPage() {
                         }}
                         aria-label="Upload photo area. Click or drag and drop."
                       >
-                        <ImagePlus className="w-12 h-12 text-base-content/30 mx-auto mb-3" />
-                        <p className="text-base-content/80 font-semibold text-base mb-1">
+                        <ImagePlus className="w-12 h-12 text-base-content/35 mx-auto mb-3" />
+                        <p className="text-base-content font-bold text-base sm:text-lg mb-1">
                           Drag &amp; drop your photo here
                         </p>
-                        <p className="text-base-content/50 text-sm mb-3">
+                        <p className="text-base-content/60 text-xs sm:text-sm mb-3">
                           or click to browse from your device · JPEG, PNG, WebP
                         </p>
-                        <span className="badge badge-outline badge-sm text-xs text-base-content/60">
+                        <span className="badge badge-outline badge-sm text-xs text-base-content/70">
                           Automatic high-clarity compression to ≤ 3 MB
                         </span>
                       </div>
                     ) : (
                       <div className="space-y-4">
-                        <div className="relative bg-base-200 rounded-xl p-4 flex justify-center border border-base-300">
+                        <div className="relative bg-base-200 rounded-2xl p-4 flex justify-center border border-base-300 shadow-inner">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={preview}
                             alt="Uploaded passport photo preview"
-                            className="max-h-72 rounded-lg object-contain shadow-xs"
+                            className="max-h-72 sm:max-h-80 rounded-xl object-contain shadow-xs border border-base-100"
                           />
                           {!isProcessing && (
                             <button
-                              className="btn btn-circle btn-sm btn-ghost absolute top-2 right-2 bg-base-100/80 backdrop-blur-xs hover:bg-base-100"
+                              className="btn btn-circle btn-sm btn-ghost absolute top-3 right-3 bg-base-100/90 backdrop-blur-xs hover:bg-base-100 shadow-sm"
                               onClick={clearFile}
                               aria-label="Remove uploaded photo"
                             >
@@ -413,14 +413,14 @@ export default function PassportSizePhotoMakerPage() {
 
                         {/* Compression info badge */}
                         {compressionInfo && (
-                          <div className="flex items-center justify-between text-xs bg-base-200 p-2.5 rounded-lg border border-base-300">
-                            <span className="flex items-center gap-1.5 text-base-content/80">
-                              <Check className="w-4 h-4 text-success" />
+                          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs bg-base-200/90 p-3 rounded-xl border border-base-300">
+                            <span className="flex items-center gap-1.5 text-base-content font-medium">
+                              <Check className="w-4 h-4 text-success shrink-0" />
                               {compressionInfo.compressed
                                 ? "Compressed to ≤ 3 MB without loss of quality"
-                                : "Photo file size within 3 MB limit"}
+                                : "Photo size verified (within 3 MB limit)"}
                             </span>
-                            <span className="font-mono text-base-content/60">
+                            <span className="font-mono text-base-content/70 text-xs shrink-0">
                               {compressionInfo.finalSizeKB} KB
                               {compressionInfo.compressed &&
                                 ` (was ${compressionInfo.originalSizeKB} KB)`}
@@ -445,7 +445,7 @@ export default function PassportSizePhotoMakerPage() {
                   {file && !isProcessing && (
                     <div className="pt-2">
                       <button
-                        className="btn btn-primary w-full btn-lg gap-2"
+                        className="btn btn-primary w-full btn-lg gap-2 text-base font-semibold shadow-sm"
                         onClick={handleProcess}
                       >
                         <Zap className="w-5 h-5" />
@@ -453,7 +453,7 @@ export default function PassportSizePhotoMakerPage() {
                         {selectedCountry.dimensions} px)
                         <ArrowRight className="w-4 h-4 ml-1" />
                       </button>
-                      <p className="text-center text-xs text-base-content/50 mt-2">
+                      <p className="text-center text-xs text-base-content/60 mt-2.5">
                         Takes approx. 10 seconds to analyze biometrics &amp; generate
                         high-resolution print preview.
                       </p>
@@ -462,11 +462,11 @@ export default function PassportSizePhotoMakerPage() {
 
                   {/* Guidelines Checklist */}
                   {!file && (
-                    <div className="text-xs text-base-content/60 space-y-1.5 pt-4 border-t border-base-200">
-                      <p className="font-semibold text-base-content/80">
+                    <div className="text-xs text-base-content/70 space-y-2 pt-4 border-t border-base-200">
+                      <p className="font-bold text-base-content">
                         Passport Photo Acceptance Guidelines:
                       </p>
-                      <ul className="list-disc pl-4 space-y-0.5">
+                      <ul className="list-disc pl-4 space-y-1">
                         <li>Look straight into the camera with a neutral expression</li>
                         <li>Ensure even lighting across face and shoulders</li>
                         <li>Eyes fully visible without tinted lenses or thick frames</li>
@@ -480,14 +480,14 @@ export default function PassportSizePhotoMakerPage() {
 
             {/* Sidebar Country Info Column */}
             <div className="lg:col-span-4 space-y-6">
-              <div className="card bg-base-100 border border-base-300 card-shadow">
+              <div className="card bg-base-100 border border-base-300 rounded-2xl card-shadow">
                 <div className="card-body gap-4 p-6">
                   <h3 className="font-bold text-base text-base-content flex items-center gap-2">
                     <Shield className="w-4 h-4 text-primary" />
                     {selectedCountry.country_name} Standards
                   </h3>
 
-                  <div className="space-y-2.5 text-xs text-base-content/70">
+                  <div className="space-y-3 text-xs text-base-content/75">
                     <div className="flex justify-between py-1.5 border-b border-base-200">
                       <span>Country Code:</span>
                       <span className="font-mono font-bold text-base-content">
@@ -523,12 +523,12 @@ export default function PassportSizePhotoMakerPage() {
               </div>
 
               {/* Guarantees Box */}
-              <div className="card bg-primary/5 border border-primary/20 p-6 space-y-3">
+              <div className="card bg-primary/5 border border-primary/20 rounded-2xl p-6 space-y-3">
                 <div className="flex items-center gap-2 text-primary font-bold text-sm">
                   <Sparkles className="w-4 h-4" />
                   100% Free &amp; Private
                 </div>
-                <p className="text-xs text-base-content/70 leading-relaxed">
+                <p className="text-xs text-base-content/75 leading-relaxed">
                   Your photos are securely processed in compliance with official
                   biometric criteria and never permanently stored.
                 </p>
@@ -545,13 +545,13 @@ export default function PassportSizePhotoMakerPage() {
             aria-labelledby="processing-modal-title"
             className="fixed inset-0 z-50 flex items-center justify-center bg-neutral/80 backdrop-blur-sm p-4 animate-fade-in"
           >
-            <div className="card bg-base-100 max-w-md w-full shadow-2xl border border-base-300">
-              <div className="card-body text-center p-8 gap-6">
+            <div className="card bg-base-100 max-w-md w-full shadow-2xl border border-base-300 rounded-2xl overflow-hidden">
+              <div className="card-body text-center p-6 sm:p-8 gap-5">
                 <div className="relative mx-auto">
-                  <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center animate-pulse">
-                    <Camera className="w-10 h-10 text-primary animate-bounce" />
+                  <div className="w-18 h-18 rounded-full bg-primary/10 flex items-center justify-center animate-pulse">
+                    <Camera className="w-9 h-9 text-primary" />
                   </div>
-                  <span className="absolute -bottom-1 -right-1 badge badge-primary font-mono text-xs font-bold">
+                  <span className="absolute -bottom-1 -right-1 badge badge-primary font-mono text-xs font-bold shadow-sm">
                     {countdown}s
                   </span>
                 </div>
@@ -563,7 +563,7 @@ export default function PassportSizePhotoMakerPage() {
                   >
                     Processing Passport Photo
                   </h3>
-                  <p className="text-xs text-base-content/60 font-mono">
+                  <p className="text-xs text-base-content/65 font-mono">
                     Country: {selectedCountry.country_name} · Format:{" "}
                     {selectedCountry.dimensions} px
                   </p>
@@ -571,20 +571,20 @@ export default function PassportSizePhotoMakerPage() {
 
                 {/* Progress bar */}
                 <div className="space-y-2">
-                  <div className="w-full bg-base-200 rounded-full h-3 overflow-hidden">
+                  <div className="w-full bg-base-200 rounded-full h-3 overflow-hidden border border-base-300/60">
                     <div
                       className="bg-primary h-3 rounded-full transition-all duration-300 ease-out"
                       style={{ width: `${processingProgress}%` }}
                     />
                   </div>
-                  <div className="flex justify-between text-xs font-mono text-base-content/60">
+                  <div className="flex justify-between text-xs font-mono text-base-content/65 font-medium">
                     <span>{processingProgress}% Complete</span>
                     <span>{countdown}s remaining</span>
                   </div>
                 </div>
 
                 {/* Animated Steps */}
-                <div className="bg-base-200 p-4 rounded-xl text-left space-y-2 border border-base-300 text-xs">
+                <div className="bg-base-200/90 p-4 rounded-xl text-left space-y-2.5 border border-base-300 text-xs">
                   {PROCESSING_STEPS.map((step, idx) => {
                     const isDone = processingProgress >= step.progress;
                     const isCurrent = processingStepIndex === idx;
@@ -597,7 +597,7 @@ export default function PassportSizePhotoMakerPage() {
                             ? "text-success font-medium"
                             : isCurrent
                             ? "text-primary font-bold"
-                            : "text-base-content/40"
+                            : "text-base-content/45"
                         }`}
                       >
                         {isDone ? (

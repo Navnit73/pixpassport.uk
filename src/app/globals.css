@@ -46,20 +46,34 @@
 }
 
 /* ========================================
-   4. Global CSS Variables
+   4. Global CSS Variables & Responsive Scale
    ======================================== */
 :root {
   /* Spacing scale overrides */
-  --section-gap: 5rem;
-  --container-padding: 1.5rem;
+  --section-gap: 3.5rem;
+  --container-padding: 1rem;
 
   /* Transition defaults */
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
 
-  /* Shadow tokens — flat UI, minimal depth */
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
-  --shadow-card-hover: 0 2px 8px rgba(0, 0, 0, 0.08);
+  /* Refined Shadow tokens */
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
+  --shadow-card-hover: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --section-gap: 4.5rem;
+    --container-padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-gap: 5.5rem;
+    --container-padding: 2rem;
+  }
 }
 
 /* ========================================
@@ -78,11 +92,14 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 body {
   font-family: var(--font-sans);
   line-height: 1.6;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
 }
 
 h1,
@@ -91,23 +108,35 @@ h3,
 h4 {
   line-height: 1.2;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 1.75rem;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
 }
 
 h4 {
-  font-size: 1.125rem;
+  font-size: 1.1rem;
+}
+
+@media (min-width: 640px) {
+  h1 {
+    font-size: 2.75rem;
+  }
+  h2 {
+    font-size: 2.15rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
 }
 
 @media (min-width: 768px) {
@@ -143,19 +172,20 @@ img {
   padding-bottom: var(--section-gap);
 }
 
-/* Max-width container with centred padding */
+/* Max-width container with centered responsive padding */
 .container-narrow {
-  max-width: 72rem;
+  max-width: 76rem;
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--container-padding);
   padding-right: var(--container-padding);
+  width: 100%;
 }
 
 /* Card shadow utilities */
 .card-shadow {
   box-shadow: var(--shadow-card);
-  transition: box-shadow var(--transition-base);
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
 }
 
 .card-shadow:hover {
@@ -177,7 +207,7 @@ img {
 
 /* Focus ring for keyboard nav */
 .focus-ring:focus-visible {
-  outline: 2px solid oklch(var(--color-primary));
+  outline: 2px solid #65A30D;
   outline-offset: 2px;
 }
 
@@ -185,6 +215,22 @@ img {
 .btn-primary:hover {
   background-color: #4D7C0F; /* lime-700 */
   border-color: #4D7C0F;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ========================================
@@ -201,10 +247,11 @@ img {
   }
 }
 
-/* Ensure minimum touch target sizes */
-button,
-[role="button"],
-a {
+/* Ensure minimum touch target sizes for buttons & interactive elements */
+.btn,
+.select,
+.input,
+[role="button"] {
   min-height: 2.75rem;
 }
 
@@ -212,4 +259,30 @@ a {
 :focus-visible {
   outline: 2px solid #65A30D; /* lime-600 */
   outline-offset: 2px;
+}
+
+/* ========================================
+   9. Print Media Styles
+   ======================================== */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  header,
+  footer,
+  nav,
+  .no-print,
+  .breadcrumbs,
+  .btn {
+    display: none !important;
+  }
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .card {
+    border: none !important;
+    box-shadow: none !important;
+  }
 }

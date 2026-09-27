@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import Image from "next/image";
 
 export interface FooterLinkItem {
@@ -10,19 +11,20 @@ export interface FooterLinkItem {
 
 export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
   Product: [
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Features", href: "#features" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "FAQ", href: "#faq" },
+    { label: "How It Works", href: "/#how-it-works" },
+    { label: "Features", href: "/#features" },
+    { label: "Pricing", href: "/#pricing" },
+    { label: "FAQ", href: "/#faq" },
   ],
   Legal: [
-    { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms of Service", href: "/terms" },
-    { label: "Cookie Policy", href: "/cookies" },
+    { label: "Privacy Policy", href: "/#faq" },
+    { label: "Terms of Service", href: "/#faq" },
+    { label: "Cookie Policy", href: "/#faq" },
   ],
   Resources: [
-    { label: "UK Passport Photo Requirements", href: "#faq" },
-    { label: "Printing Guide", href: "#how-it-works" },
+    { label: "UK Passport Photo Requirements", href: "/#faq" },
+    { label: "Photo Maker Studio", href: "/passport-size-photo-maker" },
+    { label: "Printing Guide", href: "/#how-it-works" },
   ],
 };
 
@@ -42,7 +44,7 @@ export default function Footer({
   brandName = "PixPassport",
   brandLogo = "/pixpassport.jpg",
   brandLogoAlt = "PixPassport Logo",
-  brandDescription = "Free UK passport photo maker. Create a digital photo for passport applications and renewals — no sign-up, no fees, no data stored.",
+  brandDescription = "Free UK passport photo maker. Create official biometric digital photos and 6×4″ print sheets for UK and 50+ countries online — 100% free with no sign-up.",
   linkGroups = DEFAULT_FOOTER_LINKS,
   copyrightText,
   regionNotice,
@@ -58,22 +60,25 @@ export default function Footer({
       role="contentinfo"
     >
       <div className="container-narrow section-padding">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand column */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-2.5 text-xl font-bold mb-4">
+          <div className="sm:col-span-2 lg:col-span-1">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2.5 text-xl font-bold mb-4 hover:opacity-90 transition-opacity"
+            >
               {brandLogo && (
                 <Image
                   src={brandLogo}
                   alt={brandLogoAlt}
                   width={28}
                   height={28}
-                  className="w-7 h-7 rounded-lg object-cover ring-1 ring-secondary-content/20"
+                  className="w-7 h-7 rounded-lg object-cover ring-1 ring-secondary-content/20 shrink-0"
                 />
               )}
               <span>{brandName}</span>
-            </div>
-            <div className="text-secondary-content/60 text-sm leading-relaxed mb-4">
+            </Link>
+            <div className="text-secondary-content/70 text-sm leading-relaxed max-w-sm">
               {typeof brandDescription === "string" ? (
                 <p>{brandDescription}</p>
               ) : (
@@ -85,20 +90,20 @@ export default function Footer({
           {/* Link columns */}
           {Object.entries(linkGroups).map(([heading, links]) => (
             <nav key={heading} aria-label={`${heading} navigation`}>
-              <h4 className="text-sm font-semibold uppercase tracking-wider text-secondary-content/80 mb-4">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-secondary-content/90 mb-3.5">
                 {heading}
               </h4>
               <ul className="space-y-2.5 list-none p-0 m-0">
                 {links.map((link) => (
                   <li key={link.label}>
-                    <a
+                    <Link
                       href={link.href}
                       target={link.target}
                       rel={link.rel}
-                      className="text-secondary-content/60 hover:text-secondary-content text-sm transition-colors"
+                      className="text-secondary-content/65 hover:text-secondary-content text-sm transition-colors block py-0.5"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -110,9 +115,9 @@ export default function Footer({
 
         <div className="divider before:bg-secondary-content/10 after:bg-secondary-content/10 my-8" />
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-secondary-content/50">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-secondary-content/55 text-center sm:text-left">
           <p>{copyrightText ?? defaultCopyright}</p>
-          <p>
+          <p className="flex items-center gap-1.5">
             {regionNotice ?? (
               <>
                 Made in the United Kingdom{" "}
