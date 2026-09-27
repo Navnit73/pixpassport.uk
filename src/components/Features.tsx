@@ -1,3 +1,4 @@
+import type { ReactNode, ComponentType } from "react";
 import {
   Ruler,
   Shield,
@@ -5,16 +6,16 @@ import {
   Zap,
   Lock,
   Smartphone,
+  type LucideIcon,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 
-interface Feature {
-  icon: LucideIcon;
+export interface FeatureItem {
+  icon?: LucideIcon | ComponentType<{ className?: string }>;
   title: string;
   description: string;
 }
 
-const features: Feature[] = [
+export const DEFAULT_FEATURES: FeatureItem[] = [
   {
     icon: Ruler,
     title: "Official 35 mm × 45 mm Format",
@@ -53,40 +54,62 @@ const features: Feature[] = [
   },
 ];
 
-export default function Features() {
-  return (
-    <section className="bg-base-200 section-padding" id="features">
-      <div className="container-narrow">
-        <div className="text-center mb-14">
-          <h2 className="text-base-content mb-4">
-            Why Use PixPassport as Your UK Passport Photo Maker?
-          </h2>
-          <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
-            Everything you need to create a digital photo for passport
-            applications — fast, private, and completely free.
-          </p>
-        </div>
+export interface FeaturesProps {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  features?: FeatureItem[];
+  className?: string;
+  children?: ReactNode;
+}
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map(({ icon: Icon, title, description }) => (
-            <div
-              key={title}
-              className="card bg-base-100 border border-base-300 card-shadow"
-            >
-              <div className="card-body gap-3">
-                <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <Icon className="w-5 h-5 text-primary" />
+export default function Features({
+  id = "features",
+  title = "Why Use PixPassport as Your UK Passport Photo Maker?",
+  subtitle = "Everything you need to create a digital photo for passport applications — fast, private, and completely free.",
+  features = DEFAULT_FEATURES,
+  className = "",
+  children,
+}: FeaturesProps) {
+  return (
+    <section
+      className={`bg-base-200 section-padding ${className}`.trim()}
+      id={id}
+      aria-labelledby={`${id}-heading`}
+    >
+      <div className="container-narrow">
+        <header className="text-center mb-14">
+          <h2 id={`${id}-heading`} className="text-base-content mb-4">
+            {title}
+          </h2>
+          {subtitle && (
+            <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
+              {subtitle}
+            </p>
+          )}
+        </header>
+
+        <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0 m-0">
+          {features.map(({ icon: Icon, title: featureTitle, description }, index) => (
+            <li key={index} className="flex">
+              <article className="card bg-base-100 border border-base-300 card-shadow w-full">
+                <div className="card-body gap-3">
+                  <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center">
+                    {Icon && <Icon className="w-5 h-5 text-primary" />}
+                  </div>
+                  <h3 className="card-title text-base-content text-lg">
+                    {featureTitle}
+                  </h3>
+                  <p className="text-base-content/60 text-sm leading-relaxed">
+                    {description}
+                  </p>
                 </div>
-                <h3 className="card-title text-base-content text-lg">
-                  {title}
-                </h3>
-                <p className="text-base-content/60 text-sm leading-relaxed">
-                  {description}
-                </p>
-              </div>
-            </div>
+              </article>
+            </li>
           ))}
-        </div>
+        </ul>
+
+        {children}
       </div>
     </section>
   );

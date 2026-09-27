@@ -135,7 +135,7 @@ PixPassport is fully optimized for UK organic search:
   * `schema.org/WebSite`
   * `schema.org/WebApplication`
   * `schema.org/FAQPage`
-* **Dynamic Sitemaps & Robots:** Native Next.js App Router `robots.ts` and `sitemap.ts` endpoints.
+* **Sitemaps & Robots:** Native Next.js App Router `robots.ts` and static `public/sitemap.xml` for custom manual updates.
 
 ---
 
@@ -144,7 +144,8 @@ PixPassport is fully optimized for UK organic search:
 ```
 pixpassport.uk/
 ├── public/
-│   └── pixpassport.jpg        # Brand assets, favicon, OG image
+│   ├── pixpassport.jpg        # Brand assets, favicon, OG image
+│   └── sitemap.xml            # Static XML sitemap for manual updates
 ├── src/
 │   ├── app/
 │   │   ├── apple-icon.jpg     # Apple touch icon
@@ -152,8 +153,7 @@ pixpassport.uk/
 │   │   ├── icon.jpg           # App favicon
 │   │   ├── layout.tsx         # Root layout with UK metadata
 │   │   ├── page.tsx           # Main homepage
-│   │   ├── robots.ts          # Programmatic robots.txt
-│   │   └── sitemap.ts         # Programmatic sitemap.xml
+│   │   └── robots.ts          # Programmatic robots.txt
 │   ├── components/
 │   │   ├── FAQ.tsx            # FAQ accordion component
 │   │   ├── Features.tsx       # Feature benefits grid

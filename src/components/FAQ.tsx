@@ -1,9 +1,11 @@
-interface FaqItem {
+import type { ReactNode } from "react";
+
+export interface FaqItem {
   question: string;
-  answer: string;
+  answer: string | ReactNode;
 }
 
-const faqs: FaqItem[] = [
+export const DEFAULT_FAQS: FaqItem[] = [
   {
     question: "What are the official UK passport photo requirements?",
     answer:
@@ -41,34 +43,61 @@ const faqs: FaqItem[] = [
   },
 ];
 
-export default function FAQ() {
+export interface FAQProps {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  items?: FaqItem[];
+  defaultOpenIndex?: number;
+  accordionName?: string;
+  className?: string;
+}
+
+export default function FAQ({
+  id = "faq",
+  title = "Frequently Asked Questions",
+  subtitle = "Common questions about creating your UK passport photo online.",
+  items = DEFAULT_FAQS,
+  defaultOpenIndex = 0,
+  accordionName = "faq-accordion",
+  className = "",
+}: FAQProps) {
   return (
-    <section className="bg-base-200 section-padding" id="faq">
+    <section
+      className={`bg-base-200 section-padding ${className}`.trim()}
+      id={id}
+      aria-labelledby={`${id}-title`}
+    >
       <div className="container-narrow">
-        <div className="text-center mb-14">
-          <h2 className="text-base-content mb-4">Frequently Asked Questions</h2>
-          <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
-            Common questions about creating your UK passport photo online.
-          </p>
-        </div>
+        <header className="text-center mb-14">
+          <h2 id={`${id}-title`} className="text-base-content mb-4">
+            {title}
+          </h2>
+          {subtitle && (
+            <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
+              {subtitle}
+            </p>
+          )}
+        </header>
 
         <div className="max-w-3xl mx-auto space-y-3">
-          {faqs.map(({ question, answer }, index) => (
+          {items.map(({ question, answer }, index) => (
             <div
               key={index}
               className="collapse collapse-arrow bg-base-100 border border-base-300"
             >
               <input
                 type="radio"
-                name="faq-accordion"
-                id={`faq-${index}`}
-                defaultChecked={index === 0}
+                name={accordionName}
+                id={`${id}-item-${index}`}
+                defaultChecked={index === defaultOpenIndex}
+                aria-label={question}
               />
               <div className="collapse-title font-semibold text-base-content">
                 {question}
               </div>
               <div className="collapse-content text-base-content/70 text-sm leading-relaxed">
-                <p>{answer}</p>
+                {typeof answer === "string" ? <p>{answer}</p> : answer}
               </div>
             </div>
           ))}

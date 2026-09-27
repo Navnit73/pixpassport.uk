@@ -48,6 +48,7 @@ npm start
 2. **Client Components Only When Required:** Mark interactive components (e.g. `UploadCard.tsx`, `Navbar.tsx` mobile drawer) with `"use client"`.
 3. **No Competing UI Libraries:** Do NOT install or introduce shadcn/ui, Material UI, Mantine, Chakra, or other third-party component libraries. Use DaisyUI and custom CSS utility classes.
 4. **Semantic Color Tokens:** Never hardcode arbitrary hex colors in component classes. Use semantic tokens (`bg-base-100`, `bg-base-200`, `text-primary`, `bg-secondary`, `text-base-content`, `border-base-300`).
+5. **Reusable Props & SEO Friendly:** All components export strongly typed prop interfaces and default data constants, utilizing semantic HTML (`<header>`, `<nav>`, `<section>`, `<article>`, `<ol>`, `<ul>`, `<figure>`, `<footer>`) and ARIA landmarks.
 
 ### Design & Styling (`src/app/globals.css`)
 * Theme is configured via `@plugin "daisyui/theme"` with the custom theme name `pixpassport`.
@@ -89,9 +90,9 @@ npm start
 * **Metadata Base:** Must always resolve to `https://pixpassport.uk`.
 * **Canonical URL:** `https://pixpassport.uk` with `en-GB` hreflang alternate.
 * **Geographical Targeting:** `geo.region: "GB"`, `geo.placename: "United Kingdom"`, `content-language: "en-GB"`.
-* **Dynamic Routes:**
+* **Crawling & Indexing:**
   * `src/app/robots.ts` -> Generates `/robots.txt` pointing to `/sitemap.xml`
-  * `src/app/sitemap.ts` -> Generates `/sitemap.xml` with canonical domain
+  * `public/sitemap.xml` -> Static XML sitemap for manual updates
 * **Structured Data (JSON-LD):** `src/components/JsonLd.tsx` injects a `@graph` containing `Organization`, `WebSite`, `WebApplication`, and `FAQPage` schemas. Never fabricate customer reviews or claim unofficial government endorsements.
 
 ---
@@ -101,7 +102,8 @@ npm start
 ```
 pixpassport.uk/
 ├── public/
-│   └── pixpassport.jpg        # Brand asset, favicon, apple-touch-icon, OG image
+│   ├── pixpassport.jpg        # Brand asset, favicon, apple-touch-icon, OG image
+│   └── sitemap.xml            # Static XML sitemap for manual editing
 ├── src/
 │   ├── app/
 │   │   ├── apple-icon.jpg     # App Router apple touch icon
@@ -109,8 +111,7 @@ pixpassport.uk/
 │   │   ├── icon.jpg           # App Router favicon/icon
 │   │   ├── layout.tsx         # Root layout with comprehensive UK SEO metadata
 │   │   ├── page.tsx           # Homepage assembly
-│   │   ├── robots.ts          # Programmatic robots.txt
-│   │   └── sitemap.ts         # Programmatic sitemap.xml
+│   │   └── robots.ts          # Programmatic robots.txt
 │   ├── components/
 │   │   ├── FAQ.tsx            # Accessible accordion FAQ targeting search queries
 │   │   ├── Features.tsx       # Core feature showcase with Lucide icons
