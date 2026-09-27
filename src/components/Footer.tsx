@@ -17,10 +17,18 @@ export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
     { label: "Pricing", href: "/#pricing" },
     { label: "FAQ", href: "/#faq" },
   ],
+  "Popular Tools": [
+    { label: "UK Passport Photo (35×45mm)", href: "/tool/uk-passport-photo" },
+    { label: "US Visa & Passport (2×2″)", href: "/tool/us-visa-photo" },
+    { label: "Schengen Visa Photo", href: "/tool/schengen-visa-photo" },
+    { label: "Baby Passport Photo", href: "/tool/baby-passport-photo" },
+    { label: "Indian Passport & OCI", href: "/tool/indian-passport-photo" },
+    { label: "UK Driving Licence Photo", href: "/tool/driving-licence-photo" },
+  ],
   Company: [
     { label: "About Us", href: "/about-us" },
     { label: "Contact Us", href: "/contact-us" },
-    { label: "UK Passport Photo Rules", href: "/#photo-rules" },
+    { label: "UK Photo Sizing Rules", href: "/#photo-rules" },
   ],
   Legal: [
     { label: "Privacy Policy", href: "/privacy-policy" },
@@ -65,7 +73,7 @@ export default function Footer({
       role="contentinfo"
     >
       <div className="container-narrow section-padding">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-8">
           {/* Brand column */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link

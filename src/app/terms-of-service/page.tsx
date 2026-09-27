@@ -8,7 +8,7 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — PixPassport",
+  title: "Terms of Service",
   description:
     "Review the PixPassport Terms of Service governing the use of our UK passport photo maker, digital formatting tools, and download services.",
   alternates: {
@@ -25,12 +25,51 @@ export const metadata: Metadata = {
     siteName: "PixPassport",
     locale: "en_GB",
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/pixpassport.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "PixPassport Terms of Service",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terms of Service — PixPassport",
+    description:
+      "Review the PixPassport Terms of Service governing the use of our UK passport photo maker, digital formatting tools, and download services.",
+    images: [`${SITE_URL}/pixpassport.jpg`],
   },
 };
 
 export default function TermsOfServicePage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Terms of Service",
+        item: `${SITE_URL}/terms-of-service`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <Navbar ctaText="Create Photo" ctaHref="/passport-size-photo-maker" />
 
       <main className="flex-1 bg-white text-slate-900" id="main-content">

@@ -8,17 +8,12 @@ import JsonLd from "@/components/JsonLd";
 import PhotoMakerStudio from "@/components/PhotoMakerStudio";
 import { getAllToolSlugs, getToolBySlug } from "@/lib/tools";
 import {
-  CheckCircle,
-  Shield,
   Sparkles,
   ArrowRight,
-  Printer,
   Globe,
   Crop,
   Zap,
   Star,
-  Camera,
-  Layers,
 } from "lucide-react";
 
 interface PageProps {
@@ -38,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
 
   return {
-    title: `${tool.title} — PixPassport`,
+    title: tool.title,
     description: tool.meta_description,
     alternates: {
       canonical: `${siteUrl}/tool/${slug}`,
@@ -90,43 +85,22 @@ export default async function DynamicToolPage({ params }: PageProps) {
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: siteUrl,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Photo Tools",
-        item: `${siteUrl}/passport-size-photo-maker`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: tool.title,
-        item: `${siteUrl}/tool/${slug}`,
-      },
-    ],
-  };
-
   return (
     <>
       <JsonLd
+        siteUrl={siteUrl}
+        siteName="PixPassport"
+        description={tool.meta_description}
         price={tool.price || "7.99"}
         priceCurrency="GBP"
-        description={tool.meta_description}
-      />
-
-      {/* Breadcrumb Structured Data for Google Rich Snippets */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+        breadcrumbs={[
+          { name: "Home", url: siteUrl },
+          { name: "Photo Tools", url: `${siteUrl}/passport-size-photo-maker` },
+          { name: tool.title, url: `${siteUrl}/tool/${slug}` },
+        ]}
+        includeWebsite={false}
+        includeWebApp={true}
+        faqItems={tool.faqs}
       />
 
       <Navbar ctaText="Create Photo" ctaHref="#studio" />
@@ -231,8 +205,8 @@ export default async function DynamicToolPage({ params }: PageProps) {
               {/* Right Visual Preview Column (Matching Homepage with Feature Image) */}
               <div className="lg:col-span-5 flex justify-center w-full">
                 <div className="w-full max-w-sm lg:max-w-md">
-                  <div className="p-3 sm:p-4 bg-slate-50/80 rounded-2xl border border-slate-200">
-                    <div className="relative rounded-xl overflow-hidden aspect-[4/5] bg-white shadow-xs">
+                  <div className="p-3 sm:p-4 ">
+                    <div className="relative  overflow-hidden aspect-[4/5] ">
                       {tool.feature_image ? (
                         <Image
                           src={tool.feature_image}
@@ -240,7 +214,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
                           fill
                           priority
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                          className="object-cover rounded-xl"
+                          className="object-cover "
                         />
                       ) : (
                         <Image
@@ -249,14 +223,11 @@ export default async function DynamicToolPage({ params }: PageProps) {
                           fill
                           priority
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                          className="object-cover rounded-xl"
+                          className="object-cover "
                         />
                       )}
                     </div>
-                    <div className="mt-3 flex items-center justify-between text-xs text-slate-600 px-1 font-medium">
-                      <span>Official {tool.dimensions_mm}</span>
-                      <span className="font-mono text-emerald-800 font-bold">100% Verified</span>
-                    </div>
+
                   </div>
                 </div>
               </div>
@@ -271,7 +242,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
           <div className="container-narrow max-w-2xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-5 sm:mb-7">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                {tool.hero_title}
+                Create Your {tool.hero_title}
               </h2>
               <p className="text-slate-700 text-xs sm:text-sm mt-1.5 max-w-md mx-auto leading-relaxed">
                 Select your country, upload your photo, and let AI automatically size and verify biometrics in 10 seconds.

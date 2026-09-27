@@ -8,7 +8,7 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — PixPassport",
+  title: "Privacy Policy",
   description:
     "Read the PixPassport Privacy Policy. Understand what data we collect, our UK GDPR compliance, cookie practices, and how your privacy is protected.",
   alternates: {
@@ -25,12 +25,51 @@ export const metadata: Metadata = {
     siteName: "PixPassport",
     locale: "en_GB",
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/pixpassport.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "PixPassport Privacy Policy",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy — PixPassport",
+    description:
+      "Read the PixPassport Privacy Policy. Understand what data we collect, our UK GDPR compliance, cookie practices, and how your privacy is protected.",
+    images: [`${SITE_URL}/pixpassport.jpg`],
   },
 };
 
 export default function PrivacyPolicyPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Privacy Policy",
+        item: `${SITE_URL}/privacy-policy`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <Navbar ctaText="Create Photo" ctaHref="/passport-size-photo-maker" />
 
       <main className="flex-1 bg-white text-slate-900" id="main-content">

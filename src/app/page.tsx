@@ -172,13 +172,14 @@ export default function HomePage() {
       <JsonLd
         price="7.99"
         priceCurrency="GBP"
+        faqItems={faqs}
       />
 
       <Navbar ctaText="Upload Photo" ctaHref="/passport-size-photo-maker" />
 
       <main className="flex-1 bg-white text-slate-900" id="main-content">
         {/* =========================================================================
-            1. HERO SECTION (Clean, responsive, zero shadows)
+            1. HERO SECTION (Clean, responsive, standardized)
            ========================================================================= */}
         <section className="bg-white py-10 sm:py-16 lg:py-20 border-b border-slate-200/80" id="hero" aria-label="Introduction and photo maker overview">
           <div className="container-narrow">
@@ -186,14 +187,14 @@ export default function HomePage() {
               {/* Left copy column */}
               <div className="lg:col-span-7 max-w-2xl">
                 {/* Official Biometric Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F4FBE8] border border-lime-300 text-xs font-bold text-[#365314] tracking-wide mb-5">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-lime-50 border border-lime-300 text-xs font-bold text-[#365314] tracking-wide mb-5">
                   <span className="w-2 h-2 rounded-full bg-[#4D7C0F]" aria-hidden="true" />
-                  <span> UK PASSPORT PHOTO TOOL · ICAO COMPLIANT</span>
+                  <span>UK PASSPORT PHOTO TOOL · ICAO COMPLIANT</span>
                 </div>
 
                 {/* Main Heading */}
                 <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-[#0F172A] tracking-tight leading-[1.18] mb-3">
-                  Create a Passport Picture Online 
+                  Create a Passport Picture Online
                 </h1>
 
                 {/* Sub-heading */}
@@ -202,7 +203,7 @@ export default function HomePage() {
                 </p>
 
                 {/* Body description */}
-                <p className="text-sm sm:text-base text-[#334155] leading-relaxed mb-7 max-w-xl">
+                <p className="text-sm sm:text-base text-slate-700 leading-relaxed mb-7 max-w-xl">
                   Upload one photo and get a ready-to-submit digital photo for your
                   passport, visa, or passport renewal. We crop, resize, and check
                   your photo against official government rules for the UK, US,
@@ -213,14 +214,14 @@ export default function HomePage() {
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 mb-7">
                   <Link
                     href="/passport-size-photo-maker"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-base px-7 py-3.5 sm:py-4 rounded-xl transition-colors text-center shadow-xs"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] active:bg-[#365314] !text-white text-white font-bold text-base px-7 py-3.5 sm:py-4 rounded-xl transition-colors text-center shadow-xs focus-ring"
                   >
                     <span>Create My Passport Photo</span>
-                    <span aria-hidden="true">&rarr;</span>
+                    <ArrowRight className="w-4 h-4 ml-0.5" aria-hidden="true" />
                   </Link>
                   <a
                     href="#how-it-works"
-                    className="w-full sm:w-auto inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-800 font-semibold text-base px-6 py-3.5 sm:py-4 rounded-xl border border-slate-300 transition-colors text-center"
+                    className="w-full sm:w-auto inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-800 font-semibold text-base px-6 py-3.5 sm:py-4 rounded-xl border border-slate-300 transition-colors text-center focus-ring"
                   >
                     How It Works
                   </a>
@@ -262,24 +263,28 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Visual preview column (Clean border, NO shadow) */}
+              {/* Visual preview column */}
               <div className="lg:col-span-5 flex justify-center w-full">
                 <div className="w-full max-w-sm lg:max-w-md">
-                  <div className=" p-3 sm:p-4">
-                    <div className="relative rounded-xl overflow-hidden  aspect-[4/5] bg-white">
-                    <Image
-                      src="https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
-                      alt="Official UK Passport Size Photo Sample"
-                      fill
-                      priority
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                      className="object-cover rounded-xl"
-                    />
+                  <div className="p-3 sm:p-4 bg-slate-50/80 rounded-2xl border border-slate-200">
+                    <div className="relative rounded-xl overflow-hidden aspect-[4/5] bg-white shadow-xs">
+                      <Image
+                        src="https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+                        alt="Official UK Passport Size Photo Sample"
+                        fill
+                        priority
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                        className="object-cover rounded-xl"
+                      />
+                    </div>
+                    <div className="mt-3 flex items-center justify-between text-xs text-slate-600 px-1 font-medium">
+                      <span>Official 35×45 mm (600×750 px)</span>
+                      <span className="font-mono text-emerald-800 font-bold">100% Verified</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
           </div>
         </section>
 
@@ -678,7 +683,98 @@ export default function HomePage() {
         </section>
 
         {/* =========================================================================
-            7. FAQ SECTION (Clean accordion, no shadows)
+            7. POPULAR COUNTRY & DOCUMENT FORMATS (Internal Linking SEO Grid)
+           ========================================================================= */}
+        <section className="bg-white py-14 sm:py-20 border-b border-slate-200/80" id="popular-tools" aria-label="Popular country and document photo formats">
+          <div className="container-narrow">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="inline-block px-3 py-1 rounded-full bg-lime-100 border border-lime-300 text-[#365314] text-xs font-bold mb-3">
+                Global Standards
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
+                Popular Passport &amp; Visa Photo Formats
+              </h2>
+              <p className="text-slate-700 text-sm sm:text-base">
+                Explore dedicated specifications and automated photo makers for top destinations.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
+              {[
+                {
+                  slug: "uk-passport-photo",
+                  title: "UK Passport Photo",
+                  spec: "35×45 mm (600×750 px)",
+                  flag: "🇬🇧",
+                  desc: "Official HMPO biometric specification for British passport renewal and first applications.",
+                },
+                {
+                  slug: "us-visa-photo",
+                  title: "US Visa & Passport",
+                  spec: "2×2 inches (51×51 mm)",
+                  flag: "🇺🇸",
+                  desc: "Department of State compliant square photo for DS-160 visa applications and US passports.",
+                },
+                {
+                  slug: "schengen-visa-photo",
+                  title: "Schengen Visa Photo",
+                  spec: "35×45 mm (630×810 px)",
+                  flag: "🇪🇺",
+                  desc: "Biometric standard for France, Germany, Italy, Spain, and all 29 European member states.",
+                },
+                {
+                  slug: "baby-passport-photo",
+                  title: "Baby Passport Photo",
+                  spec: "UK HMPO Infant Size",
+                  flag: "👶",
+                  desc: "Specialized infant & toddler guidance with relaxed head positioning and automatic background cleanup.",
+                },
+                {
+                  slug: "indian-passport-photo",
+                  title: "Indian Passport & OCI",
+                  spec: "51×51 mm (2×2 inches)",
+                  flag: "🇮🇳",
+                  desc: "VFS Global & High Commission compliant dimensions for Indian passport renewal and OCI cards.",
+                },
+                {
+                  slug: "driving-licence-photo",
+                  title: "UK Driving Licence",
+                  spec: "DVLA 35×45 mm",
+                  flag: "🚗",
+                  desc: "Driver and Vehicle Licensing Agency compliant photo for provisional and photocard renewal.",
+                },
+              ].map((tool) => (
+                <Link
+                  key={tool.slug}
+                  href={`/tool/${tool.slug}`}
+                  className="bg-slate-50 hover:bg-white border border-slate-200 hover:border-lime-600 rounded-2xl p-5 sm:p-6 flex flex-col justify-between transition-all group shadow-2xs"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-2xl" role="img" aria-hidden="true">{tool.flag}</span>
+                      <span className="font-mono text-xs font-semibold bg-white border border-slate-200 text-slate-700 px-2 py-0.5 rounded">
+                        {tool.spec}
+                      </span>
+                    </div>
+                    <h3 className="font-bold text-[#0F172A] text-base sm:text-lg mb-1.5 group-hover:text-[#365314] transition-colors">
+                      {tool.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                      {tool.desc}
+                    </p>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#4D7C0F] group-hover:text-[#365314]">
+                    <span>View Specifications &amp; Create</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================================
+            8. FAQ SECTION (Clean accordion, no shadows)
            ========================================================================= */}
         <section className="bg-slate-50/70 py-14 sm:py-20 border-b border-slate-200/80" id="faq" aria-label="Frequently Asked Questions">
           <div className="container-narrow">

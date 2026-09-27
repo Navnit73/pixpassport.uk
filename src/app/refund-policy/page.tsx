@@ -15,7 +15,7 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
 
 export const metadata: Metadata = {
-  title: "Refund Policy & Acceptance Guarantee — PixPassport",
+  title: "Refund Policy & Acceptance Guarantee",
   description:
     "Review PixPassport's transparent refund policy, official dimensional acceptance guarantee, eligible refund scenarios, and claims procedure.",
   alternates: {
@@ -32,12 +32,51 @@ export const metadata: Metadata = {
     siteName: "PixPassport",
     locale: "en_GB",
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/pixpassport.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "PixPassport Refund Policy & Acceptance Guarantee",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Refund Policy & Acceptance Guarantee — PixPassport",
+    description:
+      "Review PixPassport's transparent refund policy, official dimensional acceptance guarantee, eligible refund scenarios, and claims procedure.",
+    images: [`${SITE_URL}/pixpassport.jpg`],
   },
 };
 
 export default function RefundPolicyPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Refund Policy",
+        item: `${SITE_URL}/refund-policy`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <Navbar ctaText="Create Photo" ctaHref="/passport-size-photo-maker" />
 
       <main className="flex-1 bg-white text-slate-900" id="main-content">

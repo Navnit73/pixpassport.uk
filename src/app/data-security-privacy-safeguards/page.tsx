@@ -18,7 +18,7 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
 
 export const metadata: Metadata = {
-  title: "Data Security & Privacy Safeguards — PixPassport",
+  title: "Data Security & Privacy Safeguards",
   description:
     "Explore PixPassport's technical security safeguards, TLS 1.3 encryption, in-browser compression, and zero-retention biometric privacy architecture.",
   alternates: {
@@ -35,12 +35,51 @@ export const metadata: Metadata = {
     siteName: "PixPassport",
     locale: "en_GB",
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/pixpassport.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "PixPassport Data Security & Privacy Safeguards",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Data Security & Privacy Safeguards — PixPassport",
+    description:
+      "Explore PixPassport's technical security safeguards, TLS 1.3 encryption, in-browser compression, and zero-retention biometric privacy architecture.",
+    images: [`${SITE_URL}/pixpassport.jpg`],
   },
 };
 
 export default function DataSecurityPrivacySafeguardsPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Data Security & Privacy Safeguards",
+        item: `${SITE_URL}/data-security-privacy-safeguards`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <Navbar ctaText="Create Photo" ctaHref="/passport-size-photo-maker" />
 
       <main className="flex-1 bg-white text-slate-900" id="main-content">

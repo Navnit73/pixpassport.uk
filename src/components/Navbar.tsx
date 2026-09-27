@@ -38,7 +38,7 @@ export interface NavbarProps {
 export default function Navbar({
   brandName = (
     <span>
-      Pix<span className="text-[#3F650C] font-extrabold">Passport</span>
+      Pix<span className="text-lime-600 font-extrabold">Passport</span>
     </span>
   ),
   brandHref = "/",

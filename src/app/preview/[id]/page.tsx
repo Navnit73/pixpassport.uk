@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import JsonLd from "@/components/JsonLd";
 import type { PassportProcessResult } from "@/lib/passport-api";
 
 interface StoredPassportResult extends PassportProcessResult {
@@ -137,12 +136,6 @@ export default function PassportPhotoPreviewPage() {
 
   return (
     <>
-      <JsonLd
-        price="7.99"
-        priceCurrency="GBP"
-        description={`Preview and download official biometric passport photo for ${countryName}. ID: ${resultId}`}
-      />
-
       <Navbar ctaText="Create New Photo" ctaHref="/passport-size-photo-maker" />
 
       <main className="flex-1 bg-slate-50 min-h-screen py-6 sm:py-10 text-slate-900" id="main-content">

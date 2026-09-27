@@ -66,14 +66,14 @@ export default function PhotoMakerStudio({
 }: PhotoMakerStudioProps) {
   const router = useRouter();
 
-  // Country selection state
+  // Country selection state with prop synchronization
   const [selectedCountryCode, setSelectedCountryCode] = useState<string>(defaultCountryCode);
+  const [prevDefaultCode, setPrevDefaultCode] = useState(defaultCountryCode);
 
-  useEffect(() => {
-    if (defaultCountryCode) {
-      setSelectedCountryCode(defaultCountryCode);
-    }
-  }, [defaultCountryCode]);
+  if (defaultCountryCode !== prevDefaultCode) {
+    setPrevDefaultCode(defaultCountryCode);
+    setSelectedCountryCode(defaultCountryCode);
+  }
 
   const selectedCountry: CountryPassportConfig =
     getCountryByCode(selectedCountryCode) ||
@@ -334,11 +334,22 @@ export default function PhotoMakerStudio({
           : "An error occurred while communicating with the PixPassport API.";
       setError(msg);
     }
-  }, [file, selectedCountry, defaultDocumentType, preview, router]);
+  }, [
+    file,
+    selectedCountry,
+    defaultDocumentType,
+    preview,
+    router,
+    setIsProcessing,
+    setError,
+    setProcessingProgress,
+    setProcessingStepIndex,
+    setCountdown,
+  ]);
 
   return (
     <div className={`space-y-4 sm:space-y-5 ${className}`}>
-      {/* Error Alert (shared, sits above both cards) */}
+      {/* Error Alert */}
       {error && (
         <div
           role="alert"
@@ -359,10 +370,8 @@ export default function PhotoMakerStudio({
         </div>
       )}
 
-      {/* =========================================================================
-          CARD 1 — Country Selector (Exact same card as /passport-size-photo-maker)
-         ========================================================================= */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
+      {/* CARD 1 — Country Selector */}
+      <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-xs">
         <label
           htmlFor="country-search-trigger"
           className="block text-xs sm:text-sm font-bold text-slate-900 mb-2"
@@ -470,7 +479,7 @@ export default function PhotoMakerStudio({
         </div>
 
         <p className="text-slate-700 text-xs mt-2 flex items-center gap-1.5 font-medium">
-          <Globe className="w-3.5 h-3.5 text-slate-600" aria-hidden="true" />
+          <Globe className="w-3.5 h-3.5 text-slate-600 shrink-0" aria-hidden="true" />
           <span>
             {selectedCountry.document_type
               ? `${selectedCountry.document_type.charAt(0).toUpperCase()}${selectedCountry.document_type.slice(1)} photo`
@@ -480,10 +489,8 @@ export default function PhotoMakerStudio({
         </p>
       </div>
 
-      {/* =========================================================================
-          CARD 2 — Upload Card (Exact same card as /passport-size-photo-maker)
-         ========================================================================= */}
-      <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-8">
+      {/* CARD 2 — Upload Card */}
+      <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-8 shadow-xs">
         <div>
           <label htmlFor="photo-file-input" className="block text-xs sm:text-sm font-bold text-slate-900 mb-2">
             Upload or Take Your Photo
@@ -621,9 +628,7 @@ export default function PhotoMakerStudio({
         </div>
       </div>
 
-      {/* =========================================================================
-          10-SECOND PROCESSING MODAL OVERLAY (Exact same modal)
-         ========================================================================= */}
+      {/* 10-SECOND PROCESSING MODAL OVERLAY */}
       {isProcessing && (
         <div
           role="dialog"
@@ -671,45 +676,41 @@ export default function PhotoMakerStudio({
                   style={{ width: `${processingProgress}%` }}
                 />
               </div>
-
-              <div className="flex justify-between text-xs text-slate-700 font-medium">
-                <span className="font-semibold">{processingProgress}% complete</span>
-                <span className="font-mono text-slate-700 font-semibold">{countdown}s remaining</span>
+              <div className="flex justify-between text-xs font-mono text-slate-700 font-semibold">
+                <span>{processingProgress}% Complete</span>
+                <span>{countdown}s remaining</span>
               </div>
             </div>
 
-            {/* Processing Steps Checklist */}
-            <div className="space-y-2.5 text-left bg-slate-50 border border-slate-200 rounded-xl p-3.5 sm:p-4 mb-4" aria-live="polite">
+            {/* Animated Progress Steps */}
+            <div className="bg-slate-50 p-4 rounded-xl text-left space-y-2.5 border border-slate-200 text-xs">
               {PROCESSING_STEPS.map((step, idx) => {
-                const isComplete = idx < processingStepIndex;
-                const isCurrent = idx === processingStepIndex;
+                const isDone = processingProgress >= step.progress;
+                const isCurrent = processingStepIndex === idx;
+
                 return (
                   <div
                     key={idx}
-                    className={`flex items-center gap-2.5 text-xs sm:text-sm font-medium transition-colors ${
-                      isComplete
-                        ? "text-[#4D7C0F]"
+                    className={`flex items-center gap-2.5 transition-colors ${
+                      isDone
+                        ? "text-lime-900 font-bold"
                         : isCurrent
-                        ? "text-slate-900 font-bold"
-                        : "text-slate-700"
+                        ? "text-[#365314] font-bold"
+                        : "text-slate-500 font-medium"
                     }`}
                   >
-                    {isComplete ? (
+                    {isDone ? (
                       <CheckCircle className="w-4 h-4 text-[#4D7C0F] shrink-0" aria-hidden="true" />
                     ) : isCurrent ? (
-                      <span className="w-4 h-4 border-2 border-[#4D7C0F] border-t-transparent rounded-full animate-spin shrink-0" aria-hidden="true" />
+                      <span className="w-4 h-4 rounded-full border-2 border-[#4D7C0F] border-t-transparent animate-spin shrink-0" aria-hidden="true" />
                     ) : (
-                      <span className="w-4 h-4 rounded-full border border-slate-300 shrink-0" aria-hidden="true" />
+                      <div className="w-4 h-4 rounded-full border border-slate-400 shrink-0" aria-hidden="true" />
                     )}
-                    <span className="truncate">{step.text}</span>
+                    <span>{step.text}</span>
                   </div>
                 );
               })}
             </div>
-
-            <p className="text-[11px] text-slate-700">
-              Please do not close this window. Your download preview will load automatically.
-            </p>
           </div>
         </div>
       )}

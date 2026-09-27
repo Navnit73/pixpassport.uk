@@ -26,19 +26,77 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "About Us — PixPassport.uk",
+    title: "About Us — PixPassport",
     description:
       "Learn about PixPassport.uk — our mission, privacy-first technology, UK HMPO compliance standards, and commitment to accessible passport photo creation.",
     url: `${SITE_URL}/about-us`,
     siteName: "PixPassport",
     locale: "en_GB",
     type: "website",
+    images: [
+      {
+        url: `${SITE_URL}/pixpassport.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "About PixPassport — UK Passport Photo Maker",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Us — PixPassport",
+    description:
+      "Learn about PixPassport.uk — our mission, privacy-first technology, UK HMPO compliance standards, and commitment to accessible passport photo creation.",
+    images: [`${SITE_URL}/pixpassport.jpg`],
   },
 };
 
 export default function AboutUsPage() {
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "About Us",
+        item: `${SITE_URL}/about-us`,
+      },
+    ],
+  };
+
+  const aboutPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About PixPassport",
+    description:
+      "PixPassport is an independent, privacy-focused online passport and biometric photo formatting tool.",
+    url: `${SITE_URL}/about-us`,
+    publisher: {
+      "@type": "Organization",
+      name: "PixPassport",
+      url: SITE_URL,
+      logo: `${SITE_URL}/pixpassport.jpg`,
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
+      />
+
       <Navbar ctaText="Create Photo" ctaHref="/passport-size-photo-maker" />
 
       <main className="flex-1 bg-white text-slate-900" id="main-content">
@@ -101,7 +159,7 @@ export default function AboutUsPage() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5">
                 <h3 className="font-bold text-slate-900 text-base mb-2 flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-red-600 shrink-0" aria-hidden="true" />
+                  <CheckCircle className="w-4 h-4 text-[#4D7C0F] shrink-0" aria-hidden="true" />
                   <span>Preventing Photo Rejections</span>
                 </h3>
                 <p className="text-sm text-slate-700 leading-relaxed">
