@@ -3,6 +3,7 @@
 import {
   useState,
   useRef,
+  useEffect,
   type ChangeEvent,
   type DragEvent,
 } from "react";
@@ -17,10 +18,11 @@ import {
   CheckCircle,
   Zap,
   ArrowRight,
-  Shield,
-  Sparkles,
   Camera,
   Check,
+  RotateCcw,
+  Search,
+  ChevronDown,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -41,11 +43,19 @@ const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const MAX_FILE_SIZE_MB = 20;
 
 const PROCESSING_STEPS = [
-  { text: "Analyzing biometric facial landmarks & eye position…", progress: 25 },
-  { text: "Validating background uniformity & removing shadows…", progress: 50 },
-  { text: "Aligning dimensions to official country standards…", progress: 75 },
-  { text: "Finalizing ultra-high-resolution print preview…", progress: 95 },
+  { text: "Analyzing facial landmarks & eye alignment…", progress: 25 },
+  { text: "Removing shadows & verifying background…", progress: 50 },
+  { text: "Cropping to exact government dimensions…", progress: 75 },
+  { text: "Finalizing digital photo & 6×4″ print sheet…", progress: 95 },
 ];
+
+// Converts a 2-letter ISO country code into its flag emoji (e.g. "GB" -> 🇬🇧)
+function countryFlag(code: string): string {
+  if (!code || code.length !== 2) return "🌍";
+  return code
+    .toUpperCase()
+    .replace(/./g, (char) => String.fromCodePoint(127397 + char.charCodeAt(0)));
+}
 
 export default function PassportSizePhotoMakerPage() {
   const router = useRouter();
@@ -54,6 +64,58 @@ export default function PassportSizePhotoMakerPage() {
   const [selectedCountryCode, setSelectedCountryCode] = useState<string>("GB");
   const selectedCountry: CountryPassportConfig =
     getCountryByCode(selectedCountryCode) || DEFAULT_COUNTRY;
+
+  // Searchable country dropdown state
+  const [isCountryOpen, setIsCountryOpen] = useState(false);
+  const [countryQuery, setCountryQuery] = useState("");
+  const countryBoxRef = useRef<HTMLDivElement>(null);
+  const countrySearchRef = useRef<HTMLInputElement>(null);
+
+  const filteredCountries = COUNTRIES.filter((c) => {
+    const q = countryQuery.trim().toLowerCase();
+    if (!q) return true;
+    return (
+      c.country_name.toLowerCase().includes(q) ||
+      c.country_code.toLowerCase().includes(q)
+    );
+  });
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (
+        countryBoxRef.current &&
+        !countryBoxRef.current.contains(e.target as Node)
+      ) {
+        setIsCountryOpen(false);
+        setCountryQuery("");
+      }
+    }
+    function handleEscape(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setIsCountryOpen(false);
+        setCountryQuery("");
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  function openCountryDropdown() {
+    if (isProcessing) return;
+    setIsCountryOpen(true);
+    // focus the search box once it mounts
+    requestAnimationFrame(() => countrySearchRef.current?.focus());
+  }
+
+  function selectCountry(code: string) {
+    setSelectedCountryCode(code);
+    setIsCountryOpen(false);
+    setCountryQuery("");
+  }
 
   // File and state
   const [file, setFile] = useState<File | null>(null);
@@ -70,6 +132,20 @@ export default function PassportSizePhotoMakerPage() {
   const [processingStepIndex, setProcessingStepIndex] = useState(0);
   const [countdown, setCountdown] = useState(10);
   const inputRef = useRef<HTMLInputElement>(null);
+  const processBtnRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to process CTA button upon successful photo upload
+  useEffect(() => {
+    if (preview && file && !isProcessing) {
+      const timer = setTimeout(() => {
+        processBtnRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [preview, file, isProcessing]);
 
   // Validation
   function validate(f: File): string | null {
@@ -93,7 +169,7 @@ export default function PassportSizePhotoMakerPage() {
     }
 
     setError(null);
-    setFile(f); // Immediately update file state to prevent stale uploads
+    setFile(f);
 
     // Initial preview
     const reader = new FileReader();
@@ -117,7 +193,6 @@ export default function PassportSizePhotoMakerPage() {
     const f = e.target.files?.[0];
     if (f) {
       handleFile(f);
-      // Reset input value so re-selecting any file fires change event
       e.target.value = "";
     }
   }
@@ -159,7 +234,6 @@ export default function PassportSizePhotoMakerPage() {
     const startTime = Date.now();
     const TOTAL_DURATION_MS = 10000; // 10 seconds total
 
-    // Start 10-second timer animation
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;
       const progressPct = Math.min(100, Math.round((elapsed / TOTAL_DURATION_MS) * 100));
@@ -190,7 +264,6 @@ export default function PassportSizePhotoMakerPage() {
       formData.append("country_code", selectedCountry.country_code);
       formData.append("document_type", selectedCountry.document_type || "passport");
 
-      // Dispatch API call in parallel
       const apiPromise = fetch("/api/passport-photo", {
         method: "POST",
         body: formData,
@@ -202,7 +275,6 @@ export default function PassportSizePhotoMakerPage() {
         return data;
       });
 
-      // Ensure at least 10 seconds elapse for the full animation
       const [apiResult] = await Promise.all([
         apiPromise,
         new Promise((res) => setTimeout(res, TOTAL_DURATION_MS)),
@@ -226,7 +298,6 @@ export default function PassportSizePhotoMakerPage() {
         timestamp: Date.now(),
       };
 
-      // Store result in sessionStorage and localStorage
       if (typeof window !== "undefined") {
         try {
           sessionStorage.setItem(`pixpassport_${resultId}`, JSON.stringify(payload));
@@ -238,7 +309,6 @@ export default function PassportSizePhotoMakerPage() {
         }
       }
 
-      // Navigate to preview page with ID
       router.push(`/preview/${resultId}`);
     } catch (err: unknown) {
       clearInterval(interval);
@@ -254,377 +324,376 @@ export default function PassportSizePhotoMakerPage() {
   return (
     <>
       <JsonLd
-        description={`Create official passport size photos for ${selectedCountry.country_name} (${selectedCountry.dimensions} px). In-browser 3MB compression and instant compliance verification.`}
+        price="7.99"
+        priceCurrency="GBP"
+        description={`Create official biometric passport size photos for ${selectedCountry.country_name} (${selectedCountry.dimensions} px) for £7.99 with instant verification.`}
       />
 
       <Navbar ctaText="Home" ctaHref="/" />
 
-      <main className="flex-1 bg-base-100 min-h-screen py-8 sm:py-12" id="studio">
-        <div className="container-narrow">
+      <main className="flex-1 bg-slate-50 min-h-screen py-6 sm:py-12 text-slate-900" id="studio">
+        <div className="container-narrow max-w-2xl mx-auto px-4 sm:px-6">
           {/* Breadcrumb & Header */}
-          <div className="mb-8">
-            <nav className="text-xs sm:text-sm text-base-content/60 mb-3" aria-label="Breadcrumbs">
+          <div className="text-center mb-5 sm:mb-7">
+            <nav className="text-xs text-slate-500 mb-2 flex justify-center" aria-label="Breadcrumbs">
               <ol className="flex items-center gap-1.5 list-none p-0 m-0">
                 <li>
-                  <Link href="/" className="hover:text-primary transition-colors">
+                  <Link href="/" className="hover:text-lime-700 transition-colors">
                     Home
                   </Link>
                 </li>
                 <li>/</li>
-                <li className="text-base-content font-medium">
+                <li className="text-slate-800 font-medium">
                   Passport Size Photo Maker
                 </li>
               </ol>
             </nav>
 
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <div>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-base-content tracking-tight">
-                  Passport Size Photo Maker
-                </h1>
-                <p className="text-base-content/70 text-sm sm:text-base mt-1.5">
-                  Select your country, upload your photo, and let AI format
-                  official biometric dimensions.
-                </p>
-              </div>
-
-              <div className="badge badge-primary badge-outline py-3 px-3.5 font-mono text-xs sm:text-sm self-start md:self-auto rounded-full">
-                <Globe className="w-3.5 h-3.5 mr-1.5" />
-                {selectedCountry.country_name}: {selectedCountry.dimensions} px
-              </div>
-            </div>
+            <h1 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
+              Passport Photo Maker
+            </h1>
+            <p className="text-slate-600 text-xs sm:text-sm mt-1.5 max-w-md mx-auto">
+              Select your country, upload your photo, and let AI automatically size and verify biometrics in 10 seconds.
+            </p>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-8 items-start">
-            {/* Main Interactive Studio Column */}
-            <div className="lg:col-span-8 space-y-6">
-              <div className="card bg-base-100 border border-base-300 rounded-2xl card-shadow">
-                <div className="card-body gap-6 p-5 sm:p-8">
-                  {/* Step 1: Country Selector */}
-                  <div>
-                    <label
-                      htmlFor="country-select"
-                      className="block text-sm font-semibold text-base-content mb-2 flex items-center justify-between"
-                    >
-                      <span className="flex items-center gap-2">
-                        <Globe className="w-4 h-4 text-primary" />
-                        1. Select Destination / Nationality:
-                      </span>
-                      <span className="badge badge-primary badge-sm text-xs font-semibold">
-                        UK Default
-                      </span>
-                    </label>
-
-                    <select
-                      id="country-select"
-                      value={selectedCountryCode}
-                      onChange={(e) => setSelectedCountryCode(e.target.value)}
-                      disabled={isProcessing}
-                      className="select select-bordered w-full text-base-content font-medium bg-base-100 text-sm sm:text-base rounded-xl"
-                      aria-label="Select target country"
-                    >
-                      {COUNTRIES.map((c) => (
-                        <option key={c.country_code} value={c.country_code}>
-                          {c.country_name} ({c.country_code}) — {c.dimensions} px
-                          ({c.document_type})
-                        </option>
-                      ))}
-                    </select>
-
-                    <div className="mt-3 flex flex-wrap items-center gap-2 text-xs text-base-content/75 bg-base-200/80 p-3 rounded-xl border border-base-300/60">
-                      <span className="font-semibold text-base-content">
-                        Preset Dimensions:
-                      </span>
-                      <span className="badge badge-neutral badge-sm font-mono font-bold">
-                        {selectedCountry.dimensions} px
-                      </span>
-                      <span className="badge badge-outline badge-sm capitalize">
-                        Official {selectedCountry.document_type}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="divider my-0" />
-
-                  {/* Error Alert */}
-                  {error && (
-                    <div
-                      role="alert"
-                      aria-live="polite"
-                      className="alert alert-error rounded-xl text-sm"
-                    >
-                      <AlertCircle className="w-5 h-5 shrink-0" />
-                      <span className="flex-1">{error}</span>
-                      <button
-                        className="btn btn-ghost btn-xs btn-circle"
-                        onClick={() => setError(null)}
-                        aria-label="Dismiss error"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  )}
-
-                  {/* Step 2: Upload Area */}
-                  <div>
-                    <label className="block text-sm font-semibold text-base-content mb-2 flex items-center gap-2">
-                      <Upload className="w-4 h-4 text-primary" />
-                      2. Upload Your Photo (Smart 3 MB Auto-Compression):
-                    </label>
-
-                    {!preview ? (
-                      <div
-                        className={`border-2 border-dashed rounded-2xl p-8 sm:p-12 text-center cursor-pointer transition-colors ${
-                          isDragging
-                            ? "border-primary bg-primary/5"
-                            : "border-base-300 hover:border-primary/50 bg-base-200/30"
-                        }`}
-                        onDragOver={onDragOver}
-                        onDragLeave={onDragLeave}
-                        onDrop={onDrop}
-                        onClick={() => inputRef.current?.click()}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            e.preventDefault();
-                            inputRef.current?.click();
-                          }
-                        }}
-                        aria-label="Upload photo area. Click or drag and drop."
-                      >
-                        <ImagePlus className="w-12 h-12 text-base-content/35 mx-auto mb-3" />
-                        <p className="text-base-content font-bold text-base sm:text-lg mb-1">
-                          Drag &amp; drop your photo here
-                        </p>
-                        <p className="text-base-content/60 text-xs sm:text-sm mb-3">
-                          or click to browse from your device · JPEG, PNG, WebP
-                        </p>
-                        <span className="badge badge-outline badge-sm text-xs text-base-content/70">
-                          Automatic high-clarity compression to ≤ 3 MB
-                        </span>
-                      </div>
-                    ) : (
-                      <div className="space-y-4">
-                        <div className="relative bg-base-200 rounded-2xl p-4 flex justify-center border border-base-300 shadow-inner">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={preview}
-                            alt="Uploaded passport photo preview"
-                            className="max-h-72 sm:max-h-80 rounded-xl object-contain shadow-xs border border-base-100"
-                          />
-                          {!isProcessing && (
-                            <button
-                              className="btn btn-circle btn-sm btn-ghost absolute top-3 right-3 bg-base-100/90 backdrop-blur-xs hover:bg-base-100 shadow-sm"
-                              onClick={clearFile}
-                              aria-label="Remove uploaded photo"
-                            >
-                              <X className="w-4 h-4" />
-                            </button>
-                          )}
-                        </div>
-
-                        {/* Compression info badge */}
-                        {compressionInfo && (
-                          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs bg-base-200/90 p-3 rounded-xl border border-base-300">
-                            <span className="flex items-center gap-1.5 text-base-content font-medium">
-                              <Check className="w-4 h-4 text-success shrink-0" />
-                              {compressionInfo.compressed
-                                ? "Compressed to ≤ 3 MB without loss of quality"
-                                : "Photo size verified (within 3 MB limit)"}
-                            </span>
-                            <span className="font-mono text-base-content/70 text-xs shrink-0">
-                              {compressionInfo.finalSizeKB} KB
-                              {compressionInfo.compressed &&
-                                ` (was ${compressionInfo.originalSizeKB} KB)`}
-                            </span>
-                          </div>
-                        )}
-                      </div>
-                    )}
-
-                    <input
-                      ref={inputRef}
-                      type="file"
-                      accept={ACCEPTED_TYPES.join(",")}
-                      onChange={onFileChange}
-                      className="hidden"
-                      id="photo-file-input"
-                      aria-label="Select photo file"
-                    />
-                  </div>
-
-                  {/* Step 3: Action Button */}
-                  {file && !isProcessing && (
-                    <div className="pt-2">
-                      <button
-                        className="btn btn-primary w-full btn-lg gap-2 text-base font-semibold shadow-sm"
-                        onClick={handleProcess}
-                      >
-                        <Zap className="w-5 h-5" />
-                        Process for {selectedCountry.country_name} (
-                        {selectedCountry.dimensions} px)
-                        <ArrowRight className="w-4 h-4 ml-1" />
-                      </button>
-                      <p className="text-center text-xs text-base-content/60 mt-2.5">
-                        Takes approx. 10 seconds to analyze biometrics &amp; generate
-                        high-resolution print preview.
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Guidelines Checklist */}
-                  {!file && (
-                    <div className="text-xs text-base-content/70 space-y-2 pt-4 border-t border-base-200">
-                      <p className="font-bold text-base-content">
-                        Passport Photo Acceptance Guidelines:
-                      </p>
-                      <ul className="list-disc pl-4 space-y-1">
-                        <li>Look straight into the camera with a neutral expression</li>
-                        <li>Ensure even lighting across face and shoulders</li>
-                        <li>Eyes fully visible without tinted lenses or thick frames</li>
-                        <li>Head coverings permitted for religious/medical reasons</li>
-                      </ul>
-                    </div>
-                  )}
-                </div>
+          {/* Error Alert (shared, sits above both cards) */}
+          {error && (
+            <div
+              role="alert"
+              aria-live="polite"
+              className="mb-4 bg-red-50 border border-red-200 text-red-800 rounded-xl p-3.5 sm:p-4 text-sm flex items-start justify-between gap-3"
+            >
+              <div className="flex items-start gap-2.5">
+                <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                <span>{error}</span>
               </div>
+              <button
+                className="text-red-500 hover:text-red-700 p-1"
+                onClick={() => setError(null)}
+                aria-label="Dismiss error"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          )}
+
+          <div className="space-y-4 sm:space-y-5">
+            {/* CARD 1 — Country Selector (small, separate card) */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
+              <label
+                htmlFor="country-search-trigger"
+                className="block text-xs sm:text-sm font-bold text-slate-800 mb-2"
+              >
+                Select Country / Destination
+              </label>
+
+              <div className="relative" ref={countryBoxRef}>
+                <button
+                  id="country-search-trigger"
+                  type="button"
+                  disabled={isProcessing}
+                  onClick={() =>
+                    isCountryOpen ? setIsCountryOpen(false) : openCountryDropdown()
+                  }
+                  className="w-full flex items-center justify-between gap-2 text-slate-900 font-medium bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm sm:text-base focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                  aria-haspopup="listbox"
+                  aria-expanded={isCountryOpen}
+                >
+                  <span className="flex items-center gap-2 min-w-0">
+                    <span className="text-lg leading-none shrink-0">
+                      {countryFlag(selectedCountry.country_code)}
+                    </span>
+                    <span className="truncate">
+                      {selectedCountry.country_name} ({selectedCountry.country_code}) —{" "}
+                      {selectedCountry.dimensions} px
+                    </span>
+                  </span>
+                  <ChevronDown
+                    className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${
+                      isCountryOpen ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+
+                {isCountryOpen && (
+                  <div
+                    className="absolute z-30 mt-2 w-full bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden flex flex-col"
+                    role="listbox"
+                  >
+                    <div className="p-2 border-b border-slate-100 bg-white shrink-0">
+                      <div className="relative">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                        <input
+                          ref={countrySearchRef}
+                          type="text"
+                          value={countryQuery}
+                          onChange={(e) => setCountryQuery(e.target.value)}
+                          placeholder="Search country…"
+                          className="w-full pl-9 pr-3 py-2.5 text-sm text-slate-900 border border-slate-200 rounded-lg focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600"
+                          aria-label="Search countries"
+                        />
+                      </div>
+                    </div>
+
+                    <ul className="max-h-56 sm:max-h-72 overflow-y-auto py-1">
+                      {filteredCountries.length === 0 && (
+                        <li className="px-4 py-4 text-sm text-slate-500 text-center">
+                          No countries match &ldquo;{countryQuery}&rdquo;
+                        </li>
+                      )}
+                      {filteredCountries.map((c) => {
+                        const active = c.country_code === selectedCountryCode;
+                        return (
+                          <li key={c.country_code}>
+                            <button
+                              type="button"
+                              role="option"
+                              aria-selected={active}
+                              onClick={() => selectCountry(c.country_code)}
+                              className={`w-full flex items-center justify-between gap-2 text-left px-4 py-2.5 text-sm transition-colors ${
+                                active
+                                  ? "bg-lime-50 text-lime-800 font-semibold"
+                                  : "text-slate-700 hover:bg-slate-50"
+                              }`}
+                            >
+                              <span className="flex items-center gap-2 min-w-0">
+                                <span className="text-base leading-none shrink-0">
+                                  {countryFlag(c.country_code)}
+                                </span>
+                                <span className="truncate">{c.country_name}</span>
+                              </span>
+                              <span className="flex items-center gap-2 shrink-0">
+                                <span className="font-mono text-xs text-slate-400">
+                                  {c.dimensions}px
+                                </span>
+                                {active && (
+                                  <Check className="w-4 h-4 text-lime-600" />
+                                )}
+                              </span>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                )}
+              </div>
+
+              <p className="text-slate-400 text-xs mt-2 flex items-center gap-1.5">
+                <Globe className="w-3.5 h-3.5" />
+                {selectedCountry.document_type
+                  ? `${selectedCountry.document_type.charAt(0).toUpperCase()}${selectedCountry.document_type.slice(1)} photo`
+                  : "Passport photo"}{" "}
+                sized to {selectedCountry.dimensions} px for {selectedCountry.country_name}
+              </p>
             </div>
 
-            {/* Sidebar Country Info Column */}
-            <div className="lg:col-span-4 space-y-6">
-              <div className="card bg-base-100 border border-base-300 rounded-2xl card-shadow">
-                <div className="card-body gap-4 p-6">
-                  <h3 className="font-bold text-base text-base-content flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-primary" />
-                    {selectedCountry.country_name} Standards
-                  </h3>
+            {/* CARD 2 — Upload (separate card) */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-8">
+              <div>
+                <label className="block text-xs sm:text-sm font-bold text-slate-800 mb-2">
+                  Upload or Take Your Photo
+                </label>
 
-                  <div className="space-y-3 text-xs text-base-content/75">
-                    <div className="flex justify-between py-1.5 border-b border-base-200">
-                      <span>Country Code:</span>
-                      <span className="font-mono font-bold text-base-content">
-                        {selectedCountry.country_code}
-                      </span>
+                {!preview ? (
+                  <div
+                    className={`border-2 border-dashed rounded-2xl p-5 sm:p-10 text-center cursor-pointer transition-all ${
+                      isDragging
+                        ? "border-lime-600 bg-lime-50/50"
+                        : "border-slate-300 hover:border-lime-500 bg-slate-50/60 hover:bg-slate-50"
+                    }`}
+                    onDragOver={onDragOver}
+                    onDragLeave={onDragLeave}
+                    onDrop={onDrop}
+                    onClick={() => inputRef.current?.click()}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        inputRef.current?.click();
+                      }
+                    }}
+                    aria-label="Upload photo area. Click or drag and drop."
+                  >
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center mx-auto mb-3 text-slate-400">
+                      <ImagePlus className="w-6 h-6 sm:w-7 sm:h-7 text-lime-700" />
                     </div>
-                    <div className="flex justify-between py-1.5 border-b border-base-200">
-                      <span>Target Dimensions:</span>
-                      <span className="font-mono font-bold text-base-content">
-                        {selectedCountry.dimensions} px
-                      </span>
-                    </div>
-                    <div className="flex justify-between py-1.5 border-b border-base-200">
-                      <span>Document Type:</span>
-                      <span className="capitalize font-bold text-base-content">
-                        {selectedCountry.document_type}
-                      </span>
-                    </div>
-                    <div className="flex justify-between py-1.5 border-b border-base-200">
-                      <span>Max File Size:</span>
-                      <span className="font-bold text-success">
-                        Auto ≤ 3 MB
-                      </span>
-                    </div>
-                    <div className="flex justify-between py-1.5">
-                      <span>Background:</span>
-                      <span className="text-success font-semibold">
-                        Auto AI Cleaned
-                      </span>
+
+                    <p className="text-slate-900 font-bold text-sm sm:text-lg mb-1">
+                      Tap to upload photo or take picture
+                    </p>
+                    <p className="text-slate-500 text-xs sm:text-sm mb-4">
+                      Drag &amp; drop from your device · JPEG, PNG, or WebP (up to 20 MB)
+                    </p>
+
+                  
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {/* Photo Preview Card */}
+                    <div className="relative bg-slate-50 border border-slate-200 rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-center">
+                      <div className="relative max-h-64 sm:max-h-80 w-auto rounded-xl overflow-hidden border border-slate-300">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={preview}
+                          alt="Uploaded passport photo preview"
+                          className="max-h-64 sm:max-h-80 w-auto object-contain rounded-xl"
+                        />
+                      </div>
+
+                      {!isProcessing && (
+                        <div className="flex items-center gap-2 mt-3 flex-wrap justify-center">
+                          <button
+                            type="button"
+                            onClick={() => inputRef.current?.click()}
+                            className="inline-flex items-center gap-1.5 bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs px-3.5 py-2 rounded-lg border border-slate-300 transition-colors"
+                          >
+                            <RotateCcw className="w-3.5 h-3.5" />
+                            Change Photo
+                          </button>
+                          <button
+                            type="button"
+                            onClick={clearFile}
+                            className="inline-flex items-center gap-1.5 bg-white hover:bg-red-50 text-red-700 font-semibold text-xs px-3.5 py-2 rounded-lg border border-red-200 transition-colors"
+                          >
+                            <X className="w-3.5 h-3.5" />
+                            Remove
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </div>
+                )}
+
+                <input
+                  ref={inputRef}
+                  type="file"
+                  accept={ACCEPTED_TYPES.join(",")}
+                  onChange={onFileChange}
+                  className="hidden"
+                  id="photo-file-input"
+                  aria-label="Select photo file"
+                />
               </div>
 
-              {/* Guarantees Box */}
-              <div className="card bg-primary/5 border border-primary/20 rounded-2xl p-6 space-y-3">
-                <div className="flex items-center gap-2 text-primary font-bold text-sm">
-                  <Sparkles className="w-4 h-4" />
-                  100% Free &amp; Private
+              {/* Action CTA Button */}
+              {file && !isProcessing && (
+                <div ref={processBtnRef} className="pt-5 sm:pt-6 border-t border-slate-100 mt-5 sm:mt-6">
+                  <button
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-sm sm:text-base py-3.5 sm:py-4 rounded-xl transition-colors text-center"
+                    onClick={handleProcess}
+                  >
+                    <Zap className="w-5 h-5 text-lime-300 shrink-0" />
+                    <span className="truncate">
+                      Process for {selectedCountry.country_name}
+                    </span>
+                    <ArrowRight className="w-4 h-4 ml-1 shrink-0" />
+                  </button>
+                  <p className="text-center text-xs text-slate-500 mt-2.5">
+                    ⚡ 10-second biometric crop &amp; verify · Single digital file + 6×4″ printable sheet
+                  </p>
                 </div>
-                <p className="text-xs text-base-content/75 leading-relaxed">
-                  Your photos are securely processed in compliance with official
-                  biometric criteria and never permanently stored.
+              )}
+
+              {/* Photo Guidelines Checklist */}
+              <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-slate-100 text-xs text-slate-600">
+                <p className="font-bold text-slate-800 mb-2">
+                  Quick Acceptance Tips:
                 </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-lime-600 shrink-0" />
+                    <span>Look straight into camera, neutral face</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-lime-600 shrink-0" />
+                    <span>Eyes open, mouth closed, no red-eye</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-lime-600 shrink-0" />
+                    <span>Even lighting on face &amp; shoulders</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 text-lime-600 shrink-0" />
+                    <span>Plain background (our AI will auto-clean)</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* 10-SECOND PROCESSING MODAL OVERLAY */}
+        {/* 10-SECOND PROCESSING MODAL OVERLAY (mobile-safe, scrolls if needed) */}
         {isProcessing && (
           <div
             role="dialog"
             aria-modal="true"
             aria-labelledby="processing-modal-title"
-            className="fixed inset-0 z-50 flex items-center justify-center bg-neutral/80 backdrop-blur-sm p-4 animate-fade-in"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 backdrop-blur-xs p-4 animate-fade-in"
           >
-            <div className="card bg-base-100 max-w-md w-full shadow-2xl border border-base-300 rounded-2xl overflow-hidden">
-              <div className="card-body text-center p-6 sm:p-8 gap-5">
-                <div className="relative mx-auto">
-                  <div className="w-18 h-18 rounded-full bg-primary/10 flex items-center justify-center animate-pulse">
-                    <Camera className="w-9 h-9 text-primary" />
-                  </div>
-                  <span className="absolute -bottom-1 -right-1 badge badge-primary font-mono text-xs font-bold shadow-sm">
-                    {countdown}s
-                  </span>
-                </div>
+            <div className="bg-white border border-slate-200 max-w-md w-full max-h-[90vh] overflow-y-auto rounded-2xl p-5 sm:p-8 text-center">
+              {/* Countdown circle */}
+              <div className="relative mx-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-lime-50 border border-lime-200 flex items-center justify-center mb-4">
+                <Camera className="w-7 h-7 sm:w-8 sm:h-8 text-[#4D7C0F]" />
+                <span className="absolute -bottom-1 -right-1 font-mono text-xs font-extrabold bg-[#4D7C0F] text-white px-1.5 py-0.5 rounded-full">
+                  {countdown}s
+                </span>
+              </div>
 
-                <div>
-                  <h3
-                    id="processing-modal-title"
-                    className="text-xl font-bold text-base-content mb-1"
-                  >
-                    Processing Passport Photo
-                  </h3>
-                  <p className="text-xs text-base-content/65 font-mono">
-                    Country: {selectedCountry.country_name} · Format:{" "}
-                    {selectedCountry.dimensions} px
-                  </p>
-                </div>
+              <h3
+                id="processing-modal-title"
+                className="text-base sm:text-xl font-bold text-slate-900 mb-1"
+              >
+                Processing Passport Photo
+              </h3>
+              <p className="text-xs text-slate-500 font-mono mb-5">
+                {selectedCountry.country_name} · Format: {selectedCountry.dimensions} px
+              </p>
 
-                {/* Progress bar */}
-                <div className="space-y-2">
-                  <div className="w-full bg-base-200 rounded-full h-3 overflow-hidden border border-base-300/60">
+              {/* Progress Bar */}
+              <div className="space-y-2 mb-6">
+                <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200">
+                  <div
+                    className="bg-[#4D7C0F] h-2.5 rounded-full transition-all duration-300 ease-out"
+                    style={{ width: `${processingProgress}%` }}
+                  />
+                </div>
+                <div className="flex justify-between text-xs font-mono text-slate-500 font-medium">
+                  <span>{processingProgress}% Complete</span>
+                  <span>{countdown}s remaining</span>
+                </div>
+              </div>
+
+              {/* Animated Progress Steps */}
+              <div className="bg-slate-50 p-4 rounded-xl text-left space-y-2.5 border border-slate-200 text-xs">
+                {PROCESSING_STEPS.map((step, idx) => {
+                  const isDone = processingProgress >= step.progress;
+                  const isCurrent = processingStepIndex === idx;
+
+                  return (
                     <div
-                      className="bg-primary h-3 rounded-full transition-all duration-300 ease-out"
-                      style={{ width: `${processingProgress}%` }}
-                    />
-                  </div>
-                  <div className="flex justify-between text-xs font-mono text-base-content/65 font-medium">
-                    <span>{processingProgress}% Complete</span>
-                    <span>{countdown}s remaining</span>
-                  </div>
-                </div>
-
-                {/* Animated Steps */}
-                <div className="bg-base-200/90 p-4 rounded-xl text-left space-y-2.5 border border-base-300 text-xs">
-                  {PROCESSING_STEPS.map((step, idx) => {
-                    const isDone = processingProgress >= step.progress;
-                    const isCurrent = processingStepIndex === idx;
-
-                    return (
-                      <div
-                        key={idx}
-                        className={`flex items-center gap-2.5 transition-colors ${
-                          isDone
-                            ? "text-success font-medium"
-                            : isCurrent
-                            ? "text-primary font-bold"
-                            : "text-base-content/45"
-                        }`}
-                      >
-                        {isDone ? (
-                          <CheckCircle className="w-4 h-4 text-success shrink-0" />
-                        ) : isCurrent ? (
-                          <span className="loading loading-spinner loading-xs text-primary shrink-0" />
-                        ) : (
-                          <div className="w-4 h-4 rounded-full border border-base-300 shrink-0" />
-                        )}
-                        <span>{step.text}</span>
-                      </div>
-                    );
-                  })}
-                </div>
+                      key={idx}
+                      className={`flex items-center gap-2.5 transition-colors ${
+                        isDone
+                          ? "text-lime-800 font-medium"
+                          : isCurrent
+                          ? "text-[#4D7C0F] font-bold"
+                          : "text-slate-400"
+                      }`}
+                    >
+                      {isDone ? (
+                        <CheckCircle className="w-4 h-4 text-[#4D7C0F] shrink-0" />
+                      ) : isCurrent ? (
+                        <span className="w-4 h-4 rounded-full border-2 border-[#4D7C0F] border-t-transparent animate-spin shrink-0" />
+                      ) : (
+                        <div className="w-4 h-4 rounded-full border border-slate-300 shrink-0" />
+                      )}
+                      <span>{step.text}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
