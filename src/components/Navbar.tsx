@@ -46,7 +46,7 @@ export default function Navbar({
   logoHeight = 32,
   navLinks = DEFAULT_NAV_LINKS,
   ctaText = "Get Started",
-  ctaHref = "#upload",
+  ctaHref = "/passport-size-photo-maker",
   className = "",
   ariaLabel = "Main site navigation",
 }: NavbarProps) {

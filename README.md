@@ -148,6 +148,9 @@ pixpassport.uk/
 │   └── sitemap.xml            # Static XML sitemap for manual updates
 ├── src/
 │   ├── app/
+│   │   ├── api/
+│   │   │   └── passport-photo/
+│   │   │       └── route.ts   # Secure API proxy for https://api.pixpassport.com/
 │   │   ├── apple-icon.jpg     # Apple touch icon
 │   │   ├── globals.css        # Tailwind CSS v4, DaisyUI theme, tokens
 │   │   ├── icon.jpg           # App favicon
@@ -158,6 +161,11 @@ pixpassport.uk/
 │   │   ├── Footer.tsx         # Site footer with brand and links
 │   │   ├── JsonLd.tsx         # Schema.org structured data component
 │   │   └── Navbar.tsx         # Header navigation bar with brand icon
+│   ├── config/
+│   │   ├── countries.json     # Global passport dimensions JSON database
+│   │   └── countries.ts       # Typed country configuration and lookup utilities
+│   ├── lib/
+│   │   └── passport-api.ts    # PixPassport API client helper
 │   └── mdx-components.tsx     # MDX custom component bindings
 ├── .gitignore                 # Git ignore rules
 ├── .prettierignore            # Prettier ignore rules

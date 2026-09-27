@@ -15,7 +15,8 @@ export interface JsonLdProps {
   faqItems?: JsonLdFaqEntry[];
 }
 
-const DEFAULT_SITE_URL = "https://pixpassport.uk";
+const DEFAULT_SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
 
 const DEFAULT_JSONLD_FAQS: JsonLdFaqEntry[] = [
   {

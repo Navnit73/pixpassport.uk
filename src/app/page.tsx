@@ -1,222 +1,132 @@
-"use client";
-
-import {
-  useState,
-  useRef,
-  type ChangeEvent,
-  type DragEvent,
-} from "react";
+import Link from "next/link";
 import {
   Camera,
   Upload,
   CheckCircle,
-  ImagePlus,
-  X,
-  AlertCircle,
-  Crop,
-  Download,
-  Ruler,
   Shield,
   Printer,
   Zap,
   Lock,
   Smartphone,
+  Globe,
+  ArrowRight,
+  Sparkles,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 
-const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
-const MAX_FILE_SIZE_MB = 10;
-const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
-
 const steps = [
   {
-    icon: Upload,
+    icon: Globe,
     step: 1,
-    title: "Upload",
+    title: "1. Select Country",
     description:
-      "Upload a high-quality photo taken against a plain background. JPEG, PNG, or WebP accepted.",
+      "Choose from 50+ countries including UK, US, Australia, Canada, Schengen Area, and India with official biometric dimensions.",
   },
   {
-    icon: Crop,
+    icon: Upload,
     step: 2,
-    title: "Adjust",
+    title: "2. Upload Photo",
     description:
-      "Position and crop your photo to meet the official 35 mm × 45 mm UK passport specification.",
+      "Upload your photo. PixPassport automatically optimizes and compresses images to 3 MB without losing facial clarity.",
   },
   {
-    icon: Download,
+    icon: Zap,
     step: 3,
-    title: "Download & Print",
+    title: "3. AI Process & Preview",
     description:
-      "Download your print-ready digital photo for passport applications or renewals, sized for home or pharmacy printing.",
+      "Takes 10 seconds to analyze biometrics, format dimensions, and generate verified previews with instant download.",
   },
 ];
 
 const features = [
   {
-    icon: Ruler,
-    title: "Official 35 mm × 45 mm Format",
+    icon: Globe,
+    title: "50+ Global Passport Formats",
     description:
-      "Photos are automatically sized to the official dimensions required for UK passport applications and renewals.",
+      "Official dimensions for UK (600×750), US (600×600), Australia (413×531), Schengen (630×810), and 50+ countries.",
+  },
+  {
+    icon: Zap,
+    title: "Smart 3 MB Compression",
+    description:
+      "High-resolution canvas compression keeps file sizes under 3 MB without compromising facial details or sharpness.",
   },
   {
     icon: Shield,
-    title: "UK Passport Specification",
+    title: "Biometric AI Verification",
     description:
-      "Built-in checks help ensure your digital photo for passport meets the dimensional requirements before you download.",
+      "Automated head height, eye positioning, top margin clearance, and background validation checks.",
   },
   {
     icon: Printer,
     title: "Print Passport Photo Online",
     description:
-      "Download a high-resolution file sized for standard 6×4″ photo paper — ready for home or pharmacy printing.",
-  },
-  {
-    icon: Zap,
-    title: "Instant Processing",
-    description:
-      "Your photo is processed entirely in-browser. No uploads to external servers and no waiting.",
+      "Download high-resolution image and preview files ready for home printing on 6×4″ photo paper or high-street kiosks.",
   },
   {
     icon: Lock,
-    title: "Privacy First",
+    title: "100% Free Forever",
     description:
-      "Photos never leave your device. All processing happens locally with no data stored or transmitted.",
+      "No hidden fees, subscriptions, or watermarks. Create unlimited compliant passport photos for the whole family.",
   },
   {
     icon: Smartphone,
-    title: "Works on Any Device",
+    title: "Fast & Mobile Friendly",
     description:
-      "Fully responsive — create your passport picture online from desktop, tablet, or mobile browsers.",
+      "Works directly in your mobile or desktop browser with no app download or software installation required.",
   },
 ];
 
 const pricingBenefits = [
-  "Unlimited passport photos",
-  "35 mm × 45 mm UK format",
-  "High-resolution download",
-  "In-browser processing",
-  "No account required",
-  "Print-ready 6×4″ layout",
+  "Official biometric dimensions for 50+ countries",
+  "Smart in-browser compression to ≤ 3 MB",
+  "High-resolution single digital passport photo",
+  "Standard 6×4″ (10×15 cm) multi-photo print sheet",
+  "No watermark extortion or hidden charges",
+  "No registration or credit card needed",
 ];
 
 const faqs = [
   {
-    question: "What are the official UK passport photo requirements?",
+    question: "What are the official UK passport photo size requirements?",
     answer:
-      "UK passport photos must be 35 mm wide × 45 mm tall, with a plain white or light grey background. Your face must be clearly visible with a neutral expression, mouth closed, and eyes open. The photo must be in sharp focus with no red-eye. PixPassport automatically sizes your photo to meet these requirements.",
+      "Official UK digital passport photos must be 600×750 pixels (or 35 mm wide by 45 mm high in print). The head height from chin to crown must measure between 29 mm and 34 mm (70–80% of image height).",
   },
   {
-    question: "How do I create a digital photo for passport renewal?",
+    question: "How does the 3 MB photo compression work?",
     answer:
-      "Upload a recent, well-lit photo of yourself to PixPassport. The tool will help you crop and adjust it to the official 35 mm × 45 mm dimensions. You can then download the digital photo for your passport renewal application, ready to submit online or print at home.",
+      "When you upload an image, PixPassport automatically compresses and optimizes the file to 3 MB or less directly inside your browser while maintaining pristine facial sharpness and biometric standards.",
   },
   {
-    question: "Is PixPassport really free?",
+    question: "Which countries are supported by PixPassport?",
     answer:
-      "Yes, PixPassport is completely free with no hidden charges. You can create and download as many passport photos as you need without paying anything or creating an account.",
+      "PixPassport supports 53 countries worldwide including the United Kingdom, United States, Canada, Australia, India, Schengen European countries, Japan, China, Singapore, and New Zealand.",
   },
   {
-    question: "Are photos processed on your servers?",
+    question: "How long does processing take?",
     answer:
-      "No. All photo processing happens entirely within your web browser. Your photos are never uploaded to any server, ensuring complete privacy. Once you close the page, no trace of your photo remains.",
+      "Processing takes approximately 10 seconds. Our AI engine inspects eye level, facial centering, and background uniformity before generating your high-res digital photo and 6×4″ printable sheet.",
   },
   {
-    question: "Can I print my passport photo at home?",
+    question: "Can I print my passport photo at home or in a pharmacy?",
     answer:
-      "Absolutely. The download includes a print-ready file sized for standard 6×4 inch (10×15 cm) photo paper, which you can print at home or at any pharmacy or printing service.",
-  },
-  {
-    question: "Will my photo be accepted by HM Passport Office?",
-    answer:
-      "PixPassport formats your photo to meet the official HMPO dimensional requirements. However, the quality and suitability of the original photo (lighting, expression, background) is your responsibility. We recommend following the tips provided in the upload section.",
+      "Absolutely. You can download the high-resolution photo and print it at standard photo kiosks (Boots, Tesco, Walmart, pharmacies) or on home photo paper sized for 6×4 inches (10×15 cm).",
   },
   {
     question: "What file formats are supported?",
     answer:
-      "PixPassport accepts JPEG, PNG, and WebP image files up to 10 MB in size. For best results, use a high-resolution photo with good lighting.",
+      "PixPassport accepts JPEG, PNG, and WebP image files up to 20 MB in size. High-resolution camera photos from all modern smartphones are fully supported.",
   },
 ];
 
 export default function HomePage() {
-  const [file, setFile] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  function validate(f: File): string | null {
-    if (!ACCEPTED_TYPES.includes(f.type)) {
-      return "Please upload a JPEG, PNG, or WebP image.";
-    }
-    if (f.size > MAX_FILE_SIZE_BYTES) {
-      return `File must be smaller than ${MAX_FILE_SIZE_MB} MB.`;
-    }
-    return null;
-  }
-
-  function handleFile(f: File) {
-    const err = validate(f);
-    if (err) {
-      setError(err);
-      setFile(null);
-      setPreview(null);
-      return;
-    }
-
-    setError(null);
-    setFile(f);
-
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreview(reader.result as string);
-    };
-    reader.readAsDataURL(f);
-  }
-
-  function onFileChange(e: ChangeEvent<HTMLInputElement>) {
-    const f = e.target.files?.[0];
-    if (f) handleFile(f);
-  }
-
-  function onDragOver(e: DragEvent) {
-    e.preventDefault();
-    setIsDragging(true);
-  }
-
-  function onDragLeave(e: DragEvent) {
-    e.preventDefault();
-    setIsDragging(false);
-  }
-
-  function onDrop(e: DragEvent) {
-    e.preventDefault();
-    setIsDragging(false);
-    const f = e.dataTransfer.files?.[0];
-    if (f) handleFile(f);
-  }
-
-  function clearFile() {
-    setFile(null);
-    setPreview(null);
-    setError(null);
-    if (inputRef.current) inputRef.current.value = "";
-  }
-
-  function handleProcess() {
-    if (!file) return;
-    setIsProcessing(true);
-    setTimeout(() => setIsProcessing(false), 2000);
-  }
-
   return (
     <>
       <JsonLd />
 
-      <Navbar />
+      <Navbar ctaText="Upload Photo" ctaHref="/passport-size-photo-maker" />
 
       <main className="flex-1">
         {/* 1. HERO SECTION */}
@@ -225,6 +135,11 @@ export default function HomePage() {
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Copy */}
               <div className="max-w-xl">
+                <div className="badge badge-primary badge-outline mb-4 gap-1.5 py-3 px-4 text-sm font-medium">
+                  <Globe className="w-4 h-4" />
+                  50+ Countries Supported · UK By Default
+                </div>
+
                 <h1 className="text-base-content mb-6">
                   Create Your Digital Photo
                   <span className="block text-primary">
@@ -233,19 +148,21 @@ export default function HomePage() {
                 </h1>
 
                 <p className="text-base-content/70 text-lg mb-8 leading-relaxed">
-                  PixPassport is a free UK passport photo maker that lets you
-                  create a passport picture online in under two minutes. Upload
-                  your photo, adjust it to the official
-                  35&thinsp;mm&nbsp;×&nbsp;45&thinsp;mm dimensions, and print
-                  your passport photo online — all from your browser, with no
-                  registration required.
+                  PixPassport is a free passport photo maker that lets you create
+                  compliant passport pictures online in under two minutes. Select
+                  your country, upload any photo, auto-compress to 3&thinsp;MB
+                  with maximum clarity, and get instant verified results.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-3 mb-8">
-                  <a href="#upload" className="btn btn-primary btn-lg gap-2">
+                  <Link
+                    href="/passport-size-photo-maker"
+                    className="btn btn-primary btn-lg gap-2"
+                  >
                     <Upload className="w-5 h-5" />
-                    Upload Your Photo
-                  </a>
+                    Upload &amp; Create Photo
+                    <ArrowRight className="w-4 h-4 ml-1" />
+                  </Link>
                   <a href="#how-it-works" className="btn btn-outline btn-lg">
                     See How It Works
                   </a>
@@ -254,16 +171,16 @@ export default function HomePage() {
                 {/* Trust indicators */}
                 <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-base-content/60">
                   <span className="flex items-center gap-1.5">
-                    <CheckCircle className="w-4 h-4 text-success" />
-                    Free to use
+                    <CheckCircle className="w-4 h-4 text-success shrink-0" />
+                    UK &amp; 50+ Countries
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <CheckCircle className="w-4 h-4 text-success" />
-                    No sign-up needed
+                    <CheckCircle className="w-4 h-4 text-success shrink-0" />
+                    Smart 3 MB Compression
                   </span>
                   <span className="flex items-center gap-1.5">
-                    <CheckCircle className="w-4 h-4 text-success" />
-                    35 mm × 45 mm format
+                    <CheckCircle className="w-4 h-4 text-success shrink-0" />
+                    100% Free Forever
                   </span>
                 </div>
               </div>
@@ -273,26 +190,53 @@ export default function HomePage() {
                 <div className="relative">
                   <div className="absolute -inset-4 bg-base-200 rounded-2xl -z-10" />
 
-                  <div className="card bg-base-100 border border-base-300 p-6 w-72">
-                    <div className="bg-base-200 rounded-lg aspect-[35/45] flex flex-col items-center justify-center gap-3">
+                  <div className="card bg-base-100 border border-base-300 p-6 w-76">
+                    <div className="bg-base-200 rounded-lg aspect-[35/45] flex flex-col items-center justify-center gap-3 relative overflow-hidden border border-base-300">
                       <Camera className="w-12 h-12 text-base-content/30" />
-                      <p className="text-base-content/40 text-sm font-medium font-mono">
-                        35 mm × 45 mm
-                      </p>
+                      <div className="text-center">
+                        <p className="text-base-content/70 font-semibold text-sm">
+                          United Kingdom
+                        </p>
+                        <p className="text-base-content/40 text-xs font-mono">
+                          600×750 px (GB)
+                        </p>
+                      </div>
                     </div>
+
                     <div className="mt-4 space-y-2">
-                      <div className="flex items-center gap-2 text-xs text-base-content/60">
-                        <CheckCircle className="w-3.5 h-3.5 text-success" />
-                        Correct dimensions
+                      <div className="flex items-center justify-between text-xs text-base-content/70">
+                        <span className="flex items-center gap-1.5">
+                          <CheckCircle className="w-3.5 h-3.5 text-success" />
+                          Dimensions
+                        </span>
+                        <span className="font-mono font-medium">600×750 px</span>
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-base-content/60">
-                        <CheckCircle className="w-3.5 h-3.5 text-success" />
-                        White background
+                      <div className="flex items-center justify-between text-xs text-base-content/70">
+                        <span className="flex items-center gap-1.5">
+                          <CheckCircle className="w-3.5 h-3.5 text-success" />
+                          Document
+                        </span>
+                        <span className="capitalize font-medium">Passport</span>
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-base-content/60">
-                        <CheckCircle className="w-3.5 h-3.5 text-success" />
-                        Ready to print
+                      <div className="flex items-center justify-between text-xs text-base-content/70">
+                        <span className="flex items-center gap-1.5">
+                          <CheckCircle className="w-3.5 h-3.5 text-success" />
+                          AI Background
+                        </span>
+                        <span className="text-success font-medium">
+                          Auto-Correct
+                        </span>
                       </div>
+                    </div>
+
+                    <div className="mt-4 pt-3 border-t border-base-200">
+                      <Link
+                        href="/passport-size-photo-maker"
+                        className="btn btn-primary btn-sm w-full gap-1.5"
+                      >
+                        <Sparkles className="w-3.5 h-3.5" />
+                        Open Photo Studio
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -301,171 +245,16 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 2. UPLOAD CARD SECTION */}
-        <section className="bg-base-200 section-padding" id="upload">
-          <div className="container-narrow">
-            <div className="text-center mb-12">
-              <h2 className="text-base-content mb-4">
-                Create Your Passport Picture Online
-              </h2>
-              <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
-                Upload a well-lit photo taken against a plain background to
-                create a digital photo for your passport application or renewal.
-              </p>
-            </div>
-
-            <div className="max-w-xl mx-auto">
-              <div className="card bg-base-100 border border-base-300 card-shadow">
-                <div className="card-body gap-6">
-                  {/* Error alert */}
-                  {error && (
-                    <div
-                      role="alert"
-                      aria-live="polite"
-                      className="alert alert-error"
-                    >
-                      <AlertCircle className="w-5 h-5" />
-                      <span>{error}</span>
-                      <button
-                        className="btn btn-ghost btn-xs"
-                        onClick={() => setError(null)}
-                        aria-label="Dismiss error"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  )}
-
-                  {/* Drag-and-drop / preview area */}
-                  {!preview ? (
-                    <div
-                      className={`border-2 border-dashed rounded-xl p-10 text-center cursor-pointer transition-colors ${
-                        isDragging
-                          ? "border-primary bg-primary/5"
-                          : "border-base-300 hover:border-primary/50"
-                      }`}
-                      onDragOver={onDragOver}
-                      onDragLeave={onDragLeave}
-                      onDrop={onDrop}
-                      onClick={() => inputRef.current?.click()}
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          inputRef.current?.click();
-                        }
-                      }}
-                      aria-label="Upload photo area. Click or drag and drop."
-                    >
-                      <ImagePlus className="w-10 h-10 text-base-content/30 mx-auto mb-3" />
-                      <p className="text-base-content/70 font-medium mb-1">
-                        Drag &amp; drop your photo here
-                      </p>
-                      <p className="text-base-content/50 text-sm">
-                        or click to browse · JPEG, PNG, WebP · Max{" "}
-                        {MAX_FILE_SIZE_MB} MB
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="relative">
-                      <div className="bg-base-200 rounded-xl p-4 flex justify-center">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={preview}
-                          alt="Uploaded passport photo preview ready for adjustment"
-                          className="max-h-72 rounded-lg object-contain"
-                        />
-                      </div>
-                      <button
-                        className="btn btn-circle btn-sm btn-ghost absolute top-2 right-2"
-                        onClick={clearFile}
-                        aria-label="Remove uploaded photo"
-                      >
-                        <X className="w-4 h-4" />
-                      </button>
-                    </div>
-                  )}
-
-                  {/* Hidden file input */}
-                  <input
-                    ref={inputRef}
-                    type="file"
-                    accept={ACCEPTED_TYPES.join(",")}
-                    onChange={onFileChange}
-                    className="hidden"
-                    id="photo-upload"
-                    aria-label="Select photo file"
-                  />
-
-                  {/* File info & actions */}
-                  {file && (
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-2 text-sm text-base-content/60">
-                        <CheckCircle className="w-4 h-4 text-success" />
-                        <span className="truncate">{file.name}</span>
-                        <span className="text-base-content/40 font-mono text-xs">
-                          ({(file.size / 1024 / 1024).toFixed(1)} MB)
-                        </span>
-                      </div>
-
-                      <button
-                        className="btn btn-primary w-full gap-2"
-                        onClick={handleProcess}
-                        disabled={isProcessing}
-                      >
-                        {isProcessing ? (
-                          <>
-                            <span className="loading loading-spinner loading-sm" />
-                            Processing…
-                          </>
-                        ) : (
-                          <>
-                            <Upload className="w-4 h-4" />
-                            Create Passport Photo
-                          </>
-                        )}
-                      </button>
-                    </div>
-                  )}
-
-                  {/* Tips */}
-                  {!file && (
-                    <div className="text-xs text-base-content/50 space-y-1">
-                      <p className="font-medium text-base-content/60">
-                        Photo tips:
-                      </p>
-                      <ul className="list-disc pl-4 space-y-0.5">
-                        <li>
-                          Face the camera directly with a neutral expression
-                        </li>
-                        <li>Use a plain white or light grey background</li>
-                        <li>
-                          Ensure even lighting with no shadows on your face
-                        </li>
-                        <li>
-                          Remove glasses, hats, and head coverings (unless
-                          religious)
-                        </li>
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 3. HOW IT WORKS SECTION */}
-        <section className="bg-base-100 section-padding" id="how-it-works">
+        {/* 2. HOW IT WORKS SECTION */}
+        <section className="bg-base-200 section-padding" id="how-it-works">
           <div className="container-narrow">
             <div className="text-center mb-14">
               <h2 className="text-base-content mb-4">
-                How to Create a Digital Photo for Passport Renewal
+                How to Create Your Passport Photo Online
               </h2>
               <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
-                Three simple steps to a print-ready UK passport photo — no
-                appointments, no queues.
+                Three simple steps to an official biometric passport photo for
+                the UK and 50+ countries.
               </p>
             </div>
 
@@ -495,19 +284,30 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
+
+            <div className="text-center mt-10">
+              <Link
+                href="/passport-size-photo-maker"
+                className="btn btn-primary btn-lg gap-2"
+              >
+                <Upload className="w-5 h-5" />
+                Upload &amp; Create Photo Now
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
           </div>
         </section>
 
-        {/* 4. FEATURES SECTION */}
-        <section className="bg-base-200 section-padding" id="features">
+        {/* 3. FEATURES SECTION */}
+        <section className="bg-base-100 section-padding" id="features">
           <div className="container-narrow">
             <div className="text-center mb-14">
               <h2 className="text-base-content mb-4">
-                Why Use PixPassport as Your UK Passport Photo Maker?
+                Why Choose PixPassport for Global Passport Photos?
               </h2>
               <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
-                Everything you need to create a digital photo for passport
-                applications — fast, private, and completely free.
+                Everything you need to create, verify, and print official
+                biometric passport photos from any device.
               </p>
             </div>
 
@@ -515,15 +315,17 @@ export default function HomePage() {
               {features.map(({ icon: Icon, title, description }) => (
                 <div
                   key={title}
-                  className="card bg-base-100 border border-base-300 card-shadow"
+                  className="card bg-base-100 border border-base-300 hover:border-primary/50 transition-colors"
                 >
                   <div className="card-body gap-3">
-                    <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                       <Icon className="w-5 h-5 text-primary" />
                     </div>
-                    <h3 className="card-title text-base-content text-lg">
+
+                    <h3 className="font-bold text-base-content text-lg">
                       {title}
                     </h3>
+
                     <p className="text-base-content/60 text-sm leading-relaxed">
                       {description}
                     </p>
@@ -534,16 +336,16 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 5. PRICING SECTION */}
-        <section className="bg-base-100 section-padding" id="pricing">
+        {/* 4. PRICING / FREE SECTION */}
+        <section className="bg-base-200 section-padding" id="pricing">
           <div className="container-narrow">
-            <div className="text-center mb-14">
+            <div className="text-center mb-12">
               <h2 className="text-base-content mb-4">
-                Free UK Passport Photo Maker
+                100% Free Passport Photo Maker
               </h2>
               <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
-                No hidden fees, no subscriptions. Create a digital photo for
-                passport applications at zero cost.
+                No hidden costs. No subscriptions. No watermarks on your
+                downloads.
               </p>
             </div>
 
@@ -563,7 +365,7 @@ export default function HomePage() {
                       </span>
                     </div>
                     <p className="text-base-content/60 text-sm mt-2">
-                      Completely free — no payment ever required
+                      Completely free — no payment or credit card required
                     </p>
                   </div>
 
@@ -581,27 +383,28 @@ export default function HomePage() {
                     ))}
                   </ul>
 
-                  <a
-                    href="#upload"
+                  <Link
+                    href="/passport-size-photo-maker"
                     className="btn btn-primary btn-lg w-full mt-2"
                   >
-                    Create Your Passport Photo — Free
-                  </a>
+                    Create Your Passport Photo Now
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 6. FAQ SECTION */}
-        <section className="bg-base-200 section-padding" id="faq">
+        {/* 5. FAQ SECTION */}
+        <section className="bg-base-100 section-padding" id="faq">
           <div className="container-narrow">
             <div className="text-center mb-14">
               <h2 className="text-base-content mb-4">
                 Frequently Asked Questions
               </h2>
               <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
-                Common questions about creating your UK passport photo online.
+                Common questions about country specifications, compression, and
+                printing.
               </p>
             </div>
 

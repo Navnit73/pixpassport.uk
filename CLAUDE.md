@@ -93,7 +93,9 @@ npm start
 * **Crawling & Indexing:**
   * `src/app/robots.ts` -> Generates `/robots.txt` pointing to `/sitemap.xml`
   * `public/sitemap.xml` -> Static XML sitemap for manual updates
-* **Structured Data (JSON-LD):** `src/components/JsonLd.tsx` injects a `@graph` containing `Organization`, `WebSite`, `WebApplication`, and `FAQPage` schemas. Never fabricate customer reviews or claim unofficial government endorsements.
+* **Passport Photo API (`https://api.pixpassport.com/`):**
+  * `src/lib/passport-api.ts` -> Server-side helper with authentication headers (`Authorization: Bearer <key>`, `x-api-key: <key>`).
+  * `src/app/api/passport-photo/route.ts` -> Secure server-side route proxy ensuring the API key is never exposed to client browsers.
 
 ---
 
@@ -106,6 +108,9 @@ pixpassport.uk/
 │   └── sitemap.xml            # Static XML sitemap for manual editing
 ├── src/
 │   ├── app/
+│   │   ├── api/
+│   │   │   └── passport-photo/
+│   │   │       └── route.ts   # Secure API proxy for https://api.pixpassport.com/
 │   │   ├── apple-icon.jpg     # App Router apple touch icon
 │   │   ├── globals.css        # Tailwind CSS v4, DaisyUI theme, CSS tokens
 │   │   ├── icon.jpg           # App Router favicon/icon
@@ -116,6 +121,11 @@ pixpassport.uk/
 │   │   ├── Footer.tsx         # Site footer with brand, navigation & UK notice
 │   │   ├── JsonLd.tsx         # Schema.org JSON-LD structured data graph
 │   │   └── Navbar.tsx         # Sticky header with brand logo & mobile menu
+│   ├── config/
+│   │   ├── countries.json     # Global passport dimensions JSON database
+│   │   └── countries.ts       # Typed country configuration and lookup utilities
+│   ├── lib/
+│   │   └── passport-api.ts    # PixPassport API client helper
 │   └── mdx-components.tsx     # MDX typography styling bindings
 ├── .gitignore                 # Clean repository ignore configuration
 ├── .prettierignore            # Prettier ignore rules
