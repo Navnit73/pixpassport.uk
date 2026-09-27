@@ -22,7 +22,7 @@ export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
     { label: "Cookie Policy", href: "/#faq" },
   ],
   Resources: [
-    { label: "UK Passport Photo Requirements", href: "/#faq" },
+    { label: "UK Passport Photo Requirements", href: "/#photo-rules" },
     { label: "Photo Maker Studio", href: "/passport-size-photo-maker" },
     { label: "Printing Guide", href: "/#how-it-works" },
   ],
@@ -44,7 +44,7 @@ export default function Footer({
   brandName = "PixPassport",
   brandLogo = "/pixpassport.jpg",
   brandLogoAlt = "PixPassport Logo",
-  brandDescription = "Free UK passport photo maker. Create official biometric digital photos and 6×4″ print sheets for UK and 50+ countries online — 100% free with no sign-up.",
+  brandDescription = "Official UK passport photo maker. Create HMPO-compliant biometric digital photos and 6×4″ print sheets for the UK and 50+ countries online for £7.99 with guaranteed acceptance.",
   linkGroups = DEFAULT_FOOTER_LINKS,
   copyrightText,
   regionNotice,

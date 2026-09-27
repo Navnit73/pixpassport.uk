@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Create a digital photo for passport applications and renewals online. PixPassport is a free UK passport photo maker — upload, adjust, and print passport photos from your browser.",
+    "Create a digital photo for passport applications and renewals online. PixPassport is an official UK passport photo maker — upload, adjust, and download HMPO-compliant passport photos for £7.99.",
 
   keywords: [
     "digital photo for passport",
@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     "digital photo for passport renewal",
     "print passport photo online",
     "UK passport photo maker",
+    "HMPO passport photo £7.99",
   ],
 
   icons: {
@@ -61,7 +62,7 @@ export const metadata: Metadata = {
     title:
       "Digital Photo for Passport — Create Passport Picture Online | PixPassport",
     description:
-      "Create a digital photo for passport applications and renewals online. Free UK passport photo maker — no sign-up required.",
+      "Create a digital photo for passport applications and renewals online. Official UK biometric passport photo maker for £7.99.",
     url: SITE_URL,
     siteName: "PixPassport",
     locale: "en_GB",
@@ -71,7 +72,7 @@ export const metadata: Metadata = {
         url: "/pixpassport.jpg",
         width: 1200,
         height: 630,
-        alt: "PixPassport — Free UK Passport Photo Maker",
+        alt: "PixPassport — Official UK Passport Photo Maker",
       },
     ],
   },
@@ -81,7 +82,7 @@ export const metadata: Metadata = {
     title:
       "Digital Photo for Passport — UK Passport Photo Maker | PixPassport",
     description:
-      "Create a digital photo for passport applications and renewals. Free, private, browser-based UK passport photo maker.",
+      "Create a digital photo for passport applications and renewals. Official, private, HMPO-compliant UK passport photo maker for £7.99.",
     images: ["/pixpassport.jpg"],
   },
 

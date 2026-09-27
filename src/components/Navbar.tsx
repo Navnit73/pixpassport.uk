@@ -106,7 +106,7 @@ export default function Navbar({
         {/* Desktop CTA */}
         {ctaText && (
           <div className="hidden md:flex items-center gap-3">
-            <Link href={ctaHref} className="btn btn-primary btn-sm px-4">
+            <Link href={ctaHref} className="btn btn-primary btn-sm px-4 !text-white text-white">
               {ctaText}
             </Link>
           </div>
@@ -157,7 +157,7 @@ export default function Navbar({
                   <div className="divider my-2" />
                   <Link
                     href={ctaHref}
-                    className="btn btn-primary w-full text-base font-semibold"
+                    className="btn btn-primary w-full text-base font-semibold !text-white text-white"
                     onClick={() => setMobileOpen(false)}
                   >
                     {ctaText}

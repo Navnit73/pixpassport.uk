@@ -30,9 +30,9 @@ const DEFAULT_JSONLD_FAQS: JsonLdFaqEntry[] = [
       "Upload a recent, well-lit photo of yourself to PixPassport. The tool will help you crop and adjust it to the official 35 mm × 45 mm dimensions. You can then download the digital photo for your passport renewal application, ready to submit online or print at home.",
   },
   {
-    question: "Is PixPassport really free?",
+    question: "How much does PixPassport cost?",
     answer:
-      "Yes, PixPassport is completely free with no hidden charges. You can create and download as many passport photos as you need without paying anything or creating an account.",
+      "PixPassport costs £7.99 for a complete, official biometric passport photo package. You receive an instant digital photo ready for HMPO online submission plus a 4-photo 6×4″ printable template, backed by a 100% acceptance guarantee.",
   },
   {
     question: "Are photos processed on your servers?",
@@ -65,11 +65,11 @@ const DEFAULT_JSONLD_FAQS: JsonLdFaqEntry[] = [
 export default function JsonLd({
   siteUrl = DEFAULT_SITE_URL,
   siteName = "PixPassport",
-  description = "Create a digital photo for passport applications and renewals online. Free UK passport photo maker.",
+  description = "Create a digital photo for passport applications and renewals online. Official UK passport photo maker for £7.99.",
   logoUrl = `${DEFAULT_SITE_URL}/pixpassport.jpg`,
   imageUrl = `${DEFAULT_SITE_URL}/pixpassport.jpg`,
   applicationCategory = "PhotographyApplication",
-  price = "0",
+  price = "7.99",
   priceCurrency = "GBP",
   faqItems = DEFAULT_JSONLD_FAQS,
 }: JsonLdProps) {
