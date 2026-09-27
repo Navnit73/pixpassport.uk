@@ -1,26 +1,209 @@
+/* ========================================
+   1. Tailwind CSS Import
+   ======================================== */
 @import "tailwindcss";
 
+/* ========================================
+   2. DaisyUI Plugin Configuration
+   ======================================== */
+@plugin "daisyui";
+
+/* ========================================
+   3. Custom DaisyUI Theme — pixpassport
+   ======================================== */
+@plugin "daisyui/theme" {
+  name: "pixpassport";
+  default: true;
+
+  /* Brand colours */
+  --color-primary: #2563EB;
+  --color-primary-content: #FFFFFF;
+  --color-secondary: #172033;
+  --color-secondary-content: #FFFFFF;
+  --color-accent: #0F766E;
+  --color-accent-content: #FFFFFF;
+
+  /* Neutral palette */
+  --color-neutral: #172033;
+  --color-neutral-content: #FFFFFF;
+
+  /* Base surface colours */
+  --color-base-100: #FFFFFF;
+  --color-base-200: #F8FAFC;
+  --color-base-300: #E2E8F0;
+  --color-base-content: #172033;
+
+  /* Semantic feedback colours */
+  --color-info: #0284C7;
+  --color-success: #15803D;
+  --color-warning: #D97706;
+  --color-error: #DC2626;
+
+  /* Border radius */
+  --radius-btn: 0.5rem;
+  --radius-box: 0.75rem;
+  --radius-field: 0.5rem;
+}
+
+/* ========================================
+   4. Global CSS Variables
+   ======================================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Spacing scale overrides */
+  --section-gap: 5rem;
+  --container-padding: 1.5rem;
+
+  /* Transition defaults */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+
+  /* Shadow tokens — flat UI, minimal depth */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* ========================================
+   5. Typography Configuration
+   ======================================== */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ========================================
+   6. Base Styles
+   ======================================== */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3.25rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ========================================
+   7. Reusable Utility Classes
+   ======================================== */
+
+/* Page section wrapper */
+.section-padding {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+
+/* Max-width container with centred padding */
+.container-narrow {
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* Card shadow utilities */
+.card-shadow {
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition-base);
+}
+
+.card-shadow:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Visually hidden but accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus ring for keyboard nav */
+.focus-ring:focus-visible {
+  outline: 2px solid oklch(var(--color-primary));
+  outline-offset: 2px;
+}
+
+/* ========================================
+   8. Accessibility & Reduced Motion
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Ensure minimum touch target sizes */
+button,
+[role="button"],
+a {
+  min-height: 2.75rem;
+}
+
+/* Focus visibility for all interactive elements */
+:focus-visible {
+  outline: 2px solid #2563EB;
+  outline-offset: 2px;
 }
