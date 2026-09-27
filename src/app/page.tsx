@@ -267,19 +267,19 @@ export default function HomePage() {
                 <div className="w-full max-w-sm lg:max-w-md">
                   <div className=" p-3 sm:p-4">
                     <div className="relative rounded-xl overflow-hidden  aspect-[4/5] bg-white">
-                      <Image
-                        src="https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
-                        alt="Official UK Passport Size Photo Sample"
-                        fill
-                        priority
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                        className="object-cover rounded-xl"
-                      />
-                    </div>
+                    <Image
+                      src="https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+                      alt="Official UK Passport Size Photo Sample"
+                      fill
+                      priority
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                      className="object-cover rounded-xl"
+                    />
                   </div>
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </section>
 
