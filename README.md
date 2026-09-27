@@ -155,15 +155,9 @@ pixpassport.uk/
 │   │   ├── page.tsx           # Main homepage
 │   │   └── robots.ts          # Programmatic robots.txt
 │   ├── components/
-│   │   ├── FAQ.tsx            # FAQ accordion component
-│   │   ├── Features.tsx       # Feature benefits grid
 │   │   ├── Footer.tsx         # Site footer with brand and links
-│   │   ├── Hero.tsx           # Keyword-targeted hero section
-│   │   ├── HowItWorks.tsx     # 3-step passport photo guide
 │   │   ├── JsonLd.tsx         # Schema.org structured data component
-│   │   ├── Navbar.tsx         # Header navigation bar with brand icon
-│   │   ├── Pricing.tsx        # Transparent 100% free pricing block
-│   │   └── UploadCard.tsx     # Drag-and-drop uploader & preview
+│   │   └── Navbar.tsx         # Header navigation bar with brand icon
 │   └── mdx-components.tsx     # MDX custom component bindings
 ├── .gitignore                 # Git ignore rules
 ├── .prettierignore            # Prettier ignore rules
