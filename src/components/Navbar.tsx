@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
-  Camera,
   Menu,
   X,
-  ChevronDown,
 } from "lucide-react";
 
 const navLinks = [
@@ -25,10 +24,17 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 text-xl font-bold text-base-content"
+          className="flex items-center gap-2.5 text-xl font-bold text-base-content"
           aria-label="PixPassport home"
         >
-          <Camera className="w-7 h-7 text-primary" strokeWidth={2.2} />
+          <Image
+            src="/pixpassport.jpg"
+            alt="PixPassport Logo"
+            width={32}
+            height={32}
+            priority
+            className="w-8 h-8 rounded-lg object-cover shadow-xs border border-primary/20"
+          />
           <span>
             Pix<span className="text-primary">Passport</span>
           </span>

@@ -12,31 +12,102 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL = "https://pixpassport.uk";
+
 export const metadata: Metadata = {
-  title: "PixPassport — Free UK Passport Photos Online",
+  metadataBase: new URL(SITE_URL),
+
+  title: {
+    default:
+      "Digital Photo for Passport — Create Passport Picture Online | PixPassport",
+    template: "%s | PixPassport",
+  },
+
   description:
-    "Create compliant UK passport photos in under 2 minutes. Free, private, and browser-based — no sign-up required. Meets HM Passport Office requirements.",
+    "Create a digital photo for passport applications and renewals online. PixPassport is a free UK passport photo maker — upload, adjust, and print passport photos from your browser.",
+
   keywords: [
-    "UK passport photo",
-    "passport photo online",
-    "free passport photo",
-    "HMPO passport photo",
-    "passport photo maker",
-    "UK passport photo tool",
-    "print passport photo at home",
+    "digital photo for passport",
+    "create passport picture online",
+    "digital photo for passport renewal",
+    "print passport photo online",
+    "UK passport photo maker",
   ],
-  authors: [{ name: "PixPassport" }],
+
+  icons: {
+    icon: [
+      { url: "/pixpassport.jpg", type: "image/jpeg" },
+    ],
+    shortcut: ["/pixpassport.jpg"],
+    apple: [
+      { url: "/pixpassport.jpg", sizes: "180x180", type: "image/jpeg" },
+    ],
+  },
+
+  authors: [{ name: "PixPassport", url: SITE_URL }],
+
+  creator: "PixPassport",
+  publisher: "PixPassport",
+
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-GB": "/",
+    },
+  },
+
   openGraph: {
-    title: "PixPassport — Free UK Passport Photos Online",
+    title:
+      "Digital Photo for Passport — Create Passport Picture Online | PixPassport",
     description:
-      "Create compliant UK passport photos in under 2 minutes. Free, private, and browser-based.",
-    type: "website",
-    locale: "en_GB",
+      "Create a digital photo for passport applications and renewals online. Free UK passport photo maker — no sign-up required.",
+    url: SITE_URL,
     siteName: "PixPassport",
+    locale: "en_GB",
+    type: "website",
+    images: [
+      {
+        url: "/pixpassport.jpg",
+        width: 1200,
+        height: 630,
+        alt: "PixPassport — Free UK Passport Photo Maker",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Digital Photo for Passport — UK Passport Photo Maker | PixPassport",
+    description:
+      "Create a digital photo for passport applications and renewals. Free, private, browser-based UK passport photo maker.",
+    images: ["/pixpassport.jpg"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  other: {
+    "geo.region": "GB",
+    "geo.placename": "United Kingdom",
+    "content-language": "en-GB",
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="en-GB"

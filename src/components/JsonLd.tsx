@@ -1,9 +1,7 @@
-interface FaqItem {
-  question: string;
-  answer: string;
-}
+const SITE_URL = "https://pixpassport.uk";
 
-const faqs: FaqItem[] = [
+/** FAQ items matching the visible FAQ section content exactly. */
+const faqEntries = [
   {
     question: "What are the official UK passport photo requirements?",
     answer:
@@ -41,39 +39,74 @@ const faqs: FaqItem[] = [
   },
 ];
 
-export default function FAQ() {
-  return (
-    <section className="bg-base-200 section-padding" id="faq">
-      <div className="container-narrow">
-        <div className="text-center mb-14">
-          <h2 className="text-base-content mb-4">Frequently Asked Questions</h2>
-          <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
-            Common questions about creating your UK passport photo online.
-          </p>
-        </div>
+/**
+ * Returns JSON-LD structured data for the homepage.
+ *
+ * Includes: Organization, WebSite, WebApplication, FAQPage.
+ * No fabricated ratings, reviews, or government affiliations.
+ */
+export default function JsonLd() {
+  const organization = {
+    "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
+    name: "PixPassport",
+    url: SITE_URL,
+    logo: `${SITE_URL}/pixpassport.jpg`,
+    image: `${SITE_URL}/pixpassport.jpg`,
+  };
 
-        <div className="max-w-3xl mx-auto space-y-3">
-          {faqs.map(({ question, answer }, index) => (
-            <div
-              key={index}
-              className="collapse collapse-arrow bg-base-100 border border-base-300"
-            >
-              <input
-                type="radio"
-                name="faq-accordion"
-                id={`faq-${index}`}
-                defaultChecked={index === 0}
-              />
-              <div className="collapse-title font-semibold text-base-content">
-                {question}
-              </div>
-              <div className="collapse-content text-base-content/70 text-sm leading-relaxed">
-                <p>{answer}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+  const website = {
+    "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
+    url: SITE_URL,
+    name: "PixPassport",
+    description:
+      "Create a digital photo for passport applications and renewals online. Free UK passport photo maker.",
+    publisher: { "@id": `${SITE_URL}/#organization` },
+    inLanguage: "en-GB",
+  };
+
+  const webApplication = {
+    "@type": "WebApplication",
+    "@id": `${SITE_URL}/#webapp`,
+    name: "PixPassport",
+    url: SITE_URL,
+    description:
+      "Free online UK passport photo maker. Upload a photo, adjust to 35mm × 45mm, and download a print-ready digital photo for passport applications and renewals.",
+    applicationCategory: "PhotographyApplication",
+    operatingSystem: "All",
+    browserRequirements: "Requires a modern web browser with JavaScript enabled",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "GBP",
+    },
+    provider: { "@id": `${SITE_URL}/#organization` },
+    inLanguage: "en-GB",
+  };
+
+  const faqPage = {
+    "@type": "FAQPage",
+    "@id": `${SITE_URL}/#faq`,
+    mainEntity: faqEntries.map((entry) => ({
+      "@type": "Question",
+      name: entry.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: entry.answer,
+      },
+    })),
+  };
+
+  const graphData = {
+    "@context": "https://schema.org",
+    "@graph": [organization, website, webApplication, faqPage],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(graphData) }}
+    />
   );
 }

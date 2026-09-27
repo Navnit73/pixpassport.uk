@@ -1,4 +1,4 @@
-import { Camera } from "lucide-react";
+import Image from "next/image";
 
 const currentYear = new Date().getFullYear();
 
@@ -10,14 +10,13 @@ const footerLinks = {
     { label: "FAQ", href: "#faq" },
   ],
   Legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Cookie Policy", href: "#" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Cookie Policy", href: "/cookies" },
   ],
   Resources: [
-    { label: "UK Photo Requirements", href: "#" },
-    { label: "Printing Guide", href: "#" },
-    { label: "Contact Us", href: "#" },
+    { label: "UK Passport Photo Requirements", href: "#faq" },
+    { label: "Printing Guide", href: "#how-it-works" },
   ],
 };
 
@@ -28,13 +27,19 @@ export default function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-2 text-xl font-bold mb-4">
-              <Camera className="w-6 h-6" strokeWidth={2.2} />
+            <div className="flex items-center gap-2.5 text-xl font-bold mb-4">
+              <Image
+                src="/pixpassport.jpg"
+                alt="PixPassport Logo"
+                width={28}
+                height={28}
+                className="w-7 h-7 rounded-lg object-cover ring-1 ring-secondary-content/20"
+              />
               <span>PixPassport</span>
             </div>
             <p className="text-secondary-content/60 text-sm leading-relaxed mb-4">
-              Free UK passport photos that meet HM Passport Office requirements.
-              No sign-up, no fees, no data stored.
+              Free UK passport photo maker. Create a digital photo for passport
+              applications and renewals — no sign-up, no fees, no data stored.
             </p>
           </div>
 
@@ -66,7 +71,7 @@ export default function Footer() {
           <p>&copy; {currentYear} PixPassport. All rights reserved.</p>
           <p>
             Made in the United Kingdom{" "}
-            <span className="inline-block" aria-label="UK flag">
+            <span className="inline-block" aria-label="United Kingdom flag">
               🇬🇧
             </span>
           </p>

@@ -6,10 +6,13 @@ import Features from "@/components/Features";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
+import JsonLd from "@/components/JsonLd";
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd />
+
       <Navbar />
 
       <main className="flex-1">

@@ -17,19 +17,19 @@ interface Feature {
 const features: Feature[] = [
   {
     icon: Ruler,
-    title: "Exact HMPO Dimensions",
+    title: "Official 35 mm × 45 mm Format",
     description:
-      "Photos are automatically sized to the official 35mm × 45mm specification required by HM Passport Office.",
+      "Photos are automatically sized to the official dimensions required for UK passport applications and renewals.",
   },
   {
     icon: Shield,
-    title: "Compliance Checks",
+    title: "UK Passport Specification",
     description:
-      "Built-in validation ensures your photo meets the UK government's requirements before you print.",
+      "Built-in checks help ensure your digital photo for passport meets the dimensional requirements before you download.",
   },
   {
     icon: Printer,
-    title: "Print-Ready Output",
+    title: "Print Passport Photo Online",
     description:
       "Download a high-resolution file sized for standard 6×4″ photo paper — ready for home or pharmacy printing.",
   },
@@ -49,7 +49,7 @@ const features: Feature[] = [
     icon: Smartphone,
     title: "Works on Any Device",
     description:
-      "Fully responsive — works perfectly on desktop, tablet, and mobile browsers.",
+      "Fully responsive — create your passport picture online from desktop, tablet, or mobile browsers.",
   },
 ];
 
@@ -58,10 +58,12 @@ export default function Features() {
     <section className="bg-base-200 section-padding" id="features">
       <div className="container-narrow">
         <div className="text-center mb-14">
-          <h2 className="text-base-content mb-4">Why PixPassport?</h2>
+          <h2 className="text-base-content mb-4">
+            Why Use PixPassport as Your UK Passport Photo Maker?
+          </h2>
           <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
-            Everything you need to create compliant UK passport photos — fast,
-            private, and completely free.
+            Everything you need to create a digital photo for passport
+            applications — fast, private, and completely free.
           </p>
         </div>
 

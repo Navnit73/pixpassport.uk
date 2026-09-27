@@ -2,7 +2,7 @@ import { CheckCircle } from "lucide-react";
 
 const benefits = [
   "Unlimited passport photos",
-  "UK HMPO compliant format",
+  "35 mm × 45 mm UK format",
   "High-resolution download",
   "In-browser processing",
   "No account required",
@@ -14,10 +14,10 @@ export default function Pricing() {
     <section className="bg-base-100 section-padding" id="pricing">
       <div className="container-narrow">
         <div className="text-center mb-14">
-          <h2 className="text-base-content mb-4">Simple, Free Pricing</h2>
+          <h2 className="text-base-content mb-4">Free UK Passport Photo Maker</h2>
           <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
-            No hidden fees, no subscriptions. Create compliant UK passport
-            photos at zero cost.
+            No hidden fees, no subscriptions. Create a digital photo for
+            passport applications at zero cost.
           </p>
         </div>
 
@@ -26,7 +26,7 @@ export default function Pricing() {
             <div className="card-body gap-6">
               {/* Price */}
               <div className="text-center">
-                <div className="badge badge-primary mb-3">Most Popular</div>
+                <div className="badge badge-primary mb-3">Free Forever</div>
                 <div className="flex items-baseline justify-center gap-1">
                   <span className="text-5xl font-bold text-base-content">
                     £0
@@ -34,7 +34,7 @@ export default function Pricing() {
                   <span className="text-base-content/50 text-lg">/photo</span>
                 </div>
                 <p className="text-base-content/60 text-sm mt-2">
-                  Completely free — forever
+                  Completely free — no payment ever required
                 </p>
               </div>
 
@@ -55,7 +55,7 @@ export default function Pricing() {
 
               {/* CTA */}
               <a href="#upload" className="btn btn-primary btn-lg w-full mt-2">
-                Get Started — It&apos;s Free
+                Create Your Passport Photo — Free
               </a>
             </div>
           </div>

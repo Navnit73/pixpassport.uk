@@ -7,7 +7,6 @@ import {
   X,
   AlertCircle,
   CheckCircle,
-  Loader2,
 } from "lucide-react";
 
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -91,10 +90,12 @@ export default function UploadCard() {
     <section className="bg-base-200 section-padding" id="upload">
       <div className="container-narrow">
         <div className="text-center mb-12">
-          <h2 className="text-base-content mb-4">Upload Your Photo</h2>
+          <h2 className="text-base-content mb-4">
+            Create Your Passport Picture Online
+          </h2>
           <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
-            Start by uploading a well-lit photo taken against a plain background.
-            We'll guide you through the rest.
+            Upload a well-lit photo taken against a plain background to create a
+            digital photo for your passport application or renewal.
           </p>
         </div>
 
@@ -149,9 +150,10 @@ export default function UploadCard() {
               ) : (
                 <div className="relative">
                   <div className="bg-base-200 rounded-xl p-4 flex justify-center">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={preview}
-                      alt="Uploaded photo preview"
+                      alt="Uploaded passport photo preview ready for adjustment"
                       className="max-h-72 rounded-lg object-contain"
                     />
                   </div>

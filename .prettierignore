@@ -1,0 +1,33 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Production / Build
+.next
+out
+build
+dist
+coverage
+
+# Cache & Logs
+.turbo
+.eslintcache
+*.log
+
+# Static files
+public/
+*.ico
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.webp
+
+# Lockfiles
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# OS files
+.DS_Store

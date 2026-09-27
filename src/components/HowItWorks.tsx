@@ -21,14 +21,14 @@ const steps: Step[] = [
     step: 2,
     title: "Adjust",
     description:
-      "Position and crop your photo to meet the official 35mm × 45mm UK passport specification.",
+      "Position and crop your photo to meet the official 35 mm × 45 mm UK passport specification.",
   },
   {
     icon: Download,
     step: 3,
-    title: "Download",
+    title: "Download & Print",
     description:
-      "Download your print-ready passport photo file, perfectly sized for at-home or pharmacy printing.",
+      "Download your print-ready digital photo for passport applications or renewals, sized for home or pharmacy printing.",
   },
 ];
 
@@ -37,9 +37,11 @@ export default function HowItWorks() {
     <section className="bg-base-100 section-padding" id="how-it-works">
       <div className="container-narrow">
         <div className="text-center mb-14">
-          <h2 className="text-base-content mb-4">How It Works</h2>
+          <h2 className="text-base-content mb-4">
+            How to Create a Digital Photo for Passport Renewal
+          </h2>
           <p className="text-base-content/60 text-lg max-w-2xl mx-auto">
-            Three simple steps to a compliant UK passport photo — no
+            Three simple steps to a print-ready UK passport photo — no
             appointments, no queues.
           </p>
         </div>
