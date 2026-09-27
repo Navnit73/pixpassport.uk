@@ -57,6 +57,7 @@ export function getPassportApiHeaders(): HeadersInit {
  * @param fileBuffer The raw image Buffer or Blob
  * @param fileName Original file name
  * @param options Country code and document type
+ * @param mimeType Optional MIME type (e.g. image/jpeg)
  */
 export async function processPassportPhoto(
   fileBuffer: Blob | Buffer,
@@ -64,14 +65,20 @@ export async function processPassportPhoto(
   options: PassportProcessOptions = {
     country_code: "GB",
     document_type: "passport",
-  }
+  },
+  mimeType: string = "image/jpeg"
 ): Promise<PassportProcessResult> {
   try {
     const formData = new FormData();
-    const blob =
-      fileBuffer instanceof Blob
-        ? fileBuffer
-        : new Blob([fileBuffer as unknown as BlobPart]);
+
+    let blob: Blob;
+    if (fileBuffer instanceof Blob) {
+      blob = fileBuffer.type ? fileBuffer : new Blob([fileBuffer], { type: mimeType });
+    } else {
+      // Convert Node Buffer to Uint8Array for standard Blob
+      const uint8 = new Uint8Array(fileBuffer);
+      blob = new Blob([uint8], { type: mimeType });
+    }
 
     formData.append("image", blob, fileName);
     formData.append("country_code", options.country_code || "GB");
@@ -83,6 +90,7 @@ export async function processPassportPhoto(
       method: "POST",
       headers: getPassportApiHeaders(),
       body: formData,
+      cache: "no-store",
     });
 
     if (!response.ok) {
@@ -90,14 +98,19 @@ export async function processPassportPhoto(
       let parsedError = errorText;
       try {
         const json = JSON.parse(errorText);
-        parsedError = json.error || json.message || errorText;
+        parsedError = json.detail || json.error || json.message || errorText;
+        if (Array.isArray(parsedError)) {
+          parsedError = parsedError
+            .map((e: { msg?: string }) => e.msg || JSON.stringify(e))
+            .join(", ");
+        }
       } catch {
         // use raw text
       }
 
       return {
         status: "error",
-        error: `API error (${response.status}): ${parsedError || response.statusText}`,
+        error: typeof parsedError === "string" ? parsedError : JSON.stringify(parsedError),
       };
     }
 

@@ -174,7 +174,7 @@ img {
 
 /* Max-width container with centered responsive padding */
 .container-narrow {
-  max-width: 76rem;
+  max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
   padding-left: var(--container-padding);

@@ -93,6 +93,7 @@ export default function PassportSizePhotoMakerPage() {
     }
 
     setError(null);
+    setFile(f); // Immediately update file state to prevent stale uploads
 
     // Initial preview
     const reader = new FileReader();
@@ -114,7 +115,11 @@ export default function PassportSizePhotoMakerPage() {
 
   function onFileChange(e: ChangeEvent<HTMLInputElement>) {
     const f = e.target.files?.[0];
-    if (f) handleFile(f);
+    if (f) {
+      handleFile(f);
+      // Reset input value so re-selecting any file fires change event
+      e.target.value = "";
+    }
   }
 
   function onDragOver(e: DragEvent) {
@@ -175,8 +180,13 @@ export default function PassportSizePhotoMakerPage() {
     }, 100);
 
     try {
+      const uploadFile = file;
+      const fileExt = uploadFile.name.split(".").pop() || "jpg";
+      const fileName = `upload_${Date.now()}.${fileExt}`;
+      const freshFile = new File([uploadFile], fileName, { type: uploadFile.type });
+
       const formData = new FormData();
-      formData.append("image", file);
+      formData.append("image", freshFile);
       formData.append("country_code", selectedCountry.country_code);
       formData.append("document_type", selectedCountry.document_type || "passport");
 
@@ -203,7 +213,7 @@ export default function PassportSizePhotoMakerPage() {
 
       const resultId =
         apiResult.result_id ||
-        `res-${selectedCountryCode.toLowerCase()}-${Date.now()}`;
+        `res_${selectedCountryCode.toLowerCase()}_${Date.now()}`;
 
       const payload = {
         ...apiResult,
@@ -213,13 +223,16 @@ export default function PassportSizePhotoMakerPage() {
         target_dimensions: selectedCountry.dimensions,
         document_type: selectedCountry.document_type,
         original_preview: preview,
+        timestamp: Date.now(),
       };
 
-      // Store result in sessionStorage
+      // Store result in sessionStorage and localStorage
       if (typeof window !== "undefined") {
         try {
           sessionStorage.setItem(`pixpassport_${resultId}`, JSON.stringify(payload));
           sessionStorage.setItem("pixpassport_latest", JSON.stringify(payload));
+          localStorage.setItem(`pixpassport_${resultId}`, JSON.stringify(payload));
+          localStorage.setItem("pixpassport_latest", JSON.stringify(payload));
         } catch {
           // fallback
         }
