@@ -4,13 +4,13 @@ import {
   useState,
   useRef,
   useEffect,
+  useCallback,
   type ChangeEvent,
   type DragEvent,
 } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
-  Upload,
   ImagePlus,
   X,
   AlertCircle,
@@ -222,7 +222,7 @@ export default function PassportSizePhotoMakerPage() {
     if (inputRef.current) inputRef.current.value = "";
   }
 
-  async function handleProcess() {
+  const handleProcess = useCallback(async () => {
     if (!file) return;
 
     setIsProcessing(true);
@@ -256,7 +256,8 @@ export default function PassportSizePhotoMakerPage() {
     try {
       const uploadFile = file;
       const fileExt = uploadFile.name.split(".").pop() || "jpg";
-      const fileName = `upload_${Date.now()}.${fileExt}`;
+      const timestamp = Date.now();
+      const fileName = `upload_${timestamp}.${fileExt}`;
       const freshFile = new File([uploadFile], fileName, { type: uploadFile.type });
 
       const formData = new FormData();
@@ -285,7 +286,7 @@ export default function PassportSizePhotoMakerPage() {
 
       const resultId =
         apiResult.result_id ||
-        `res_${selectedCountryCode.toLowerCase()}_${Date.now()}`;
+        `res_${selectedCountryCode.toLowerCase()}_${timestamp}`;
 
       const payload = {
         ...apiResult,
@@ -295,7 +296,7 @@ export default function PassportSizePhotoMakerPage() {
         target_dimensions: selectedCountry.dimensions,
         document_type: selectedCountry.document_type,
         original_preview: preview,
-        timestamp: Date.now(),
+        timestamp,
       };
 
       if (typeof window !== "undefined") {
@@ -319,7 +320,18 @@ export default function PassportSizePhotoMakerPage() {
           : "An error occurred while communicating with the PixPassport API.";
       setError(msg);
     }
-  }
+  }, [
+    file,
+    selectedCountry,
+    selectedCountryCode,
+    preview,
+    router,
+    setIsProcessing,
+    setError,
+    setProcessingProgress,
+    setProcessingStepIndex,
+    setCountdown,
+  ]);
 
   return (
     <>
@@ -331,28 +343,28 @@ export default function PassportSizePhotoMakerPage() {
 
       <Navbar ctaText="Home" ctaHref="/" />
 
-      <main className="flex-1 bg-slate-50 min-h-screen py-6 sm:py-12 text-slate-900" id="studio">
+      <main className="flex-1 bg-slate-50 min-h-screen py-6 sm:py-12 text-slate-900" id="main-content">
         <div className="container-narrow max-w-2xl mx-auto px-4 sm:px-6">
           {/* Breadcrumb & Header */}
           <div className="text-center mb-5 sm:mb-7">
-            <nav className="text-xs text-slate-500 mb-2 flex justify-center" aria-label="Breadcrumbs">
+            <nav className="text-xs text-slate-600 mb-2 flex justify-center" aria-label="Breadcrumb">
               <ol className="flex items-center gap-1.5 list-none p-0 m-0">
                 <li>
-                  <Link href="/" className="hover:text-lime-700 transition-colors">
+                  <Link href="/" className="text-slate-600 hover:text-lime-800 transition-colors font-medium">
                     Home
                   </Link>
                 </li>
-                <li>/</li>
-                <li className="text-slate-800 font-medium">
+                <li aria-hidden="true">/</li>
+                <li className="text-slate-900 font-semibold" aria-current="page">
                   Passport Size Photo Maker
                 </li>
               </ol>
             </nav>
 
-            <h1 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Passport Photo Maker
             </h1>
-            <p className="text-slate-600 text-xs sm:text-sm mt-1.5 max-w-md mx-auto">
+            <p className="text-slate-700 text-xs sm:text-sm mt-1.5 max-w-md mx-auto leading-relaxed">
               Select your country, upload your photo, and let AI automatically size and verify biometrics in 10 seconds.
             </p>
           </div>
@@ -361,19 +373,19 @@ export default function PassportSizePhotoMakerPage() {
           {error && (
             <div
               role="alert"
-              aria-live="polite"
-              className="mb-4 bg-red-50 border border-red-200 text-red-800 rounded-xl p-3.5 sm:p-4 text-sm flex items-start justify-between gap-3"
+              aria-live="assertive"
+              className="mb-4 bg-red-50 border border-red-200 text-red-900 rounded-xl p-3.5 sm:p-4 text-sm flex items-start justify-between gap-3 font-medium"
             >
               <div className="flex items-start gap-2.5">
-                <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                <AlertCircle className="w-5 h-5 text-red-700 shrink-0 mt-0.5" aria-hidden="true" />
                 <span>{error}</span>
               </div>
               <button
-                className="text-red-500 hover:text-red-700 p-1"
+                className="text-red-700 hover:text-red-900 p-1 rounded-lg focus-ring"
                 onClick={() => setError(null)}
-                aria-label="Dismiss error"
+                aria-label="Dismiss error notification"
               >
-                <X className="w-4 h-4" />
+                <X className="w-4 h-4" aria-hidden="true" />
               </button>
             </div>
           )}
@@ -383,7 +395,7 @@ export default function PassportSizePhotoMakerPage() {
             <div className="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
               <label
                 htmlFor="country-search-trigger"
-                className="block text-xs sm:text-sm font-bold text-slate-800 mb-2"
+                className="block text-xs sm:text-sm font-bold text-slate-900 mb-2"
               >
                 Select Country / Destination
               </label>
@@ -396,12 +408,14 @@ export default function PassportSizePhotoMakerPage() {
                   onClick={() =>
                     isCountryOpen ? setIsCountryOpen(false) : openCountryDropdown()
                   }
-                  className="w-full flex items-center justify-between gap-2 text-slate-900 font-medium bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm sm:text-base focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full flex items-center justify-between gap-2 text-slate-900 font-semibold bg-white border border-slate-300 rounded-xl px-4 py-3 text-sm sm:text-base focus-ring transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   aria-haspopup="listbox"
                   aria-expanded={isCountryOpen}
+                  aria-controls="country-listbox"
+                  aria-label={`Selected country: ${selectedCountry.country_name}, dimensions ${selectedCountry.dimensions} pixels. Click to change.`}
                 >
                   <span className="flex items-center gap-2 min-w-0">
-                    <span className="text-lg leading-none shrink-0">
+                    <span className="text-lg leading-none shrink-0" aria-hidden="true">
                       {countryFlag(selectedCountry.country_code)}
                     </span>
                     <span className="truncate">
@@ -410,65 +424,70 @@ export default function PassportSizePhotoMakerPage() {
                     </span>
                   </span>
                   <ChevronDown
-                    className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${
+                    className={`w-4 h-4 text-slate-600 shrink-0 transition-transform ${
                       isCountryOpen ? "rotate-180" : ""
                     }`}
+                    aria-hidden="true"
                   />
                 </button>
 
                 {isCountryOpen && (
                   <div
+                    id="country-listbox"
                     className="absolute z-30 mt-2 w-full bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden flex flex-col"
                     role="listbox"
+                    aria-label="Supported countries and dimensions"
                   >
                     <div className="p-2 border-b border-slate-100 bg-white shrink-0">
                       <div className="relative">
-                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" aria-hidden="true" />
                         <input
                           ref={countrySearchRef}
+                          id="country-search-input"
                           type="text"
                           value={countryQuery}
                           onChange={(e) => setCountryQuery(e.target.value)}
                           placeholder="Search country…"
-                          className="w-full pl-9 pr-3 py-2.5 text-sm text-slate-900 border border-slate-200 rounded-lg focus:outline-none focus:border-lime-600 focus:ring-1 focus:ring-lime-600"
-                          aria-label="Search countries"
+                          className="w-full pl-9 pr-3 py-2.5 text-sm text-slate-900 border border-slate-300 rounded-lg focus-ring"
+                          aria-label="Filter countries list"
                         />
                       </div>
                     </div>
 
-                    <ul className="max-h-56 sm:max-h-72 overflow-y-auto py-1">
+                    <ul className="max-h-56 sm:max-h-72 overflow-y-auto py-1 list-none p-0 m-0" role="presentation">
                       {filteredCountries.length === 0 && (
-                        <li className="px-4 py-4 text-sm text-slate-500 text-center">
+                        <li className="px-4 py-4 text-sm text-slate-700 text-center">
                           No countries match &ldquo;{countryQuery}&rdquo;
                         </li>
                       )}
                       {filteredCountries.map((c) => {
                         const active = c.country_code === selectedCountryCode;
                         return (
-                          <li key={c.country_code}>
+                          <li key={c.country_code} role="presentation">
                             <button
                               type="button"
                               role="option"
                               aria-selected={active}
+                              id={`country-opt-${c.country_code}`}
                               onClick={() => selectCountry(c.country_code)}
                               className={`w-full flex items-center justify-between gap-2 text-left px-4 py-2.5 text-sm transition-colors ${
                                 active
-                                  ? "bg-lime-50 text-lime-800 font-semibold"
-                                  : "text-slate-700 hover:bg-slate-50"
+                                  ? "bg-lime-50 text-lime-900 font-bold"
+                                  : "text-slate-800 hover:bg-slate-50 font-medium"
                               }`}
                             >
                               <span className="flex items-center gap-2 min-w-0">
-                                <span className="text-base leading-none shrink-0">
+                                <span className="text-base leading-none shrink-0" aria-hidden="true">
                                   {countryFlag(c.country_code)}
                                 </span>
                                 <span className="truncate">{c.country_name}</span>
                               </span>
                               <span className="flex items-center gap-2 shrink-0">
-                                <span className="font-mono text-xs text-slate-400">
+                                <span className="font-mono text-xs text-slate-600">
                                   {c.dimensions}px
                                 </span>
                                 {active && (
-                                  <Check className="w-4 h-4 text-lime-600" />
+                                  <Check className="w-4 h-4 text-lime-700" aria-hidden="true" />
                                 )}
                               </span>
                             </button>
@@ -480,19 +499,21 @@ export default function PassportSizePhotoMakerPage() {
                 )}
               </div>
 
-              <p className="text-slate-400 text-xs mt-2 flex items-center gap-1.5">
-                <Globe className="w-3.5 h-3.5" />
-                {selectedCountry.document_type
-                  ? `${selectedCountry.document_type.charAt(0).toUpperCase()}${selectedCountry.document_type.slice(1)} photo`
-                  : "Passport photo"}{" "}
-                sized to {selectedCountry.dimensions} px for {selectedCountry.country_name}
+              <p className="text-slate-700 text-xs mt-2 flex items-center gap-1.5 font-medium">
+                <Globe className="w-3.5 h-3.5 text-slate-600" aria-hidden="true" />
+                <span>
+                  {selectedCountry.document_type
+                    ? `${selectedCountry.document_type.charAt(0).toUpperCase()}${selectedCountry.document_type.slice(1)} photo`
+                    : "Passport photo"}{" "}
+                  sized to {selectedCountry.dimensions} px for {selectedCountry.country_name}
+                </span>
               </p>
             </div>
 
             {/* CARD 2 — Upload (separate card) */}
             <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-8">
               <div>
-                <label className="block text-xs sm:text-sm font-bold text-slate-800 mb-2">
+                <label htmlFor="photo-file-input" className="block text-xs sm:text-sm font-bold text-slate-900 mb-2">
                   Upload or Take Your Photo
                 </label>
 
@@ -500,8 +521,8 @@ export default function PassportSizePhotoMakerPage() {
                   <div
                     className={`border-2 border-dashed rounded-2xl p-5 sm:p-10 text-center cursor-pointer transition-all ${
                       isDragging
-                        ? "border-lime-600 bg-lime-50/50"
-                        : "border-slate-300 hover:border-lime-500 bg-slate-50/60 hover:bg-slate-50"
+                        ? "border-lime-700 bg-lime-50/70"
+                        : "border-slate-300 hover:border-lime-700 bg-slate-50/60 hover:bg-slate-50"
                     }`}
                     onDragOver={onDragOver}
                     onDragLeave={onDragLeave}
@@ -515,20 +536,18 @@ export default function PassportSizePhotoMakerPage() {
                         inputRef.current?.click();
                       }
                     }}
-                    aria-label="Upload photo area. Click or drag and drop."
+                    aria-label="Upload photo area. Drag and drop a photo or press enter to browse files."
                   >
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center mx-auto mb-3 text-slate-400">
-                      <ImagePlus className="w-6 h-6 sm:w-7 sm:h-7 text-lime-700" />
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center mx-auto mb-3 text-slate-600" aria-hidden="true">
+                      <ImagePlus className="w-6 h-6 sm:w-7 sm:h-7 text-lime-800" />
                     </div>
 
                     <p className="text-slate-900 font-bold text-sm sm:text-lg mb-1">
                       Tap to upload photo or take picture
                     </p>
-                    <p className="text-slate-500 text-xs sm:text-sm mb-4">
+                    <p className="text-slate-700 text-xs sm:text-sm mb-2 font-medium">
                       Drag &amp; drop from your device · JPEG, PNG, or WebP (up to 20 MB)
                     </p>
-
-                  
                   </div>
                 ) : (
                   <div className="space-y-4">
@@ -543,23 +562,30 @@ export default function PassportSizePhotoMakerPage() {
                         />
                       </div>
 
+                      {compressionInfo && compressionInfo.compressed && (
+                        <div className="mt-2 text-xs text-slate-700 bg-lime-50 border border-lime-200 px-3 py-1 rounded-full flex items-center gap-1.5 font-medium">
+                          <Check className="w-3.5 h-3.5 text-[#4D7C0F]" aria-hidden="true" />
+                          <span>Pre-compressed for upload ({compressionInfo.finalSizeKB} KB)</span>
+                        </div>
+                      )}
+
                       {!isProcessing && (
                         <div className="flex items-center gap-2 mt-3 flex-wrap justify-center">
                           <button
                             type="button"
                             onClick={() => inputRef.current?.click()}
-                            className="inline-flex items-center gap-1.5 bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs px-3.5 py-2 rounded-lg border border-slate-300 transition-colors"
+                            className="inline-flex items-center gap-1.5 bg-white hover:bg-slate-100 text-slate-800 font-semibold text-xs px-3.5 py-2 rounded-lg border border-slate-300 transition-colors focus-ring"
                           >
-                            <RotateCcw className="w-3.5 h-3.5" />
-                            Change Photo
+                            <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
+                            <span>Change Photo</span>
                           </button>
                           <button
                             type="button"
                             onClick={clearFile}
-                            className="inline-flex items-center gap-1.5 bg-white hover:bg-red-50 text-red-700 font-semibold text-xs px-3.5 py-2 rounded-lg border border-red-200 transition-colors"
+                            className="inline-flex items-center gap-1.5 bg-white hover:bg-red-50 text-red-800 font-semibold text-xs px-3.5 py-2 rounded-lg border border-red-300 transition-colors focus-ring"
                           >
-                            <X className="w-3.5 h-3.5" />
-                            Remove
+                            <X className="w-3.5 h-3.5" aria-hidden="true" />
+                            <span>Remove</span>
                           </button>
                         </div>
                       )}
@@ -572,9 +598,9 @@ export default function PassportSizePhotoMakerPage() {
                   type="file"
                   accept={ACCEPTED_TYPES.join(",")}
                   onChange={onFileChange}
-                  className="hidden"
+                  className="sr-only"
                   id="photo-file-input"
-                  aria-label="Select photo file"
+                  aria-label="Select photo file from device"
                 />
               </div>
 
@@ -582,41 +608,41 @@ export default function PassportSizePhotoMakerPage() {
               {file && !isProcessing && (
                 <div ref={processBtnRef} className="pt-5 sm:pt-6 border-t border-slate-100 mt-5 sm:mt-6">
                   <button
-                    className="w-full inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-sm sm:text-base py-3.5 sm:py-4 rounded-xl transition-colors text-center"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-sm sm:text-base py-3.5 sm:py-4 rounded-xl transition-colors text-center shadow-xs focus-ring"
                     onClick={handleProcess}
                   >
-                    <Zap className="w-5 h-5 text-lime-300 shrink-0" />
+                    <Zap className="w-5 h-5 text-lime-300 shrink-0" aria-hidden="true" />
                     <span className="truncate">
                       Process for {selectedCountry.country_name}
                     </span>
-                    <ArrowRight className="w-4 h-4 ml-1 shrink-0" />
+                    <ArrowRight className="w-4 h-4 ml-1 shrink-0" aria-hidden="true" />
                   </button>
-                  <p className="text-center text-xs text-slate-500 mt-2.5">
+                  <p className="text-center text-xs text-slate-700 mt-2.5 font-medium">
                     ⚡ 10-second biometric crop &amp; verify · Single digital file + 6×4″ printable sheet
                   </p>
                 </div>
               )}
 
               {/* Photo Guidelines Checklist */}
-              <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-slate-100 text-xs text-slate-600">
-                <p className="font-bold text-slate-800 mb-2">
+              <div className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-slate-100 text-xs text-slate-700">
+                <p className="font-bold text-slate-900 mb-2">
                   Quick Acceptance Tips:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <div className="flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5 text-lime-600 shrink-0" />
+                    <Check className="w-3.5 h-3.5 text-lime-700 shrink-0" aria-hidden="true" />
                     <span>Look straight into camera, neutral face</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5 text-lime-600 shrink-0" />
+                    <Check className="w-3.5 h-3.5 text-lime-700 shrink-0" aria-hidden="true" />
                     <span>Eyes open, mouth closed, no red-eye</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5 text-lime-600 shrink-0" />
+                    <Check className="w-3.5 h-3.5 text-lime-700 shrink-0" aria-hidden="true" />
                     <span>Even lighting on face &amp; shoulders</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5 text-lime-600 shrink-0" />
+                    <Check className="w-3.5 h-3.5 text-lime-700 shrink-0" aria-hidden="true" />
                     <span>Plain background (our AI will auto-clean)</span>
                   </div>
                 </div>
@@ -625,42 +651,55 @@ export default function PassportSizePhotoMakerPage() {
           </div>
         </div>
 
-        {/* 10-SECOND PROCESSING MODAL OVERLAY (mobile-safe, scrolls if needed) */}
+        {/* 10-SECOND PROCESSING MODAL OVERLAY */}
         {isProcessing && (
           <div
             role="dialog"
             aria-modal="true"
             aria-labelledby="processing-modal-title"
+            aria-describedby="processing-modal-desc"
             className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/70 backdrop-blur-xs p-4 animate-fade-in"
           >
-            <div className="bg-white border border-slate-200 max-w-md w-full max-h-[90vh] overflow-y-auto rounded-2xl p-5 sm:p-8 text-center">
+            <div className="bg-white border border-slate-200 max-w-md w-full max-h-[90vh] overflow-y-auto rounded-2xl p-5 sm:p-8 text-center shadow-2xl">
+              {/* Screen reader live status announcement */}
+              <div aria-live="polite" className="sr-only">
+                Processing passport photo: {PROCESSING_STEPS[processingStepIndex].text} {processingProgress}% completed, {countdown} seconds remaining.
+              </div>
+
               {/* Countdown circle */}
               <div className="relative mx-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-lime-50 border border-lime-200 flex items-center justify-center mb-4">
-                <Camera className="w-7 h-7 sm:w-8 sm:h-8 text-[#4D7C0F]" />
-                <span className="absolute -bottom-1 -right-1 font-mono text-xs font-extrabold bg-[#4D7C0F] text-white px-1.5 py-0.5 rounded-full">
+                <Camera className="w-7 h-7 sm:w-8 sm:h-8 text-[#4D7C0F]" aria-hidden="true" />
+                <span className="absolute -bottom-1 -right-1 font-mono text-xs font-extrabold bg-[#4D7C0F] text-white px-1.5 py-0.5 rounded-full" aria-hidden="true">
                   {countdown}s
                 </span>
               </div>
 
-              <h3
+              <h2
                 id="processing-modal-title"
                 className="text-base sm:text-xl font-bold text-slate-900 mb-1"
               >
                 Processing Passport Photo
-              </h3>
-              <p className="text-xs text-slate-500 font-mono mb-5">
+              </h2>
+              <p id="processing-modal-desc" className="text-xs text-slate-700 font-mono mb-5 font-semibold">
                 {selectedCountry.country_name} · Format: {selectedCountry.dimensions} px
               </p>
 
               {/* Progress Bar */}
               <div className="space-y-2 mb-6">
-                <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200">
+                <div
+                  role="progressbar"
+                  aria-valuenow={processingProgress}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label="Passport photo processing progress"
+                  className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200"
+                >
                   <div
                     className="bg-[#4D7C0F] h-2.5 rounded-full transition-all duration-300 ease-out"
                     style={{ width: `${processingProgress}%` }}
                   />
                 </div>
-                <div className="flex justify-between text-xs font-mono text-slate-500 font-medium">
+                <div className="flex justify-between text-xs font-mono text-slate-700 font-semibold">
                   <span>{processingProgress}% Complete</span>
                   <span>{countdown}s remaining</span>
                 </div>
@@ -677,18 +716,18 @@ export default function PassportSizePhotoMakerPage() {
                       key={idx}
                       className={`flex items-center gap-2.5 transition-colors ${
                         isDone
-                          ? "text-lime-800 font-medium"
+                          ? "text-lime-900 font-bold"
                           : isCurrent
-                          ? "text-[#4D7C0F] font-bold"
-                          : "text-slate-400"
+                          ? "text-[#365314] font-bold"
+                          : "text-slate-500 font-medium"
                       }`}
                     >
                       {isDone ? (
-                        <CheckCircle className="w-4 h-4 text-[#4D7C0F] shrink-0" />
+                        <CheckCircle className="w-4 h-4 text-[#4D7C0F] shrink-0" aria-hidden="true" />
                       ) : isCurrent ? (
-                        <span className="w-4 h-4 rounded-full border-2 border-[#4D7C0F] border-t-transparent animate-spin shrink-0" />
+                        <span className="w-4 h-4 rounded-full border-2 border-[#4D7C0F] border-t-transparent animate-spin shrink-0" aria-hidden="true" />
                       ) : (
-                        <div className="w-4 h-4 rounded-full border border-slate-300 shrink-0" />
+                        <div className="w-4 h-4 rounded-full border border-slate-400 shrink-0" aria-hidden="true" />
                       )}
                       <span>{step.text}</span>
                     </div>

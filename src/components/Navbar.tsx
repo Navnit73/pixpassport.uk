@@ -17,6 +17,8 @@ export const DEFAULT_NAV_LINKS: NavLinkItem[] = [
   { label: "Features", href: "/#features" },
   { label: "Pricing", href: "/#pricing" },
   { label: "FAQ", href: "/#faq" },
+  { label: "About Us", href: "/about-us" },
+  { label: "Contact", href: "/contact-us" },
 ];
 
 export interface NavbarProps {
@@ -36,7 +38,7 @@ export interface NavbarProps {
 export default function Navbar({
   brandName = (
     <span>
-      Pix<span className="text-primary">Passport</span>
+      Pix<span className="text-[#3F650C] font-extrabold">Passport</span>
     </span>
   ),
   brandHref = "/",
@@ -72,7 +74,7 @@ export default function Navbar({
         {/* Brand Logo */}
         <Link
           href={brandHref}
-          className="flex items-center gap-2.5 text-lg sm:text-xl font-bold text-base-content focus-ring rounded-lg py-1 px-1.5 -ml-1.5"
+          className="flex items-center gap-2.5 text-lg sm:text-xl font-bold text-slate-900 focus-ring rounded-lg py-1 px-1.5 -ml-1.5"
           aria-label="PixPassport homepage"
         >
           {logoSrc && (
@@ -82,7 +84,7 @@ export default function Navbar({
               width={logoWidth}
               height={logoHeight}
               priority
-              className="w-8 h-8 rounded-lg object-cover shadow-xs border border-primary/20 shrink-0"
+              className="w-8 h-8 rounded-lg object-cover shadow-xs border border-lime-600/30 shrink-0"
             />
           )}
           <span>{brandName}</span>
@@ -96,7 +98,7 @@ export default function Navbar({
               href={link.href}
               target={link.target}
               rel={link.rel}
-              className="btn btn-ghost btn-sm text-base-content/80 hover:text-base-content hover:bg-base-200 font-medium"
+              className="btn btn-ghost btn-sm text-slate-700 hover:text-slate-900 hover:bg-slate-100 font-medium px-3 transition-colors"
             >
               {link.label}
             </Link>
@@ -106,7 +108,10 @@ export default function Navbar({
         {/* Desktop CTA */}
         {ctaText && (
           <div className="hidden md:flex items-center gap-3">
-            <Link href={ctaHref} className="btn btn-primary btn-sm px-4 !text-white text-white">
+            <Link
+              href={ctaHref}
+              className="btn btn-primary btn-sm px-4 font-bold !text-white text-white shadow-xs hover:shadow-sm"
+            >
               {ctaText}
             </Link>
           </div>
@@ -114,13 +119,17 @@ export default function Navbar({
 
         {/* Mobile menu toggle */}
         <button
-          className="btn btn-ghost btn-square btn-sm md:hidden text-base-content"
+          className="btn btn-ghost btn-square btn-sm md:hidden text-slate-800"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           aria-controls="mobile-navigation-drawer"
         >
-          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          {mobileOpen ? (
+            <X className="w-5 h-5" aria-hidden="true" />
+          ) : (
+            <Menu className="w-5 h-5" aria-hidden="true" />
+          )}
         </button>
       </div>
 
@@ -128,7 +137,7 @@ export default function Navbar({
       {mobileOpen && (
         <>
           <div
-            className="fixed inset-0 top-[57px] bg-neutral/30 backdrop-blur-xs z-40 md:hidden animate-fade-in"
+            className="fixed inset-0 top-[57px] bg-slate-900/40 backdrop-blur-xs z-40 md:hidden animate-fade-in"
             onClick={() => setMobileOpen(false)}
             aria-hidden="true"
           />
@@ -146,7 +155,7 @@ export default function Navbar({
                   href={link.href}
                   target={link.target}
                   rel={link.rel}
-                  className="py-2.5 px-3 rounded-lg text-base-content/80 hover:bg-base-200 hover:text-base-content font-medium text-base transition-colors"
+                  className="py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-slate-900 font-medium text-base transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
@@ -157,7 +166,7 @@ export default function Navbar({
                   <div className="divider my-2" />
                   <Link
                     href={ctaHref}
-                    className="btn btn-primary w-full text-base font-semibold !text-white text-white"
+                    className="btn btn-primary w-full text-base font-bold !text-white text-white"
                     onClick={() => setMobileOpen(false)}
                   >
                     {ctaText}

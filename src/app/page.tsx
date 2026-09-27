@@ -16,7 +16,6 @@ import {
   ChevronRight,
   AlertCircle,
   ExternalLink,
-  Camera,
   Baby,
   FileText,
   Check,
@@ -177,18 +176,18 @@ export default function HomePage() {
 
       <Navbar ctaText="Upload Photo" ctaHref="/passport-size-photo-maker" />
 
-      <main className="flex-1 bg-white text-slate-900">
+      <main className="flex-1 bg-white text-slate-900" id="main-content">
         {/* =========================================================================
             1. HERO SECTION (Clean, responsive, zero shadows)
            ========================================================================= */}
-        <section className="bg-white py-10 sm:py-16 lg:py-20 border-b border-slate-200/80" id="hero">
+        <section className="bg-white py-10 sm:py-16 lg:py-20 border-b border-slate-200/80" id="hero" aria-label="Introduction and photo maker overview">
           <div className="container-narrow">
             <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               {/* Left copy column */}
               <div className="lg:col-span-7 max-w-2xl">
                 {/* Official Biometric Badge */}
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F4FBE8] border border-lime-300 text-xs font-bold text-[#4D7C0F] tracking-wide mb-5">
-                  <span className="w-2 h-2 rounded-full bg-[#65A30D]" />
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F4FBE8] border border-lime-300 text-xs font-bold text-[#365314] tracking-wide mb-5">
+                  <span className="w-2 h-2 rounded-full bg-[#4D7C0F]" aria-hidden="true" />
                   <span> UK PASSPORT PHOTO TOOL · ICAO COMPLIANT</span>
                 </div>
 
@@ -198,12 +197,12 @@ export default function HomePage() {
                 </h1>
 
                 {/* Sub-heading */}
-                <p className="text-lg sm:text-xl text-[#64748B] font-normal mb-4 leading-snug">
+                <p className="text-lg sm:text-xl text-[#334155] font-semibold mb-4 leading-snug">
                   The UK passport photo maker for new applications and renewals
                 </p>
 
                 {/* Body description */}
-                <p className="text-sm sm:text-base text-[#475569] leading-relaxed mb-7 max-w-xl">
+                <p className="text-sm sm:text-base text-[#334155] leading-relaxed mb-7 max-w-xl">
                   Upload one photo and get a ready-to-submit digital photo for your
                   passport, visa, or passport renewal. We crop, resize, and check
                   your photo against official government rules for the UK, US,
@@ -214,21 +213,22 @@ export default function HomePage() {
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 mb-7">
                   <Link
                     href="/passport-size-photo-maker"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-base px-7 py-3.5 sm:py-4 rounded-xl transition-colors text-center"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-base px-7 py-3.5 sm:py-4 rounded-xl transition-colors text-center shadow-xs"
                   >
-                    Create My Passport Photo &rarr;
+                    <span>Create My Passport Photo</span>
+                    <span aria-hidden="true">&rarr;</span>
                   </Link>
                   <a
                     href="#how-it-works"
-                    className="w-full sm:w-auto inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-700 font-semibold text-base px-6 py-3.5 sm:py-4 rounded-xl border border-slate-300 transition-colors text-center"
+                    className="w-full sm:w-auto inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-800 font-semibold text-base px-6 py-3.5 sm:py-4 rounded-xl border border-slate-300 transition-colors text-center"
                   >
                     How It Works
                   </a>
                 </div>
 
                 {/* Rating & Social Proof */}
-                <div className="flex items-center gap-2.5 mb-6 text-sm">
-                  <div className="flex items-center text-[#2563EB] gap-0.5">
+                <div className="flex items-center gap-2.5 mb-6 text-sm" aria-label="Rated 4.9 out of 5 stars based on 17,000+ reviews">
+                  <div className="flex items-center text-amber-500 gap-0.5" aria-hidden="true">
                     {[...Array(5)].map((_, i) => (
                       <svg
                         key={i}
@@ -240,24 +240,24 @@ export default function HomePage() {
                       </svg>
                     ))}
                   </div>
-                  <span className="text-slate-800 text-sm font-bold">
-                    4.9 · <span className="font-normal text-slate-600">Trusted by 17,000+ users</span>
+                  <span className="text-slate-900 text-sm font-bold">
+                    4.9 · <span className="font-medium text-slate-700">Trusted by 17,000+ users</span>
                   </span>
                 </div>
 
                 {/* Features Badges Row */}
                 <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 sm:gap-2.5">
-                  <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700 text-center">
-                    <span>🔒</span> Secure &amp; Private
+                  <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-2 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-800 text-center">
+                    <span aria-hidden="true">🔒</span> Secure &amp; Private
                   </span>
-                  <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700 text-center">
-                    <span className="text-amber-500">⚡</span> Results in 10s
+                  <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-2 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-800 text-center">
+                    <span className="text-amber-600" aria-hidden="true">⚡</span> Results in 10s
                   </span>
-                  <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700 text-center">
-                    <span>🌍</span> 50+ Countries
+                  <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-2 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-800 text-center">
+                    <span aria-hidden="true">🌍</span> 50+ Countries
                   </span>
-                  <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-xs font-medium text-slate-700 text-center">
-                    <span>🪪</span> Biometric Validation
+                  <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 px-3 py-2 rounded-lg bg-slate-100 border border-slate-200 text-xs font-semibold text-slate-800 text-center">
+                    <span aria-hidden="true">🪪</span> Biometric Validation
                   </span>
                 </div>
               </div>
@@ -305,14 +305,14 @@ export default function HomePage() {
               {steps.map(({ icon: Icon, step, title, description }) => (
                 <div
                   key={step}
-                  className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-lime-500/60 transition-colors"
+                  className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-lime-600 transition-colors"
                 >
                   <div>
                     <div className="flex items-center justify-between w-full mb-6">
-                      <div className="w-12 h-12 rounded-xl bg-lime-50 border border-lime-200 flex items-center justify-center text-[#4D7C0F]">
+                      <div className="w-12 h-12 rounded-xl bg-lime-50 border border-lime-200 flex items-center justify-center text-[#4D7C0F]" aria-hidden="true">
                         <Icon className="w-6 h-6" />
                       </div>
-                      <span className="font-mono text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-md">
+                      <span className="font-mono text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-1 rounded-md">
                         Step 0{step}
                       </span>
                     </div>
@@ -321,7 +321,7 @@ export default function HomePage() {
                       {title}
                     </h3>
 
-                    <p className="text-slate-600 text-sm leading-relaxed">
+                    <p className="text-slate-700 text-sm leading-relaxed">
                       {description}
                     </p>
                   </div>
@@ -332,11 +332,11 @@ export default function HomePage() {
             <div className="text-center mt-10 sm:mt-12">
               <Link
                 href="/passport-size-photo-maker"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-base px-8 py-3.5 sm:py-4 rounded-xl transition-colors text-center"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-base px-8 py-3.5 sm:py-4 rounded-xl transition-colors text-center shadow-xs"
               >
-                <Upload className="w-5 h-5" />
-                Upload &amp; Create Photo Now
-                <ArrowRight className="w-4 h-4 ml-0.5" />
+                <Upload className="w-5 h-5" aria-hidden="true" />
+                <span>Upload &amp; Create Photo Now</span>
+                <ArrowRight className="w-4 h-4 ml-0.5" aria-hidden="true" />
               </Link>
             </div>
           </div>
@@ -345,16 +345,16 @@ export default function HomePage() {
         {/* =========================================================================
             3. FEATURES SECTION (Unified border-divided layout, no individual heavy card clutter)
            ========================================================================= */}
-        <section className="bg-white py-14 sm:py-20 border-b border-slate-200/80" id="features">
+        <section className="bg-white py-14 sm:py-20 border-b border-slate-200/80" id="features" aria-label="Core features and capabilities">
           <div className="container-narrow">
             <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-              <span className="inline-block px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold mb-3">
+              <span className="inline-block px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-semibold mb-3">
                 Engineered for Acceptance
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
                 Everything You Need From a UK Passport Photo Maker
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base">
+              <p className="text-slate-700 text-sm sm:text-base">
                 Create, crop, verify, and print official biometric passport
                 photos from any device, for a first application or a renewal.
               </p>
@@ -364,9 +364,9 @@ export default function HomePage() {
               {features.map(({ icon: Icon, title, description }) => (
                 <div
                   key={title}
-                  className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 flex flex-col justify-start hover:border-lime-500/60 transition-colors"
+                  className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 flex flex-col justify-start hover:border-lime-600 transition-colors"
                 >
-                  <div className="w-11 h-11 rounded-xl bg-lime-50 border border-lime-200 text-[#4D7C0F] flex items-center justify-center shrink-0 mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-lime-50 border border-lime-200 text-[#4D7C0F] flex items-center justify-center shrink-0 mb-4" aria-hidden="true">
                     <Icon className="w-5 h-5" />
                   </div>
 
@@ -374,7 +374,7 @@ export default function HomePage() {
                     {title}
                   </h3>
 
-                  <p className="text-slate-600 text-sm leading-relaxed">
+                  <p className="text-slate-700 text-sm leading-relaxed">
                     {description}
                   </p>
                 </div>
@@ -386,16 +386,16 @@ export default function HomePage() {
         {/* =========================================================================
             4. TRUST / E-E-A-T SECTION (Clean 2x2 grid, no shadows)
            ========================================================================= */}
-        <section className="bg-slate-50/70 py-14 sm:py-20 border-b border-slate-200/80" id="trust">
+        <section className="bg-slate-50/70 py-14 sm:py-20 border-b border-slate-200/80" id="trust" aria-label="Trust and compliance verification">
           <div className="container-narrow">
             <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-              <span className="inline-block px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold mb-3">
+              <span className="inline-block px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-semibold mb-3">
                 Why Trust PixPassport
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
                 Photo Rules You Can Verify, Not Just Trust
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base">
+              <p className="text-slate-700 text-sm sm:text-base">
                 We built PixPassport with applicants and immigration document
                 specialists, and we keep every country profile current.
               </p>
@@ -409,14 +409,14 @@ export default function HomePage() {
                 >
                   <div>
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-lime-50 border border-lime-200 text-[#4D7C0F] flex items-center justify-center shrink-0">
+                      <div className="w-10 h-10 rounded-xl bg-lime-50 border border-lime-200 text-[#4D7C0F] flex items-center justify-center shrink-0" aria-hidden="true">
                         <Icon className="w-5 h-5" />
                       </div>
                       <h3 className="font-bold text-[#0F172A] text-base sm:text-lg">
                         {title}
                       </h3>
                     </div>
-                    <p className="text-slate-600 text-sm leading-relaxed">
+                    <p className="text-slate-700 text-sm leading-relaxed">
                       {description}
                     </p>
                   </div>
@@ -429,16 +429,16 @@ export default function HomePage() {
         {/* =========================================================================
             5. OFFICIAL UK DIGITAL PASSPORT PHOTO RULES & GUIDANCE
            ========================================================================= */}
-        <section className="bg-white py-14 sm:py-20 border-b border-slate-200/80" id="photo-rules">
+        <section className="bg-white py-14 sm:py-20 border-b border-slate-200/80" id="photo-rules" aria-label="Official UK photo rules and guidelines">
           <div className="container-narrow">
             <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-              <span className="inline-block px-3 py-1 rounded-full bg-lime-100 border border-lime-300 text-[#4D7C0F] text-xs font-bold mb-3">
+              <span className="inline-block px-3 py-1 rounded-full bg-lime-100 border border-lime-300 text-[#365314] text-xs font-bold mb-3">
                 Official UK Guidance
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
                 Rules &amp; Guidance for Digital Passport Photos
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base">
+              <p className="text-slate-700 text-sm sm:text-base">
                 Official government standards for online passport applications, device photography, and child photos.
               </p>
             </div>
@@ -447,47 +447,46 @@ export default function HomePage() {
               {/* 1. Digital Photos Overview */}
               <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] mb-3 flex items-center gap-2.5">
-                  <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-[#4D7C0F]" />
+                  <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-[#4D7C0F]" aria-hidden="true" />
                   Digital photos
                 </h3>
-                <p className="text-slate-700 text-sm sm:text-base font-medium mb-4">
+                <p className="text-slate-800 text-sm sm:text-base font-medium mb-4">
                   You need a digital photo to apply for a passport online.
                 </p>
-                <ul className="space-y-2.5 text-slate-600 text-sm sm:text-base mb-5">
+                <ul className="space-y-2.5 text-slate-700 text-sm sm:text-base mb-5">
                   <li className="flex items-start gap-2.5">
-                    <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-1" />
+                    <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-1" aria-hidden="true" />
                     <span>You must get a new photo when you get a new passport, even if your appearance has not changed.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-1" />
+                    <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-1" aria-hidden="true" />
                     <span>Your photo must have been taken in the last month.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-1" />
-                    <span className="text-amber-900 font-medium">Your application will be delayed if your photos do not meet the rules.</span>
+                    <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-1" aria-hidden="true" />
+                    <span className="text-amber-950 font-semibold">Your application will be delayed if your photos do not meet the rules.</span>
                   </li>
                 </ul>
-                <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center gap-1.5 text-xs sm:text-sm text-slate-700">
+                <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center gap-1.5 text-xs sm:text-sm text-slate-800">
                   <span>You can get</span>
                   <a
                     href="https://www.gov.uk/passport-services-disabled"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 font-semibold text-[#4D7C0F] hover:underline"
+                    className="inline-flex items-center gap-1 font-bold text-[#365314] hover:underline"
                   >
-                    help with your passport photos
-                    <ExternalLink className="w-3.5 h-3.5" />
+                    <span>help with your passport photos</span>
+                    <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span className="sr-only">(opens in new window)</span>
                   </a>
                   <span>if you’re disabled.</span>
                 </div>
               </div>
 
-           
-
               {/* 3. Rules for digital photos */}
               <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] mb-5 flex items-center gap-2.5">
-                  <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-[#4D7C0F]" />
+                  <Shield className="w-5 h-5 sm:w-6 sm:h-6 text-[#4D7C0F]" aria-hidden="true" />
                   Rules for digital photos
                 </h3>
 
@@ -497,26 +496,26 @@ export default function HomePage() {
                     <h4 className="font-bold text-[#0F172A] text-base sm:text-lg mb-2">
                       The quality of your digital photo
                     </h4>
-                    <p className="text-slate-600 text-sm mb-3">Your photo must be:</p>
-                    <ul className="grid sm:grid-cols-2 gap-2 text-sm text-slate-700">
+                    <p className="text-slate-700 text-sm mb-3">Your photo must be:</p>
+                    <ul className="grid sm:grid-cols-2 gap-2 text-sm text-slate-800">
                       <li className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-2.5 rounded-lg">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0" aria-hidden="true" />
                         <span>clear and in focus</span>
                       </li>
                       <li className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-2.5 rounded-lg">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0" aria-hidden="true" />
                         <span>in colour</span>
                       </li>
                       <li className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-2.5 rounded-lg">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0" aria-hidden="true" />
                         <span>unaltered by computer software</span>
                       </li>
                       <li className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-2.5 rounded-lg">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0" aria-hidden="true" />
                         <span>at least 600 pixels wide and 750 pixels tall</span>
                       </li>
                       <li className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-2.5 rounded-lg sm:col-span-2">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0" aria-hidden="true" />
                         <span>at least 50KB and no more than 10MB</span>
                       </li>
                     </ul>
@@ -527,63 +526,63 @@ export default function HomePage() {
                     <h4 className="font-bold text-[#0F172A] text-base sm:text-lg mb-2">
                       What your digital photo must show
                     </h4>
-                    <p className="text-slate-600 text-sm mb-3">The digital photo must:</p>
-                    <ul className="space-y-2 text-sm text-slate-700 mb-4">
+                    <p className="text-slate-700 text-sm mb-3">The digital photo must:</p>
+                    <ul className="space-y-2 text-sm text-slate-800 mb-4">
                       <li className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
                         <span>contain no other objects or people</span>
                       </li>
                       <li className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
                         <span>be taken against a plain light-coloured background</span>
                       </li>
                       <li className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
                         <span>be in clear contrast to the background</span>
                       </li>
                       <li className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
                         <span>not have ‘red eye’</span>
                       </li>
                     </ul>
 
-                    <p className="text-sm bg-lime-50/80 border border-lime-200 text-[#4D7C0F] font-medium rounded-xl p-3.5 mb-5">
+                    <p className="text-sm bg-lime-50/80 border border-lime-200 text-[#365314] font-medium rounded-xl p-3.5 mb-5">
                       If you’re using a photo taken on your own device, include your head, shoulders and upper body. Do not crop your photo - it will be done for you.
                     </p>
 
-                    <p className="text-slate-700 text-sm mb-3 font-semibold">In your photo you must:</p>
-                    <ul className="grid sm:grid-cols-2 gap-2 text-sm text-slate-700 mb-4">
+                    <p className="text-slate-800 text-sm mb-3 font-semibold">In your photo you must:</p>
+                    <ul className="grid sm:grid-cols-2 gap-2 text-sm text-slate-800 mb-4">
                       <li className="flex items-start gap-2">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
                         <span>be facing forwards and looking straight at the camera</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
                         <span>have a plain expression and your mouth closed</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
                         <span>have your eyes open and visible</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
                         <span>not have hair in front of your eyes</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
                         <span>not have a head covering (unless it’s for religious or medical reasons)</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
                         <span>not have anything covering your face</span>
                       </li>
                       <li className="flex items-start gap-2 sm:col-span-2">
-                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" />
+                        <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
                         <span>not have any shadows on your face or behind you</span>
                       </li>
                     </ul>
 
-                    <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs sm:text-sm text-slate-700">
+                    <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs sm:text-sm text-slate-800">
                       <strong>Glasses:</strong> Do not wear glasses in your photo unless you have to do so. If you must wear glasses, they cannot be sunglasses or tinted glasses, and you must make sure your eyes are not covered by the frames or any glare, reflection or shadow.
                     </div>
                   </div>
@@ -593,24 +592,24 @@ export default function HomePage() {
               {/* 4. Photos of babies and children */}
               <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8">
                 <h3 className="text-xl sm:text-2xl font-bold text-[#0F172A] mb-4 flex items-center gap-2.5">
-                  <Baby className="w-5 h-5 sm:w-6 sm:h-6 text-[#4D7C0F]" />
+                  <Baby className="w-5 h-5 sm:w-6 sm:h-6 text-[#4D7C0F]" aria-hidden="true" />
                   Photos of babies and children
                 </h3>
-                <ul className="space-y-3 text-sm sm:text-base text-slate-700">
+                <ul className="space-y-3 text-sm sm:text-base text-slate-800">
                   <li className="flex items-start gap-2.5">
-                    <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-1" />
+                    <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-1" aria-hidden="true" />
                     <span>Children must be on their own in the picture. Babies must not be holding toys or using dummies.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-1" />
+                    <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-1" aria-hidden="true" />
                     <span>Children under 6 do not have to be looking directly at the camera or have a plain expression.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-1" />
+                    <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-1" aria-hidden="true" />
                     <span>Children under one do not have to have their eyes open. You can support their head with your hand, but your hand must not be visible in the photo.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
-                    <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-1" />
+                    <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-1" aria-hidden="true" />
                     <span>Children under one should lie on a plain light-coloured sheet. Take the photo from above.</span>
                   </li>
                 </ul>
@@ -622,16 +621,16 @@ export default function HomePage() {
         {/* =========================================================================
             6. PRICING SECTION (£7.99 Flat Fee, No Shadows)
            ========================================================================= */}
-        <section className="bg-white py-14 sm:py-20 border-b border-slate-200/80" id="pricing">
+        <section className="bg-white py-14 sm:py-20 border-b border-slate-200/80" id="pricing" aria-label="Transparent pricing details">
           <div className="container-narrow">
             <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="inline-block px-3 py-1 rounded-full bg-lime-100 border border-lime-300 text-[#4D7C0F] text-xs font-bold mb-3">
+              <span className="inline-block px-3 py-1 rounded-full bg-lime-100 border border-lime-300 text-[#365314] text-xs font-bold mb-3">
                 Transparent Pricing
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
-                Passport Photo Maker
+                Passport Photo Maker Package
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base">
+              <p className="text-slate-700 text-sm sm:text-base">
                 One-off payment for your complete compliant digital photo and printable sheet.
               </p>
             </div>
@@ -639,29 +638,29 @@ export default function HomePage() {
             <div className="max-w-md mx-auto">
               <div className="bg-white border-2 border-[#4D7C0F] rounded-2xl overflow-hidden p-6 sm:p-8">
                 <div className="text-center pb-6 border-b border-slate-200">
-                  <div className="inline-block px-3 py-1 rounded-md bg-lime-100 text-[#4D7C0F] mb-3 font-bold text-xs uppercase tracking-wide">
+                  <div className="inline-block px-3 py-1 rounded-md bg-lime-100 text-[#365314] mb-3 font-bold text-xs uppercase tracking-wide">
                     Complete Photo Package
                   </div>
                   <div className="flex items-baseline justify-center gap-1">
                     <span className="text-5xl font-extrabold text-[#0F172A] tracking-tight">
                       £7.99
                     </span>
-                    <span className="text-slate-500 text-base font-medium">
+                    <span className="text-slate-600 text-base font-medium">
                       /photo
                     </span>
                   </div>
-                  <p className="text-slate-600 text-xs sm:text-sm mt-2">
+                  <p className="text-slate-700 text-xs sm:text-sm mt-2">
                     Includes ready-to-submit digital photo and 6×4″ printable sheet
                   </p>
                 </div>
 
-                <ul className="py-6 space-y-3">
+                <ul className="py-6 space-y-3 list-none p-0 m-0">
                   {pricingBenefits.map((benefit) => (
                     <li
                       key={benefit}
                       className="flex items-start gap-2.5 text-slate-800 text-sm"
                     >
-                      <CheckCircle className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" />
+                      <CheckCircle className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
                       <span>{benefit}</span>
                     </li>
                   ))}
@@ -669,7 +668,7 @@ export default function HomePage() {
 
                 <Link
                   href="/passport-size-photo-maker"
-                  className="inline-flex items-center justify-center w-full text-center bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-base py-3.5 sm:py-4 rounded-xl transition-colors"
+                  className="inline-flex items-center justify-center w-full text-center bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-base py-3.5 sm:py-4 rounded-xl transition-colors shadow-xs"
                 >
                   Create Your Passport Photo Now
                 </Link>
@@ -679,20 +678,19 @@ export default function HomePage() {
         </section>
 
         {/* =========================================================================
-            6. FAQ SECTION (Clean accordion, no shadows)
+            7. FAQ SECTION (Clean accordion, no shadows)
            ========================================================================= */}
-        <section className="bg-slate-50/70 py-14 sm:py-20 border-b border-slate-200/80" id="faq">
+        <section className="bg-slate-50/70 py-14 sm:py-20 border-b border-slate-200/80" id="faq" aria-label="Frequently Asked Questions">
           <div className="container-narrow">
             <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-              <span className="inline-block px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold mb-3">
+              <span className="inline-block px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-semibold mb-3">
                 Got Questions?
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
                 Frequently Asked Questions
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base">
-                Common questions about country rules, renewals, cropping, and
-                printing.
+              <p className="text-slate-700 text-sm sm:text-base">
+                Common questions about country rules, renewals, cropping, and printing.
               </p>
             </div>
 
@@ -703,13 +701,13 @@ export default function HomePage() {
                   className="bg-white border border-slate-200 rounded-xl overflow-hidden"
                 >
                   <details className="group [&_summary::-webkit-details-marker]:hidden" open={index === 0}>
-                    <summary className="flex items-center justify-between p-5 cursor-pointer select-none font-semibold text-slate-900 text-base sm:text-lg hover:text-[#4D7C0F] transition-colors">
+                    <summary className="flex items-center justify-between p-5 cursor-pointer select-none font-semibold text-slate-900 text-base sm:text-lg hover:text-[#365314] focus-ring transition-colors rounded-xl">
                       <span>{question}</span>
-                      <span className="ml-4 shrink-0 text-slate-400 group-open:rotate-90 transition-transform">
+                      <span className="ml-4 shrink-0 text-slate-500 group-open:rotate-90 transition-transform" aria-hidden="true">
                         <ChevronRight className="w-5 h-5" />
                       </span>
                     </summary>
-                    <div className="px-5 pb-5 text-slate-600 text-sm sm:text-base leading-relaxed border-t border-slate-100 pt-3">
+                    <div className="px-5 pb-5 text-slate-700 text-sm sm:text-base leading-relaxed border-t border-slate-100 pt-3">
                       {answer}
                     </div>
                   </details>

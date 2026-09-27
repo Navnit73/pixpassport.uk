@@ -11,20 +11,25 @@ export interface FooterLinkItem {
 
 export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
   Product: [
+    { label: "Photo Maker Studio", href: "/passport-size-photo-maker" },
     { label: "How It Works", href: "/#how-it-works" },
     { label: "Features", href: "/#features" },
     { label: "Pricing", href: "/#pricing" },
     { label: "FAQ", href: "/#faq" },
   ],
-  Legal: [
-    { label: "Privacy Policy", href: "/#faq" },
-    { label: "Terms of Service", href: "/#faq" },
-    { label: "Cookie Policy", href: "/#faq" },
+  Company: [
+    { label: "About Us", href: "/about-us" },
+    { label: "Contact Us", href: "/contact-us" },
+    { label: "UK Passport Photo Rules", href: "/#photo-rules" },
   ],
-  Resources: [
-    { label: "UK Passport Photo Requirements", href: "/#photo-rules" },
-    { label: "Photo Maker Studio", href: "/passport-size-photo-maker" },
-    { label: "Printing Guide", href: "/#how-it-works" },
+  Legal: [
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms of Service", href: "/terms-of-service" },
+    { label: "Refund Policy", href: "/refund-policy" },
+    {
+      label: "Data Security & Safeguards",
+      href: "/data-security-privacy-safeguards",
+    },
   ],
 };
 
@@ -56,7 +61,7 @@ export default function Footer({
 
   return (
     <footer
-      className={`bg-secondary text-secondary-content ${className}`.trim()}
+      className={`bg-[#111827] text-slate-100 ${className}`.trim()}
       role="contentinfo"
     >
       <div className="container-narrow section-padding">
@@ -65,7 +70,8 @@ export default function Footer({
           <div className="sm:col-span-2 lg:col-span-1">
             <Link
               href="/"
-              className="inline-flex items-center gap-2.5 text-xl font-bold mb-4 hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2.5 text-xl font-bold mb-4 text-white hover:text-lime-400 transition-colors focus-ring rounded-lg"
+              aria-label="PixPassport homepage"
             >
               {brandLogo && (
                 <Image
@@ -73,12 +79,12 @@ export default function Footer({
                   alt={brandLogoAlt}
                   width={28}
                   height={28}
-                  className="w-7 h-7 rounded-lg object-cover ring-1 ring-secondary-content/20 shrink-0"
+                  className="w-7 h-7 rounded-lg object-cover ring-1 ring-white/20 shrink-0"
                 />
               )}
               <span>{brandName}</span>
             </Link>
-            <div className="text-secondary-content/70 text-sm leading-relaxed max-w-sm">
+            <div className="text-slate-300 text-sm leading-relaxed max-w-sm">
               {typeof brandDescription === "string" ? (
                 <p>{brandDescription}</p>
               ) : (
@@ -89,10 +95,10 @@ export default function Footer({
 
           {/* Link columns */}
           {Object.entries(linkGroups).map(([heading, links]) => (
-            <nav key={heading} aria-label={`${heading} navigation`}>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-secondary-content/90 mb-3.5">
+            <nav key={heading} aria-label={`${heading} links`}>
+              <h2 className="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3.5">
                 {heading}
-              </h4>
+              </h2>
               <ul className="space-y-2.5 list-none p-0 m-0">
                 {links.map((link) => (
                   <li key={link.label}>
@@ -100,7 +106,7 @@ export default function Footer({
                       href={link.href}
                       target={link.target}
                       rel={link.rel}
-                      className="text-secondary-content/65 hover:text-secondary-content text-sm transition-colors block py-0.5"
+                      className="text-slate-300 hover:text-white hover:underline text-sm transition-colors block py-0.5"
                     >
                       {link.label}
                     </Link>
@@ -113,15 +119,15 @@ export default function Footer({
 
         {children}
 
-        <div className="divider before:bg-secondary-content/10 after:bg-secondary-content/10 my-8" />
+        <div className="border-t border-slate-800 my-8" />
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-secondary-content/55 text-center sm:text-left">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm text-slate-300 text-center sm:text-left">
           <p>{copyrightText ?? defaultCopyright}</p>
-          <p className="flex items-center gap-1.5">
+          <p className="flex items-center gap-1.5 text-slate-300">
             {regionNotice ?? (
               <>
-                Made in the United Kingdom{" "}
-                <span className="inline-block" aria-label="United Kingdom flag">
+                <span>Made in the United Kingdom</span>
+                <span className="inline-block text-base" aria-label="United Kingdom flag">
                   🇬🇧
                 </span>
               </>
