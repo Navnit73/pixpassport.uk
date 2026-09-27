@@ -142,7 +142,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
                 </div>
 
                 {/* Main Heading */}
-                <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-[#0F172A] tracking-tight leading-[1.18] mb-3">
+                <h1 className="text-3xl sm:text-3xl lg:text-[40px] font-extrabold text-[#0F172A] tracking-tight leading-[1.18] mb-3">
                   {tool.hero_title}
                 </h1>
 
