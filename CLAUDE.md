@@ -51,7 +51,7 @@ npm start
 
 ### Design & Styling (`src/app/globals.css`)
 * Theme is configured via `@plugin "daisyui/theme"` with the custom theme name `pixpassport`.
-* **Primary:** `#2563EB` (Royal Blue)
+* **Primary:** `#65A30D` (Lime Green — `lime-600`), hover `#4D7C0F` (`lime-700`)
 * **Secondary:** `#172033` (Deep Navy)
 * **Accent:** `#0F766E` (Teal)
 * **Neutral / Content:** `#172033`

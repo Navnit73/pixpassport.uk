@@ -16,7 +16,7 @@
   default: true;
 
   /* Brand colours */
-  --color-primary: #2563EB;
+  --color-primary: #65A30D;         /* lime-600 */
   --color-primary-content: #FFFFFF;
   --color-secondary: #172033;
   --color-secondary-content: #FFFFFF;
@@ -181,6 +181,12 @@ img {
   outline-offset: 2px;
 }
 
+/* Primary button hover state — lime-700 */
+.btn-primary:hover {
+  background-color: #4D7C0F; /* lime-700 */
+  border-color: #4D7C0F;
+}
+
 /* ========================================
    8. Accessibility & Reduced Motion
    ======================================== */
@@ -204,6 +210,6 @@ a {
 
 /* Focus visibility for all interactive elements */
 :focus-visible {
-  outline: 2px solid #2563EB;
+  outline: 2px solid #65A30D; /* lime-600 */
   outline-offset: 2px;
 }

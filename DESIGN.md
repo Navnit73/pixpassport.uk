@@ -3,7 +3,7 @@
 ## 1. Brand Identity & Design Philosophy
 
 **PixPassport** is engineered around three visual and UX pillars:
-1. **Trust & Authority:** A crisp, institutional, and British-appropriate visual language that gives users confidence when creating official passport photos.
+1. **Trust & Authority:** A crisp, modern, and British-appropriate visual language that gives users confidence when creating official passport photos.
 2. **Speed & Clarity:** Minimal cognitive load. Clear step-by-step guidance from image upload to final print download.
 3. **Accessibility & Usability:** High contrast, legible typography, generous tap targets, and comprehensive keyboard/screen-reader navigation.
 
@@ -17,7 +17,8 @@ All color tokens are managed via CSS-first DaisyUI theme configuration in `src/a
 
 | Token | Hex Value | Purpose & Application |
 | :--- | :--- | :--- |
-| `--color-primary` | `#2563EB` | Primary brand color, primary CTA buttons, active state indicators, key links |
+| `--color-primary` | `#65A30D` | Primary brand color (`lime-600`), primary CTA buttons, active state indicators, key links |
+| `--color-primary-hover` | `#4D7C0F` | Primary button hover state (`lime-700`) |
 | `--color-primary-content` | `#FFFFFF` | Text/icons on primary backgrounds |
 | `--color-secondary` | `#172033` | Dark navy for high-contrast headers, footer background, bold typography |
 | `--color-secondary-content`| `#FFFFFF` | Text/icons on secondary/dark backgrounds |
@@ -74,7 +75,8 @@ We use **Geist Sans** for clean geometric clarity and **Geist Mono** for technic
 ### Elevation & Shadows
 * **Flat Card Default:** `box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06)` (`.card-shadow`)
 * **Hover State:** `box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08)` (subtle lift with 250ms smooth transition)
-* **Interactive Elements:** Focus ring with `outline: 2px solid #2563EB; outline-offset: 2px;`
+* **Button States:** `.btn-primary` uses `#65A30D` with `:hover` state transition to `#4D7C0F`.
+* **Interactive Focus:** Keyboard focus ring with `outline: 2px solid #65A30D; outline-offset: 2px;`
 
 ---
 
@@ -151,5 +153,5 @@ We use **Geist Sans** for clean geometric clarity and **Geist Mono** for technic
 
 * **WCAG 2.1 AA Compliance:** Minimum color contrast ratio of 4.5:1 for normal text and 3:1 for large headings.
 * **Touch Targets:** Minimum tap target size of `44px` (`2.75rem`) for all buttons and interactive controls.
-* **Keyboard Navigation:** Clear `:focus-visible` ring across all interactive controls.
+* **Keyboard Navigation:** Clear `:focus-visible` ring (`#65A30D`) across all interactive controls.
 * **Reduced Motion:** Automatic suppression of animations for users with `prefers-reduced-motion: reduce`.

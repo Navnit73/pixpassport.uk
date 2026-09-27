@@ -36,6 +36,19 @@
 
 ---
 
+## 🎨 Design System & Palette
+
+PixPassport uses a custom CSS-first DaisyUI theme (`pixpassport`) configured in `src/app/globals.css`:
+
+* **Primary:** `#65A30D` (`lime-600`) — Brand color & primary actions
+* **Primary Hover:** `#4D7C0F` (`lime-700`) — Button hover interaction state
+* **Secondary:** `#172033` (Deep Navy) — High-contrast header & footer backgrounds
+* **Accent:** `#0F766E` (Teal) — Badges and trust indicators
+* **Base Surfaces:** `#FFFFFF` (Base 100) / `#F8FAFC` (Base 200) / `#E2E8F0` (Base 300)
+* **Design Docs:** Complete specification in [DESIGN.md](file:///Users/navnitrai/Desktop/My/pixpassport.uk/DESIGN.md)
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
