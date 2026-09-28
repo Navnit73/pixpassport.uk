@@ -71,8 +71,8 @@ const ALL_POPULAR_TOOLS = [
   { slug: "us-visa-photo", title: "US Visa & Passport", flag: "🇺🇸", spec: "2×2 inches" },
   { slug: "schengen-visa-photo", title: "Schengen Visa", flag: "🇪🇺", spec: "35×45 mm" },
   { slug: "uk-baby-passport-photo", title: "UK Baby Passport Photo", flag: "👶", spec: "UK HMPO" },
-  { slug: "indian-passport-photo", title: "Indian Passport & OCI", flag: "🇮🇳", spec: "51×51 mm" },
-  { slug: "driving-licence-photo", title: "UK Driving Licence", flag: "🚗", spec: "DVLA 35×45 mm" },
+  { slug: "indian-passport-photo-maker", title: "Indian Passport & OCI", flag: "🇮🇳", spec: "51×51 mm" },
+  { slug: "uk-driving-licence-photo", title: "UK Driving Licence", flag: "🚗", spec: "DVLA 35×45 mm" },
 ];
 
 export default async function DynamicToolPage({ params }: PageProps) {

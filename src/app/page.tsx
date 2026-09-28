@@ -730,14 +730,14 @@ export default function HomePage() {
                   desc: "Specialized infant & toddler guidance with relaxed head positioning and automatic background cleanup.",
                 },
                 {
-                  slug: "indian-passport-photo",
+                  slug: "indian-passport-photo-maker",
                   title: "Indian Passport & OCI",
                   spec: "51×51 mm (2×2 inches)",
                   flag: "🇮🇳",
                   desc: "VFS Global & High Commission compliant dimensions for Indian passport renewal and OCI cards.",
                 },
                 {
-                  slug: "driving-licence-photo",
+                  slug: "uk-driving-licence-photo",
                   title: "UK Driving Licence",
                   spec: "DVLA 35×45 mm",
                   flag: "🚗",

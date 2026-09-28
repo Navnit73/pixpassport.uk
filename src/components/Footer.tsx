@@ -22,8 +22,8 @@ export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
     { label: "US Visa & Passport (2×2″)", href: "/tool/us-visa-photo" },
     { label: "Schengen Visa Photo", href: "/tool/schengen-visa-photo" },
     { label: "UK Baby Passport Photo", href: "/tool/uk-baby-passport-photo" },
-    { label: "Indian Passport & OCI", href: "/tool/indian-passport-photo" },
-    { label: "UK Driving Licence Photo", href: "/tool/driving-licence-photo" },
+    { label: "Indian Passport & OCI", href: "/tool/indian-passport-photo-maker" },
+    { label: "UK Driving Licence Photo", href: "/tool/uk-driving-licence-photo" },
   ],
   Company: [
     { label: "About Us", href: "/about-us" },

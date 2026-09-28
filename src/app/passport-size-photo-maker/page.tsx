@@ -71,13 +71,13 @@ const POPULAR_TOOL_LINKS = [
     flag: "👶",
   },
   {
-    slug: "indian-passport-photo",
+    slug: "indian-passport-photo-maker",
     title: "Indian Passport & OCI",
     spec: "51×51 mm",
     flag: "🇮🇳",
   },
   {
-    slug: "driving-licence-photo",
+    slug: "uk-driving-licence-photo",
     title: "UK Driving Licence",
     spec: "DVLA 35×45 mm",
     flag: "🚗",
