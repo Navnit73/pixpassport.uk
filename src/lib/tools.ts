@@ -25,6 +25,7 @@ export interface ToolPageData {
   dimensions_mm: string;
   dimensions_px?: string;
   feature_image?: string;
+  feature_image_alt?: string;
   price?: string;
   contentHtml: string;
   faqs?: FaqItem[];
@@ -167,6 +168,7 @@ export async function getToolBySlug(slug: string): Promise<ToolPageData | null> 
       feature_image:
         data.feature_image ||
         "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg",
+      feature_image_alt: data.feature_image_alt,
       price: data.price || "7.99",
       contentHtml,
       faqs: finalFaqs.length > 0 ? finalFaqs : undefined,

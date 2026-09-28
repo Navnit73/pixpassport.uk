@@ -9,7 +9,7 @@ hero_title: "Convert Picture to Passport Size Online"
 hero_subtitle: "Upload any photo and our converter crops and resizes it to your country's passport dimensions. Replace the background, check your head size and download the result in minutes."
 dimensions_mm: "Varies by country"
 # TODO: replace with a neutral before-and-after conversion image
-feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790577696/uk-driving-licence_photo_ekgzse.webp"
 feature_image_alt: "Converting a portrait picture to passport size with an online converter"
 dimensions_px: "Varies by country"
 price: "7.99"

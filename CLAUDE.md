@@ -92,7 +92,8 @@ npm start
 * **Geographical Targeting:** `geo.region: "GB"`, `geo.placename: "United Kingdom"`, `content-language: "en-GB"`.
 * **Crawling & Indexing:**
   * `src/app/robots.ts` -> Generates `/robots.txt` pointing to `/sitemap.xml`
-  * `public/sitemap.xml` -> Static XML sitemap for manual updates
+  * `public/sitemap.xml` -> Static XML sitemap for manual updates. **CRITICAL RULE:** Do NOT add `<lastmod>` tags. Keep entries strictly to `<loc>`, `<changefreq>`, `<priority>`, and `<xhtml:link>`.
+  * `src/app/sitemap.ts` -> Dynamic sitemap generator. **CRITICAL RULE:** Do NOT add `lastModified` or `stableLastModified` to `src/app/sitemap.ts` entries. Keep entries strictly to `{ url, changeFrequency, priority, alternates }`.
 * **Passport Photo API (`https://api.pixpassport.com/`):**
   * `src/lib/passport-api.ts` -> Server-side helper with authentication headers (`Authorization: Bearer <key>`, `x-api-key: <key>`).
   * `src/app/api/passport-photo/route.ts` -> Secure server-side route proxy ensuring the API key is never exposed to client browsers.

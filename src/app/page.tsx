@@ -266,10 +266,10 @@ export default function HomePage() {
               {/* Visual preview column */}
               <div className="lg:col-span-5 flex justify-center w-full">
                 <div className="w-full max-w-sm lg:max-w-md">
-                  <div className="p-3 sm:p-4 bg-slate-50/80 rounded-2xl border border-slate-200">
-                    <div className="relative rounded-xl overflow-hidden aspect-[4/5] bg-white shadow-xs">
+              
+                    <div className="relative  overflow-hidden aspect-[4/5] ">
                       <Image
-                        src="https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+                        src="https://res.cloudinary.com/dipzpwbbk/image/upload/v1790578820/digital-passport-photo_example_kehhir.webp"
                         alt="Official UK Passport Size Photo Sample"
                         fill
                         priority
@@ -277,11 +277,7 @@ export default function HomePage() {
                         className="object-cover rounded-xl"
                       />
                     </div>
-                    <div className="mt-3 flex items-center justify-between text-xs text-slate-600 px-1 font-medium">
-                      <span>Official 35×45 mm (600×750 px)</span>
-                      <span className="font-mono text-emerald-800 font-bold">100% Verified</span>
-                    </div>
-                  </div>
+               
                 </div>
               </div>
             </div>
@@ -777,6 +773,14 @@ export default function HomePage() {
                 <span className="text-xs font-bold uppercase tracking-wider text-slate-500 mr-1">
                   More Tools:
                 </span>
+                <Link
+                  href="/passport-photo-print-template-generator"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-lime-100 hover:bg-lime-200 border border-lime-300 text-xs font-bold text-lime-950 transition-colors shadow-2xs"
+                >
+                  <span className="text-lime-700">🖨️</span>
+                  <span>Print Template Generator (4×6″)</span>
+                  <ArrowRight className="w-3 h-3 text-lime-800" />
+                </Link>
                 {[
                   { slug: "passport-renewal-photo-online", label: "UK Passport Renewal" },
                   { slug: "digital-passport-photo", label: "Digital Photo for Passport" },

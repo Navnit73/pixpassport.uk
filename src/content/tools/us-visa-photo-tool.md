@@ -9,7 +9,7 @@ hero_title: "US Visa Photo Maker Online"
 hero_subtitle: "Use our US visa photo tool to turn any picture into a square 2×2 inch (600×600 px) photo. Crop, remove the background, and check your head size in minutes."
 dimensions_mm: "2 × 2 inches (51 × 51 mm)"
 # TODO: replace with a US-format image (current filename says "uk"). Suggested alt text is in feature_image_alt.
-feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790578095/us_passport_size_phoro_novzyr.webp"
 feature_image_alt: "US visa photo 2×2 inch square with plain white background"
 dimensions_px: "600 × 600 px"
 price: "7.99"

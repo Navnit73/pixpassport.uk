@@ -9,7 +9,7 @@ hero_title: "UK Driving Licence Photo Online"
 hero_subtitle: "Turn a phone picture into a driving licence photo that follows DVLA rules. Get the correct 35×45 mm size, a plain light background and a clear face check before you apply."
 dimensions_mm: "35 × 45 mm"
 # TODO: replace with a driving licence or UK-format image (current file is a generic passport image)
-feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790577775/uk_dl_dvla_photo_thxcsg.webp"
 feature_image_alt: "UK driving licence photo with plain light grey background, 35×45 mm"
 dimensions_px: "600 × 750 px"
 price: "7.99"

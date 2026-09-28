@@ -9,7 +9,7 @@ hero_title: "Online Passport Photo Tool"
 hero_subtitle: "Crop, resize and prepare your passport picture in minutes. Pick your country, upload a photo, and get the right size, a plain background and a head-size check."
 dimensions_mm: "Varies by country"
 # TODO: replace with a neutral, multi-country feature image
-feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790579164/Online-Passport-Photo-Tool_uohrxk.webp"
 feature_image_alt: "Online passport photo tool cropping a portrait to passport size"
 dimensions_px: "Varies by country"
 price: "7.99"

@@ -9,7 +9,7 @@ hero_title: "Online ID Photo Maker"
 hero_subtitle: "Create an ID photo online from any picture. Choose your document, crop and resize to the right dimensions, replace the background and check your head size in minutes."
 dimensions_mm: "Varies by document"
 # TODO: replace with a neutral image showing several ID photo formats
-feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790578952/online-id-photo-maker_example_dt91ib.webp"
 feature_image_alt: "Online ID photo maker creating passport and ID photos from a portrait"
 dimensions_px: "Varies by document"
 price: "7.99"

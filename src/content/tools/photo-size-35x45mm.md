@@ -9,7 +9,7 @@ hero_title: "35x45 Photo Size Online"
 hero_subtitle: "Crop and resize any picture to 35×45 mm. Replace the background, check your head size and download a file that is ready to print or upload."
 dimensions_mm: "35 × 45 mm (3.5 × 4.5 cm)"
 # TODO: replace with a neutral image showing a 35×45 mm photo with a ruler or size guide
-feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790579164/Online-Passport-Photo-Tool_uohrxk.webp"
 feature_image_alt: "35x45 mm passport photo size with plain light background"
 dimensions_px: "413 × 531 px at 300 DPI"
 price: "7.99"

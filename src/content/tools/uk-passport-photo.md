@@ -9,7 +9,7 @@ hero_title: "UK Passport Photo Maker Online"
 hero_subtitle: "Turn a phone picture into a British passport photo. Get the 35×45 mm size, a plain light background and a head-size check before you apply."
 dimensions_mm: "35 × 45 mm"
 # TODO: replace the feature image if you have a cleaner UK passport example
-feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790579164/Online-Passport-Photo-Tool_uohrxk.webp"
 feature_image_alt: "UK passport photo 35×45 mm with plain light grey background"
 dimensions_px: "600 × 750 px"
 price: "7.99"

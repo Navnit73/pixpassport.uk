@@ -212,18 +212,18 @@ export default async function DynamicToolPage({ params }: PageProps) {
               </div>
 
               {/* Right Visual Preview Column (Matching Homepage with Feature Image) */}
-              <div className="lg:col-span-5 flex justify-center w-full">
+              <div className="lg:col-span-5 flex items-center justify-center w-full">
                 <div className="w-full max-w-sm lg:max-w-md">
-                  <div className="p-3 sm:p-4 ">
-                    <div className="relative  overflow-hidden aspect-[4/5] ">
+                  <div className="p-2 sm:p-4 flex items-center justify-center">
+                    <div className="relative w-full aspect-[4/5] max-h-[440px] flex items-center justify-center">
                       {tool.feature_image ? (
                         <Image
                           src={tool.feature_image}
-                          alt={`${tool.hero_title} Sample Biometric Preview`}
+                          alt={tool.feature_image_alt || `${tool.hero_title} Sample Biometric Preview`}
                           fill
                           priority
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                          className="object-cover "
+                          sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 420px"
+                          className="object-contain"
                         />
                       ) : (
                         <Image
@@ -231,12 +231,11 @@ export default async function DynamicToolPage({ params }: PageProps) {
                           alt="Official UK Passport Size Photo Sample"
                           fill
                           priority
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                          className="object-cover "
+                          sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 420px"
+                          className="object-contain"
                         />
                       )}
                     </div>
-
                   </div>
                 </div>
               </div>

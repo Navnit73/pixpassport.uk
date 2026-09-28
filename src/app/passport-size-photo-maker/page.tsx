@@ -194,6 +194,30 @@ export default function PassportSizePhotoMakerPage() {
             defaultDocumentType="passport"
           />
 
+          {/* Print Template Generator Feature Card */}
+          <div className="mt-8 bg-gradient-to-br from-lime-900 via-slate-900 to-slate-900 border border-lime-600/40 rounded-2xl p-5 sm:p-6 text-white shadow-md relative overflow-hidden">
+            <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-lime-500/20 text-lime-300 font-mono text-[11px] font-bold uppercase tracking-wider mb-2 border border-lime-500/30">
+                  Free 4×6″ &amp; A4 Print Sheets
+                </span>
+                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  Need to print on 4×6″ (10×15 cm) paper?
+                </h3>
+                <p className="text-slate-300 text-xs sm:text-sm mt-1 max-w-lg leading-relaxed">
+                  Tile multiple passport photos onto standard 4×6″ or A4 sheets with cutting guides. Save money at Boots, Tesco, or home printers.
+                </p>
+              </div>
+              <Link
+                href="/passport-photo-print-template-generator"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-lime-500 hover:bg-lime-400 text-slate-950 font-bold text-xs sm:text-sm transition-colors shrink-0 shadow-sm"
+              >
+                <span>Open Print Generator</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+
           {/* Popular Country & Document Formats Quick Links */}
           <div className="mt-10 pt-8 border-t border-slate-200">
             <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 text-center mb-4">

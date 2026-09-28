@@ -12,6 +12,7 @@ export interface FooterLinkItem {
 export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
   Product: [
     { label: "Photo Maker Studio", href: "/passport-size-photo-maker" },
+    { label: "Print Template Generator (4×6″)", href: "/passport-photo-print-template-generator" },
     { label: "How It Works", href: "/#how-it-works" },
     { label: "Features", href: "/#features" },
     { label: "Pricing", href: "/#pricing" },
@@ -28,6 +29,7 @@ export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
     { label: "Indian Passport & OCI", href: "/tool/indian-passport-photo-maker" },
   ],
   "Photo Tools": [
+    { label: "Print Template Generator", href: "/passport-photo-print-template-generator" },
     { label: "Digital Passport Photo", href: "/tool/digital-passport-photo" },
     { label: "35×45 mm Photo Size", href: "/tool/photo-size-35x45mm" },
     { label: "Image to Passport Converter", href: "/tool/image-to-passport-size-converter" },

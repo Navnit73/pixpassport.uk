@@ -5,13 +5,10 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Use a stable last-modified date corresponding to the latest release
-  const stableLastModified = new Date("2026-09-27T12:00:00.000Z");
   const toolSlugs = getAllToolSlugs();
 
   const toolEntries: MetadataRoute.Sitemap = toolSlugs.map((slug) => ({
     url: `${SITE_URL}/tool/${slug}`,
-    lastModified: stableLastModified,
     changeFrequency: "weekly",
     priority: 0.9,
     alternates: {
@@ -24,7 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: `${SITE_URL}`,
-      lastModified: stableLastModified,
       changeFrequency: "weekly",
       priority: 1.0,
       alternates: {
@@ -35,7 +31,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/passport-size-photo-maker`,
-      lastModified: stableLastModified,
       changeFrequency: "weekly",
       priority: 0.9,
       alternates: {
@@ -45,8 +40,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
+      url: `${SITE_URL}/passport-photo-print-template-generator`,
+      changeFrequency: "weekly",
+      priority: 0.9,
+      alternates: {
+        languages: {
+          "en-GB": `${SITE_URL}/passport-photo-print-template-generator`,
+        },
+      },
+    },
+    {
       url: `${SITE_URL}/about-us`,
-      lastModified: stableLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
       alternates: {
@@ -57,7 +61,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/contact-us`,
-      lastModified: stableLastModified,
       changeFrequency: "monthly",
       priority: 0.8,
       alternates: {
@@ -68,7 +71,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/data-security-privacy-safeguards`,
-      lastModified: stableLastModified,
       changeFrequency: "monthly",
       priority: 0.7,
       alternates: {
@@ -79,7 +81,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/privacy-policy`,
-      lastModified: stableLastModified,
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: {
@@ -90,7 +91,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/terms-of-service`,
-      lastModified: stableLastModified,
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: {
@@ -101,7 +101,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${SITE_URL}/refund-policy`,
-      lastModified: stableLastModified,
       changeFrequency: "monthly",
       priority: 0.6,
       alternates: {

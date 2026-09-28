@@ -9,7 +9,7 @@ hero_title: "Digital Photo for Passport Online"
 hero_subtitle: "Create a digital passport photo from any picture. Choose your country, crop and resize to the right pixels, replace the background and download a JPEG ready to upload."
 dimensions_mm: "Varies by country"
 # TODO: replace with a neutral image showing a digital passport photo on a phone or laptop
-feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790578820/digital-passport-photo_example_kehhir.webp"
 feature_image_alt: "Digital photo for passport application on a phone with plain background"
 dimensions_px: "Varies by country"
 price: "7.99"

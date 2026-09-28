@@ -8,7 +8,7 @@ badge: "UK HMPO Infant Standard"
 hero_title: "Baby Passport Photo Maker Online"
 hero_subtitle: "Take your baby's passport photo comfortably at home on your phone. Calibrated to HMPO infant guidelines with automatic background cleaning and 100% acceptance guarantee."
 dimensions_mm: "35 × 45 mm"
-feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790579370/uk_baby_passport_size_photo_example_fptfhf.webp"
 dimensions_px: "600 × 750 px"
 price: "7.99"
 ---

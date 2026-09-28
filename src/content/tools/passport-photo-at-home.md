@@ -9,7 +9,7 @@ hero_title: "Take a Passport Photo at Home"
 hero_subtitle: "Take your own passport photo with a phone, then use our tool to size it, fix the background and prepare a print-ready sheet. No studio visit needed."
 dimensions_mm: "Varies by country"
 # TODO: replace with a neutral image showing a home photo setup or a print sheet
-feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790578348/passport-photo-at-home_c40rxm.webp"
 feature_image_alt: "Taking a passport photo at home and printing a sheet of passport photos"
 dimensions_px: "Varies by country"
 price: "7.99"
@@ -83,6 +83,8 @@ Passport photo sizes vary, so choose the right format before you print. Here are
 Need a specific format? See our pages for the [UK passport photo](/tool/uk-passport-photo), [UK passport renewal photo](/tool/passport-renewal-photo-online), [Indian passport photo](/tool/indian-passport-photo-maker) and [US visa and passport photo](/tool/us-visa-photo-tool).
 
 ## How to Print Your Passport Photo at Home
+
+![Passport Photo Print Sheet 4x6 at Home](https://res.cloudinary.com/dipzpwbbk/image/upload/v1790578412/passport_photo_print_sheet_at_home_mnodre.webp)
 
 Printing is where many DIY photos go wrong. Follow these steps for a clean result.
 
