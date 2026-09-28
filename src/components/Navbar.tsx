@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Sparkles } from "lucide-react";
 
 export interface NavLinkItem {
   label: string;
@@ -12,6 +12,99 @@ export interface NavLinkItem {
   target?: string;
   rel?: string;
 }
+
+export const PHOTO_TOOLS_MENU = {
+  creators: [
+    {
+      title: "Passport Photo Maker Studio",
+      description: "AI-powered biometric photo maker & background cleaner",
+      href: "/passport-size-photo-maker",
+      icon: "✨",
+      badge: "Popular",
+    },
+    {
+      title: "Print Template Generator",
+      description: "4×6″, 5×7″ & A4 multi-photo printable tile sheet creator",
+      href: "/passport-photo-print-template-generator",
+      icon: "🖨️",
+      badge: "New",
+    },
+    {
+      title: "Digital Passport Photo Maker",
+      description: "Online photo ready for government portal submission",
+      href: "/tool/digital-passport-photo",
+      icon: "💻",
+    },
+    {
+      title: "Image to Passport Converter",
+      description: "Convert & auto-crop any portrait to official size",
+      href: "/tool/image-to-passport-size-converter",
+      icon: "🔄",
+    },
+    {
+      title: "Online ID Photo Maker",
+      description: "Create photos for student IDs, badges & driver cards",
+      href: "/tool/online-id-photo-maker",
+      icon: "🪪",
+    },
+    {
+      title: "Take Photo at Home Guide",
+      description: "DIY mobile camera tips for 100% photo acceptance",
+      href: "/tool/passport-photo-at-home",
+      icon: "🏠",
+    },
+  ],
+  countries: [
+    {
+      title: "UK Passport Photo",
+      spec: "35 × 45 mm (HMPO)",
+      href: "/tool/uk-passport-photo",
+      flag: "🇬🇧",
+    },
+    {
+      title: "UK Driving Licence Photo",
+      spec: "35 × 45 mm (DVLA)",
+      href: "/tool/uk-driving-licence-photo",
+      flag: "🚗",
+    },
+    {
+      title: "UK Baby Passport Photo",
+      spec: "Infant & Newborn",
+      href: "/tool/uk-baby-passport-photo",
+      flag: "👶",
+    },
+    {
+      title: "US Visa & Passport Photo",
+      spec: "2 × 2 inches (51×51 mm)",
+      href: "/tool/us-visa-photo-tool",
+      flag: "🇺🇸",
+    },
+    {
+      title: "Schengen Visa Photo",
+      spec: "35 × 45 mm (EU)",
+      href: "/tool/schengen-visa-photo",
+      flag: "🇪🇺",
+    },
+    {
+      title: "Indian Passport & OCI",
+      spec: "35 × 45 mm / 2×2″",
+      href: "/tool/indian-passport-photo-maker",
+      flag: "🇮🇳",
+    },
+    {
+      title: "UK Passport Renewal",
+      spec: "Online renewal photo",
+      href: "/tool/passport-renewal-photo-online",
+      flag: "🔄",
+    },
+    {
+      title: "35×45 mm Photo Sizer",
+      spec: "Standard biometric size",
+      href: "/tool/photo-size-35x45mm",
+      flag: "📐",
+    },
+  ],
+};
 
 export const DEFAULT_NAV_LINKS: NavLinkItem[] = [
   { label: "How It Works", href: "/#how-it-works" },
@@ -30,6 +123,7 @@ export interface NavbarProps {
   logoWidth?: number;
   logoHeight?: number;
   navLinks?: NavLinkItem[];
+  showToolsDropdown?: boolean;
   ctaText?: string;
   ctaHref?: string;
   className?: string;
@@ -48,24 +142,45 @@ export default function Navbar({
   logoWidth = 32,
   logoHeight = 32,
   navLinks = DEFAULT_NAV_LINKS,
+  showToolsDropdown = true,
   ctaText = "Get Started",
   ctaHref = "/passport-size-photo-maker",
   className = "",
   ariaLabel = "Main site navigation",
 }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
+  const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
 
-  // Close mobile menu on Escape key
+  const isToolsActive =
+    pathname === "/passport-size-photo-maker" ||
+    pathname === "/passport-photo-print-template-generator" ||
+    (pathname ? pathname.startsWith("/tool") : false);
+
+  // Close menus on Escape key
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape" && mobileOpen) {
+      if (e.key === "Escape") {
         setMobileOpen(false);
+        setToolsDropdownOpen(false);
       }
     }
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [mobileOpen]);
+  }, []);
+
+  const handleMouseEnterTools = () => {
+    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+    setToolsDropdownOpen(true);
+  };
+
+  const handleMouseLeaveTools = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setToolsDropdownOpen(false);
+    }, 150);
+  };
 
   return (
     <header
@@ -93,7 +208,139 @@ export default function Navbar({
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1.5 lg:gap-2" aria-label={ariaLabel}>
+        <nav className="hidden md:flex items-center gap-1 lg:gap-1.5" aria-label={ariaLabel}>
+          {/* Tools Mega-Dropdown */}
+          {showToolsDropdown && (
+            <div
+              className="relative"
+              onMouseEnter={handleMouseEnterTools}
+              onMouseLeave={handleMouseLeaveTools}
+            >
+              <button
+                type="button"
+                onClick={() => setToolsDropdownOpen((prev) => !prev)}
+                className={`group relative inline-flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-md focus-ring ${
+                  isToolsActive || toolsDropdownOpen
+                    ? "text-lime-600 font-semibold"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+                aria-expanded={toolsDropdownOpen}
+                aria-haspopup="true"
+              >
+                <span className="relative inline-block py-0.5">
+                  Tools
+                  <span
+                    aria-hidden="true"
+                    className={`absolute bottom-0 left-0 h-[2px] w-full bg-lime-600 rounded-full transition-transform duration-300 ease-out origin-left pointer-events-none ${
+                      isToolsActive || toolsDropdownOpen
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100"
+                    }`}
+                  />
+                </span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    toolsDropdownOpen ? "rotate-180 text-lime-600" : "text-slate-400 group-hover:text-slate-600"
+                  }`}
+                  aria-hidden="true"
+                />
+              </button>
+
+              {/* Mega Dropdown Panel */}
+              {toolsDropdownOpen && (
+                <div
+                  className="absolute top-full left-0 lg:left-1/2 lg:-translate-x-1/3 mt-1.5 w-[640px] lg:w-[720px] bg-white rounded-2xl border border-slate-200 shadow-2xl p-4 sm:p-5 z-50 animate-fade-in text-left"
+                  role="menu"
+                  aria-orientation="vertical"
+                >
+                  <div className="grid grid-cols-12 gap-5">
+                    {/* Left Column: Core Tools */}
+                    <div className="col-span-6 space-y-1.5 border-r border-slate-100 pr-4">
+                      <div className="px-2 pb-1 text-[11px] font-bold tracking-wider uppercase text-slate-400">
+                        Photo Creation Tools
+                      </div>
+                      {PHOTO_TOOLS_MENU.creators.map((tool) => (
+                        <Link
+                          key={tool.href}
+                          href={tool.href}
+                          onClick={() => setToolsDropdownOpen(false)}
+                          className="flex items-start gap-2.5 p-2 rounded-xl hover:bg-lime-50/50 transition-all group/item border border-transparent hover:border-lime-200/50"
+                          role="menuitem"
+                        >
+                          <div className="w-7 h-7 rounded-lg bg-lime-100/70 border border-lime-200 flex items-center justify-center text-sm shrink-0 group-hover/item:scale-105 transition-transform">
+                            {tool.icon}
+                          </div>
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-1.5">
+                              <span className="text-xs font-bold text-slate-900 group-hover/item:text-lime-700 transition-colors">
+                                {tool.title}
+                              </span>
+                              {tool.badge && (
+                                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-lime-100 text-lime-800 border border-lime-200">
+                                  {tool.badge}
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                              {tool.description}
+                            </p>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+
+                    {/* Right Column: Country Standards */}
+                    <div className="col-span-6 space-y-1">
+                      <div className="px-2 pb-1 text-[11px] font-bold tracking-wider uppercase text-slate-400">
+                        Country &amp; Visa Standards
+                      </div>
+                      <div className="grid grid-cols-2 gap-1">
+                        {PHOTO_TOOLS_MENU.countries.map((tool) => (
+                          <Link
+                            key={tool.href}
+                            href={tool.href}
+                            onClick={() => setToolsDropdownOpen(false)}
+                            className="flex items-center gap-2 p-1.5 rounded-lg hover:bg-slate-50 transition-colors group/citem border border-transparent hover:border-slate-100"
+                            role="menuitem"
+                          >
+                            <span className="text-sm shrink-0" role="img" aria-hidden="true">
+                              {tool.flag}
+                            </span>
+                            <div className="min-w-0">
+                              <span className="text-[11px] font-semibold text-slate-800 group-hover/citem:text-lime-700 block truncate">
+                                {tool.title}
+                              </span>
+                              <span className="text-[9px] text-slate-400 font-mono block truncate">
+                                {tool.spec}
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Dropdown Footer */}
+                  <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between px-2 bg-slate-50/70 -mx-4 -mb-4 p-3 rounded-b-2xl">
+                    <div className="flex items-center gap-2 text-xs text-slate-600">
+                      <span className="w-2 h-2 rounded-full bg-lime-600 animate-pulse" />
+                      <span className="text-[11px] font-medium">50+ Country Formats · Guaranteed Biometric Compliance</span>
+                    </div>
+                    <Link
+                      href="/passport-size-photo-maker"
+                      onClick={() => setToolsDropdownOpen(false)}
+                      className="text-xs font-bold text-lime-700 hover:text-lime-800 inline-flex items-center gap-1 transition-colors"
+                    >
+                      <span>Create Photo Now</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Standard Navigation Links */}
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
@@ -163,12 +410,89 @@ export default function Navbar({
           />
           <div
             id="mobile-navigation-drawer"
-            className="md:hidden bg-base-100 border-t border-base-300 absolute top-full left-0 right-0 z-50 shadow-xl animate-fade-in"
+            className="md:hidden bg-base-100 border-t border-base-300 absolute top-full left-0 right-0 z-50 shadow-xl animate-fade-in max-h-[calc(100vh-60px)] overflow-y-auto"
           >
             <nav
               className="menu menu-vertical p-4 gap-1.5"
               aria-label="Mobile navigation"
             >
+              {/* Mobile Tools Accordion */}
+              {showToolsDropdown && (
+                <div className="mb-1">
+                  <button
+                    type="button"
+                    onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
+                    className="w-full flex items-center justify-between py-2.5 px-3 rounded-lg text-slate-800 font-bold text-base hover:bg-slate-50 transition-colors"
+                    aria-expanded={mobileToolsOpen}
+                  >
+                    <span className="flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-lime-600" />
+                      <span>Photo Tools &amp; Sizes</span>
+                    </span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-slate-500 transition-transform duration-200 ${
+                        mobileToolsOpen ? "rotate-180 text-lime-600" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {mobileToolsOpen && (
+                    <div className="pl-3 pr-2 py-2 space-y-3 bg-slate-50/80 rounded-xl mt-1 border border-slate-200/60">
+                      <div>
+                        <div className="px-2 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                          Creation Tools
+                        </div>
+                        <div className="space-y-1">
+                          {PHOTO_TOOLS_MENU.creators.map((tool) => (
+                            <Link
+                              key={tool.href}
+                              href={tool.href}
+                              onClick={() => setMobileOpen(false)}
+                              className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-700 hover:text-lime-700 hover:bg-white transition-colors"
+                            >
+                              <div className="flex items-center gap-2 min-w-0">
+                                <span className="shrink-0">{tool.icon}</span>
+                                <span className="truncate">{tool.title}</span>
+                              </div>
+                              {tool.badge && (
+                                <span className="ml-2 text-[9px] font-bold px-1.5 py-0.2 rounded bg-lime-100 text-lime-800 shrink-0">
+                                  {tool.badge}
+                                </span>
+                              )}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="px-2 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                          Country &amp; Visa Standards
+                        </div>
+                        <div className="grid grid-cols-1 gap-1">
+                          {PHOTO_TOOLS_MENU.countries.map((tool) => (
+                            <Link
+                              key={tool.href}
+                              href={tool.href}
+                              onClick={() => setMobileOpen(false)}
+                              className="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-700 hover:text-lime-700 hover:bg-white transition-colors"
+                            >
+                              <div className="flex items-center gap-2 truncate">
+                                <span className="shrink-0">{tool.flag}</span>
+                                <span className="truncate">{tool.title}</span>
+                              </div>
+                              <span className="text-[10px] text-slate-400 font-mono shrink-0 ml-2">
+                                {tool.spec}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Standard Nav Links */}
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
