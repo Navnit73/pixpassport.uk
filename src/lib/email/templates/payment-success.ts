@@ -17,6 +17,7 @@ export function paymentSuccessEmail(params: {
   invoicePdfUrl?: string;
   countryName?: string;
   dimensions?: string;
+  planType?: "standard" | "expert_edit";
 }): { subject: string; html: string } {
   const currencySymbols: Record<string, string> = {
     GBP: "£",
@@ -26,12 +27,19 @@ export function paymentSuccessEmail(params: {
     CAD: "CA$",
     AUD: "A$",
   };
+  const isExpert = params.planType === "expert_edit";
+  const productName = isExpert
+    ? "Official Passport Photo + Expert Manual Edit & Review"
+    : PRICING.productName;
+
   const symbol = currencySymbols[params.currency?.toUpperCase()] || "";
   const amountFormatted = symbol
     ? `${symbol}${(params.amount / 100).toFixed(2)}`
     : `${(params.amount / 100).toFixed(2)} ${params.currency}`;
 
-  const subject = `Your Passport Photo is Ready — ${escapeHtml(PRICING.businessName)}`;
+  const subject = isExpert
+    ? `Your Passport Photo & Expert Review Order Confirmed — ${escapeHtml(PRICING.businessName)}`
+    : `Your Passport Photo is Ready — ${escapeHtml(PRICING.businessName)}`;
 
   const bodyHtml = `
     <!-- Success Icon -->
@@ -42,18 +50,38 @@ export function paymentSuccessEmail(params: {
     </div>
 
     <h2 style="color:#0f172a;font-size:22px;font-weight:800;text-align:center;margin:0 0 8px;letter-spacing:-0.5px;">
-      Payment Confirmed!
+      ${isExpert ? "Payment Confirmed &amp; Expert Review Queued!" : "Payment Confirmed!"}
     </h2>
     <p style="color:#64748b;font-size:14px;text-align:center;margin:0 0 28px;">
-      Your biometric passport photo is ready for download.
+      ${
+        isExpert
+          ? "Your AI passport photo is ready for instant download below, and our human specialists have received your original photo for manual inspection &amp; final polish."
+          : "Your biometric passport photo is ready for instant download."
+      }
     </p>
+
+    ${
+      isExpert
+        ? `
+    <!-- Expert Edit VIP Box -->
+    <div style="background-color:#fefce8;border:1px solid #fde047;border-radius:10px;padding:16px;margin-bottom:24px;">
+      <div style="font-size:14px;font-weight:800;color:#854d0e;margin-bottom:6px;">
+        ⭐ VIP Expert Manual Review Included (${escapeHtml(amountFormatted)})
+      </div>
+      <div style="font-size:13px;color:#713f12;line-height:1.5;">
+        Our photo technicians will perform manual lighting enhancement, shadow removal, and background precision adjustments for <strong>${escapeHtml(params.countryName || "official")}</strong> standards. You will receive the human-verified master files via email.
+      </div>
+    </div>
+    `
+        : ""
+    }
 
     <!-- Order Details -->
     <div style="background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin-bottom:24px;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;">
         <tr>
           <td style="padding:6px 0;color:#64748b;">Product</td>
-          <td style="padding:6px 0;color:#0f172a;font-weight:600;text-align:right;">${escapeHtml(PRICING.productName)}</td>
+          <td style="padding:6px 0;color:#0f172a;font-weight:600;text-align:right;">${escapeHtml(productName)}</td>
         </tr>
         ${params.countryName ? `<tr>
           <td style="padding:6px 0;color:#64748b;">Country</td>

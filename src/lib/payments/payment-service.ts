@@ -8,8 +8,9 @@ import {
   type PaymentDocument,
   type PaymentStatus,
 } from "@/lib/models/Payment";
-import { PRICING } from "@/lib/config/pricing";
+import { PRICING, getPlanPricing, type PlanType } from "@/lib/config/pricing";
 import { createRazorpayOrder } from "@/lib/payments/razorpay";
+import { uploadOriginalPhotoToCloudinary } from "@/lib/storage/cloudinary";
 import { logActivity } from "@/lib/logging/activity-logger";
 
 /**
@@ -20,6 +21,8 @@ export async function createPaymentOrder(params: {
   resultId: string;
   imageUrl: string;
   previewUrl: string;
+  originalPreview?: string;
+  planType?: PlanType;
   dimensions?: string;
   format?: string;
   sizeKb?: number;
@@ -36,13 +39,16 @@ export async function createPaymentOrder(params: {
 }> {
   const paymentId = crypto.randomUUID();
   const col = await getPaymentCollection();
+  const plan = params.planType || "standard";
+  const planPricing = getPlanPricing(plan);
 
-  // Check for duplicate pending orders for the same image & email with matching currency & amount
+  // Check for duplicate pending orders for the same image, email, & plan
   const existing = await col.findOne({
     "image.resultId": params.resultId,
     email: params.email,
     currency: PRICING.currency,
-    amount: PRICING.amountInPence,
+    amount: planPricing.amountInSubunits,
+    planType: plan,
     status: "pending",
     createdAt: { $gte: new Date(Date.now() - 30 * 60 * 1000) }, // within 30 min
   });
@@ -60,30 +66,55 @@ export async function createPaymentOrder(params: {
 
   // Create Razorpay order — amount comes from server config, NOT from client
   const rzOrder = await createRazorpayOrder({
-    amount: PRICING.amountInPence,
+    amount: planPricing.amountInSubunits,
     currency: PRICING.currency,
     receipt: paymentId,
     notes: {
       paymentId,
       email: params.email,
       resultId: params.resultId,
-      productType: PRICING.productType,
+      planType: plan,
+      productType: plan === "expert_edit" ? "expert_edit_passport_photo" : PRICING.productType,
+      country: params.countryName || "GB",
     },
   });
+
+  // If originalPreview provided (data URI / URL), upload to Cloudinary in background or save
+  let originalImageUrl: string | undefined = undefined;
+  if (params.originalPreview) {
+    try {
+      if (params.originalPreview.startsWith("http")) {
+        originalImageUrl = params.originalPreview;
+      } else {
+        const uploadRes = await uploadOriginalPhotoToCloudinary({
+          imageSource: params.originalPreview,
+          resultId: params.resultId,
+        });
+        if (uploadRes) {
+          originalImageUrl = uploadRes.secureUrl;
+        }
+      }
+    } catch (uploadErr) {
+      console.warn("[payment-service] Original photo upload warning:", uploadErr);
+    }
+  }
 
   const payment: PaymentDocument = {
     paymentId,
     email: params.email,
     razorpayOrderId: rzOrder.id,
-    amount: PRICING.amountInPence,
+    amount: planPricing.amountInSubunits,
     currency: PRICING.currency,
     status: "pending",
     fulfillmentStatus: "pending",
-    productType: PRICING.productType,
+    productType: plan === "expert_edit" ? "expert_edit_passport_photo" : PRICING.productType,
+    planType: plan,
+    expertReviewStatus: plan === "expert_edit" ? "pending" : undefined,
     image: {
       resultId: params.resultId,
       imageUrl: params.imageUrl,
       previewUrl: params.previewUrl,
+      originalImageUrl,
       format: params.format,
       dimensions: params.dimensions,
       sizeKb: params.sizeKb,
@@ -98,6 +129,8 @@ export async function createPaymentOrder(params: {
       ipHash: params.ipHash,
       countryCode: params.countryCode,
       countryName: params.countryName,
+      isExpertEdit: plan === "expert_edit",
+      originalPreviewUrl: originalImageUrl || (params.originalPreview ? params.originalPreview.slice(0, 500) : undefined),
     },
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -113,13 +146,15 @@ export async function createPaymentOrder(params: {
     metadata: {
       razorpayOrderId: rzOrder.id,
       resultId: params.resultId,
+      planType: plan,
+      amount: planPricing.amountInSubunits,
     },
   });
 
   return {
     paymentId,
     razorpayOrderId: rzOrder.id,
-    amount: PRICING.amountInPence,
+    amount: planPricing.amountInSubunits,
     currency: PRICING.currency,
     keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
   };

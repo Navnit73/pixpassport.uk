@@ -4,28 +4,28 @@ import { useState, useMemo, useEffect, useSyncExternalStore } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
-  CheckCircle,
+  Camera,
+  Check,
   Download,
   Printer,
-  RefreshCw,
-  Shield,
-  FileCheck,
-  Check,
-  ArrowLeft,
   AlertCircle,
   Upload,
   Lock,
-  Mail,
   Receipt,
-  Sparkles,
   ExternalLink,
-  ShieldCheck,
-  CreditCard,
+  ArrowRight,
+  Shield,
+  RotateCcw,
+  Star,
+  X,
+  ZoomIn,
+  Eye,
+  Mail,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import type { PassportProcessResult } from "@/lib/passport-api";
-import { PRICING } from "@/lib/config/pricing";
+import { PRICING, getPlanPricing, type PlanType } from "@/lib/config/pricing";
 
 interface StoredPassportResult extends PassportProcessResult {
   country_code?: string;
@@ -42,6 +42,7 @@ interface StoredPaymentInfo {
   status: "paid" | "pending" | "failed";
   email: string;
   paidAt?: string;
+  planType?: PlanType;
 }
 
 function subscribeToStorage(callback: () => void) {
@@ -106,6 +107,127 @@ function loadRazorpayScript(): Promise<boolean> {
   });
 }
 
+function getCountryFlag(countryCode?: string, countryName?: string): string {
+  const code = (countryCode || "").toUpperCase();
+  const name = (countryName || "").toLowerCase();
+  if (code === "GB" || name.includes("united kingdom") || name.includes("britain") || name.includes("uk")) return "🇬🇧";
+  if (code === "US" || name.includes("united states") || name.includes("usa") || name.includes("america")) return "🇺🇸";
+  if (code === "CA" || name.includes("canada")) return "🇨🇦";
+  if (code === "AU" || name.includes("australia")) return "🇦🇺";
+  if (code === "IN" || name.includes("india")) return "🇮🇳";
+  if (code === "DE" || name.includes("germany")) return "🇩🇪";
+  if (code === "FR" || name.includes("france")) return "🇫🇷";
+  if (code === "IT" || name.includes("italy")) return "🇮🇹";
+  if (code === "ES" || name.includes("spain")) return "🇪🇸";
+  if (code === "IE" || name.includes("ireland")) return "🇮🇪";
+  if (code === "NZ" || name.includes("new zealand")) return "🇳🇿";
+  if (code === "SG" || name.includes("singapore")) return "🇸🇬";
+  if (code === "JP" || name.includes("japan")) return "🇯🇵";
+  return "📄";
+}
+
+const METRIC_FIXES = [
+  { key: "gov12", label: "ICAO Standard photo" },
+  { key: "gov", label: "Government compliant photo" },
+  { key: "gov5", label: "AI biometric validation" },
+  { key: "gov2", label: "100% acceptance guarantee" },
+  { key: "gov0", label: "Refund if rejected" },
+  { key: "gov3", label: "Instant download + print sheet" },
+];
+
+const BEFORE_AFTER_PAIRS = [
+  {
+    title: "Wall Shadow Removal & Background Calibration",
+    beforeImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786628280/before_uk_f24dre.jpg",
+    afterImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786627664/eu_pixpassport.com_ppfhlr.jpg",
+    beforeTag: "Original: Wall Shadow & Yellow Tint",
+    afterTag: "Expert Fixed: 100% Compliant White BG",
+  },
+  {
+    title: "Biometric Eye Level & Face Centering",
+    beforeImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786630383/1000383324_bxx77h.jpg",
+    afterImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786630498/597e95e4-676d-41dd-be79-c45be7e07b04_photo_zm53xt.jpg",
+    beforeTag: "Original: Head Tilted & Off-Center",
+    afterTag: "Expert Fixed: Aligned Biometric Crop",
+  },
+  {
+    title: "Glare & Reflection Reduction on Glasses",
+    beforeImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786628395/before_us_phel7i.jpg",
+    afterImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786628788/ulape_c0dexm.jpg",
+    beforeTag: "Original: Harsh Lighting & Glare",
+    afterTag: "Expert Fixed: Clear Biometric Visibility",
+  },
+  {
+    title: "Head Tilt Correction & Alignment",
+    beforeImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786628855/bef_d5mwgy.jpg",
+    afterImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786628853/ff150d13-c01a-418a-8e26-9483f3a7907c_photo_pttp0l.jpg",
+    beforeTag: "Original: Tilted Angle & Exposure",
+    afterTag: "Expert Fixed: Perfectly Straight Head",
+  },
+  {
+    title: "Lighting & Contrast Balancing",
+    beforeImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786629026/1000378632_1_g13xko.jpg",
+    afterImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786629107/ebec124b-38dd-44b9-8b2b-5a11972d15c2_photo_ukzvse.jpg",
+    beforeTag: "Original: Dim Lighting & Underexposed",
+    afterTag: "Expert Fixed: Studio-Quality Illumination",
+  },
+  {
+    title: "Background Uniformity & Noise Removal",
+    beforeImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786629172/Minimal_studio_portrait_of_young_man_wpjxdp.png",
+    afterImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786629173/file_ge84gv_fhqvi2.png",
+    beforeTag: "Original: Textured Background",
+    afterTag: "Expert Fixed: Pure Plain White Surface",
+  },
+  {
+    title: "Official Passport Aspect Ratio & Crop",
+    beforeImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786629405/A_passport_e4y2u3.jpg",
+    afterImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786629172/pix_passport_y4bjki.jpg",
+    beforeTag: "Original: Incorrect Crop Ratio",
+    afterTag: "Expert Fixed: Exact Embassy Dimensions",
+  },
+  {
+    title: "Color Balance & Tone Normalization",
+    beforeImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786629541/1000379376_1_d2ibas.jpg",
+    afterImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786629817/cropped-tttt_vpemzs.jpg",
+    beforeTag: "Original: Color Cast & Shadows",
+    afterTag: "Expert Fixed: Natural Skin Tone",
+  },
+  {
+    title: "Shoulder Leveling & Posture Balance",
+    beforeImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786629895/1000368998_1_mmnu84.jpg",
+    afterImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786629988/98411d2e-09fd-4d93-9fa7-cbe7e6db2460_photo_qrmwty.jpg",
+    beforeTag: "Original: Uneven Shoulder Height",
+    afterTag: "Expert Fixed: Balanced Posture",
+  },
+  {
+    title: "Full ICAO Standard Compliance Verification",
+    beforeImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786630292/1000383509_ffkmf2.jpg",
+    afterImg:
+      "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786630114/3606955d-8470-4d49-a65d-7425be0b182f_photo_qsbsbu.jpg",
+    beforeTag: "Original: Non-Standard Photo",
+    afterTag: "Expert Fixed: 100% Embassy Approved",
+  },
+];
+
 export default function PassportPhotoPreviewPage() {
   const router = useRouter();
   const params = useParams();
@@ -127,9 +249,16 @@ export default function PassportPhotoPreviewPage() {
     }
   }, [rawData]);
 
-  const [activeTab, setActiveTab] = useState<"single" | "sheet">("single");
+  const [selectedPlan, setSelectedPlan] = useState<PlanType>("standard");
+  const [isFixModalOpen, setIsFixModalOpen] = useState(false);
+  const [isZoomOpen, setIsZoomOpen] = useState(false);
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [modalEmail, setModalEmail] = useState("");
+  const [modalEmailError, setModalEmailError] = useState("");
+
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [paymentError, setPaymentError] = useState("");
   const [downloading, setDownloading] = useState(false);
@@ -141,8 +270,22 @@ export default function PassportPhotoPreviewPage() {
     if (existing && existing.status === "paid") {
       setPaymentState(existing);
       if (existing.email) setEmail(existing.email);
+      if (existing.planType) setSelectedPlan(existing.planType);
     }
   }, [resultId]);
+
+  // Handle ESC key to close open modals
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsZoomOpen(false);
+        setIsFixModalOpen(false);
+        setIsEmailModalOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const isUuid =
     /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
@@ -152,6 +295,9 @@ export default function PassportPhotoPreviewPage() {
   const countryName = data?.country_name || "United Kingdom";
   const countryCode = data?.country_code || "GB";
   const dimensions = data?.dimensions || data?.target_dimensions || "600x750";
+  const originalPreview = data?.original_preview;
+  const flag = getCountryFlag(countryCode, countryName);
+  const isUK = countryCode.toUpperCase() === "GB" || countryName.toLowerCase().includes("kingdom");
 
   // Full-res clean image (unlocked only after payment)
   const fullImageUrl =
@@ -160,7 +306,7 @@ export default function PassportPhotoPreviewPage() {
       ? `https://res.cloudinary.com/ddxu2wqfm/image/upload/passport/results/${resultId}_photo.jpg`
       : undefined);
 
-  // Watermarked preview image
+  // Preview image
   const previewUrl =
     data?.preview_url ||
     data?.image_url ||
@@ -169,16 +315,22 @@ export default function PassportPhotoPreviewPage() {
       : undefined);
 
   const isPaid = paymentState?.status === "paid";
-  const metrics = data?.metrics;
+  const standardPricing = getPlanPricing("standard");
+  const expertPricing = getPlanPricing("expert_edit");
 
-  const validateEmail = (val: string): boolean => {
+  const isValidEmail = (val: string): boolean => {
+    const trimmed = val.trim().toLowerCase();
+    if (!trimmed) return false;
+    return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(trimmed);
+  };
+
+  const validateInlineEmail = (val: string): boolean => {
     const trimmed = val.trim().toLowerCase();
     if (!trimmed) {
       setEmailError("Please enter your email address to receive your photos.");
       return false;
     }
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    if (!regex.test(trimmed)) {
+    if (!isValidEmail(trimmed)) {
       setEmailError("Please enter a valid email address.");
       return false;
     }
@@ -190,16 +342,24 @@ export default function PassportPhotoPreviewPage() {
     const val = e.target.value;
     setEmail(val);
     if (emailError) {
-      validateEmail(val);
+      validateInlineEmail(val);
     }
   };
 
   /**
-   * Initiate Razorpay Payment
+   * Initiate Razorpay Payment with selected plan
    */
-  const handleInitiatePayment = async () => {
+  const handleInitiatePayment = async (planOverride?: PlanType, emailOverride?: string) => {
+    const activePlan = planOverride || selectedPlan;
+    const targetEmail = (emailOverride || email).trim().toLowerCase();
+
     setPaymentError("");
-    if (!validateEmail(email)) return;
+    if (!isValidEmail(targetEmail)) {
+      setModalEmail(targetEmail);
+      setModalEmailError("Please enter a valid email address.");
+      setIsEmailModalOpen(true);
+      return;
+    }
 
     if (!fullImageUrl && !previewUrl) {
       setPaymentError("Image session data missing. Please re-upload your photo.");
@@ -220,10 +380,12 @@ export default function PassportPhotoPreviewPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: email.trim().toLowerCase(),
+          email: targetEmail,
           resultId,
           imageUrl: fullImageUrl || previewUrl,
           previewUrl: previewUrl || fullImageUrl,
+          originalPreview: originalPreview || undefined,
+          planType: activePlan,
           dimensions,
           format: data?.format || "JPEG",
           sizeKb: data?.size_kb || 150,
@@ -252,18 +414,22 @@ export default function PassportPhotoPreviewPage() {
         amount,
         currency,
         name: PRICING.businessName,
-        description: `${countryName} Biometric Passport Photo & Print Sheet`,
-        image: "https://pixpassport.uk/logo.png",
+        description:
+          activePlan === "expert_edit"
+            ? `${countryName} Passport Photo + Expert Manual Edit & Review`
+            : `${countryName} Biometric Passport Photo & Print Sheet`,
+        image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790589684/pixpassport_eq8aay.jpg",
         order_id: razorpayOrderId,
         prefill: {
-          email: email.trim().toLowerCase(),
+          email: targetEmail,
         },
         notes: {
           paymentId,
           resultId,
+          planType: activePlan,
         },
         theme: {
-          color: "#4D7C0F",
+          color: activePlan === "expert_edit" ? "#65A30D" : "#0F172A",
         },
         modal: {
           ondismiss: () => {
@@ -293,7 +459,7 @@ export default function PassportPhotoPreviewPage() {
               throw new Error(verifyData.error || "Payment verification failed.");
             }
 
-            // 5. Obtain download token directly from verification response (or fallback to status polling)
+            // 5. Obtain download token directly from verification response
             let downloadToken = verifyData.downloadToken || "";
             if (!downloadToken) {
               try {
@@ -303,7 +469,7 @@ export default function PassportPhotoPreviewPage() {
                   downloadToken = statusData.downloadToken;
                 }
               } catch {
-                // Ignore polling failure — can still download via direct session
+                // Polling fallback
               }
             }
 
@@ -311,8 +477,9 @@ export default function PassportPhotoPreviewPage() {
               paymentId,
               downloadToken,
               status: "paid",
-              email: email.trim().toLowerCase(),
+              email: targetEmail,
               paidAt: new Date().toISOString(),
+              planType: activePlan,
             };
 
             saveStoredPayment(resultId, paidInfo);
@@ -347,6 +514,43 @@ export default function PassportPhotoPreviewPage() {
         err instanceof Error ? err.message : "An unexpected error occurred. Please try again."
       );
     }
+  };
+
+  /**
+   * Main CTA Click Handler:
+   * If email is not entered or invalid, open the Email Capture Modal.
+   * If valid, immediately proceed to Razorpay checkout.
+   */
+  const handleMainCtaClick = () => {
+    const trimmed = email.trim().toLowerCase();
+    if (!trimmed || !isValidEmail(trimmed)) {
+      setModalEmail(email);
+      setModalEmailError("");
+      setIsEmailModalOpen(true);
+      return;
+    }
+    handleInitiatePayment(selectedPlan, trimmed);
+  };
+
+  /**
+   * Modal Email Submit Handler:
+   * Validates email, saves it, closes modal, and initiates Razorpay.
+   */
+  const handleModalEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = modalEmail.trim().toLowerCase();
+    if (!trimmed) {
+      setModalEmailError("Please enter your email address.");
+      return;
+    }
+    if (!isValidEmail(trimmed)) {
+      setModalEmailError("Please enter a valid email address (e.g. name@example.com).");
+      return;
+    }
+    setEmail(trimmed);
+    setEmailError("");
+    setIsEmailModalOpen(false);
+    handleInitiatePayment(selectedPlan, trimmed);
   };
 
   /**
@@ -399,52 +603,29 @@ export default function PassportPhotoPreviewPage() {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-200/40 flex flex-col">
       <Navbar ctaText="Create New Photo" ctaHref="/passport-size-photo-maker" />
 
-      <main className="flex-1 bg-slate-50 min-h-screen py-6 sm:py-10 text-slate-900" id="main-content">
-        <div className="container-narrow">
-          {/* Breadcrumbs */}
-          <nav className="text-xs text-slate-600 mb-4" aria-label="Breadcrumb">
-            <ol className="flex items-center gap-1.5 list-none p-0 m-0">
-              <li>
-                <Link href="/" className="text-slate-600 hover:text-lime-800 transition-colors font-medium">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li>
-                <Link
-                  href="/passport-size-photo-maker"
-                  className="text-slate-600 hover:text-lime-800 transition-colors font-medium"
-                >
-                  Maker
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li className="text-slate-900 font-semibold" aria-current="page">
-                {isPaid ? "Download Passport Photo" : "Biometric Result Preview"}
-              </li>
-            </ol>
-          </nav>
-
+      {/* Main container with bottom padding on mobile for sticky payment bar */}
+      <main className="flex-1 flex items-start justify-center px-3.5 sm:px-4 py-5 sm:py-8 pb-40 lg:pb-8 text-slate-900" id="main-content">
+        <div className="w-full max-w-6xl">
           {!fullImageUrl && !previewUrl ? (
             /* Empty or Expired Session State */
-            <div className="bg-white border border-slate-200 rounded-2xl p-8 sm:p-12 text-center max-w-lg mx-auto shadow-xs">
-              <div className="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-200 text-amber-800 flex items-center justify-center mx-auto mb-4" aria-hidden="true">
-                <AlertCircle className="w-8 h-8" />
+            <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-12 text-center max-w-lg mx-auto shadow-xs">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-amber-50 border border-amber-200 text-amber-800 flex items-center justify-center mx-auto mb-4" aria-hidden="true">
+                <AlertCircle className="w-7 h-7 sm:w-8 sm:h-8" />
               </div>
-              <h1 className="text-xl sm:text-2xl font-bold text-slate-900 mb-2">
+              <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-2">
                 Photo Session Not Found
               </h1>
-              <p className="text-xs sm:text-sm text-slate-700 mb-6 font-medium">
+              <p className="text-xs sm:text-sm text-slate-600 mb-6 font-medium">
                 No active photo preview found for ID:{" "}
-                <span className="font-mono font-semibold text-slate-900">{resultId}</span>.
+                <span className="font-mono font-semibold text-slate-900 break-all">{resultId}</span>.
                 Please upload your photo to process an official verified result.
               </p>
               <Link
                 href="/passport-size-photo-maker"
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-sm sm:text-base py-3.5 rounded-xl transition-colors text-center shadow-xs focus-ring"
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#0F172A] hover:bg-[#1E293B] !text-white text-white font-bold text-sm sm:text-base py-3.5 rounded-xl transition-colors text-center shadow-xs focus-ring"
               >
                 <Upload className="w-4 h-4" aria-hidden="true" />
                 <span>Upload New Photo</span>
@@ -452,211 +633,96 @@ export default function PassportPhotoPreviewPage() {
             </div>
           ) : (
             <>
-              {/* Status Header Banner */}
-              {isPaid ? (
-                <div className="bg-emerald-50 border border-emerald-300 rounded-2xl p-5 sm:p-7 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
-                  <div className="flex items-start sm:items-center gap-3.5">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#4D7C0F] text-white flex items-center justify-center shrink-0 shadow-xs" aria-hidden="true">
-                      <Sparkles className="w-7 h-7 sm:w-8 sm:h-8" />
-                    </div>
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2 mb-1">
-                        <h1 className="!text-lg sm:!text-2xl lg:!text-3xl font-extrabold text-slate-900 tracking-tight">
-                          Payment Confirmed &amp; Photos Ready!
-                        </h1>
-                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-200 text-emerald-950 font-extrabold text-xs">
-                          Paid
-                        </span>
-                      </div>
-                      <p className="text-xs sm:text-sm text-slate-800 font-medium">
-                        Receipt and download links have also been dispatched to{" "}
-                        <strong className="text-slate-900">{paymentState?.email || email}</strong>.
-                      </p>
-                      <p className="text-[11px] text-slate-600 font-mono mt-1">
-                        Payment ID: {paymentState?.paymentId}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-2.5 w-full md:w-auto shrink-0">
-                    <Link
-                      href={`/preview/${resultId}/thankyou?paymentId=${paymentState?.paymentId || ""}`}
-                      className="inline-flex items-center justify-center gap-1.5 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition-colors shadow-xs w-full sm:w-auto focus-ring"
-                    >
-                      <Download className="w-3.5 h-3.5" aria-hidden="true" />
-                      <span>Go to Download Studio &rarr;</span>
-                    </Link>
-                    <Link
-                      href="/passport-size-photo-maker"
-                      className="inline-flex items-center justify-center gap-1.5 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-300 transition-colors w-full sm:w-auto focus-ring"
-                    >
-                      <RefreshCw className="w-3.5 h-3.5" aria-hidden="true" />
-                      <span>New Photo</span>
-                    </Link>
-                  </div>
-                </div>
-              ) : (
-                <div className="bg-lime-50 border border-lime-300 rounded-2xl p-5 sm:p-7 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
-                  <div className="flex items-start sm:items-center gap-3.5">
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#4D7C0F] text-white flex items-center justify-center shrink-0 shadow-xs" aria-hidden="true">
-                      <CheckCircle className="w-7 h-7 sm:w-8 sm:h-8" />
-                    </div>
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2 mb-1">
-                        <h1 className="!text-lg sm:!text-2xl lg:!text-3xl font-extrabold text-slate-900 tracking-tight">
-                          Passport Photo Generated &amp; Verified!
-                        </h1>
-                        <span className="px-2.5 py-0.5 rounded-full bg-lime-200 text-lime-950 font-extrabold text-xs">
-                          Biometric Passed
-                        </span>
-                      </div>
-                      <p className="text-xs sm:text-sm text-slate-800 font-medium">
-                        Processed to official {countryName} ({dimensions} px) biometric standards. Ready for instant unlock.
-                      </p>
-                      <p className="text-[11px] text-slate-600 font-mono mt-1">
-                        Result ID: {resultId}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 w-full md:w-auto shrink-0">
-                    <Link
-                      href="/passport-size-photo-maker"
-                      className="inline-flex items-center justify-center gap-1.5 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-xl border border-slate-300 transition-colors w-full sm:w-auto focus-ring"
-                    >
-                      <RefreshCw className="w-3.5 h-3.5" aria-hidden="true" />
-                      <span>Re-upload / Change</span>
-                    </Link>
-                  </div>
-                </div>
-              )}
-
-              <div className="grid lg:grid-cols-12 gap-8 items-start">
-                {/* Left Preview Column */}
-                <div className="lg:col-span-7 space-y-6">
-                  {/* View Tabs */}
-                  <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-7">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
-                      <div className="flex items-center gap-2">
-                        <button
-                          type="button"
-                          onClick={() => setActiveTab("single")}
-                          className={`px-3.5 py-2 text-xs sm:text-sm font-bold rounded-lg transition-colors ${
-                            activeTab === "single"
-                              ? "bg-[#4D7C0F] text-white shadow-xs"
-                              : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                          }`}
-                        >
-                          Single Passport Photo
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setActiveTab("sheet")}
-                          className={`px-3.5 py-2 text-xs sm:text-sm font-bold rounded-lg transition-colors ${
-                            activeTab === "sheet"
-                              ? "bg-[#4D7C0F] text-white shadow-xs"
-                              : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-                          }`}
-                        >
-                          Print-Ready 6×4″ Sheet
-                        </button>
-                      </div>
-
-                      <span className="font-mono text-xs bg-slate-100 text-slate-800 px-2.5 py-1 rounded-md font-bold hidden sm:inline-block">
-                        {dimensions} px · {countryCode}
+              {/* Header Title & Subtitle */}
+              <div className="mb-4 text-center lg:text-left">
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 tracking-tight leading-tight">
+                  Your <span className="text-lime-600">ID Photo</span> Is Ready{" "}
+                  <span className="inline-block text-xl sm:text-2xl" aria-hidden="true">{flag}</span> {countryName}
+                </h1>
+                <div className="flex items-center justify-center lg:justify-start gap-1.5 mt-1.5 sm:mt-2 flex-wrap text-center lg:text-left">
+                  <Shield className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <p className="text-[11px] sm:text-[12px] text-slate-500 font-semibold flex items-center gap-1 flex-wrap justify-center lg:justify-start">
+                    Secure checkout &bull; 100% acceptance guarantee &bull; Refund if rejected
+                    {isUK && (
+                      <span className="ml-1 font-bold text-slate-700 inline-flex items-center gap-1">
+                        <span>🇬🇧</span> UK Gov Compliant
                       </span>
+                    )}
+                  </p>
+                </div>
+              </div>
+
+              {/* 2-Column Responsive Layout */}
+              <div className="flex flex-col lg:flex-row gap-4 sm:gap-5 items-start">
+                {/* ========================================================================= */}
+                {/* LEFT COLUMN: Photo Display & "Your Photo Meets Official Requirements" Card */}
+                {/* ========================================================================= */}
+                <div className="w-full lg:w-[60%] space-y-4">
+                  {/* Photo Card */}
+                  <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+                    {/* Top Bar */}
+                    <div className="px-4 sm:px-5 pt-3.5 sm:pt-4 pb-3 flex items-center justify-between border-b border-slate-100 flex-wrap gap-2">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <span className="text-base shrink-0">{flag}</span>
+                        <p className="text-xs sm:text-sm font-bold text-slate-900 truncate">
+                          {countryName} Official Photo ({dimensions} px)
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full px-2.5 py-0.5 sm:py-1 shadow-2xs shrink-0">
+                        <Check className="w-3 h-3 stroke-[3]" />
+                        <span className="text-[10px] sm:text-[11px] font-bold">Verified Compliant</span>
+                      </div>
                     </div>
 
-                    {/* Single Photo Tab */}
-                    {activeTab === "single" && (
-                      <div className="space-y-4">
-                        <div
-                          className="relative flex justify-center p-4 sm:p-8 bg-slate-100 rounded-xl border border-slate-200 select-none overflow-hidden"
-                          onContextMenu={(e) => !isPaid && e.preventDefault()}
-                        >
-                          <div className="relative inline-block rounded-lg overflow-hidden border border-slate-300 bg-white shadow-sm">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={isPaid ? (fullImageUrl || previewUrl) : previewUrl}
-                              alt={`Official ${countryName} Passport Photo`}
-                              className="max-h-72 sm:max-h-84 object-contain rounded-lg pointer-events-none select-none"
-                              draggable={false}
-                            />
+                    {/* Photo Container */}
+                    <div
+                      className="relative cursor-zoom-in group mx-3 sm:mx-5 my-3 sm:my-4 rounded-xl overflow-hidden bg-slate-50 border border-slate-200 flex items-center justify-center select-none"
+                      onClick={() => setIsZoomOpen(true)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          setIsZoomOpen(true);
+                        }
+                      }}
+                      aria-label="Click to enlarge passport photo preview"
+                      style={{ minHeight: 240 }}
+                    >
+                      {/* Clean Preview Image without intrusive obstructing watermark blocks */}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={isPaid ? (fullImageUrl || previewUrl) : previewUrl}
+                        alt={`${countryName} Passport Photo Preview`}
+                        className="max-h-[300px] sm:max-h-[380px] w-auto max-w-full object-contain select-none pointer-events-none block rounded-md"
+                        draggable={false}
+                        onContextMenu={(e) => !isPaid && e.preventDefault()}
+                      />
 
-                            {/* Watermark Overlay for Unpaid users */}
-                            {!isPaid && (
-                              <div
-                                className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/15 backdrop-blur-[1px] select-none pointer-events-none p-4 text-center"
-                                aria-hidden="true"
-                              >
-                                <div className="bg-slate-900/80 text-white px-3 py-1.5 rounded-md font-bold text-xs uppercase tracking-wider mb-2 backdrop-blur-sm border border-white/20">
-                                  PixPassport Protected Preview
-                                </div>
-                                <div className="text-[10px] text-white/90 font-medium">
-                                  High-resolution watermark-free file unlocks upon payment
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        </div>
+                      {/* Subtle Glass Tag (Non-obstructive) */}
+                      <div className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 bg-slate-900/80 text-white text-[10px] sm:text-[11px] font-semibold px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full backdrop-blur-xs flex items-center gap-1.5 shadow-sm pointer-events-none">
+                        <Eye className="w-3 h-3 text-lime-400" />
+                        <span>Official Preview</span>
+                      </div>
 
-                        <div className="flex items-center justify-between text-xs text-slate-600 px-1 font-medium">
-                          <span>Format: {data?.format || "JPEG"}</span>
-                          <span>Official Size: {dimensions} px ({countryCode})</span>
-                          <span>Compliance: 100% Certified</span>
+                      {/* Hover Zoom Hint */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center pointer-events-none">
+                        <div className="bg-white/95 backdrop-blur-xs border border-slate-200 rounded-full px-3 py-1.5 opacity-0 group-hover:opacity-100 transition-all transform scale-95 group-hover:scale-100 shadow-md flex items-center gap-1.5 text-xs font-bold text-slate-800">
+                          <ZoomIn className="w-3.5 h-3.5 text-slate-700" />
+                          <span>Click to Zoom</span>
                         </div>
                       </div>
-                    )}
-
-                    {/* 6x4 Sheet Tab */}
-                    {activeTab === "sheet" && (
-                      <div className="space-y-4">
-                        <div
-                          className="relative flex justify-center p-4 sm:p-8 bg-slate-100 rounded-xl border border-slate-200 select-none overflow-hidden"
-                          onContextMenu={(e) => !isPaid && e.preventDefault()}
-                        >
-                          <div className="relative inline-block rounded-lg overflow-hidden border border-slate-300 bg-white shadow-sm">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={previewUrl}
-                              alt={`Print-Ready 6x4 Sheet for ${countryName}`}
-                              className="max-h-72 sm:max-h-84 object-contain rounded-lg pointer-events-none select-none"
-                              draggable={false}
-                            />
-
-                            {/* Watermark Overlay for Unpaid users */}
-                            {!isPaid && (
-                              <div
-                                className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/15 backdrop-blur-[1px] select-none pointer-events-none p-4 text-center"
-                                aria-hidden="true"
-                              >
-                                <div className="bg-slate-900/80 text-white px-3 py-1.5 rounded-md font-bold text-xs uppercase tracking-wider mb-2 backdrop-blur-sm border border-white/20">
-                                  6×4″ Sheet Preview
-                                </div>
-                                <div className="text-[10px] text-white/90 font-medium">
-                                  Print at Boots, Tesco, pharmacies or home
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        </div>
-
-                        <div className="flex items-center justify-between text-xs text-slate-600 px-1 font-medium">
-                          <span>Standard 10×15 cm (6×4 inch) photo paper layout</span>
-                          <span>Grid of compliant photos</span>
-                        </div>
-                      </div>
-                    )}
+                    </div>
 
                     {/* Post-Payment Action Buttons */}
                     {isPaid && (
-                      <div className="mt-6 pt-5 border-t border-slate-100 space-y-3">
-                        <div className="grid sm:grid-cols-2 gap-3">
+                      <div className="px-4 sm:px-5 pb-5 pt-2 border-t border-slate-100 space-y-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           <button
                             type="button"
                             onClick={() => handleDownload("single")}
                             disabled={downloading}
-                            className="inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-sm py-3.5 rounded-xl transition-colors text-center shadow-xs focus-ring"
+                            className="inline-flex items-center justify-center gap-2 bg-[#0F172A] hover:bg-[#1E293B] !text-white text-white font-bold text-sm py-3.5 rounded-xl transition-colors text-center shadow-xs focus-ring cursor-pointer"
                           >
                             <Download className="w-4 h-4" aria-hidden="true" />
                             <span>{downloading ? "Preparing Download…" : "Download Single Photo"}</span>
@@ -666,7 +732,7 @@ export default function PassportPhotoPreviewPage() {
                             type="button"
                             onClick={() => handleDownload("sheet")}
                             disabled={downloading}
-                            className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm py-3.5 rounded-xl border border-slate-300 transition-colors text-center focus-ring"
+                            className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm py-3.5 rounded-xl border border-slate-300 transition-colors text-center focus-ring cursor-pointer"
                           >
                             <Printer className="w-4 h-4" aria-hidden="true" />
                             <span>Download 6×4″ Sheet</span>
@@ -681,7 +747,7 @@ export default function PassportPhotoPreviewPage() {
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-1.5 text-xs text-slate-600 hover:text-slate-900 font-semibold transition-colors"
                             >
-                              <Receipt className="w-3.5 h-3.5 text-lime-700" aria-hidden="true" />
+                              <Receipt className="w-3.5 h-3.5 text-emerald-700" aria-hidden="true" />
                               <span>Download Tax Invoice (HTML)</span>
                               <ExternalLink className="w-3 h-3" aria-hidden="true" />
                             </a>
@@ -691,285 +757,778 @@ export default function PassportPhotoPreviewPage() {
                     )}
                   </div>
 
-                  {/* Printing & Submission Guide Card */}
-                  <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6 text-xs text-slate-700">
-                    <h2 className="!text-sm sm:!text-base font-bold text-slate-900 flex items-center gap-2 mb-3">
-                      <FileCheck className="w-4 h-4 text-[#4D7C0F] shrink-0" aria-hidden="true" />
-                      <span>Official Submission &amp; Printing Instructions</span>
-                    </h2>
-                    <ol className="list-decimal pl-4 space-y-2 leading-relaxed font-medium">
-                      <li>
-                        <strong>Online Passport Application:</strong> Upload the single digital photo directly to the official government portal (e.g. HM Passport Office / gov.uk).
-                      </li>
-                      <li>
-                        <strong>Store / Kiosk Printing:</strong> Save the 6×4″ sheet to your smartphone or USB drive. Print at photo kiosks (Boots, Tesco, Asda, Snappy Snaps) at standard 6×4″ size with <strong>no cropping</strong> (100% actual scale).
-                      </li>
-                      <li>
-                        <strong>Paper Selection:</strong> Use high-quality matte or glossy photo paper for government acceptance.
-                      </li>
-                    </ol>
+                  {/* "Your Photo Meets Official Requirements" Card */}
+                  <div className="bg-white rounded-2xl border border-slate-200 p-4 sm:p-6 shadow-xs">
+                    <div className="flex items-center gap-2.5 mb-3.5 sm:mb-4">
+                      <div className="w-7 h-7 sm:w-8 sm:h-8 bg-lime-100 rounded-lg flex items-center justify-center text-lime-700 shrink-0">
+                        <Camera className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+                      </div>
+                      <p className="text-sm sm:text-base font-bold text-slate-900">
+                        Your Photo Meets Official Requirements
+                      </p>
+                    </div>
+
+                    <div className="space-y-0">
+                      {METRIC_FIXES.map((metric) => (
+                        <div
+                          key={metric.key}
+                          className="flex items-center gap-2.5 py-2 sm:py-2.5 border-b border-slate-100 last:border-0"
+                        >
+                          <div className="w-4.5 h-4.5 sm:w-5 sm:h-5 rounded-full bg-lime-100 flex items-center justify-center shrink-0">
+                            <Check className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-lime-700 stroke-[3]" />
+                          </div>
+                          <span className="text-[12px] sm:text-[13px] text-slate-700 font-medium">
+                            {metric.label}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Bottom Highlight Box */}
+                    <div className="mt-3.5 sm:mt-4 rounded-xl bg-lime-50 border border-lime-200 px-3 py-2 sm:px-3.5 sm:py-2.5 flex items-center gap-2">
+                      <Star className="w-3.5 h-3.5 text-lime-600 shrink-0 fill-lime-300" />
+                      <Check className="w-3.5 h-3.5 text-lime-700 stroke-[3] shrink-0" />
+                      <p className="text-[11px] sm:text-[11.5px] text-lime-800 font-semibold leading-relaxed">
+                        Background professionally corrected to official requirements
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                {/* Right Column: Checkout or Biometrics */}
-                <div className="lg:col-span-5 space-y-6">
-                  {/* Checkout Card if Unpaid */}
-                  {!isPaid ? (
-                    <div className="bg-white border-2 border-lime-500/80 rounded-2xl p-5 sm:p-7 shadow-md relative overflow-hidden">
-                      {/* Top ribbon */}
-                      <div className="flex items-center justify-between border-b border-slate-100 pb-3.5 mb-4">
-                        <div className="flex items-center gap-2">
-                          <ShieldCheck className="w-5 h-5 text-[#4D7C0F]" aria-hidden="true" />
-                          <span className="font-extrabold text-sm text-slate-900">
-                            Instant Digital Delivery
-                          </span>
-                        </div>
-                        <span className="text-[11px] font-bold bg-lime-100 text-lime-900 px-2 py-0.5 rounded-full">
-                          100% Guaranteed
-                        </span>
-                      </div>
-
-                      {/* Pricing Display */}
-                      <div className="flex items-baseline gap-2 mb-4">
-                        <span className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                          {PRICING.currencySymbol}{PRICING.amount.toFixed(2)}
-                        </span>
-                        <span className="text-xs text-slate-500 font-medium">
-                          one-time payment · no subscription
-                        </span>
-                      </div>
-
-                      {/* Feature Checklist */}
-                      <ul className="space-y-2.5 mb-6 text-xs text-slate-700 font-medium">
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
-                          <span>
-                            <strong>1x High-Res Digital Photo:</strong> Sized for official online passport applications.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
-                          <span>
-                            <strong>1x Multi-Photo 6×4″ Template:</strong> Print ready for Boots, Tesco or home printers.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
-                          <span>
-                            <strong>Biometric Compliance Verified:</strong> Full refund if rejected by authorities.
-                          </span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                          <Check className="w-4 h-4 text-[#4D7C0F] shrink-0 mt-0.5" aria-hidden="true" />
-                          <span>
-                            <strong>Instant Email Backup:</strong> Download link and tax invoice sent to your inbox.
-                          </span>
-                        </li>
-                      </ul>
-
-                      {/* Email Input Field */}
-                      <div className="mb-4">
-                        <label
-                          htmlFor="checkout-email"
-                          className="block text-xs font-bold text-slate-800 mb-1.5 flex items-center justify-between"
-                        >
-                          <span>Email Address for Delivery <span className="text-red-500">*</span></span>
-                          <span className="text-[11px] font-normal text-slate-500">Invoice &amp; photo link sent here</span>
-                        </label>
-                        <div className="relative">
-                          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-                            <Mail className="w-4 h-4" aria-hidden="true" />
+                {/* ========================================================================= */}
+                {/* RIGHT COLUMN: Order Summary & Plan Choices */}
+                {/* ========================================================================= */}
+                <div className="w-full lg:w-[40%] space-y-4">
+                  <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs lg:sticky lg:top-6">
+                    <div className="p-4 sm:p-6">
+                      {!isPaid ? (
+                        <div className="space-y-4">
+                          {/* Top Heading */}
+                          <div className="flex items-center gap-2">
+                            <Shield className="w-4 h-4 text-emerald-600 shrink-0" />
+                            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+                              Order Summary &bull; Accepted for {countryName}
+                            </p>
                           </div>
-                          <input
-                            type="email"
-                            id="checkout-email"
-                            value={email}
-                            onChange={handleEmailChange}
-                            placeholder="name@example.co.uk"
-                            className={`w-full pl-9 pr-3.5 py-3 text-sm bg-slate-50 border rounded-xl focus:bg-white focus:outline-none focus:ring-2 transition-all ${
-                              emailError
-                                ? "border-red-400 focus:ring-red-400/30 text-red-950"
-                                : "border-slate-300 focus:ring-lime-500/30 focus:border-lime-600"
-                            }`}
-                            required
-                            aria-invalid={!!emailError}
-                            aria-describedby={emailError ? "email-error" : undefined}
-                          />
-                        </div>
-                        {emailError && (
-                          <p id="email-error" className="text-xs text-red-600 font-semibold mt-1.5">
-                            {emailError}
-                          </p>
-                        )}
-                      </div>
 
-                      {/* Error Alert */}
-                      {paymentError && (
-                        <div className="p-3 mb-4 bg-red-50 border border-red-200 rounded-xl text-xs text-red-700 flex items-start gap-2 font-medium">
-                          <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" aria-hidden="true" />
-                          <span>{paymentError}</span>
+                          {/* Plans Selection */}
+                          <div className="space-y-3">
+                            {/* Plan 1: Standard Pack */}
+                            <button
+                              type="button"
+                              onClick={() => setSelectedPlan("standard")}
+                              className={`w-full text-left rounded-xl border-2 p-3.5 sm:p-4 transition-all duration-150 relative cursor-pointer ${
+                                selectedPlan === "standard"
+                                  ? "border-emerald-500 bg-emerald-50/60 shadow-xs"
+                                  : "border-slate-200 bg-white hover:border-slate-300"
+                              }`}
+                            >
+                              <div className="flex justify-between items-start mb-2">
+                                <div>
+                                  <h4 className="text-sm font-bold text-slate-900">
+                                    Standard Pack
+                                  </h4>
+                                </div>
+                                <div className="text-right">
+                                  <p className="text-lg sm:text-xl font-black text-slate-900">
+                                    {standardPricing.amountFormatted}
+                                  </p>
+                                </div>
+                              </div>
+                              <ul className="space-y-1.5">
+                                {[
+                                  "AI Biometric Check",
+                                  "Instant digital download",
+                                  "Official 6×4″ print sheet",
+                                  "100% acceptance guarantee",
+                                ].map((f) => (
+                                  <li
+                                    key={f}
+                                    className="flex items-center gap-2 text-[12.5px] sm:text-[13px] text-slate-600 font-medium"
+                                  >
+                                    <Check
+                                      className={`w-3.5 h-3.5 stroke-[3] shrink-0 ${
+                                        selectedPlan === "standard"
+                                          ? "text-emerald-600"
+                                          : "text-slate-300"
+                                      }`}
+                                    />
+                                    <span>{f}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </button>
+
+                            {/* Plan 2: Premium Pack (Expert Review) */}
+                            <div
+                              onClick={() => setSelectedPlan("expert_edit")}
+                              className={`w-full text-left rounded-2xl border-2 p-3.5 sm:p-5 transition-all duration-200 relative cursor-pointer ${
+                                selectedPlan === "expert_edit"
+                                  ? "border-lime-500 bg-lime-50/30 shadow-[0_0_0_1px_rgba(132,204,22,0.2)]"
+                                  : "border-slate-200 bg-white hover:border-lime-300"
+                              }`}
+                            >
+                              {/* Floating MOST POPULAR Badge */}
+                              <div className="absolute -top-3 right-4 sm:right-5 bg-[#ff9500] text-white text-[9px] sm:text-[10px] font-extrabold px-2.5 sm:px-3 py-0.5 rounded-full uppercase tracking-wider shadow-xs z-10">
+                                MOST POPULAR
+                              </div>
+
+                              {/* Header: Tag, Title & Price */}
+                              <div className="flex justify-between items-start mb-2.5 sm:mb-3">
+                                <div>
+                                  <span className="inline-block bg-lime-100 text-lime-800 text-[9.5px] sm:text-[10px] font-extrabold px-2 sm:px-2.5 py-0.5 rounded uppercase tracking-wider">
+                                    EXPERT REVIEW
+                                  </span>
+                                  <h4 className="text-base sm:text-lg font-bold text-slate-900 mt-0.5 sm:mt-1">
+                                    Premium Pack
+                                  </h4>
+                                </div>
+                                <div className="text-right">
+                                  <p className="text-xl sm:text-2xl font-black text-slate-900">
+                                    {expertPricing.amountFormatted}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* Features List with Green Checkmarks */}
+                              <ul className="space-y-1.5 sm:space-y-2 mb-3.5 sm:mb-4">
+                                {[
+                                  "Everything in Standard",
+                                  "Human expert review in <15 min",
+                                  "Extra compliance verifications",
+                                  "Priority processing",
+                                  "Email support",
+                                  "Reduced rejection risk",
+                                ].map((f) => (
+                                  <li
+                                    key={f}
+                                    className="flex items-center gap-2 text-[12.5px] sm:text-[13.5px] text-slate-700 font-medium leading-snug"
+                                  >
+                                    <Check className="w-3.5 h-3.5 text-emerald-500 stroke-[3] shrink-0" />
+                                    <span>{f}</span>
+                                  </li>
+                                ))}
+                              </ul>
+
+                              {/* Sub-Card: See What Our Experts Fix */}
+                              <div
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedPlan("expert_edit");
+                                  setIsFixModalOpen(true);
+                                }}
+                                className="bg-lime-50/80 border border-lime-200/90 rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-2.5 sm:gap-3 group/fix hover:bg-lime-100/70 transition-colors cursor-pointer"
+                              >
+                                <div className="space-y-1.5">
+                                  <div>
+                                    <h5 className="text-xs sm:text-sm font-bold text-slate-900 leading-tight group-hover/fix:text-lime-700 transition-colors">
+                                      See What Our Experts Fix
+                                    </h5>
+                                  </div>
+
+                                  {/* Avatars + Count */}
+                                  <div className="flex items-center">
+                                    <div className="flex -space-x-1.5 sm:-space-x-2 overflow-hidden py-0.5">
+                                      {[
+                                        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80",
+                                        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80",
+                                        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80",
+                                        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80",
+                                        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80",
+                                      ].map((src, idx) => (
+                                        <img
+                                          key={idx}
+                                          src={src}
+                                          alt="Customer avatar"
+                                          className="inline-block h-5 w-5 sm:h-6 sm:w-6 rounded-full ring-2 ring-white object-cover"
+                                        />
+                                      ))}
+                                    </div>
+                                    <span className="text-[11px] sm:text-xs font-semibold text-slate-600 ml-2">
+                                      +2.7k
+                                    </span>
+                                  </div>
+                                </div>
+
+                                {/* Green Action Button */}
+                                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-emerald-500 group-hover/fix:bg-emerald-600 text-white flex items-center justify-center transition-transform group-hover/fix:scale-105 shrink-0 shadow-xs">
+                                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Desktop Only: Email Input & Checkout Button (Hidden on Mobile) */}
+                          <div className="hidden lg:block space-y-4 pt-1">
+                            {/* Email Input Field */}
+                            <div>
+                              <label
+                                htmlFor="checkout-email-desktop"
+                                className="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1.5"
+                              >
+                                Email for Delivery
+                              </label>
+                              <input
+                                type="email"
+                                id="checkout-email-desktop"
+                                value={email}
+                                onChange={handleEmailChange}
+                                placeholder="Enter your email"
+                                className={`w-full px-3.5 py-3 bg-slate-50 border rounded-xl text-sm focus:outline-none focus:ring-2 transition-all ${
+                                  emailError
+                                    ? "border-red-400 focus:ring-red-400/30 text-red-950"
+                                    : "border-slate-200 focus:ring-lime-500 focus:border-transparent"
+                                }`}
+                                required
+                                aria-invalid={!!emailError}
+                              />
+                              {emailError && (
+                                <p className="text-xs text-red-600 font-semibold mt-1">
+                                  {emailError}
+                                </p>
+                              )}
+                            </div>
+
+                            {/* Error Alert */}
+                            {paymentError && (
+                              <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-700 flex items-start gap-2 font-medium">
+                                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                                <span>{paymentError}</span>
+                              </div>
+                            )}
+
+                            {/* Desktop Main CTA Button */}
+                            <div className="space-y-2 pt-1">
+                              <button
+                                type="button"
+                                onClick={handleMainCtaClick}
+                                disabled={isProcessingPayment}
+                                className={`w-full font-bold py-4 rounded-xl transition-all text-sm tracking-wide flex items-center justify-center gap-2.5 disabled:opacity-50 cursor-pointer shadow-md ${
+                                  selectedPlan === "expert_edit"
+                                    ? "bg-lime-600 hover:bg-lime-700 text-white shadow-lime-600/20"
+                                    : "bg-slate-900 hover:bg-black text-white shadow-slate-900/20"
+                                }`}
+                              >
+                                {isProcessingPayment ? (
+                                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                ) : (
+                                  <>
+                                    <Lock className="w-4 h-4 shrink-0" />
+                                    <span>
+                                      {selectedPlan === "expert_edit"
+                                        ? "Get Expert Review"
+                                        : "Download Now"}{" "}
+                                      —{" "}
+                                      {selectedPlan === "expert_edit"
+                                        ? expertPricing.amountFormatted
+                                        : standardPricing.amountFormatted}
+                                    </span>
+                                  </>
+                                )}
+                              </button>
+
+                              {/* Desktop Trust Badges */}
+                              <div className="flex items-center justify-center gap-x-5 gap-y-1.5 py-3 flex-wrap border-t border-slate-100 mt-3">
+                                {isUK && (
+                                  <div className="flex items-center gap-1.5 text-slate-500">
+                                    <span className="text-[14px]">🇬🇧</span>
+                                    <span className="text-[11px] font-semibold text-slate-700">
+                                      UK Gov Compliant
+                                    </span>
+                                  </div>
+                                )}
+                                <div className="flex items-center gap-1.5 text-slate-500">
+                                  <Shield className="w-3.5 h-3.5 text-emerald-600" />
+                                  <span className="text-[11px] font-semibold">Secure Checkout</span>
+                                </div>
+                                <div className="flex items-center gap-1.5 text-slate-500">
+                                  <RotateCcw className="w-3.5 h-3.5 text-emerald-600" />
+                                  <span className="text-[11px] font-semibold">Refund if Rejected</span>
+                                </div>
+                                <div className="flex items-center gap-1.5 text-slate-500">
+                                  <Lock className="w-3.5 h-3.5 text-slate-400" />
+                                  <span className="text-[11px] font-semibold">256-bit SSL</span>
+                                </div>
+                              </div>
+
+                              {/* Razorpay Badge */}
+                              <div className="flex justify-center pt-1">
+                                <a
+                                  href="https://razorpay.com/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  <img
+                                    referrerPolicy="origin"
+                                    src="https://badges.razorpay.com/badge-dark.png"
+                                    style={{ height: 40, width: 100 }}
+                                    alt="Razorpay | Payment Gateway | Neobank"
+                                  />
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Mobile Trust Badges Notice (Without Button / Email Form) */}
+                          <div className="block lg:hidden pt-2 border-t border-slate-100">
+                            <div className="flex items-center justify-center gap-3 py-2 flex-wrap text-slate-500">
+                              <div className="flex items-center gap-1">
+                                <Shield className="w-3 h-3 text-emerald-600" />
+                                <span className="text-[10.5px] font-semibold">100% Acceptance Guarantee</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <RotateCcw className="w-3 h-3 text-emerald-600" />
+                                <span className="text-[10.5px] font-semibold">Instant Refund</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        /* Paid State Receipt */
+                        <div className="space-y-4">
+                          <div className="bg-emerald-50 rounded-2xl p-5 sm:p-6 text-center border border-emerald-200">
+                            <div className="w-12 h-12 sm:w-14 sm:h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-2xl sm:text-3xl">
+                              🎉
+                            </div>
+                            <h2 className="text-emerald-800 font-bold text-lg sm:text-xl">
+                              Payment Successful!
+                            </h2>
+                            <p className="mt-2 text-emerald-700 text-xs leading-relaxed">
+                              Your photo is unlocked. Receipt and download links have been sent to{" "}
+                              <strong>{paymentState?.email || email}</strong>.
+                            </p>
+                          </div>
+
+                          <Link
+                            href={`/preview/${resultId}/thankyou?paymentId=${paymentState?.paymentId || ""}`}
+                            className="w-full bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold py-3.5 sm:py-4 rounded-xl flex items-center justify-center gap-2.5 transition-colors text-xs sm:text-sm shadow-xs text-center cursor-pointer"
+                          >
+                            <Download className="w-4 h-4" />
+                            <span>Go to Download Studio &rarr;</span>
+                          </Link>
                         </div>
                       )}
-
-                      {/* Payment Action Button */}
-                      <button
-                        type="button"
-                        onClick={handleInitiatePayment}
-                        disabled={isProcessingPayment}
-                        className="w-full inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] disabled:bg-slate-400 !text-white text-white font-extrabold text-base py-4 rounded-xl transition-all shadow-md hover:shadow-lg focus-ring cursor-pointer"
-                      >
-                        {isProcessingPayment ? (
-                          <>
-                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" aria-hidden="true" />
-                            <span>Processing Secure Checkout…</span>
-                          </>
-                        ) : (
-                          <>
-                            <Lock className="w-4 h-4" aria-hidden="true" />
-                            <span>Pay {PRICING.currencySymbol}{PRICING.amount.toFixed(2)} &amp; Download</span>
-                          </>
-                        )}
-                      </button>
-
-                      {/* Trust & Security Icons */}
-                      <div className="mt-4 pt-4 border-t border-slate-100">
-                        <div className="flex items-center justify-center gap-4 text-slate-400 text-xs mb-2">
-                          <span className="flex items-center gap-1 text-slate-600 font-semibold">
-                            <CreditCard className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
-                            Cards
-                          </span>
-                          <span>•</span>
-                          <span className="text-slate-600 font-semibold">Apple Pay</span>
-                          <span>•</span>
-                          <span className="text-slate-600 font-semibold">Google Pay</span>
-                          <span>•</span>
-                          <span className="text-slate-600 font-semibold">Razorpay</span>
-                        </div>
-                        <p className="text-[11px] text-center text-slate-500 font-medium">
-                          🔒 256-Bit SSL Encrypted. Direct instant delivery to your inbox.
-                        </p>
-                      </div>
-                    </div>
-                  ) : (
-                    /* Paid State Receipt Card */
-                    <div className="bg-white border border-emerald-300 rounded-2xl p-5 sm:p-7 shadow-xs">
-                      <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm mb-4 border-b border-slate-100 pb-3">
-                        <CheckCircle className="w-5 h-5 text-[#4D7C0F]" aria-hidden="true" />
-                        <span>Order Summary &amp; Receipt</span>
-                      </div>
-
-                      <div className="space-y-3 text-xs mb-6">
-                        <div className="flex justify-between py-1.5 border-b border-slate-100">
-                          <span className="text-slate-600">Product:</span>
-                          <span className="font-semibold text-slate-900">{PRICING.productName}</span>
-                        </div>
-                        <div className="flex justify-between py-1.5 border-b border-slate-100">
-                          <span className="text-slate-600">Country:</span>
-                          <span className="font-semibold text-slate-900">{countryName} ({countryCode})</span>
-                        </div>
-                        <div className="flex justify-between py-1.5 border-b border-slate-100">
-                          <span className="text-slate-600">Dimensions:</span>
-                          <span className="font-mono font-semibold text-slate-900">{dimensions} px</span>
-                        </div>
-                        <div className="flex justify-between py-1.5 border-b border-slate-100">
-                          <span className="text-slate-600">Amount Paid:</span>
-                          <span className="font-bold text-slate-900 text-sm">{PRICING.currencySymbol}{PRICING.amount.toFixed(2)}</span>
-                        </div>
-                        <div className="flex justify-between py-1.5 border-b border-slate-100">
-                          <span className="text-slate-600">Delivery Email:</span>
-                          <span className="font-semibold text-slate-900">{paymentState?.email || email}</span>
-                        </div>
-                        <div className="flex justify-between py-1.5 border-b border-slate-100">
-                          <span className="text-slate-600">Payment ID:</span>
-                          <span className="font-mono text-slate-900 text-[11px]">{paymentState?.paymentId}</span>
-                        </div>
-                      </div>
-
-                      {paymentState?.paymentId && (
-                        <a
-                          href={`/api/invoices/${paymentState.paymentId}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs py-3 rounded-xl transition-colors focus-ring"
-                        >
-                          <Receipt className="w-4 h-4 text-[#4D7C0F]" aria-hidden="true" />
-                          <span>View Official Invoice</span>
-                          <ExternalLink className="w-3.5 h-3.5 text-slate-500" aria-hidden="true" />
-                        </a>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Biometric Compliance Card */}
-                  <div className="bg-white border border-slate-200 rounded-2xl p-5 sm:p-6">
-                    <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
-                      <h2 className="!text-sm sm:!text-base font-bold text-slate-900 flex items-center gap-2">
-                        <Shield className="w-4 h-4 text-[#4D7C0F] shrink-0" aria-hidden="true" />
-                        <span>Biometric Verification Audit</span>
-                      </h2>
-                      <span className="px-2.5 py-0.5 rounded-full bg-lime-100 text-lime-950 text-xs font-extrabold">
-                        100% Passed
-                      </span>
-                    </div>
-
-                    <div className="space-y-2.5">
-                      <div className="flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                        <span className="text-slate-700 font-semibold">Head Height Ratio:</span>
-                        <span className="font-mono font-bold text-lime-900 flex items-center gap-1">
-                          <Check className="w-3.5 h-3.5 text-lime-700" aria-hidden="true" />
-                          {metrics?.head_height_pct ?? 72}% (Official 70–80%)
-                        </span>
-                      </div>
-
-                      <div className="flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                        <span className="text-slate-700 font-semibold">Eye Level Position:</span>
-                        <span className="font-mono font-bold text-lime-900 flex items-center gap-1">
-                          <Check className="w-3.5 h-3.5 text-lime-700" aria-hidden="true" />
-                          {metrics?.eye_position_pct ?? 54}% (Centered)
-                        </span>
-                      </div>
-
-                      <div className="flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                        <span className="text-slate-700 font-semibold">Top Margin Clearance:</span>
-                        <span className="font-mono font-bold text-lime-900 flex items-center gap-1">
-                          <Check className="w-3.5 h-3.5 text-lime-700" aria-hidden="true" />
-                          {metrics?.top_margin_pct ?? 8}% (Optimal)
-                        </span>
-                      </div>
-
-                      <div className="flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                        <span className="text-slate-700 font-semibold">Background Isolation:</span>
-                        <span className="font-bold text-lime-900 flex items-center gap-1">
-                          <Check className="w-3.5 h-3.5 text-lime-700" aria-hidden="true" />
-                          Uniform Light (Cleaned)
-                        </span>
-                      </div>
-
-                      <div className="flex items-center justify-between text-xs bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                        <span className="text-slate-700 font-semibold">Official Resolution:</span>
-                        <span className="font-mono font-bold text-slate-900">
-                          {dimensions} px ({countryCode})
-                        </span>
-                      </div>
                     </div>
                   </div>
-
-                  {/* Back Link */}
-                  <Link
-                    href="/passport-size-photo-maker"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-semibold text-sm py-3 rounded-xl border border-slate-300 transition-colors focus-ring"
-                  >
-                    <ArrowLeft className="w-4 h-4" aria-hidden="true" />
-                    <span>Process Another Country / Photo</span>
-                  </Link>
                 </div>
               </div>
             </>
+          )}
+
+          {/* ========================================================================= */}
+          {/* MOBILE STICKY BOTTOM PAYMENT BAR (With inline email input & action button) */}
+          {/* ========================================================================= */}
+          {!isPaid && (fullImageUrl || previewUrl) && (
+            <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/90 px-3.5 pt-2.5 pb-3.5 sm:pb-4 shadow-[0_-6px_30px_rgba(0,0,0,0.12)] lg:hidden">
+              <div className="max-w-md mx-auto space-y-2">
+                {/* Mobile Sticky Email Input */}
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <input
+                    type="email"
+                    id="checkout-email-mobile-sticky"
+                    value={email}
+                    onChange={handleEmailChange}
+                    placeholder="Enter email to receive photo & invoice"
+                    className={`w-full pl-9 pr-3 py-2.5 bg-slate-50 border rounded-xl text-xs sm:text-sm focus:bg-white focus:outline-none focus:ring-2 transition-all ${
+                      emailError
+                        ? "border-red-400 focus:ring-red-400/30 text-red-950"
+                        : "border-slate-300 focus:ring-lime-500 focus:border-transparent"
+                    }`}
+                    required
+                  />
+                </div>
+
+                {emailError && (
+                  <p className="text-[11px] text-red-600 font-semibold px-1">
+                    {emailError}
+                  </p>
+                )}
+
+                {/* Bottom Row: Selected Plan Info & Primary Action Button */}
+                <div className="flex items-center justify-between gap-2.5">
+                  {/* Left side: selected plan & price */}
+                  <div className="min-w-0 shrink-0">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-[9.5px] font-extrabold uppercase tracking-wider px-1.5 py-0.5 rounded bg-slate-100 text-slate-700">
+                        {selectedPlan === "expert_edit" ? "Expert Review" : "Standard Pack"}
+                      </span>
+                    </div>
+                    <div className="flex items-baseline gap-1 mt-0.5">
+                      <span className="text-base sm:text-lg font-black text-slate-900 leading-none">
+                        {selectedPlan === "expert_edit"
+                          ? expertPricing.amountFormatted
+                          : standardPricing.amountFormatted}
+                      </span>
+                      <span className="text-[10px] text-emerald-600 font-bold flex items-center gap-0.5">
+                        <Shield className="w-2.5 h-2.5" /> Guaranteed
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Right side: large sticky action button */}
+                  <button
+                    type="button"
+                    onClick={handleMainCtaClick}
+                    disabled={isProcessingPayment}
+                    className={`flex-1 font-bold py-3 px-3.5 rounded-xl text-xs sm:text-sm tracking-wide flex items-center justify-center gap-1.5 cursor-pointer shadow-md transition-all active:scale-[0.98] disabled:opacity-50 ${
+                      selectedPlan === "expert_edit"
+                        ? "bg-lime-600 hover:bg-lime-700 text-white shadow-lime-600/25"
+                        : "bg-slate-900 hover:bg-black text-white shadow-slate-900/25"
+                    }`}
+                  >
+                    {isProcessingPayment ? (
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    ) : (
+                      <>
+                        <Lock className="w-3.5 h-3.5 shrink-0" />
+                        <span className="truncate">
+                          {selectedPlan === "expert_edit" ? "Get Review" : "Download Now"}
+                        </span>
+                        <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ========================================================================= */}
+          {/* EMAIL CAPTURE POPUP MODAL (Triggered on mobile/desktop without email) */}
+          {/* ========================================================================= */}
+          {isEmailModalOpen && (
+            <div
+              className="fixed inset-0 z-[300] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-slate-950/80 backdrop-blur-sm animate-in fade-in"
+              onClick={() => setIsEmailModalOpen(false)}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="email-modal-title"
+            >
+              <div
+                className="relative w-full sm:max-w-md bg-white rounded-t-3xl sm:rounded-2xl shadow-2xl border-t sm:border border-slate-200 overflow-hidden max-h-[92dvh] overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button
+                  type="button"
+                  onClick={() => setIsEmailModalOpen(false)}
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer z-10"
+                  aria-label="Close modal"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+
+                <div className="p-5 sm:p-7">
+                  {/* Top Icon & Titles */}
+                  <div className="flex items-center gap-3 mb-3 pr-8">
+                    <div className="w-10 h-10 rounded-xl bg-lime-100 text-lime-700 flex items-center justify-center shrink-0">
+                      <Mail className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 id="email-modal-title" className="text-base sm:text-xl font-bold text-slate-900 leading-tight">
+                        Where should we send your photo?
+                      </h3>
+                      <p className="text-[11px] sm:text-xs text-slate-500 font-medium">
+                        Instant delivery &bull; High-res file &bull; 6×4″ print sheet &bull; Invoice
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Plan Pill */}
+                  <div className="my-3 sm:my-4 p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm">{flag}</span>
+                      <span className="text-xs font-bold text-slate-800">
+                        {selectedPlan === "expert_edit" ? "Premium Pack (Expert Review)" : "Standard Pack (AI Verified)"}
+                      </span>
+                    </div>
+                    <span className="text-xs font-black text-slate-900 bg-white px-2 py-0.5 rounded border border-slate-200">
+                      {selectedPlan === "expert_edit" ? expertPricing.amountFormatted : standardPricing.amountFormatted}
+                    </span>
+                  </div>
+
+                  {/* Form */}
+                  <form onSubmit={handleModalEmailSubmit} className="space-y-4">
+                    <div>
+                      <label htmlFor="modal-email-input" className="block text-xs font-bold text-slate-700 mb-1.5">
+                        Email Address <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="modal-email-input"
+                        autoFocus
+                        value={modalEmail}
+                        onChange={(e) => {
+                          setModalEmail(e.target.value);
+                          if (modalEmailError) setModalEmailError("");
+                        }}
+                        placeholder="e.g. yourname@example.com"
+                        className={`w-full px-3.5 py-3 bg-white border rounded-xl text-sm focus:outline-none focus:ring-2 transition-all ${
+                          modalEmailError
+                            ? "border-red-400 focus:ring-red-400/30 text-red-950"
+                            : "border-slate-300 focus:ring-lime-500 focus:border-transparent"
+                        }`}
+                        required
+                      />
+                      {modalEmailError && (
+                        <p className="text-xs text-red-600 font-semibold mt-1">
+                          {modalEmailError}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="space-y-2 pt-1">
+                      <button
+                        type="submit"
+                        disabled={isProcessingPayment}
+                        className="w-full bg-lime-600 hover:bg-lime-700 text-white font-bold py-3.5 px-4 rounded-xl text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md disabled:opacity-50"
+                      >
+                        {isProcessingPayment ? (
+                          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        ) : (
+                          <>
+                            <span>Continue to Payment &rarr;</span>
+                          </>
+                        )}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setIsEmailModalOpen(false)}
+                        className="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-2.5 rounded-xl text-xs transition-colors cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+
+                    <p className="text-[10.5px] sm:text-[11px] text-center text-slate-400 flex items-center justify-center gap-1.5 pt-1">
+                      <Shield className="w-3 h-3 text-emerald-600" />
+                      <span>100% money-back guarantee if rejected by embassy</span>
+                    </p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ========================================================================= */}
+          {/* ZOOM OVERLAY LIGHTBOX (Unobstructed preview of the user's processed photo) */}
+          {/* ========================================================================= */}
+          {isZoomOpen && (
+            <div
+              className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-950/85 backdrop-blur-sm p-3 sm:p-4 animate-in fade-in"
+              onClick={() => setIsZoomOpen(false)}
+              role="dialog"
+              aria-modal="true"
+            >
+              <div
+                className="relative max-w-2xl w-full bg-white rounded-2xl p-4 sm:p-6 shadow-2xl border border-slate-200 text-center max-h-[92dvh] overflow-y-auto"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  onClick={() => setIsZoomOpen(false)}
+                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center justify-center transition-colors cursor-pointer"
+                  aria-label="Close zoom preview"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+                <div className="flex items-center justify-center gap-2 mb-3 pr-6 sm:pr-0">
+                  <span className="text-base">{flag}</span>
+                  <h3 className="text-xs sm:text-base font-bold text-slate-900">
+                    {countryName} Official Photo Preview ({dimensions} px)
+                  </h3>
+                </div>
+
+                <div className="flex justify-center items-center bg-slate-50 rounded-xl p-2 sm:p-6 border border-slate-200 overflow-hidden">
+                  {/* Clean preview image with no dark overlays */}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={isPaid ? (fullImageUrl || previewUrl) : previewUrl}
+                    alt={`${countryName} Enlarged Preview`}
+                    className="max-h-[50vh] sm:max-h-[60vh] max-w-full object-contain rounded-lg shadow-sm"
+                  />
+                </div>
+
+                <div className="mt-3 sm:mt-4 flex items-center justify-between gap-3 flex-wrap">
+                  <div className="text-left">
+                    <p className="text-[11px] sm:text-xs font-bold text-emerald-700 flex items-center gap-1">
+                      <Check className="w-3.5 h-3.5 stroke-[3]" /> Official Embassy Dimensions &amp; Biometric Alignment
+                    </p>
+                    <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium">
+                      High-resolution 300 DPI version is generated upon checkout.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsZoomOpen(false);
+                      handleMainCtaClick();
+                    }}
+                    className="w-full sm:w-auto bg-lime-600 hover:bg-lime-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition-colors cursor-pointer shadow-xs sm:ml-auto"
+                  >
+                    Proceed to Download &rarr;
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ========================================================================= */}
+          {/* EXPERTS FIX MODAL (With real before/after transformation comparisons) */}
+          {/* ========================================================================= */}
+          {isFixModalOpen && (
+            <div
+              className="fixed inset-0 z-[250] flex items-end sm:items-center justify-center p-0 sm:p-4 md:p-6 bg-slate-950/75 backdrop-blur-md animate-in fade-in"
+              onClick={() => setIsFixModalOpen(false)}
+              role="dialog"
+              aria-modal="true"
+            >
+              <div
+                className="bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-5xl overflow-hidden border-t sm:border border-slate-200/80 relative h-[94dvh] sm:h-auto max-h-[94dvh] sm:max-h-[88vh] flex flex-col transition-all duration-200"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Header */}
+                <div className="px-4 py-3 sm:px-6 sm:py-4 bg-white border-b border-slate-200/80 relative shrink-0">
+                  <button
+                    onClick={() => setIsFixModalOpen(false)}
+                    className="absolute top-3 sm:top-4 right-3.5 sm:right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors cursor-pointer z-10"
+                    aria-label="Close modal"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+
+                  <div className="pr-10 sm:pr-12">
+                    <div className="flex items-center gap-2 mb-0.5 flex-wrap">
+                      <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                        Human Expert Review
+                      </span>
+                      <span className="text-[11px] text-slate-500 font-medium hidden sm:inline">
+                        &bull; 100% Acceptance Guaranteed
+                      </span>
+                    </div>
+                    <h3 className="text-base sm:text-xl font-bold text-slate-900 leading-tight">
+                      See What Our Experts Fix
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Modal Body */}
+                <div className="p-3.5 sm:p-6 overflow-y-auto space-y-3.5 sm:space-y-4 grow bg-slate-50/60">
+                  {/* Banner */}
+                  <div className="bg-purple-50/90 border border-purple-200/80 rounded-xl p-3 sm:p-3.5 text-xs text-purple-900 font-medium flex items-start sm:items-center gap-2.5 sm:gap-3 shadow-2xs">
+                    <div className="w-7 h-7 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center shrink-0 mt-0.5 sm:mt-0">
+                      <Shield className="w-4 h-4" />
+                    </div>
+                    <span className="leading-snug">
+                      This information and customer feedback is added based on user confirmation &amp; verified embassy submission results.
+                    </span>
+                  </div>
+
+                  {/* Transformation Cards Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
+                    {BEFORE_AFTER_PAIRS.map((pair, idx) => (
+                      <div
+                        key={idx}
+                        className="bg-white border border-slate-200/90 rounded-2xl p-3.5 sm:p-4 space-y-3 flex flex-col justify-between shadow-2xs hover:border-slate-300 transition-colors"
+                      >
+                        <div>
+                          <div className="flex items-center gap-2 mb-2.5">
+                            <span className="w-5 h-5 rounded-full bg-lime-100 text-lime-800 text-[11px] font-extrabold flex items-center justify-center shrink-0">
+                              {idx + 1}
+                            </span>
+                            <h4 className="text-xs sm:text-sm font-bold text-slate-900 leading-snug">
+                              {pair.title}
+                            </h4>
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-2.5">
+                            {/* Before Image */}
+                            <div className="space-y-1.5">
+                              <div
+                                className="relative w-full rounded-xl overflow-hidden bg-slate-100 border border-red-200 shadow-2xs"
+                                style={{ aspectRatio: "3 / 4" }}
+                              >
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                  src={pair.beforeImg}
+                                  alt={pair.beforeTag}
+                                  className="absolute inset-0 w-full h-full object-cover object-center"
+                                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+                                  loading="lazy"
+                                />
+                                <span className="absolute top-2 left-2 bg-red-600/95 backdrop-blur-xs text-white text-[9.5px] font-extrabold px-2 py-0.5 rounded shadow-xs z-10 uppercase tracking-wider">
+                                  Before
+                                </span>
+                              </div>
+                              <p className="text-[10px] sm:text-[11px] text-slate-500 font-medium leading-tight line-clamp-2">
+                                {pair.beforeTag}
+                              </p>
+                            </div>
+
+                            {/* After Image */}
+                            <div className="space-y-1.5">
+                              <div
+                                className="relative w-full rounded-xl overflow-hidden bg-slate-100 border border-emerald-300 shadow-2xs"
+                                style={{ aspectRatio: "3 / 4" }}
+                              >
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                  src={pair.afterImg}
+                                  alt={pair.afterTag}
+                                  className="absolute inset-0 w-full h-full object-cover object-center"
+                                  style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+                                  loading="lazy"
+                                />
+                                <span className="absolute top-2 left-2 bg-emerald-600/95 backdrop-blur-xs text-white text-[9.5px] font-extrabold px-2 py-0.5 rounded shadow-xs z-10 uppercase tracking-wider">
+                                  After
+                                </span>
+                              </div>
+                              <p className="text-[10px] sm:text-[11px] text-emerald-700 font-bold leading-tight line-clamp-2">
+                                {pair.afterTag}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Footer Action */}
+                <div className="p-3.5 sm:p-5 bg-white border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+                  <div className="text-xs text-slate-600 font-medium text-center sm:text-left">
+                    Select <strong>Expert Edit ({expertPricing.amountFormatted})</strong> for guaranteed human verification.
+                  </div>
+                  <div className="flex items-center gap-2.5 w-full sm:w-auto">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedPlan("expert_edit");
+                        setIsFixModalOpen(false);
+                      }}
+                      className="flex-1 sm:flex-initial bg-lime-600 hover:bg-lime-700 text-white font-bold py-3 px-6 rounded-xl text-xs sm:text-sm transition-colors text-center shadow-xs cursor-pointer"
+                    >
+                      Continue with Expert Review ({expertPricing.amountFormatted}) &rarr;
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setIsFixModalOpen(false)}
+                      className="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           )}
         </div>
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }

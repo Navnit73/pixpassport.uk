@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect, useRef, useCallback, useSyncExternalStore } from "react";
+import { useState, useMemo, useEffect, useCallback, useSyncExternalStore } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
@@ -9,19 +9,17 @@ import {
   Printer,
   FileText,
   Mail,
-  ShieldCheck,
   ExternalLink,
   Sparkles,
-  ArrowLeft,
   Upload,
   Check,
   Clock,
-  HelpCircle,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PrintTemplateGenerator from "@/components/PrintTemplateGenerator";
 import type { PassportProcessResult } from "@/lib/passport-api";
-import { PRICING } from "@/lib/config/pricing";
+import { PRICING, getPlanPricing } from "@/lib/config/pricing";
 
 interface StoredPassportResult extends PassportProcessResult {
   country_code?: string;
@@ -39,6 +37,7 @@ interface StoredPaymentInfo {
   status: "paid" | "pending" | "failed";
   email: string;
   paidAt?: string;
+  planType?: "standard" | "expert_edit";
 }
 
 function subscribeToStorage(callback: () => void) {
@@ -74,6 +73,25 @@ function getStoredPayment(resultId: string): StoredPaymentInfo | null {
   }
 }
 
+function getCountryFlag(countryCode?: string, countryName?: string): string {
+  const code = (countryCode || "").toUpperCase();
+  const name = (countryName || "").toLowerCase();
+  if (code === "GB" || name.includes("united kingdom") || name.includes("britain") || name.includes("uk")) return "🇬🇧";
+  if (code === "US" || name.includes("united states") || name.includes("usa") || name.includes("america")) return "🇺🇸";
+  if (code === "CA" || name.includes("canada")) return "🇨🇦";
+  if (code === "AU" || name.includes("australia")) return "🇦🇺";
+  if (code === "IN" || name.includes("india")) return "🇮🇳";
+  if (code === "DE" || name.includes("germany")) return "🇩🇪";
+  if (code === "FR" || name.includes("france")) return "🇫🇷";
+  if (code === "IT" || name.includes("italy")) return "🇮🇹";
+  if (code === "ES" || name.includes("spain")) return "🇪🇸";
+  if (code === "IE" || name.includes("ireland")) return "🇮🇪";
+  if (code === "NZ" || name.includes("new zealand")) return "🇳🇿";
+  if (code === "SG" || name.includes("singapore")) return "🇸🇬";
+  if (code === "JP" || name.includes("japan")) return "🇯🇵";
+  return "📄";
+}
+
 export default function ThankYouDownloadPage() {
   const params = useParams();
   const searchParams = useSearchParams();
@@ -99,13 +117,12 @@ export default function ThankYouDownloadPage() {
   const [activeTab, setActiveTab] = useState<"single" | "sheet">("single");
   const [downloading, setDownloading] = useState(false);
   const [paymentState, setPaymentState] = useState<StoredPaymentInfo | null>(() => getStoredPayment(resultId));
-  const [isLoadingStatus, setIsLoadingStatus] = useState(false);
-
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [, setIsLoadingStatus] = useState(false);
 
   const countryName = data?.country_name || "United Kingdom";
   const countryCode = data?.country_code || "GB";
   const dimensions = data?.dimensions || data?.target_dimensions || "600x750";
+  const flag = getCountryFlag(countryCode, countryName);
 
   const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(resultId);
 
@@ -122,6 +139,9 @@ export default function ThankYouDownloadPage() {
       ? `https://res.cloudinary.com/ddxu2wqfm/image/upload/passport/results/${resultId}_preview.jpg`
       : undefined);
 
+  // Active high-resolution image to download/tile
+  const activeImageSource = fullImageUrl || previewUrl;
+
   // If token is missing, fetch status from server
   useEffect(() => {
     const paymentIdToFetch = paymentState?.paymentId || queryPaymentId;
@@ -137,6 +157,7 @@ export default function ThankYouDownloadPage() {
               status: resData.status,
               email: paymentState?.email || "customer@pixpassport.uk",
               paidAt: resData.paidAt || new Date().toISOString(),
+              planType: resData.planType || paymentState?.planType || "standard",
             };
             setPaymentState(updated);
             try {
@@ -148,94 +169,7 @@ export default function ThankYouDownloadPage() {
         .catch((err) => console.error("Failed to fetch payment status:", err))
         .finally(() => setIsLoadingStatus(false));
     }
-  }, [queryPaymentId, paymentState?.paymentId, paymentState?.downloadToken, paymentState?.status, resultId]);
-
-  /**
-   * Draw 6x4" 300 DPI Print Sheet Canvas
-   */
-  const renderSheetCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    const imgSource = fullImageUrl || previewUrl;
-    if (!canvas || !imgSource) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    // Standard 6x4" at 300 DPI = 1800 x 1200 px (Landscape)
-    const paperWidth = 1800;
-    const paperHeight = 1200;
-    canvas.width = paperWidth;
-    canvas.height = paperHeight;
-
-    // White background
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(0, 0, paperWidth, paperHeight);
-
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.src = imgSource;
-
-    img.onload = () => {
-      // Parse photo dimensions (default 35x45mm at 300 DPI ~ 413 x 531 px, or 2x2" ~ 600 x 600 px)
-      let photoWidth = 413;
-      let photoHeight = 531;
-
-      if (dimensions.includes("x")) {
-        const parts = dimensions.toLowerCase().replace("px", "").split("x").map(Number);
-        if (parts.length === 2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
-          // Scale to 300 DPI standard print size
-          if (parts[0] === parts[1]) {
-            // Square (e.g. US 2x2") -> 600x600 px
-            photoWidth = 600;
-            photoHeight = 600;
-          } else {
-            // Standard UK 35x45mm -> 413x531 px
-            photoWidth = 413;
-            photoHeight = 531;
-          }
-        }
-      }
-
-      // Calculate grid (e.g., 2x3 grid for UK, 2x2 grid for US)
-      const cols = photoWidth >= 550 ? 2 : 3;
-      const rows = photoWidth >= 550 ? 2 : 2;
-
-      const totalGridWidth = cols * photoWidth;
-      const totalGridHeight = rows * photoHeight;
-
-      const gapX = (paperWidth - totalGridWidth) / (cols + 1);
-      const gapY = (paperHeight - totalGridHeight) / (rows + 1);
-
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const x = gapX + c * (photoWidth + gapX);
-          const y = gapY + r * (photoHeight + gapY);
-
-          // Draw Photo
-          ctx.drawImage(img, x, y, photoWidth, photoHeight);
-
-          // Draw subtle cutting guideline
-          ctx.strokeStyle = "#CBD5E1";
-          ctx.lineWidth = 1;
-          ctx.strokeRect(x, y, photoWidth, photoHeight);
-        }
-      }
-
-      // Footer branding & cut guide
-      ctx.fillStyle = "#94A3B8";
-      ctx.font = "bold 24px -apple-system, BlinkMacSystemFont, sans-serif";
-      ctx.textAlign = "center";
-      ctx.fillText(
-        `PixPassport — Official ${countryName} Passport Photo Template (Standard 6×4″ Photo Paper)`,
-        paperWidth / 2,
-        paperHeight - 20
-      );
-    };
-  }, [fullImageUrl, previewUrl, countryName, dimensions]);
-
-  useEffect(() => {
-    renderSheetCanvas();
-  }, [renderSheetCanvas]);
+  }, [queryPaymentId, paymentState?.paymentId, paymentState?.downloadToken, paymentState?.status, paymentState?.planType, resultId]);
 
   /**
    * Handle Single Photo Download
@@ -275,178 +209,134 @@ export default function ThankYouDownloadPage() {
     }
   };
 
-  /**
-   * Handle 6x4" Print Sheet Download
-   */
-  const handleDownloadSheet = async () => {
-    setDownloading(true);
-    try {
-      const canvas = canvasRef.current;
-      if (!canvas) {
-        renderSheetCanvas();
-      }
-      const activeCanvas = canvasRef.current;
-      if (activeCanvas) {
-        const dataUrl = activeCanvas.toDataURL("image/jpeg", 0.98);
-        const link = document.createElement("a");
-        link.href = dataUrl;
-        link.download = `passport-sheet-6x4-${countryCode.toLowerCase()}.jpg`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-    } catch (err) {
-      console.error("Sheet download error:", err);
-    } finally {
-      setDownloading(false);
-    }
-  };
-
   const paymentId = paymentState?.paymentId || queryPaymentId;
   const userEmail = paymentState?.email || "your email";
+  const expertPricing = getPlanPricing("expert_edit");
+  const standardPricing = getPlanPricing("standard");
+  const activePlanType = paymentState?.planType || "standard";
+  const activePlanPricing = activePlanType === "expert_edit" ? expertPricing : standardPricing;
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+    <div className="min-h-screen flex flex-col bg-slate-100/60 text-slate-900">
       <Navbar ctaText="Create Another Photo" ctaHref="/passport-size-photo-maker" />
 
-      {/* Hidden Canvas for High-Resolution 6x4" Template Generation */}
-      <canvas ref={canvasRef} className="hidden" aria-hidden="true" />
+      <main className="flex-1 py-5 sm:py-8 px-3 sm:px-6" id="main-content">
+        <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6">
+          {/* ========================================================================= */}
+          {/* COMPACT TOP SUCCESS HEADER */}
+          {/* ========================================================================= */}
+          <div className="bg-white border border-emerald-200/90 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xs relative overflow-hidden">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 flex-wrap">
+              <div className="flex items-center gap-3">
+            
+                <div>
+                
+                  <p className="text-xs sm:text-sm text-slate-600 font-medium mt-0.5">
+                    100% compliant with official <strong>{countryName}</strong> {flag} passport &amp; visa standards.
+                  </p>
+                </div>
+              </div>
 
-      <main className="flex-1 py-8 sm:py-12" id="main-content">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          {/* Top Success Banner */}
-          <div className="bg-white border border-emerald-200 rounded-3xl p-6 sm:p-10 shadow-sm mb-8 text-center relative overflow-hidden">
-            {/* Background Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-emerald-100/60 blur-3xl -z-10 rounded-full" />
-
-            <div className="w-16 h-16 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-center mx-auto mb-4 text-emerald-600 shadow-xs">
-              <CheckCircle2 className="w-9 h-9 text-[#4D7C0F]" />
+              {/* Email Callout */}
+              <div className="w-full sm:w-auto inline-flex items-center gap-2 bg-slate-50 border border-slate-200 px-3.5 py-2 rounded-xl text-xs text-slate-700 font-medium">
+                <Mail className="w-4 h-4 text-[#4D7C0F] shrink-0" />
+                <span className="truncate">
+                  Emailed with <strong>Tax Invoice PDF</strong> to: <strong className="text-slate-900">{userEmail}</strong>
+                </span>
+              </div>
             </div>
 
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold rounded-full mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-[#4D7C0F]" /> Payment Confirmed &bull; Instant Access Ready
-            </span>
-
-            <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
-              Thank You! Your Passport Photo is Ready
-            </h1>
-            <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto font-medium">
-              Your biometric photo has been verified against official <strong>{countryName}</strong> government standards. You can download the single digital master and print-ready 6×4″ sheet below.
-            </p>
-
-            {/* Email Dispatch Callout */}
-            <div className="mt-6 inline-flex items-center gap-2 bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-xl text-xs sm:text-sm text-slate-700 font-medium">
-              <Mail className="w-4 h-4 text-[#4D7C0F] shrink-0" />
-              <span>
-                A copy with your <strong>Tax Invoice PDF</strong> has been emailed to:{" "}
-                <strong className="text-slate-900">{userEmail}</strong>
-              </span>
-            </div>
+            {/* VIP Expert Review Notification Banner (if expert_edit plan) */}
+            {activePlanType === "expert_edit" && (
+              <div className="mt-3.5 bg-gradient-to-r from-amber-50 to-yellow-50/80 border border-amber-300/80 p-3.5 sm:p-4 rounded-xl text-xs sm:text-sm text-[#713F12]">
+                <div className="flex items-center justify-between gap-2 flex-wrap mb-1">
+                  <div className="font-black text-[#854D0E] flex items-center gap-1.5 text-xs sm:text-sm">
+                    <Sparkles className="w-4 h-4 text-[#CA8A04] shrink-0" />
+                    <span>VIP Expert Manual Review &amp; Edit Included ({expertPricing.amountFormatted})</span>
+                  </div>
+                  <span className="bg-amber-100 text-amber-900 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-amber-200 flex items-center gap-1">
+                    <Clock className="w-3 h-3 text-amber-700" />
+                    <span>⚡ Guaranteed Delivery: &lt; 20 Minutes</span>
+                  </span>
+                </div>
+                <p className="leading-relaxed text-[11.5px] sm:text-xs text-amber-900/90 font-medium">
+                  Our human passport photo editors have received your original photo for <strong>{countryName}</strong>. They are currently performing precision shadow removal, contrast calibration, and edge refinement. Your human-verified photo will also be delivered to <strong>{userEmail}</strong> within <strong>20 minutes</strong>.
+                </p>
+              </div>
+            )}
           </div>
 
-          {/* Main 2-Column Content Grid */}
-          <div className="grid lg:grid-cols-12 gap-8 items-start">
-            {/* Left Column: Visual Studio & Download Actions (7 cols) */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-                {/* Tab Switcher */}
-                <div className="flex bg-slate-100 p-1.5 rounded-2xl mb-6">
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab("single")}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-                      activeTab === "single"
-                        ? "bg-white text-slate-900 shadow-sm"
-                        : "text-slate-600 hover:text-slate-900"
-                    }`}
-                  >
-                    <Download className="w-4 h-4" />
-                    <span>Single Digital Photo</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab("sheet")}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-                      activeTab === "sheet"
-                        ? "bg-white text-slate-900 shadow-sm"
-                        : "text-slate-600 hover:text-slate-900"
-                    }`}
-                  >
-                    <Printer className="w-4 h-4" />
-                    <span>Print-Ready 6×4″ Sheet</span>
-                  </button>
-                </div>
+          {/* ========================================================================= */}
+          {/* MAIN STUDIO: Single Download vs 4×6″ Multi-Photo Print Sheet Generator */}
+          {/* ========================================================================= */}
+          <div className="bg-white border border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-xs">
+            {/* Studio Tab Switcher */}
+            <div className="flex bg-slate-100 p-1.5 rounded-xl mb-4">
+              <button
+                type="button"
+                onClick={() => setActiveTab("single")}
+                className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  activeTab === "single"
+                    ? "bg-white text-slate-900 shadow-sm"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <Download className="w-4 h-4" />
+                <span>Single Digital Photo (300 DPI)</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveTab("sheet")}
+                className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                  activeTab === "sheet"
+                    ? "bg-white text-slate-900 shadow-sm"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <Printer className="w-4 h-4" />
+                <span>Print Sheet Studio (4×6″ / A4)</span>
+              </button>
+            </div>
 
-                {/* Preview Studio Canvas Area */}
-                <div className="bg-slate-100/80 rounded-2xl p-6 flex flex-col items-center justify-center border border-slate-200/80 min-h-[360px]">
-                  {activeTab === "single" ? (
-                    <div className="text-center">
-                      <div className="inline-block relative rounded-xl overflow-hidden shadow-md border-2 border-white bg-white">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={fullImageUrl || previewUrl}
-                          alt={`${countryName} Verified Passport Photo`}
-                          className="max-h-72 sm:max-h-84 object-contain rounded-lg"
-                        />
-                        <div className="absolute top-2 right-2 bg-[#4D7C0F] text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">
-                          300 DPI &bull; ICAO Compliant
-                        </div>
-                      </div>
-                      <p className="text-xs text-slate-500 font-medium mt-3">
-                        {countryName} Official Size: {dimensions}
-                      </p>
+            {/* Tab 1: Single High-Resolution Master Photo */}
+            {activeTab === "single" && (
+              <div className="space-y-4">
+                <div className="bg-slate-50 rounded-xl p-4 sm:p-6 flex flex-col items-center justify-center border border-slate-200 text-center">
+                  <div className="inline-block relative rounded-xl overflow-hidden shadow-md border-2 border-white bg-white">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={activeImageSource}
+                      alt={`${countryName} Verified Master Photo`}
+                      className="max-h-64 sm:max-h-80 w-auto object-contain rounded-lg"
+                    />
+                    <div className="absolute top-2 right-2 bg-[#4D7C0F] text-white text-[10px] font-bold px-2 py-0.5 rounded shadow-xs">
+                      300 DPI &bull; ICAO Validated
                     </div>
-                  ) : (
-                    <div className="text-center w-full">
-                      <div className="inline-block relative rounded-xl overflow-hidden shadow-md border-2 border-white bg-white">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={previewUrl || fullImageUrl}
-                          alt={`${countryName} 6x4 Print Template`}
-                          className="max-h-72 sm:max-h-84 object-contain rounded-lg"
-                        />
-                        <div className="absolute top-2 right-2 bg-slate-900 text-white text-[10px] font-bold px-2 py-0.5 rounded-md shadow-xs">
-                          Standard 10×15 cm (6×4″)
-                        </div>
-                      </div>
-                      <p className="text-xs text-slate-500 font-medium mt-3">
-                        Ready to print at Boots, Tesco, pharmacies, or at home.
-                      </p>
-                    </div>
-                  )}
-                </div>
-
-                {/* Primary Download Action Buttons */}
-                <div className="mt-6 space-y-3">
-                  <div className="grid sm:grid-cols-2 gap-3">
-                    <button
-                      type="button"
-                      onClick={handleDownloadSingle}
-                      disabled={downloading}
-                      className="inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-sm py-4 rounded-xl transition-all shadow-xs focus-ring"
-                    >
-                      <Download className="w-5 h-5" />
-                      <span>{downloading ? "Preparing Download…" : "Download Single Photo"}</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={handleDownloadSheet}
-                      disabled={downloading}
-                      className="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm py-4 rounded-xl transition-all shadow-xs focus-ring"
-                    >
-                      <Printer className="w-5 h-5" />
-                      <span>Download 6×4″ Print Sheet</span>
-                    </button>
                   </div>
+                  <p className="text-xs text-slate-600 font-semibold mt-3">
+                    {countryName} Official Dimensions: <span className="font-mono text-slate-900 font-bold">{dimensions} px</span>
+                  </p>
+                </div>
+
+                {/* Single Download Action Button */}
+                <div className="space-y-2.5">
+                  <button
+                    type="button"
+                    onClick={handleDownloadSingle}
+                    disabled={downloading}
+                    className="w-full inline-flex items-center justify-center gap-2.5 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-sm sm:text-base py-4 rounded-xl transition-all shadow-md focus-ring cursor-pointer"
+                  >
+                    <Download className="w-5 h-5" />
+                    <span>{downloading ? "Preparing High-Res Download…" : "Download Single Photo (300 DPI JPEG)"}</span>
+                  </button>
 
                   {paymentId && (
-                    <div className="pt-2 flex flex-wrap items-center justify-between gap-3 text-xs">
+                    <div className="pt-1 flex flex-wrap items-center justify-between gap-2.5 text-xs">
                       <a
                         href={`/api/invoices/${paymentId}?format=pdf`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-slate-700 hover:text-slate-900 font-bold bg-slate-100 hover:bg-slate-200 px-3.5 py-2.5 rounded-lg transition-colors"
+                        className="inline-flex items-center gap-1.5 text-slate-700 hover:text-slate-900 font-bold bg-slate-100 hover:bg-slate-200 px-3 py-2 rounded-lg transition-colors"
                       >
                         <FileText className="w-4 h-4 text-[#4D7C0F]" />
                         <span>Download Tax Invoice (PDF)</span>
@@ -465,140 +355,41 @@ export default function ThankYouDownloadPage() {
                   )}
                 </div>
               </div>
+            )}
 
-              {/* Printing Step-by-Step Guide */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-                <h2 className="text-base sm:text-lg font-extrabold text-slate-900 mb-4 flex items-center gap-2">
-                  <Printer className="w-5 h-5 text-[#4D7C0F]" />
-                  <span>How to Print at Kiosks (Save £10–£15)</span>
-                </h2>
-
-                <div className="grid sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-700">
-                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4">
-                    <div className="font-bold text-slate-900 mb-1 flex items-center gap-1.5">
-                      <span className="w-5 h-5 rounded-full bg-[#4D7C0F] text-white flex items-center justify-center text-[11px]">1</span>
-                      <span>Save 6×4″ Sheet</span>
-                    </div>
-                    <p className="text-slate-600 leading-relaxed text-xs">
-                      Download the 6×4″ template sheet to your smartphone or USB memory stick.
-                    </p>
-                  </div>
-
-                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4">
-                    <div className="font-bold text-slate-900 mb-1 flex items-center gap-1.5">
-                      <span className="w-5 h-5 rounded-full bg-[#4D7C0F] text-white flex items-center justify-center text-[11px]">2</span>
-                      <span>Visit Any Kiosk</span>
-                    </div>
-                    <p className="text-slate-600 leading-relaxed text-xs">
-                      Go to Boots, Tesco, Asda, Snappy Snaps, CVS, or Walgreens photo counters.
-                    </p>
-                  </div>
-
-                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4">
-                    <div className="font-bold text-slate-900 mb-1 flex items-center gap-1.5">
-                      <span className="w-5 h-5 rounded-full bg-[#4D7C0F] text-white flex items-center justify-center text-[11px]">3</span>
-                      <span>Select Standard 4×6″</span>
-                    </div>
-                    <p className="text-slate-600 leading-relaxed text-xs">
-                      Choose <strong>Standard 4×6″ (10×15 cm) Photo Print</strong> (costs ~15p–25p). Do NOT choose the passport option!
-                    </p>
-                  </div>
-
-                  <div className="bg-slate-50 border border-slate-200/80 rounded-2xl p-4">
-                    <div className="font-bold text-slate-900 mb-1 flex items-center gap-1.5">
-                      <span className="w-5 h-5 rounded-full bg-[#4D7C0F] text-white flex items-center justify-center text-[11px]">4</span>
-                      <span>Cut &amp; Submit</span>
-                    </div>
-                    <p className="text-slate-600 leading-relaxed text-xs">
-                      Cut neatly along the guide lines for exact ICAO/HMPO government compliance.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: Order Details, Guarantee & Support (5 cols) */}
-            <div className="lg:col-span-5 space-y-6">
-              {/* Order Receipt Card */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-7 shadow-xs">
-                <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
+            {/* Tab 2: Interactive Print Sheet Studio (Pre-loaded with paid photo) */}
+            {activeTab === "sheet" && (
+              <div className="space-y-4">
+                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-5 h-5 text-[#4D7C0F]" />
-                    <span className="font-bold text-slate-900 text-sm">Official Order Receipt</span>
+                    <Check className="w-4 h-4 text-emerald-700 stroke-[3] shrink-0" />
+                    <span>Your verified photo has been automatically loaded into the print sheet builder.</span>
                   </div>
-                  <span className="bg-emerald-100 text-emerald-800 text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">
-                    VERIFIED
-                  </span>
+                  <span className="font-bold text-emerald-800 shrink-0">4×6″ Standard Ready</span>
                 </div>
 
-                <div className="space-y-3 text-xs">
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-500 font-medium">Product</span>
-                    <span className="font-semibold text-slate-900 text-right">{PRICING.productName}</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-500 font-medium">Country</span>
-                    <span className="font-semibold text-slate-900">{countryName} ({countryCode})</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-500 font-medium">Resolution &amp; Specs</span>
-                    <span className="font-semibold text-slate-900 font-mono">{dimensions} px (300 DPI)</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-500 font-medium">Delivery Email</span>
-                    <span className="font-semibold text-slate-900">{userEmail}</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-500 font-medium">Payment ID</span>
-                    <span className="font-mono text-slate-900 font-semibold text-[11px]">{paymentId || "N/A"}</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b border-slate-100">
-                    <span className="text-slate-500 font-medium">Amount Paid</span>
-                    <span className="font-extrabold text-slate-900 text-sm">
-                      {PRICING.currencySymbol}{PRICING.amount.toFixed(2)}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Expiry Note */}
-                <div className="mt-5 bg-slate-50 rounded-xl p-3 text-[11px] text-slate-500 flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-slate-400 shrink-0" />
-                  <span>Download link remains securely active for <strong>72 hours</strong>.</span>
+                {/* Embedded Full-Featured Print Sheet Generator */}
+                <div className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50/50">
+                  <PrintTemplateGenerator
+                    initialImageUrl={activeImageSource}
+                    initialPaperSize="4x6"
+                    initialPhotoStandard={dimensions.includes("600") ? "2x2" : "35x45"}
+                    showInstructions={false}
+                  />
                 </div>
               </div>
+            )}
+          </div>
 
-              {/* 100% Government Acceptance Guarantee */}
-              <div className="bg-emerald-950 text-white rounded-3xl p-6 sm:p-7 shadow-xs">
-                <div className="flex items-center gap-2.5 mb-3">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-800/80 flex items-center justify-center text-emerald-300">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-base font-extrabold text-white">100% Acceptance Guarantee</h3>
-                </div>
-                <p className="text-xs text-emerald-200/90 leading-relaxed mb-4">
-                  We guarantee that your photo strictly adheres to HMPO, ICAO, and international biometric passport standards. If your photo is rejected for any technical reason, we will provide a free re-process or a 100% full refund.
-                </p>
-                <div className="pt-3 border-t border-emerald-900 flex items-center justify-between text-xs">
-                  <Link href="/refund-policy" className="text-emerald-300 hover:text-white underline font-semibold transition-colors">
-                    Refund Policy
-                  </Link>
-                  <Link href="/contact-us" className="text-emerald-300 hover:text-white underline font-semibold transition-colors">
-                    Contact Support
-                  </Link>
-                </div>
-              </div>
-
-              {/* Create Another Photo Button */}
-              <div className="pt-2">
-                <Link
-                  href="/passport-size-photo-maker"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 font-bold text-xs sm:text-sm py-3.5 rounded-2xl transition-all shadow-xs text-center"
-                >
-                  <Upload className="w-4 h-4" />
-                  <span>Create Photo for Another Person</span>
-                </Link>
-              </div>
-            </div>
+          {/* Action Footer: Create Photo for Another Person */}
+          <div className="flex justify-center pt-2">
+            <Link
+              href="/passport-size-photo-maker"
+              className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-semibold text-xs sm:text-sm py-2.5 px-5 rounded-xl transition-all shadow-xs text-center cursor-pointer"
+            >
+              <Upload className="w-4 h-4 text-[#4D7C0F]" />
+              <span>Create Photo for Another Person</span>
+            </Link>
           </div>
         </div>
       </main>

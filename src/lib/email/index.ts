@@ -5,7 +5,11 @@
 
 import { getResendClient, FROM_EMAIL, REPLY_TO_EMAIL, BCC_EMAILS } from "./resend";
 import { paymentSuccessEmail } from "./templates/payment-success";
-import { PRICING } from "@/lib/config/pricing";
+import {
+  expertEditNotificationEmail,
+  type ExpertEditNotificationParams,
+} from "./templates/expert-edit-notification";
+import { PRICING, type PlanType } from "@/lib/config/pricing";
 
 export interface SendPaymentSuccessEmailParams {
   email: string;
@@ -20,6 +24,7 @@ export interface SendPaymentSuccessEmailParams {
   pdfBuffer?: Buffer;
   countryName?: string;
   dimensions?: string;
+  planType?: PlanType;
   bcc?: string[];
 }
 
@@ -63,6 +68,7 @@ export async function sendPaymentSuccessEmailAction(
     tags: [
       { name: "type", value: "payment_success" },
       { name: "payment_id", value: params.paymentId },
+      { name: "plan_type", value: params.planType || "standard" },
     ],
   });
 
@@ -70,6 +76,51 @@ export async function sendPaymentSuccessEmailAction(
     const errorMsg = result.error.message || JSON.stringify(result.error);
     console.error(`[email] Resend API Error for payment ${params.paymentId}:`, errorMsg);
     throw new Error(`Resend error: ${errorMsg}`);
+  }
+
+  return result.data?.id || "unknown";
+}
+
+/**
+ * Send Expert Edit alert with original customer photo and country details to editing specialists.
+ */
+export async function sendExpertEditTeamNotificationAction(
+  params: ExpertEditNotificationParams
+): Promise<string> {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey || apiKey.startsWith("re_demo") || apiKey.startsWith("re_123")) {
+    console.info(
+      `[email] Dev mode: Skipping live expert edit team notification for payment ${params.paymentId}.`
+    );
+    return `dev_mock_expert_${Date.now()}`;
+  }
+
+  const resend = getResendClient();
+  const { subject, html } = expertEditNotificationEmail(params);
+
+  // Send to BCC team / primary contact mailbox
+  const teamRecipients = [
+    "usvisaphotoai@gmail.com",
+    REPLY_TO_EMAIL,
+    ...BCC_EMAILS,
+  ].filter((v, i, a) => a.indexOf(v) === i); // deduplicate
+
+  const result = await resend.emails.send({
+    from: FROM_EMAIL,
+    to: teamRecipients,
+    replyTo: `${params.email}`,
+    subject,
+    html,
+    tags: [
+      { name: "type", value: "expert_edit_request" },
+      { name: "payment_id", value: params.paymentId },
+    ],
+  });
+
+  if (result.error) {
+    const errorMsg = result.error.message || JSON.stringify(result.error);
+    console.error(`[email] Failed to send expert edit team alert for ${params.paymentId}:`, errorMsg);
+    throw new Error(`Resend expert alert error: ${errorMsg}`);
   }
 
   return result.data?.id || "unknown";

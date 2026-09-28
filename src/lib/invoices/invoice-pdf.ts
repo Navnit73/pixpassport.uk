@@ -3,6 +3,8 @@
  * Creates clean, lightweight, vector A4 Tax Invoice PDFs matching PixPassport compliance standards.
  */
 
+import fs from "fs";
+import path from "path";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import { PRICING } from "@/lib/config/pricing";
 
@@ -82,20 +84,40 @@ export async function generateInvoicePdfBuffer(params: InvoicePdfParams): Promis
 
   // 2. Header Section
   // Left: Brand Logo & Details
-  page.drawRectangle({
-    x: margin,
-    y: y - 32,
-    width: 34,
-    height: 34,
-    color: primaryColor,
-  });
-  page.drawText("P", {
-    x: margin + 10,
-    y: y - 24,
-    size: 20,
-    font: fontBold,
-    color: rgb(1, 1, 1),
-  });
+  let logoEmbedded = false;
+  try {
+    const logoPath = path.join(process.cwd(), "public", "pixpassport.jpg");
+    if (fs.existsSync(logoPath)) {
+      const logoBytes = fs.readFileSync(logoPath);
+      const logoImage = await pdfDoc.embedJpg(logoBytes);
+      page.drawImage(logoImage, {
+        x: margin,
+        y: y - 34,
+        width: 34,
+        height: 34,
+      });
+      logoEmbedded = true;
+    }
+  } catch (err) {
+    console.error("Failed to embed invoice logo:", err);
+  }
+
+  if (!logoEmbedded) {
+    page.drawRectangle({
+      x: margin,
+      y: y - 32,
+      width: 34,
+      height: 34,
+      color: primaryColor,
+    });
+    page.drawText("P", {
+      x: margin + 10,
+      y: y - 24,
+      size: 20,
+      font: fontBold,
+      color: rgb(1, 1, 1),
+    });
+  }
 
   page.drawText("PixPassport", {
     x: margin + 44,

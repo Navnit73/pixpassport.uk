@@ -516,12 +516,8 @@ export function generateInvoiceHtml(params: GenerateInvoiceHtmlParams): string {
     <!-- Header Row -->
     <div class="header-row">
       <div class="brand-section">
-        <div class="brand-logo-badge">
-          <!-- Shield Check Icon -->
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <path d="m9 12 2 2 4-4"/>
-          </svg>
+        <div class="brand-logo-badge" style="background: transparent; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 2px 6px rgba(0,0,0,0.06);">
+          <img src="https://res.cloudinary.com/dipzpwbbk/image/upload/v1790589684/pixpassport_eq8aay.jpg" alt="PixPassport Logo" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
         </div>
         <div>
           <div class="brand-title">PixPassport</div>

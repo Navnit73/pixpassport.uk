@@ -60,9 +60,18 @@ export function baseEmailTemplate(params: {
         <div class="wrapper" style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e2e8f0;">
           <!-- Header -->
           <div class="header" style="background-color:#0f172a;padding:24px 32px;text-align:center;">
-            <h1 style="color:#ffffff;font-size:20px;margin:0;font-weight:700;">
-              Pix<span class="brand-accent" style="color:#84cc16;">Passport</span>
-            </h1>
+            <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+              <tr>
+                <td style="vertical-align:middle;padding-right:10px;">
+                  <img src="https://res.cloudinary.com/dipzpwbbk/image/upload/v1790589684/pixpassport_eq8aay.jpg" alt="PixPassport Logo" width="34" height="34" style="display:block;border-radius:8px;border:1px solid rgba(255,255,255,0.2);" />
+                </td>
+                <td style="vertical-align:middle;">
+                  <h1 style="color:#ffffff;font-size:22px;margin:0;font-weight:700;letter-spacing:-0.5px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;">
+                    Pix<span class="brand-accent" style="color:#84cc16;">Passport</span>
+                  </h1>
+                </td>
+              </tr>
+            </table>
           </div>
 
           <!-- Body Content -->

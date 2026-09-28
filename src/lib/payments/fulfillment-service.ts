@@ -10,7 +10,10 @@ import { getPaymentById } from "@/lib/payments/payment-service";
 import { generateInvoiceNumber } from "@/lib/invoices/invoice-service";
 import { generateInvoicePdfBuffer } from "@/lib/invoices/invoice-pdf";
 import { uploadInvoicePdfToCloudinary } from "@/lib/storage/cloudinary";
-import { sendPaymentSuccessEmailAction } from "@/lib/email";
+import {
+  sendPaymentSuccessEmailAction,
+  sendExpertEditTeamNotificationAction,
+} from "@/lib/email";
 import { logActivity } from "@/lib/logging/activity-logger";
 import { PRICING } from "@/lib/config/pricing";
 
@@ -179,6 +182,7 @@ export async function fulfillPayment(paymentId: string): Promise<FulfillmentResu
           pdfBuffer,
           countryName: payment.metadata?.countryName,
           dimensions: payment.image?.dimensions,
+          planType: payment.planType,
         });
 
         await col.updateOne(
@@ -199,8 +203,33 @@ export async function fulfillPayment(paymentId: string): Promise<FulfillmentResu
           status: "success",
           paymentId,
           email: payment.email,
-          metadata: { resendId, invoiceNumber, hasAttachment: !!pdfBuffer },
+          metadata: { resendId, invoiceNumber, hasAttachment: !!pdfBuffer, planType: payment.planType },
         });
+
+        // If Expert Edit was selected, dispatch the expert review notification to the editing specialists
+        if (payment.planType === "expert_edit" || payment.metadata?.isExpertEdit) {
+          try {
+            await sendExpertEditTeamNotificationAction({
+              email: payment.email,
+              paymentId: payment.paymentId,
+              razorpayPaymentId: payment.razorpayPaymentId || "",
+              amount: payment.amount,
+              currency: payment.currency,
+              countryName: payment.metadata?.countryName,
+              countryCode: payment.metadata?.countryCode,
+              dimensions: payment.image?.dimensions,
+              originalImageUrl:
+                payment.image?.originalImageUrl ||
+                payment.metadata?.originalPreviewUrl ||
+                payment.image?.imageUrl,
+              processedImageUrl: payment.image?.imageUrl,
+              previewUrl: payment.image?.previewUrl,
+              paidAt: payment.paidAt,
+            });
+          } catch (expertAlertErr) {
+            console.warn("[fulfillment] Expert edit team alert warning:", expertAlertErr);
+          }
+        }
       } catch (emailErr) {
         const errMsg = emailErr instanceof Error ? emailErr.message : "Unknown email error";
         await col.updateOne(

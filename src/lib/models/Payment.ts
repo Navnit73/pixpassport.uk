@@ -65,8 +65,12 @@ export interface PaymentDocument {
   fulfillmentStatus: FulfillmentStatus;
 
   productType: string;
+  planType?: "standard" | "expert_edit";
+  expertReviewStatus?: "pending" | "in_review" | "completed";
 
-  image: PaymentImage;
+  image: PaymentImage & {
+    originalImageUrl?: string;
+  };
 
   invoice: PaymentInvoice;
 
@@ -81,6 +85,8 @@ export interface PaymentDocument {
     sessionId?: string;
     countryCode?: string;
     countryName?: string;
+    isExpertEdit?: boolean;
+    originalPreviewUrl?: string;
   };
 
   createdAt: Date;

@@ -173,6 +173,13 @@ export default function PrintTemplateGenerator({
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const imageElementRef = useRef<HTMLImageElement | null>(null);
 
+  // Sync image source whenever initialImageUrl prop updates
+  useEffect(() => {
+    if (initialImageUrl) {
+      setImageSrc(initialImageUrl);
+    }
+  }, [initialImageUrl]);
+
   // Active configurations
   const currentPaper = PAPER_SIZES.find((p) => p.id === paperSizeId) || PAPER_SIZES[0];
   const currentPhoto = PHOTO_STANDARDS.find((p) => p.id === photoStandardId) || PHOTO_STANDARDS[0];
