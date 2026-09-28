@@ -1,6 +1,6 @@
 ---
-slug: "baby-passport-photo"
-title: "Baby Passport Photo Maker Online (UK HMPO Compliant Infant Photo)"
+slug: "uk-baby-passport-photo"
+title: "UK Baby Passport Photo Maker Online (UK HMPO Compliant Infant Photo)"
 meta_description: "Create official UK baby and child passport photos online. 100% compliant with HMPO infant rules. Automatic white sheet background clean-up and sizing."
 country_code: "GB"
 document_type: "passport"

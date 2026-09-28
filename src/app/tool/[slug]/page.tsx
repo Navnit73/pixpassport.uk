@@ -70,7 +70,7 @@ const ALL_POPULAR_TOOLS = [
   { slug: "uk-passport-photo", title: "UK Passport Photo", flag: "🇬🇧", spec: "35×45 mm" },
   { slug: "us-visa-photo", title: "US Visa & Passport", flag: "🇺🇸", spec: "2×2 inches" },
   { slug: "schengen-visa-photo", title: "Schengen Visa", flag: "🇪🇺", spec: "35×45 mm" },
-  { slug: "baby-passport-photo", title: "Baby Passport Photo", flag: "👶", spec: "UK HMPO" },
+  { slug: "uk-baby-passport-photo", title: "UK Baby Passport Photo", flag: "👶", spec: "UK HMPO" },
   { slug: "indian-passport-photo", title: "Indian Passport & OCI", flag: "🇮🇳", spec: "51×51 mm" },
   { slug: "driving-licence-photo", title: "UK Driving Licence", flag: "🚗", spec: "DVLA 35×45 mm" },
 ];

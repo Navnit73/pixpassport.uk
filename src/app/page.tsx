@@ -723,7 +723,7 @@ export default function HomePage() {
                   desc: "Biometric standard for France, Germany, Italy, Spain, and all 29 European member states.",
                 },
                 {
-                  slug: "baby-passport-photo",
+                  slug: "uk-baby-passport-photo",
                   title: "Baby Passport Photo",
                   spec: "UK HMPO Infant Size",
                   flag: "👶",

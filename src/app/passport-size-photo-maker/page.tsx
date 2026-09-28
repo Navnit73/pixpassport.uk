@@ -65,8 +65,8 @@ const POPULAR_TOOL_LINKS = [
     flag: "🇪🇺",
   },
   {
-    slug: "baby-passport-photo",
-    title: "Baby Passport Photo",
+    slug: "uk-baby-passport-photo",
+    title: "UK Baby Passport Photo",
     spec: "HMPO Infant",
     flag: "👶",
   },
