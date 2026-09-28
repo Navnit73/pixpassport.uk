@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { sendContactNotificationEmailAction } from "@/lib/email";
 
 export const runtime = "nodejs";
 
@@ -75,12 +76,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 3. Log / Process submission safely
-    console.info(
-      `[Contact Submission] From: ${name.trim()} <${email.trim()}> | Subject: ${subject} | Result ID: ${
-        resultId || "N/A"
-      }`
-    );
+    // 3. Send notification email via Resend (BCC to usvisaphotoai@gmail.com)
+    try {
+      await sendContactNotificationEmailAction({
+        name: name.trim(),
+        email: email.trim(),
+        subject: subject.trim(),
+        message: message.trim(),
+        resultId: resultId?.trim(),
+      });
+    } catch (emailErr) {
+      console.error("[contact] Failed to dispatch notification email:", emailErr);
+    }
 
     return NextResponse.json(
       {
