@@ -44,18 +44,35 @@ export async function POST(req: NextRequest) {
     const eventId: string = event.event_id || event.id || "";
     const eventType: string = event.event || "";
 
-    // Deduplicate — reject if already processed
-    const webhookCol = await getWebhookEventCollection();
-    if (eventId) {
-      const existing = await webhookCol.findOne({ eventId });
-      if (existing) {
-        return NextResponse.json({ status: "already_processed" });
-      }
-    }
-
     const paymentEntity = event.payload?.payment?.entity;
     const rzOrderId: string = paymentEntity?.order_id || "";
     const rzPaymentId: string = paymentEntity?.id || "";
+
+    // Atomic Deduplication — unique index on eventId prevents concurrent duplicate processing
+    const webhookCol = await getWebhookEventCollection();
+    if (eventId) {
+      try {
+        await webhookCol.insertOne({
+          eventId,
+          eventType,
+          razorpayPaymentId: rzPaymentId,
+          razorpayOrderId: rzOrderId,
+          status: "processing",
+          createdAt: new Date(),
+        });
+      } catch (insertErr: unknown) {
+        // MongoDB duplicate key error code is 11000
+        if (
+          typeof insertErr === "object" &&
+          insertErr !== null &&
+          "code" in insertErr &&
+          (insertErr as { code: number }).code === 11000
+        ) {
+          return NextResponse.json({ status: "already_processed" });
+        }
+        throw insertErr;
+      }
+    }
 
     await logActivity({
       event: "payment_webhook_received",
@@ -68,20 +85,17 @@ export async function POST(req: NextRequest) {
     });
 
     if (eventType === "payment.captured") {
-      const { transitioned, payment } = await markPaymentPaid({
+      const { payment } = await markPaymentPaid({
         razorpayOrderId: rzOrderId,
         razorpayPaymentId: rzPaymentId,
       });
 
-      // Record webhook event
-      await webhookCol.insertOne({
-        eventId,
-        eventType,
-        razorpayPaymentId: rzPaymentId,
-        razorpayOrderId: rzOrderId,
-        status: "processed",
-        createdAt: new Date(),
-      });
+      if (eventId) {
+        await webhookCol.updateOne(
+          { eventId },
+          { $set: { status: "processed", processedAt: new Date() } }
+        );
+      }
 
       // Trigger fulfillment (idempotent) if payment exists
       if (payment) {

@@ -37,8 +37,11 @@ export async function GET(_req: NextRequest, context: RouteContext) {
       success: true,
       paymentId: payment.paymentId,
       status: payment.status,
+      planType: payment.planType || "standard",
+      email: payment.email,
       fulfillmentStatus: payment.fulfillmentStatus,
       downloadToken: payment.status === "paid" ? payment.downloadToken : undefined,
+      invoiceNumber: payment.invoice?.invoiceNumber,
       paidAt: payment.paidAt,
     });
   } catch (err: unknown) {

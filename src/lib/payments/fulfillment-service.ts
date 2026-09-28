@@ -60,8 +60,8 @@ export async function fulfillPayment(paymentId: string): Promise<FulfillmentResu
     { $set: { fulfillmentStatus: "processing" as FulfillmentStatus, updatedAt: new Date() } }
   );
 
-  // If another process has the lock, fetch and return latest state
-  if (lockResult.modifiedCount === 0 && payment.fulfillmentStatus === "processing") {
+  // If another process has claimed or completed the lock, return latest state immediately
+  if (lockResult.modifiedCount === 0) {
     const latest = await getPaymentById(paymentId);
     return {
       downloadToken: latest?.downloadToken,
@@ -162,8 +162,22 @@ export async function fulfillPayment(paymentId: string): Promise<FulfillmentResu
       );
     }
 
-    // 4. Send email with PDF attachment (idempotent — skip if already sent)
-    if (payment.emailDelivery?.status !== "sent") {
+    // 4. Send email with PDF attachment (atomic lock — strictly prevents multiple emails)
+    const emailLock = await col.findOneAndUpdate(
+      {
+        paymentId,
+        "emailDelivery.status": { $in: ["pending", "failed"] },
+      },
+      {
+        $set: {
+          "emailDelivery.status": "sending",
+          updatedAt: new Date(),
+        },
+      },
+      { returnDocument: "after" }
+    );
+
+    if (emailLock) {
       const siteUrl = PRICING.siteUrl;
       const downloadUrl = `${siteUrl}/api/download/${downloadToken}`;
       const invoiceUrl = `${siteUrl}/api/invoices/${paymentId}`;

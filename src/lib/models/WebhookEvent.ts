@@ -11,8 +11,9 @@ export interface WebhookEventDocument {
   eventType: string;
   razorpayPaymentId?: string;
   razorpayOrderId?: string;
-  status: "processed" | "failed";
+  status: "processing" | "processed" | "failed";
   metadata?: Record<string, unknown>;
+  processedAt?: Date;
   createdAt: Date;
 }
 
