@@ -50,7 +50,7 @@ Here is how the sizes compare across Indian documents:
 
 Foreign travellers applying for an Indian eVisa use a different format from Indian passport holders. The eVisa and OCI portals ask for a square photo, so the 35×45 mm passport format on this page is not the one to use.
 
-Use our [Indian eVisa photo maker](/visa-photo-online) for visa photos, or our [OCI photo editor](/oci-photo-editor) for OCI cards, and check the official portal for the latest file requirements.
+Use our [Passport Size Photo Studio](/passport-size-photo-maker) or [US Visa & 2×2″ Photo Maker](/tool/us-visa-photo-tool) for square photo formats, and check the official portal for the latest file requirements.
 
 ## Official Indian Passport Photo Guidelines
 
@@ -137,7 +137,7 @@ For standard Passport Seva applications, use 35×45 mm. The 2×2 inch square pho
 
 ### What photo size do I need for an Indian eVisa?
 
-The Indian eVisa portal asks for a square photo, not the 35×45 mm passport size. Use our [Indian eVisa photo maker](/visa-photo-online) and check the portal for the current file requirements.
+The Indian eVisa portal asks for a square photo, not the 35×45 mm passport size. Use our [US Visa & 2×2″ Photo Maker](/tool/us-visa-photo-tool) or [Passport Size Photo Studio](/passport-size-photo-maker) and check the portal for the current file requirements.
 
 ### Can I make an Indian passport photo with my phone?
 

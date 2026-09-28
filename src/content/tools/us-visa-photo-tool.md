@@ -123,7 +123,7 @@ Print at 100% scale on glossy or matte photo paper, with no borders or scaling. 
 
 ## Need a Different Country's Photo?
 
-The US uses a square photo, but most countries use another format. Use our [Indian passport photo maker](/indian-passport-photo-maker) for 35×45 mm Indian passport photos, or our [UK driving licence photo maker](/uk-driving-licence-photo) for DVLA applications.
+The US uses a square photo, but most countries use another format. Use our [Indian passport photo maker](/tool/indian-passport-photo-maker) for 35×45 mm Indian passport photos, or our [UK driving licence photo maker](/tool/uk-driving-licence-photo) for DVLA applications.
 
 ## Frequently Asked Questions
 

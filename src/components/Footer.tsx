@@ -16,28 +16,33 @@ export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
     { label: "Features", href: "/#features" },
     { label: "Pricing", href: "/#pricing" },
     { label: "FAQ", href: "/#faq" },
+    { label: "XML Sitemap", href: "/sitemap.xml" },
   ],
-  "Popular Tools": [
+  "Country Guides": [
     { label: "UK Passport Photo (35×45mm)", href: "/tool/uk-passport-photo" },
+    { label: "UK Passport Renewal Photo", href: "/tool/passport-renewal-photo-online" },
+    { label: "UK Baby Passport Photo", href: "/tool/uk-baby-passport-photo" },
+    { label: "UK Driving Licence Photo", href: "/tool/uk-driving-licence-photo" },
     { label: "US Visa & Passport (2×2″)", href: "/tool/us-visa-photo-tool" },
     { label: "Schengen Visa Photo", href: "/tool/schengen-visa-photo" },
-    { label: "UK Baby Passport Photo", href: "/tool/uk-baby-passport-photo" },
     { label: "Indian Passport & OCI", href: "/tool/indian-passport-photo-maker" },
-    { label: "UK Driving Licence Photo", href: "/tool/uk-driving-licence-photo" },
   ],
-  Company: [
+  "Photo Tools": [
+    { label: "Digital Passport Photo", href: "/tool/digital-passport-photo" },
+    { label: "35×45 mm Photo Size", href: "/tool/photo-size-35x45mm" },
+    { label: "Image to Passport Converter", href: "/tool/image-to-passport-size-converter" },
+    { label: "Passport Photo at Home", href: "/tool/passport-photo-at-home" },
+    { label: "Online Passport Photo Tool", href: "/tool/passport-photo-tool" },
+    { label: "Online ID Photo Maker", href: "/tool/online-id-photo-maker" },
+    { label: "Order Passport Photos", href: "/tool/order-passport-photos-online" },
+  ],
+  "Company & Legal": [
     { label: "About Us", href: "/about-us" },
     { label: "Contact Us", href: "/contact-us" },
-    { label: "UK Photo Sizing Rules", href: "/#photo-rules" },
-  ],
-  Legal: [
+    { label: "Data Security & Privacy", href: "/data-security-privacy-safeguards" },
     { label: "Privacy Policy", href: "/privacy-policy" },
     { label: "Terms of Service", href: "/terms-of-service" },
     { label: "Refund Policy", href: "/refund-policy" },
-    {
-      label: "Data Security & Safeguards",
-      href: "/data-security-privacy-safeguards",
-    },
   ],
 };
 

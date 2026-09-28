@@ -68,12 +68,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 const ALL_POPULAR_TOOLS = [
-  { slug: "uk-passport-photo", title: "UK Passport Photo", flag: "🇬🇧", spec: "35×45 mm" },
-  { slug: "us-visa-photo-tool", title: "US Visa & Passport", flag: "🇺🇸", spec: "2×2 inches" },
-  { slug: "schengen-visa-photo", title: "Schengen Visa", flag: "🇪🇺", spec: "35×45 mm" },
-  { slug: "uk-baby-passport-photo", title: "UK Baby Passport Photo", flag: "👶", spec: "UK HMPO" },
-  { slug: "indian-passport-photo-maker", title: "Indian Passport & OCI", flag: "🇮🇳", spec: "51×51 mm" },
-  { slug: "uk-driving-licence-photo", title: "UK Driving Licence", flag: "🚗", spec: "DVLA 35×45 mm" },
+  { slug: "uk-passport-photo", title: "UK Passport Photo", flag: "🇬🇧", spec: "35×45 mm", category: "Country Guide" },
+  { slug: "passport-renewal-photo-online", title: "UK Passport Renewal", flag: "🔄", spec: "35×45 mm", category: "Country Guide" },
+  { slug: "uk-baby-passport-photo", title: "UK Baby Passport Photo", flag: "👶", spec: "UK HMPO Infant", category: "Country Guide" },
+  { slug: "uk-driving-licence-photo", title: "UK Driving Licence", flag: "🚗", spec: "DVLA 35×45 mm", category: "Country Guide" },
+  { slug: "us-visa-photo-tool", title: "US Visa & Passport", flag: "🇺🇸", spec: "2×2 inches", category: "Country Guide" },
+  { slug: "schengen-visa-photo", title: "Schengen Visa Photo", flag: "🇪🇺", spec: "35×45 mm", category: "Country Guide" },
+  { slug: "indian-passport-photo-maker", title: "Indian Passport & OCI", flag: "🇮🇳", spec: "35×45 mm / 2×2″", category: "Country Guide" },
+  { slug: "digital-passport-photo", title: "Digital Passport Photo", flag: "💻", spec: "Online Upload", category: "Photo Tool" },
+  { slug: "photo-size-35x45mm", title: "35×45 mm Photo Size", flag: "📐", spec: "Standard Ratio", category: "Photo Tool" },
+  { slug: "image-to-passport-size-converter", title: "Image to Passport Converter", flag: "🔄", spec: "Auto-Crop", category: "Photo Tool" },
+  { slug: "passport-photo-at-home", title: "Passport Photo at Home", flag: "🏠", spec: "DIY & Print", category: "Photo Tool" },
+  { slug: "passport-photo-tool", title: "Passport Photo Tool", flag: "✂️", spec: "50+ Countries", category: "Photo Tool" },
+  { slug: "online-id-photo-maker", title: "Online ID Photo Maker", flag: "🪪", spec: "All ID Types", category: "Photo Tool" },
+  { slug: "order-passport-photos-online", title: "Order Passport Photos", flag: "📦", spec: "Digital & Prints", category: "Photo Tool" },
 ];
 
 export default async function DynamicToolPage({ params }: PageProps) {
@@ -382,11 +390,14 @@ export default async function DynamicToolPage({ params }: PageProps) {
           <div className="container-narrow">
             <div className="text-center max-w-2xl mx-auto mb-10">
               <span className="inline-block px-3 py-1 rounded-full bg-lime-100 border border-lime-300 text-[#4D7C0F] text-xs font-bold mb-2">
-                Global Biometric Formats
+                Biometric Standards &amp; Tools
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight">
                 Explore Other Passport &amp; Visa Tools
               </h2>
+              <p className="text-slate-600 text-sm mt-2">
+                Official sizing rules, conversion tools, and DIY guides for all major document types.
+              </p>
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -394,12 +405,17 @@ export default async function DynamicToolPage({ params }: PageProps) {
                 <Link
                   key={t.slug}
                   href={`/tool/${t.slug}`}
-                  className="bg-white border border-slate-200 hover:border-lime-600 p-5 rounded-2xl flex items-center justify-between transition-all group shadow-2xs"
+                  className="bg-white border border-slate-200 hover:border-lime-600 p-4.5 sm:p-5 rounded-2xl flex items-center justify-between transition-all group shadow-2xs"
                 >
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl" role="img" aria-hidden="true">{t.flag}</span>
-                    <div>
-                      <span className="text-sm font-bold text-slate-900 group-hover:text-lime-900 transition-colors block">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="text-2xl shrink-0" role="img" aria-hidden="true">{t.flag}</span>
+                    <div className="min-w-0">
+                      <div className="flex items-center gap-1.5 mb-0.5">
+                        <span className="text-xs font-semibold text-lime-800 bg-lime-50 px-1.5 py-0.5 rounded text-[10px]">
+                          {t.category}
+                        </span>
+                      </div>
+                      <span className="text-sm font-bold text-slate-900 group-hover:text-lime-900 transition-colors block truncate">
                         {t.title}
                       </span>
                       <span className="text-xs text-slate-500 font-mono">
@@ -407,7 +423,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
                       </span>
                     </div>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#4D7C0F] group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#4D7C0F] group-hover:translate-x-1 transition-all shrink-0 ml-2" />
                 </Link>
               ))}
             </div>

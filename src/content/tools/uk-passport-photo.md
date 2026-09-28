@@ -135,7 +135,7 @@ Booths and high-street shops charge more than most people expect, and queues add
 
 ## Other Photo Formats
 
-Applying for another document? Use our [UK driving licence photo maker](/uk-driving-licence-photo) for DVLA applications, or our [US visa photo maker](/us-visa-photo-tool) for the square 2×2 inch format.
+Applying for another document? Use our [UK driving licence photo maker](/tool/uk-driving-licence-photo) for DVLA applications, our [UK passport renewal photo tool](/tool/passport-renewal-photo-online), or our [US visa photo maker](/tool/us-visa-photo-tool) for the square 2×2 inch format.
 
 ## Frequently Asked Questions
 
@@ -170,7 +170,7 @@ Take it within the last month, and make sure it looks like you now.
 
 ### Are the DVLA and passport photo rules the same?
 
-They are very similar. For details, see our [UK driving licence photo page](/uk-driving-licence-photo).
+They are very similar. For details, see our [UK driving licence photo page](/tool/uk-driving-licence-photo).
 
 ## Get Your UK Passport Photo Now
 

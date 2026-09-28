@@ -770,6 +770,33 @@ export default function HomePage() {
                 </Link>
               ))}
             </div>
+
+            {/* Quick Link Pills to Specialized Converters & Photo Tools */}
+            <div className="mt-8 pt-6 border-t border-slate-200/80 max-w-5xl mx-auto">
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 mr-1">
+                  More Tools:
+                </span>
+                {[
+                  { slug: "passport-renewal-photo-online", label: "UK Passport Renewal" },
+                  { slug: "digital-passport-photo", label: "Digital Photo for Passport" },
+                  { slug: "photo-size-35x45mm", label: "35×45 mm Photo Size" },
+                  { slug: "image-to-passport-size-converter", label: "Image to Passport Converter" },
+                  { slug: "passport-photo-at-home", label: "Passport Photo at Home" },
+                  { slug: "online-id-photo-maker", label: "Online ID Photo Maker" },
+                  { slug: "order-passport-photos-online", label: "Order Passport Photos" },
+                ].map((item) => (
+                  <Link
+                    key={item.slug}
+                    href={`/tool/${item.slug}`}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-lime-50 border border-slate-200 hover:border-lime-300 text-xs font-semibold text-slate-800 hover:text-lime-900 transition-colors"
+                  >
+                    <span>{item.label}</span>
+                    <ArrowRight className="w-3 h-3 text-slate-400" />
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 

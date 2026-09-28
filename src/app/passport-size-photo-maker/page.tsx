@@ -53,6 +53,24 @@ const POPULAR_TOOL_LINKS = [
     flag: "🇬🇧",
   },
   {
+    slug: "passport-renewal-photo-online",
+    title: "UK Passport Renewal",
+    spec: "35×45 mm",
+    flag: "🔄",
+  },
+  {
+    slug: "uk-baby-passport-photo",
+    title: "UK Baby Passport Photo",
+    spec: "HMPO Infant",
+    flag: "👶",
+  },
+  {
+    slug: "uk-driving-licence-photo",
+    title: "UK Driving Licence",
+    spec: "DVLA 35×45 mm",
+    flag: "🚗",
+  },
+  {
     slug: "us-visa-photo-tool",
     title: "US Visa & Passport",
     spec: "2×2 inches",
@@ -65,22 +83,52 @@ const POPULAR_TOOL_LINKS = [
     flag: "🇪🇺",
   },
   {
-    slug: "uk-baby-passport-photo",
-    title: "UK Baby Passport Photo",
-    spec: "HMPO Infant",
-    flag: "👶",
-  },
-  {
     slug: "indian-passport-photo-maker",
     title: "Indian Passport & OCI",
-    spec: "51×51 mm",
+    spec: "35×45 / 2×2″",
     flag: "🇮🇳",
   },
   {
-    slug: "uk-driving-licence-photo",
-    title: "UK Driving Licence",
-    spec: "DVLA 35×45 mm",
-    flag: "🚗",
+    slug: "digital-passport-photo",
+    title: "Digital Passport Photo",
+    spec: "Online Upload",
+    flag: "💻",
+  },
+  {
+    slug: "photo-size-35x45mm",
+    title: "35×45 mm Photo Size",
+    spec: "Standard Ratio",
+    flag: "📐",
+  },
+  {
+    slug: "image-to-passport-size-converter",
+    title: "Image to Passport Converter",
+    spec: "Auto-Crop",
+    flag: "🔄",
+  },
+  {
+    slug: "passport-photo-at-home",
+    title: "Passport Photo at Home",
+    spec: "DIY & Print",
+    flag: "🏠",
+  },
+  {
+    slug: "passport-photo-tool",
+    title: "Passport Photo Tool",
+    spec: "50+ Countries",
+    flag: "✂️",
+  },
+  {
+    slug: "online-id-photo-maker",
+    title: "Online ID Photo Maker",
+    spec: "All ID Types",
+    flag: "🪪",
+  },
+  {
+    slug: "order-passport-photos-online",
+    title: "Order Passport Photos",
+    spec: "Digital & Prints",
+    flag: "📦",
   },
 ];
 

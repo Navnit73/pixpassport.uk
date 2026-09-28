@@ -138,7 +138,7 @@ Children need the same size and background, but HMPO relaxes some rules for youn
 
 ## Other Photo Formats
 
-Need a different document? Use our [UK passport photo maker](/uk-passport-photo) for first-time and general applications, our [UK driving licence photo maker](/uk-driving-licence-photo) for DVLA forms, or our [US visa photo maker](/us-visa-photo-tool) for the square 2×2 inch format.
+Need a different document? Use our [UK passport photo maker](/tool/uk-passport-photo) for first-time and general applications, our [UK driving licence photo maker](/tool/uk-driving-licence-photo) for DVLA forms, or our [US visa photo maker](/tool/us-visa-photo-tool) for the square 2×2 inch format.
 
 ## Frequently Asked Questions
 
