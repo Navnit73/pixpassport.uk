@@ -8,9 +8,13 @@ export const metadata: Metadata = {
   title: "Page Not Found (404)",
   description:
     "The page you are looking for does not exist or has been moved. Create a compliant passport photo online with PixPassport.",
+  alternates: {
+    canonical: undefined,
+    languages: undefined,
+  },
   robots: {
     index: false,
-    follow: true,
+    follow: false,
   },
 };
 

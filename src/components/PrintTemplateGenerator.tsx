@@ -215,21 +215,6 @@ export default function PrintTemplateGenerator({
     ? Math.min(photoCountOverride, maxCapacity)
     : maxCapacity;
 
-  // Load image object whenever source changes
-  useEffect(() => {
-    if (!imageSrc) {
-      imageElementRef.current = null;
-      return;
-    }
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.onload = () => {
-      imageElementRef.current = img;
-      renderCanvas();
-    };
-    img.src = imageSrc;
-  }, [imageSrc]);
-
   // Main Canvas Rendering Function
   const renderCanvas = useCallback(() => {
     const canvas = canvasRef.current;
@@ -373,7 +358,6 @@ export default function PrintTemplateGenerator({
     photoWidthPx,
     photoHeightPx,
     gapPx,
-    marginPx,
     maxCols,
     maxRows,
     activePhotoCount,
@@ -382,6 +366,21 @@ export default function PrintTemplateGenerator({
     photoWidthMm,
     photoHeightMm,
   ]);
+
+  // Load image object whenever source changes
+  useEffect(() => {
+    if (!imageSrc) {
+      imageElementRef.current = null;
+      return;
+    }
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => {
+      imageElementRef.current = img;
+      renderCanvas();
+    };
+    img.src = imageSrc;
+  }, [imageSrc, renderCanvas]);
 
   useEffect(() => {
     if (imageSrc) {

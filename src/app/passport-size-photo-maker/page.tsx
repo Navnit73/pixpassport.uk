@@ -136,8 +136,12 @@ export default function PassportSizePhotoMakerPage() {
   return (
     <>
       <JsonLd
+        siteUrl={SITE_URL}
+        siteName="PixPassport"
         price="7.99"
         priceCurrency="GBP"
+        appUrl={`${SITE_URL}/passport-size-photo-maker`}
+        appId={`${SITE_URL}/#webapp`}
         description="Create official biometric passport size photos online with instant verification and printable 6x4 inch sheet."
         breadcrumbs={[
           { name: "Home", url: SITE_URL },
@@ -146,6 +150,9 @@ export default function PassportSizePhotoMakerPage() {
             url: `${SITE_URL}/passport-size-photo-maker`,
           },
         ]}
+        includeOrganization={false}
+        includeWebsite={false}
+        includeWebApp={true}
       />
 
       <Navbar ctaText="Home" ctaHref="/" />

@@ -73,8 +73,15 @@ export default function ContactUsPage() {
     url: `${SITE_URL}/contact-us`,
     mainEntity: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "PixPassport",
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/pixpassport.jpg`,
+        width: 512,
+        height: 512,
+      },
       contactPoint: {
         "@type": "ContactPoint",
         email: "support@pixpassport.uk",

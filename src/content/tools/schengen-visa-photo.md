@@ -9,6 +9,7 @@ hero_title: "Schengen Visa Photo Maker Online"
 hero_subtitle: "Turn any picture into an official European Schengen visa photo. Meets official ICAO 35×45mm rules for all 29 member countries including France, Germany, Italy, and Spain."
 dimensions_mm: "35 × 45 mm"
 feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
+feature_image_alt: "Schengen visa photo 35×45 mm with plain light background"
 dimensions_px: "630 × 810 px"
 price: "7.99"
 ---

@@ -9,6 +9,7 @@ hero_title: "Baby Passport Photo Maker Online"
 hero_subtitle: "Take your baby's passport photo comfortably at home on your phone. Calibrated to HMPO infant guidelines with automatic background cleaning and 100% acceptance guarantee."
 dimensions_mm: "35 × 45 mm"
 feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790579370/uk_baby_passport_size_photo_example_fptfhf.webp"
+feature_image_alt: "UK baby passport photo 35×45 mm meeting HMPO infant standards"
 dimensions_px: "600 × 750 px"
 price: "7.99"
 ---

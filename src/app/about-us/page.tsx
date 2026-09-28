@@ -77,12 +77,17 @@ export default function AboutUsPage() {
     name: "About PixPassport",
     description:
       "PixPassport is an independent, privacy-focused online passport and biometric photo formatting tool.",
-    url: `${SITE_URL}/about-us`,
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
       name: "PixPassport",
       url: SITE_URL,
-      logo: `${SITE_URL}/pixpassport.jpg`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/pixpassport.jpg`,
+        width: 512,
+        height: 512,
+      },
     },
   };
 

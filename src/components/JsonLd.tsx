@@ -9,6 +9,9 @@ export interface JsonLdProps {
   description?: string;
   logoUrl?: string;
   imageUrl?: string;
+  appName?: string;
+  appUrl?: string;
+  appId?: string;
   applicationCategory?: string;
   price?: string;
   priceCurrency?: string;
@@ -34,6 +37,9 @@ export default function JsonLd({
   description = "Create a digital photo for passport applications and renewals online. Official UK passport photo maker for £7.99.",
   logoUrl = `${DEFAULT_SITE_URL}/pixpassport.jpg`,
   imageUrl = `${DEFAULT_SITE_URL}/pixpassport.jpg`,
+  appName,
+  appUrl,
+  appId,
   applicationCategory = "PhotographyApplication",
   price = "7.99",
   priceCurrency = "GBP",
@@ -81,13 +87,16 @@ export default function JsonLd({
   }
 
   if (includeWebApp) {
+    const resolvedAppUrl = appUrl || `${siteUrl}/passport-size-photo-maker`;
+    const resolvedAppId = appId || `${siteUrl}/#webapp`;
+    const resolvedAppName = appName || `${siteName} Passport Photo Maker`;
+
     graph.push({
       "@type": "WebApplication",
-      "@id": `${siteUrl}/#webapp`,
-      name: `${siteName} Passport Photo Maker`,
-      url: `${siteUrl}/passport-size-photo-maker`,
-      description:
-        "Online biometric passport photo maker. Automatically crops and formats photos to official government requirements for the UK, US, and 50+ countries.",
+      "@id": resolvedAppId,
+      name: resolvedAppName,
+      url: resolvedAppUrl,
+      description: description,
       applicationCategory: applicationCategory,
       operatingSystem: "All",
       browserRequirements:

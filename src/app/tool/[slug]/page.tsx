@@ -99,6 +99,9 @@ export default async function DynamicToolPage({ params }: PageProps) {
       <JsonLd
         siteUrl={siteUrl}
         siteName="PixPassport"
+        appName={`PixPassport ${tool.hero_title || tool.title}`}
+        appUrl={`${siteUrl}/tool/${slug}`}
+        appId={`${siteUrl}/tool/${slug}#webapp`}
         description={tool.meta_description}
         price={tool.price || "7.99"}
         priceCurrency="GBP"
@@ -107,6 +110,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
           { name: "Photo Tools", url: `${siteUrl}/passport-size-photo-maker` },
           { name: tool.title, url: `${siteUrl}/tool/${slug}` },
         ]}
+        includeOrganization={false}
         includeWebsite={false}
         includeWebApp={true}
         faqItems={tool.faqs}

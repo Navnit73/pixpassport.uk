@@ -130,7 +130,12 @@ export default function PrintTemplateGeneratorPage() {
       <JsonLd
         siteUrl={SITE_URL}
         siteName="PixPassport"
+        appName="PixPassport Passport Photo Print Template Generator"
+        appUrl={`${SITE_URL}/passport-photo-print-template-generator`}
+        appId={`${SITE_URL}/passport-photo-print-template-generator#webapp`}
         description="Free passport photo sheet maker. Make 8 passport size photos online on a 4x6 inch or A4 sheet with cutting guides at 300 DPI."
+        price="0"
+        priceCurrency="GBP"
         breadcrumbs={[
           { name: "Home", url: SITE_URL },
           { name: "Photo Tools", url: `${SITE_URL}/passport-size-photo-maker` },
@@ -139,6 +144,8 @@ export default function PrintTemplateGeneratorPage() {
             url: `${SITE_URL}/passport-photo-print-template-generator`,
           },
         ]}
+        includeOrganization={false}
+        includeWebsite={false}
         includeWebApp={true}
         faqItems={PRINT_FAQS}
       />
