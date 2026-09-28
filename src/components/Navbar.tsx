@@ -3,6 +3,7 @@
 import { useState, useEffect, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 export interface NavLinkItem {
@@ -53,6 +54,7 @@ export default function Navbar({
   ariaLabel = "Main site navigation",
 }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   // Close mobile menu on Escape key
   useEffect(() => {
@@ -74,7 +76,7 @@ export default function Navbar({
         {/* Brand Logo */}
         <Link
           href={brandHref}
-          className="flex items-center gap-2.5 text-lg sm:text-xl font-bold text-slate-900 focus-ring rounded-lg py-1 px-1.5 -ml-1.5"
+          className="flex items-center gap-2.5 text-lg sm:text-xl font-bold text-slate-900 focus-ring rounded-lg py-1 px-1.5 -ml-1.5 transition-opacity hover:opacity-90"
           aria-label="PixPassport homepage"
         >
           {logoSrc && (
@@ -91,18 +93,36 @@ export default function Navbar({
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-1" aria-label={ariaLabel}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              target={link.target}
-              rel={link.rel}
-              className="btn btn-ghost btn-sm text-slate-700 hover:text-slate-900 hover:bg-slate-100 font-medium px-3 transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav className="hidden md:flex items-center gap-1.5 lg:gap-2" aria-label={ariaLabel}>
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                target={link.target}
+                rel={link.rel}
+                className={`group relative inline-flex items-center justify-center px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-md focus-ring ${
+                  isActive
+                    ? "text-lime-600 font-semibold"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+                aria-current={isActive ? "page" : undefined}
+              >
+                <span className="relative inline-block py-0.5">
+                  {link.label}
+                  <span
+                    aria-hidden="true"
+                    className={`absolute bottom-0 left-0 h-[2px] w-full bg-lime-600 rounded-full transition-transform duration-300 ease-out origin-left pointer-events-none ${
+                      isActive
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100 group-focus-visible:scale-x-100"
+                    }`}
+                  />
+                </span>
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Desktop CTA */}
@@ -149,18 +169,36 @@ export default function Navbar({
               className="menu menu-vertical p-4 gap-1.5"
               aria-label="Mobile navigation"
             >
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  target={link.target}
-                  rel={link.rel}
-                  className="py-2.5 px-3 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-slate-900 font-medium text-base transition-colors"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    target={link.target}
+                    rel={link.rel}
+                    className={`group relative flex items-center justify-between py-2.5 px-3 rounded-lg font-medium text-base transition-colors ${
+                      isActive
+                        ? "text-lime-700 bg-lime-50 font-semibold"
+                        : "text-slate-700 hover:bg-slate-50 hover:text-slate-950"
+                    }`}
+                    aria-current={isActive ? "page" : undefined}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    <span className="relative inline-block py-0.5">
+                      {link.label}
+                      <span
+                        aria-hidden="true"
+                        className={`absolute bottom-0 left-0 h-[2px] w-full bg-lime-600 rounded-full transition-transform duration-300 ease-out origin-left pointer-events-none ${
+                          isActive
+                            ? "scale-x-100"
+                            : "scale-x-0 group-hover:scale-x-100"
+                        }`}
+                      />
+                    </span>
+                  </Link>
+                );
+              })}
               {ctaText && (
                 <>
                   <div className="divider my-2" />
