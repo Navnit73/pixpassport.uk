@@ -3,7 +3,6 @@
  */
 
 import { baseEmailTemplate, escapeHtml } from "./base";
-import { PRICING } from "@/lib/config/pricing";
 
 export interface ExpertEditNotificationParams {
   email: string;

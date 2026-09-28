@@ -266,18 +266,16 @@ export default function HomePage() {
               {/* Visual preview column */}
               <div className="lg:col-span-5 flex justify-center w-full">
                 <div className="w-full max-w-sm lg:max-w-md">
-              
-                    <div className="relative  overflow-hidden aspect-[4/5] ">
-                      <Image
-                        src="https://res.cloudinary.com/dipzpwbbk/image/upload/v1790578820/digital-passport-photo_example_kehhir.webp"
-                        alt="Official UK Passport Size Photo Sample"
-                        fill
-                        priority
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                        className="object-cover rounded-xl"
-                      />
-                    </div>
-               
+                  <div className="relative overflow-hidden aspect-[4/5]">
+                    <Image
+                      src="/images/digital-passport-photo_example.webp"
+                      alt="Official UK Passport Size Photo Sample"
+                      fill
+                      priority
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                      className="object-cover rounded-xl"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -296,7 +294,7 @@ export default function HomePage() {
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
                 How to Create a Digital Photo for Passport Online
               </h2>
-              <p className="text-slate-600 text-sm sm:text-base">
+              <p className="text-slate-700 text-sm sm:text-base">
                 Three steps take you from a regular photo to an accepted
                 biometric passport picture for the UK and 50+ countries.
               </p>
@@ -646,7 +644,7 @@ export default function HomePage() {
                     <span className="text-5xl font-extrabold text-[#0F172A] tracking-tight">
                       £7.99
                     </span>
-                    <span className="text-slate-600 text-base font-medium">
+                    <span className="text-slate-700 text-base font-medium">
                       /photo
                     </span>
                   </div>
@@ -755,7 +753,7 @@ export default function HomePage() {
                     <h3 className="font-bold text-[#0F172A] text-base sm:text-lg mb-1.5 group-hover:text-[#365314] transition-colors">
                       {tool.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
+                    <p className="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4">
                       {tool.desc}
                     </p>
                   </div>
@@ -770,7 +768,7 @@ export default function HomePage() {
             {/* Quick Link Pills to Specialized Converters & Photo Tools */}
             <div className="mt-8 pt-6 border-t border-slate-200/80 max-w-5xl mx-auto">
               <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-500 mr-1">
+                <span className="text-xs font-bold uppercase tracking-wider text-slate-700 mr-1">
                   More Tools:
                 </span>
                 <Link
@@ -796,7 +794,7 @@ export default function HomePage() {
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-lime-50 border border-slate-200 hover:border-lime-300 text-xs font-semibold text-slate-800 hover:text-lime-900 transition-colors"
                   >
                     <span>{item.label}</span>
-                    <ArrowRight className="w-3 h-3 text-slate-400" />
+                    <ArrowRight className="w-3 h-3 text-slate-600" />
                   </Link>
                 ))}
               </div>
@@ -830,7 +828,7 @@ export default function HomePage() {
                   <details className="group [&_summary::-webkit-details-marker]:hidden" open={index === 0}>
                     <summary className="flex items-center justify-between p-5 cursor-pointer select-none font-semibold text-slate-900 text-base sm:text-lg hover:text-[#365314] focus-ring transition-colors rounded-xl">
                       <span>{question}</span>
-                      <span className="ml-4 shrink-0 text-slate-500 group-open:rotate-90 transition-transform" aria-hidden="true">
+                      <span className="ml-4 shrink-0 text-slate-700 group-open:rotate-90 transition-transform" aria-hidden="true">
                         <ChevronRight className="w-5 h-5" />
                       </span>
                     </summary>

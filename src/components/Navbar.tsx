@@ -240,7 +240,7 @@ export default function Navbar({
                 </span>
                 <ChevronDown
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                    toolsDropdownOpen ? "rotate-180 text-lime-600" : "text-slate-400 group-hover:text-slate-600"
+                    toolsDropdownOpen ? "rotate-180 text-lime-700" : "text-slate-500 group-hover:text-slate-700"
                   }`}
                   aria-hidden="true"
                 />
@@ -256,7 +256,7 @@ export default function Navbar({
                   <div className="grid grid-cols-12 gap-5">
                     {/* Left Column: Core Tools */}
                     <div className="col-span-6 space-y-1.5 border-r border-slate-100 pr-4">
-                      <div className="px-2 pb-1 text-[11px] font-bold tracking-wider uppercase text-slate-400">
+                      <div className="px-2 pb-1 text-[11px] font-bold tracking-wider uppercase text-slate-600">
                         Photo Creation Tools
                       </div>
                       {PHOTO_TOOLS_MENU.creators.map((tool) => (
@@ -281,7 +281,7 @@ export default function Navbar({
                                 </span>
                               )}
                             </div>
-                            <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                            <p className="text-[11px] text-slate-600 line-clamp-1 mt-0.5">
                               {tool.description}
                             </p>
                           </div>
@@ -291,7 +291,7 @@ export default function Navbar({
 
                     {/* Right Column: Country Standards */}
                     <div className="col-span-6 space-y-1">
-                      <div className="px-2 pb-1 text-[11px] font-bold tracking-wider uppercase text-slate-400">
+                      <div className="px-2 pb-1 text-[11px] font-bold tracking-wider uppercase text-slate-600">
                         Country &amp; Visa Standards
                       </div>
                       <div className="grid grid-cols-2 gap-1">
@@ -310,7 +310,7 @@ export default function Navbar({
                               <span className="text-[11px] font-semibold text-slate-800 group-hover/citem:text-lime-700 block truncate">
                                 {tool.title}
                               </span>
-                              <span className="text-[9px] text-slate-400 font-mono block truncate">
+                              <span className="text-[9px] text-slate-600 font-mono block truncate">
                                 {tool.spec}
                               </span>
                             </div>
@@ -322,7 +322,7 @@ export default function Navbar({
 
                   {/* Dropdown Footer */}
                   <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between px-2 bg-slate-50/70 -mx-4 -mb-4 p-3 rounded-b-2xl">
-                    <div className="flex items-center gap-2 text-xs text-slate-600">
+                    <div className="flex items-center gap-2 text-xs text-slate-700">
                       <span className="w-2 h-2 rounded-full bg-lime-600 animate-pulse" />
                       <span className="text-[11px] font-medium">50+ Country Formats · Guaranteed Biometric Compliance</span>
                     </div>
@@ -439,7 +439,7 @@ export default function Navbar({
                   {mobileToolsOpen && (
                     <div className="pl-3 pr-2 py-2 space-y-3 bg-slate-50/80 rounded-xl mt-1 border border-slate-200/60">
                       <div>
-                        <div className="px-2 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                        <div className="px-2 text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">
                           Creation Tools
                         </div>
                         <div className="space-y-1">
@@ -465,7 +465,7 @@ export default function Navbar({
                       </div>
 
                       <div>
-                        <div className="px-2 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                        <div className="px-2 text-[10px] font-bold text-slate-600 uppercase tracking-wider mb-1.5">
                           Country &amp; Visa Standards
                         </div>
                         <div className="grid grid-cols-1 gap-1">
@@ -480,7 +480,7 @@ export default function Navbar({
                                 <span className="shrink-0">{tool.flag}</span>
                                 <span className="truncate">{tool.title}</span>
                               </div>
-                              <span className="text-[10px] text-slate-400 font-mono shrink-0 ml-2">
+                              <span className="text-[10px] text-slate-600 font-mono shrink-0 ml-2">
                                 {tool.spec}
                               </span>
                             </Link>

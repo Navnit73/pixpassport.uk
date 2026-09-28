@@ -39,18 +39,8 @@ export interface GenerateInvoiceHtmlParams {
  */
 export function generateInvoiceHtml(params: GenerateInvoiceHtmlParams): string {
   const currencyUpper = (params.currency || "GBP").toUpperCase();
-  const currencySymbols: Record<string, string> = {
-    GBP: "£",
-    INR: "₹",
-    USD: "$",
-    EUR: "€",
-    CAD: "CA$",
-    AUD: "A$",
-  };
-  const symbol = currencySymbols[currencyUpper] || "";
   const unitPrice = (params.amount / 100).toFixed(2);
   const amountFormatted = `${currencyUpper} ${unitPrice}`;
-  const amountWithSymbol = symbol ? `${symbol}${unitPrice}` : amountFormatted;
 
   const paidDate = new Date(params.paidAt);
   const formattedDate = paidDate.toLocaleDateString("en-US", {
@@ -605,7 +595,7 @@ export function generateInvoiceHtml(params: GenerateInvoiceHtmlParams): string {
         </div>
         <div class="totals-row bold-val">
           <span>Tax / GST / VAT (0%):</span>
-          <span>Tax Exempt (${symbol}0.00)</span>
+          <span>Tax Exempt (${currencyUpper} 0.00)</span>
         </div>
         <div class="total-paid-card">
           <span class="total-paid-label">Total Paid:</span>

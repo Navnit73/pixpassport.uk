@@ -14,25 +14,13 @@ import {
   Printer,
   Sparkles,
   RotateCcw,
-  ZoomIn,
-  ZoomOut,
-  Maximize2,
-  Check,
   Grid,
   FileText,
-  Sliders,
   Scissors,
-  HelpCircle,
   Copy,
   CheckCheck,
-  Image as ImageIcon,
-  Info,
   RefreshCw,
-  Camera,
   ArrowRight,
-  Layers,
-  CheckCircle2,
-  ExternalLink,
 } from "lucide-react";
 
 export interface PaperSizeOption {
@@ -146,11 +134,16 @@ export default function PrintTemplateGenerator({
   initialPhotoStandard = "35x45",
   initialPhotoCount,
   initialImageUrl,
-  showInstructions = true,
   className = "",
 }: PrintTemplateGeneratorProps) {
   // State: Initial null unless an initialImageUrl is explicitly provided
   const [imageSrc, setImageSrc] = useState<string | null>(initialImageUrl || null);
+  const [prevInitialImageUrl, setPrevInitialImageUrl] = useState(initialImageUrl);
+  if (initialImageUrl !== prevInitialImageUrl) {
+    setPrevInitialImageUrl(initialImageUrl);
+    setImageSrc(initialImageUrl || null);
+  }
+
   const [paperSizeId, setPaperSizeId] = useState<string>(initialPaperSize);
   const [photoStandardId, setPhotoStandardId] = useState<string>(initialPhotoStandard);
   const [customPhotoWidth, setCustomPhotoWidth] = useState<number>(35);
@@ -167,18 +160,10 @@ export default function PrintTemplateGenerator({
   const [copied, setCopied] = useState<boolean>(false);
   const [isExporting, setIsExporting] = useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
-  const [showRuler, setShowRuler] = useState<boolean>(false);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const imageElementRef = useRef<HTMLImageElement | null>(null);
-
-  // Sync image source whenever initialImageUrl prop updates
-  useEffect(() => {
-    if (initialImageUrl) {
-      setImageSrc(initialImageUrl);
-    }
-  }, [initialImageUrl]);
 
   // Active configurations
   const currentPaper = PAPER_SIZES.find((p) => p.id === paperSizeId) || PAPER_SIZES[0];

@@ -6,11 +6,13 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const SITE_URL =
@@ -36,12 +38,7 @@ export const metadata: Metadata = {
     "Create a digital photo for passport applications and renewals online. PixPassport is an official UK passport photo maker — upload, adjust, and download HMPO-compliant passport photos for £7.99.",
 
   keywords: [
-    "digital photo for passport",
-    "create passport picture online",
-    "digital photo for passport renewal",
-    "print passport photo online",
-    "UK passport photo maker",
-    "HMPO passport photo £7.99",
+   
   ],
 
   icons: {
@@ -124,14 +121,18 @@ export default function RootLayout({
       data-theme="pixpassport"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+      </head>
       <body className="min-h-full flex flex-col bg-base-100 text-base-content">
         <a href="#main-content" className="skip-to-content">
           Skip to main content
         </a>
         {children}
 
-        {/* Microsoft Clarity */}
-        <Script id="microsoft-clarity" strategy="afterInteractive">
+        {/* Microsoft Clarity - deferred until browser is idle */}
+        <Script id="microsoft-clarity" strategy="lazyOnload">
           {`
             (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -141,12 +142,12 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Google tag (gtag.js) */}
+        {/* Google tag (gtag.js) - deferred until browser is idle */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-4GEQP58E5C"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

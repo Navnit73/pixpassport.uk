@@ -7,7 +7,6 @@ import {
   Camera,
   Check,
   Download,
-  Printer,
   AlertCircle,
   Upload,
   Lock,
@@ -249,12 +248,24 @@ export default function PassportPhotoPreviewPage() {
     }
   }, [rawData]);
 
-  const [selectedPlan, setSelectedPlan] = useState<PlanType>("standard");
+  const [paymentState, setPaymentState] = useState<StoredPaymentInfo | null>(() => {
+    if (typeof window === "undefined") return null;
+    return getStoredPayment(resultId);
+  });
+  const [selectedPlan, setSelectedPlan] = useState<PlanType>(() => {
+    if (typeof window === "undefined") return "standard";
+    const existing = getStoredPayment(resultId);
+    return existing?.planType || "standard";
+  });
   const [isFixModalOpen, setIsFixModalOpen] = useState(false);
   const [isZoomOpen, setIsZoomOpen] = useState(false);
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState<string>(() => {
+    if (typeof window === "undefined") return "";
+    const existing = getStoredPayment(resultId);
+    return existing?.email || "";
+  });
   const [emailError, setEmailError] = useState("");
   const [modalEmail, setModalEmail] = useState("");
   const [modalEmailError, setModalEmailError] = useState("");
@@ -262,17 +273,6 @@ export default function PassportPhotoPreviewPage() {
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [paymentError, setPaymentError] = useState("");
   const [downloading, setDownloading] = useState(false);
-  const [paymentState, setPaymentState] = useState<StoredPaymentInfo | null>(null);
-
-  // Check existing payment on mount
-  useEffect(() => {
-    const existing = getStoredPayment(resultId);
-    if (existing && existing.status === "paid") {
-      setPaymentState(existing);
-      if (existing.email) setEmail(existing.email);
-      if (existing.planType) setSelectedPlan(existing.planType);
-    }
-  }, [resultId]);
 
   // Handle ESC key to close open modals
   useEffect(() => {
@@ -929,6 +929,9 @@ export default function PassportPhotoPreviewPage() {
                                           key={idx}
                                           src={src}
                                           alt="Customer avatar"
+                                          width={24}
+                                          height={24}
+                                          loading="lazy"
                                           className="inline-block h-5 w-5 sm:h-6 sm:w-6 rounded-full ring-2 ring-white object-cover"
                                         />
                                       ))}

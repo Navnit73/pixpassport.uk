@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useMemo, useEffect, useCallback, useSyncExternalStore } from "react";
+import { useState, useMemo, useEffect, useSyncExternalStore } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
-  CheckCircle2,
   Download,
   Printer,
   FileText,
@@ -19,7 +18,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PrintTemplateGenerator from "@/components/PrintTemplateGenerator";
 import type { PassportProcessResult } from "@/lib/passport-api";
-import { PRICING, getPlanPricing } from "@/lib/config/pricing";
+import { getPlanPricing } from "@/lib/config/pricing";
 
 interface StoredPassportResult extends PassportProcessResult {
   country_code?: string;
@@ -145,31 +144,45 @@ export default function ThankYouDownloadPage() {
   // If token is missing, fetch status from server
   useEffect(() => {
     const paymentIdToFetch = paymentState?.paymentId || queryPaymentId;
-    if (paymentIdToFetch && (!paymentState?.downloadToken || paymentState.status !== "paid")) {
-      setIsLoadingStatus(true);
-      fetch(`/api/payments/status/${paymentIdToFetch}`)
-        .then((res) => res.json())
-        .then((resData) => {
-          if (resData.success) {
-            const updated: StoredPaymentInfo = {
-              paymentId: resData.paymentId,
-              downloadToken: resData.downloadToken,
-              status: resData.status,
-              email: paymentState?.email || "customer@pixpassport.uk",
-              paidAt: resData.paidAt || new Date().toISOString(),
-              planType: resData.planType || paymentState?.planType || "standard",
-            };
-            setPaymentState(updated);
-            try {
-              sessionStorage.setItem(`pixpassport_paid_${resultId}`, JSON.stringify(updated));
-              localStorage.setItem(`pixpassport_paid_${resultId}`, JSON.stringify(updated));
-            } catch {}
-          }
-        })
-        .catch((err) => console.error("Failed to fetch payment status:", err))
-        .finally(() => setIsLoadingStatus(false));
+    if (!paymentIdToFetch || (paymentState?.downloadToken && paymentState.status === "paid")) {
+      return;
     }
-  }, [queryPaymentId, paymentState?.paymentId, paymentState?.downloadToken, paymentState?.status, paymentState?.planType, resultId]);
+
+    let isMounted = true;
+    async function loadStatus() {
+      setIsLoadingStatus(true);
+      try {
+        const res = await fetch(`/api/payments/status/${paymentIdToFetch}`);
+        const resData = await res.json();
+        if (isMounted && resData.success) {
+          const updated: StoredPaymentInfo = {
+            paymentId: resData.paymentId,
+            downloadToken: resData.downloadToken,
+            status: resData.status,
+            email: paymentState?.email || "customer@pixpassport.uk",
+            paidAt: resData.paidAt || new Date().toISOString(),
+            planType: resData.planType || paymentState?.planType || "standard",
+          };
+          setPaymentState(updated);
+          try {
+            sessionStorage.setItem(`pixpassport_paid_${resultId}`, JSON.stringify(updated));
+            localStorage.setItem(`pixpassport_paid_${resultId}`, JSON.stringify(updated));
+          } catch {}
+        }
+      } catch (err) {
+        console.error("Failed to fetch payment status:", err);
+      } finally {
+        if (isMounted) {
+          setIsLoadingStatus(false);
+        }
+      }
+    }
+    loadStatus();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [queryPaymentId, paymentState?.paymentId, paymentState?.downloadToken, paymentState?.status, paymentState?.email, paymentState?.planType, resultId]);
 
   /**
    * Handle Single Photo Download
@@ -211,10 +224,8 @@ export default function ThankYouDownloadPage() {
 
   const paymentId = paymentState?.paymentId || queryPaymentId;
   const userEmail = paymentState?.email || "your email";
-  const expertPricing = getPlanPricing("expert_edit");
-  const standardPricing = getPlanPricing("standard");
   const activePlanType = paymentState?.planType || "standard";
-  const activePlanPricing = activePlanType === "expert_edit" ? expertPricing : standardPricing;
+  const expertPricing = getPlanPricing("expert_edit");
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-100/60 text-slate-900">
