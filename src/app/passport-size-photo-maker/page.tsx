@@ -53,7 +53,7 @@ const POPULAR_TOOL_LINKS = [
     flag: "🇬🇧",
   },
   {
-    slug: "us-visa-photo",
+    slug: "us-visa-photo-tool",
     title: "US Visa & Passport",
     spec: "2×2 inches",
     flag: "🇺🇸",

@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import PhotoMakerStudio from "@/components/PhotoMakerStudio";
+import FaqAccordion from "@/components/FaqAccordion";
 import { getAllToolSlugs, getToolBySlug } from "@/lib/tools";
 import {
   Sparkles,
@@ -68,7 +69,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 const ALL_POPULAR_TOOLS = [
   { slug: "uk-passport-photo", title: "UK Passport Photo", flag: "🇬🇧", spec: "35×45 mm" },
-  { slug: "us-visa-photo", title: "US Visa & Passport", flag: "🇺🇸", spec: "2×2 inches" },
+  { slug: "us-visa-photo-tool", title: "US Visa & Passport", flag: "🇺🇸", spec: "2×2 inches" },
   { slug: "schengen-visa-photo", title: "Schengen Visa", flag: "🇪🇺", spec: "35×45 mm" },
   { slug: "uk-baby-passport-photo", title: "UK Baby Passport Photo", flag: "👶", spec: "UK HMPO" },
   { slug: "indian-passport-photo-maker", title: "Indian Passport & OCI", flag: "🇮🇳", spec: "51×51 mm" },
@@ -345,6 +346,14 @@ export default async function DynamicToolPage({ params }: PageProps) {
                 className="markdown-content max-w-none"
                 dangerouslySetInnerHTML={{ __html: tool.contentHtml }}
               />
+
+              {/* Interactive FAQ Accordion UI */}
+              {tool.faqs && tool.faqs.length > 0 && (
+                <FaqAccordion
+                  faqs={tool.faqs}
+                  title={tool.hero_title || tool.title}
+                />
+              )}
 
               {/* In-Article CTA */}
               <div className="mt-12 pt-8 border-t border-slate-100 text-center bg-slate-50 rounded-2xl p-6 sm:p-8">

@@ -41,3 +41,36 @@ When submitting a short-stay or long-stay Schengen visa application through TLSc
 ## Supported Schengen Countries
 This tool formats compliant photos for all 29 Schengen Area member nations:
 *France, Germany, Italy, Spain, Switzerland, Netherlands, Greece, Portugal, Austria, Belgium, Sweden, Norway, Denmark, Poland, Czech Republic, Finland, Hungary, Iceland, Estonia, Latvia, Lithuania, Luxembourg, Malta, Slovakia, Slovenia, Croatia, Bulgaria, Romania, and Liechtenstein.*
+
+---
+
+## Frequently Asked Questions
+
+### What size is a Schengen visa photo?
+
+A Schengen visa photo must measure 35 mm wide by 45 mm high (35×45 mm). For digital visa portals (such as TLScontact, VFS Global, or consulate booking portals), the recommended resolution is 630×810 pixels.
+
+### What background colour is required for a Schengen visa photo?
+
+Consulates require a plain, uniform light grey or light blue background with no patterns or shadows. Pure white is accepted by many consulates, but high contrast against your face and hair is required.
+
+### What should the head size be in a Schengen visa photo?
+
+Your head (from the bottom of the chin to the crown of your head) must measure between 32 mm and 36 mm, covering 70% to 80% of the total photograph height.
+
+### Can I smile in a Schengen visa photo?
+
+No. You must maintain a neutral facial expression with your mouth closed, eyes open and looking straight into the camera lens.
+
+### Can I wear glasses in my Schengen visa photo?
+
+Glasses are generally discouraged. If worn for medical reasons, the frames must not obscure your eyes, and there must be zero glare or flash reflections on the lenses. Tinted or sunglasses are strictly prohibited.
+
+### How recent must the Schengen visa photo be?
+
+The photograph must have been taken within the last 6 months to reflect your current appearance accurately.
+
+### Can I take a Schengen visa photo at home with my phone?
+
+Yes. Stand 1 metre away facing natural daylight, snap a front-facing portrait, and our AI tool will automatically crop, align to 35×45 mm biometric standards, and replace the background.
+

@@ -39,3 +39,28 @@ Taking a baby passport photo in a high-street photo booth is stressful and often
 | Head and shoulders clearly in frame | Dummy, bottle, or toy in mouth / picture |
 | Good natural overhead lighting | Shadows cast across the baby's face |
 | Single digital file formatted to 600×750 px | Another child or adult visible in background |
+
+---
+
+## Frequently Asked Questions
+
+### Can a baby's eyes be closed in a UK passport photo?
+
+Yes. His Majesty's Passport Office (HMPO) allows babies under 1 year old to have their eyes closed or partially open, and they do not need to look directly at the camera.
+
+### Can I hold my baby in the passport photo?
+
+You can support your baby's head from behind with your hand, but no part of your hands, arms, fingers, or body can be visible in the final cropped photograph.
+
+### Can babies smile or have a dummy in the passport photo?
+
+Children under 6 do not need a strict neutral expression. However, dummies (pacifiers), toys, bottles, and headbands covering the face are strictly prohibited.
+
+### What is the easiest way to take a baby passport photo at home?
+
+Lay your baby flat on their back on a plain white cot sheet or blanket in good natural daylight. Stand directly over them and snap a photo looking down at eye level.
+
+### What size is a UK baby passport photo?
+
+A UK baby passport photo uses the standard UK passport dimensions: 35 mm wide by 45 mm high (or 600×750 pixels for online GOV.UK digital passport applications).
+

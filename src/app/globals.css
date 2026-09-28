@@ -539,3 +539,34 @@ img {
   color: #365314 !important;
   font-style: italic !important;
 }
+
+.markdown-content details {
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  margin-top: 0.875rem;
+  margin-bottom: 0.875rem;
+  overflow: hidden;
+  transition: all 150ms ease;
+}
+
+.markdown-content details[open] {
+  border-color: #84cc16;
+  background-color: #f7fee7;
+}
+
+.markdown-content summary {
+  padding: 1rem 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.markdown-content summary::-webkit-details-marker {
+  display: none;
+}

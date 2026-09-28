@@ -709,7 +709,7 @@ export default function HomePage() {
                   desc: "Official HMPO biometric specification for British passport renewal and first applications.",
                 },
                 {
-                  slug: "us-visa-photo",
+                  slug: "us-visa-photo-tool",
                   title: "US Visa & Passport",
                   spec: "2×2 inches (51×51 mm)",
                   flag: "🇺🇸",
