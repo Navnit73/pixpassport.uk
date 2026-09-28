@@ -7,10 +7,12 @@ import fs from "fs";
 import path from "path";
 import { PDFDocument, rgb, StandardFonts } from "pdf-lib";
 import { PRICING } from "@/lib/config/pricing";
+import { extractCustomerName } from "@/lib/payments/razorpay";
 
 export interface InvoicePdfParams {
   invoiceNumber: string;
   email: string;
+  customerName?: string;
   amount: number; // in smallest unit (pence/paise/cents)
   currency: string;
   razorpayPaymentId: string;
@@ -61,7 +63,7 @@ export async function generateInvoicePdfBuffer(params: InvoicePdfParams): Promis
     hour12: true,
   });
 
-  const customerName = params.email.split("@")[0] || "Customer";
+  const customerName = params.customerName || extractCustomerName(undefined, params.email);
   const country = params.countryName || "International (ICAO Standard)";
   const dimensionsText = (params.dimensions || "600x600px").replace(/[^\x00-\x7F]/g, "x");
   const razorpayId = params.razorpayPaymentId || "N/A";

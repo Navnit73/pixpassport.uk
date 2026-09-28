@@ -717,38 +717,27 @@ export default function PassportPhotoPreviewPage() {
                     {/* Post-Payment Action Buttons */}
                     {isPaid && (
                       <div className="px-4 sm:px-5 pb-5 pt-2 border-t border-slate-100 space-y-3">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <button
-                            type="button"
-                            onClick={() => handleDownload("single")}
-                            disabled={downloading}
-                            className="inline-flex items-center justify-center gap-2 bg-[#0F172A] hover:bg-[#1E293B] !text-white text-white font-bold text-sm py-3.5 rounded-xl transition-colors text-center shadow-xs focus-ring cursor-pointer"
-                          >
-                            <Download className="w-4 h-4" aria-hidden="true" />
-                            <span>{downloading ? "Preparing Download…" : "Download Single Photo"}</span>
-                          </button>
-
-                          <button
-                            type="button"
-                            onClick={() => handleDownload("sheet")}
-                            disabled={downloading}
-                            className="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm py-3.5 rounded-xl border border-slate-300 transition-colors text-center focus-ring cursor-pointer"
-                          >
-                            <Printer className="w-4 h-4" aria-hidden="true" />
-                            <span>Download 6×4″ Sheet</span>
-                          </button>
-                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleDownload("single")}
+                          disabled={downloading}
+                          className="w-full inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-sm py-3.5 rounded-xl transition-all text-center shadow-xs focus-ring cursor-pointer"
+                          style={{ color: "#ffffff" }}
+                        >
+                          <Download className="w-4 h-4 text-white" aria-hidden="true" />
+                          <span>{downloading ? "Preparing High-Res Download…" : "Download Single Photo (300 DPI)"}</span>
+                        </button>
 
                         {paymentState?.paymentId && (
                           <div className="flex justify-end pt-1">
                             <a
-                              href={`/api/invoices/${paymentState.paymentId}?download=1`}
+                              href={`/api/invoices/${paymentState.paymentId}?format=pdf`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-1.5 text-xs text-slate-600 hover:text-slate-900 font-semibold transition-colors"
                             >
                               <Receipt className="w-3.5 h-3.5 text-emerald-700" aria-hidden="true" />
-                              <span>Download Tax Invoice (HTML)</span>
+                              <span>Download Tax Invoice (PDF)</span>
                               <ExternalLink className="w-3 h-3" aria-hidden="true" />
                             </a>
                           </div>
@@ -1101,10 +1090,11 @@ export default function PassportPhotoPreviewPage() {
 
                           <Link
                             href={`/preview/${resultId}/thankyou?paymentId=${paymentState?.paymentId || ""}`}
-                            className="w-full bg-[#0F172A] hover:bg-[#1E293B] text-white font-bold py-3.5 sm:py-4 rounded-xl flex items-center justify-center gap-2.5 transition-colors text-xs sm:text-sm shadow-xs text-center cursor-pointer"
+                            className="w-full bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold py-3.5 sm:py-4 rounded-xl flex items-center justify-center gap-2.5 transition-all text-sm sm:text-base shadow-md text-center cursor-pointer"
+                            style={{ color: "#ffffff" }}
                           >
-                            <Download className="w-4 h-4" />
-                            <span>Go to Download Studio &rarr;</span>
+                            <Download className="w-5 h-5 text-white" />
+                            <span className="!text-white text-white font-bold">Go to Download Studio &rarr;</span>
                           </Link>
                         </div>
                       )}

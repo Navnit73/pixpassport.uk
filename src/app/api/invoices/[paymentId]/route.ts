@@ -7,6 +7,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { getPaymentById } from "@/lib/payments/payment-service";
 import { generateInvoiceHtml, generateInvoiceNumber } from "@/lib/invoices/invoice-service";
 import { generateInvoicePdfBuffer } from "@/lib/invoices/invoice-pdf";
+import { fetchRazorpayPayment, extractCustomerName } from "@/lib/payments/razorpay";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -46,14 +47,29 @@ export async function GET(req: NextRequest, context: RouteContext) {
       payment.invoice?.invoiceNumber ||
       generateInvoiceNumber();
 
-    const format = req.nextUrl.searchParams.get("format");
-    const isPdf = format === "pdf";
+    // Extract customer name from Razorpay payment details or formatted identity
+    let customerName = extractCustomerName(undefined, payment.email);
+    if (payment.razorpayPaymentId) {
+      try {
+        const rzPayment = await fetchRazorpayPayment(payment.razorpayPaymentId);
+        if (rzPayment) {
+          customerName = extractCustomerName(rzPayment, payment.email);
+        }
+      } catch (err) {
+        console.warn("[invoice] Could not fetch Razorpay payment:", err);
+      }
+    }
 
-    // 1. PDF Delivery
+    const format = req.nextUrl.searchParams.get("format");
+    const download = req.nextUrl.searchParams.get("download");
+    const isPdf = format === "pdf" || download === "1" || download === "pdf" || format === "download";
+
+    // 1. PDF Delivery (When requested as PDF or Download)
     if (isPdf) {
       const pdfBuffer = await generateInvoicePdfBuffer({
         invoiceNumber,
         email: payment.email,
+        customerName,
         amount: payment.amount,
         currency: payment.currency,
         razorpayPaymentId: payment.razorpayPaymentId || "N/A",
@@ -73,10 +89,11 @@ export async function GET(req: NextRequest, context: RouteContext) {
       });
     }
 
-    // 2. HTML Delivery
+    // 2. Interactive Web HTML View
     const html = generateInvoiceHtml({
       invoiceNumber,
       email: payment.email,
+      customerName,
       amount: payment.amount,
       currency: payment.currency,
       razorpayPaymentId: payment.razorpayPaymentId || "N/A",
@@ -86,19 +103,12 @@ export async function GET(req: NextRequest, context: RouteContext) {
       dimensions: payment.image?.dimensions,
     });
 
-    const isDownload = req.nextUrl.searchParams.get("download") === "1";
-    const headers: Record<string, string> = {
-      "Content-Type": "text/html; charset=utf-8",
-      "Cache-Control": "private, no-cache, no-store",
-    };
-
-    if (isDownload) {
-      headers["Content-Disposition"] = `attachment; filename="Invoice-${invoiceNumber}.html"`;
-    }
-
     return new NextResponse(html, {
       status: 200,
-      headers,
+      headers: {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "private, no-cache, no-store",
+      },
     });
   } catch (err: unknown) {
     console.error("[invoice] Error:", err);

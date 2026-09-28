@@ -4,6 +4,7 @@
  */
 
 import { PRICING } from "@/lib/config/pricing";
+import { extractCustomerName } from "@/lib/payments/razorpay";
 
 let _counter = Math.floor(Math.random() * 1000) + 100;
 
@@ -22,6 +23,7 @@ export function generateInvoiceNumber(): string {
 export interface GenerateInvoiceHtmlParams {
   invoiceNumber: string;
   email: string;
+  customerName?: string;
   amount: number; // in smallest unit (pence/paise/cents)
   currency: string;
   razorpayPaymentId: string;
@@ -66,7 +68,7 @@ export function generateInvoiceHtml(params: GenerateInvoiceHtmlParams): string {
     hour12: true,
   });
 
-  const customerName = params.email.split("@")[0] || "Customer";
+  const customerName = params.customerName || extractCustomerName(undefined, params.email);
   const country = params.countryName || "International (ICAO Standard)";
   const dimensionsText = params.dimensions || "600x600px";
   const razorpayId = params.razorpayPaymentId || "N/A";
