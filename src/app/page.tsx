@@ -546,7 +546,14 @@ export default function HomePage() {
                     </ul>
 
                     <p className="text-sm bg-lime-50/80 border border-lime-200 text-[#365314] font-medium rounded-xl p-3.5 mb-5">
-                      If you’re using a photo taken on your own device, include your head, shoulders and upper body. Do not crop your photo - it will be done for you.
+                      If you’re using a photo taken on your own device, include your head, shoulders and upper body. Do not crop your photo - it will be done for you. Learn{" "}
+                      <Link
+                        href="/tool/take-a-passport-photo-on-iphone"
+                        className="font-bold underline text-[#365314] hover:text-[#4D7C0F] transition-colors"
+                      >
+                        how to take a passport photo on iPhone
+                      </Link>
+                      .
                     </p>
 
                     <p className="text-slate-800 text-sm mb-3 font-semibold">In your photo you must:</p>
@@ -781,10 +788,12 @@ export default function HomePage() {
                 </Link>
                 {[
                   { slug: "passport-renewal-photo-online", label: "UK Passport Renewal" },
+                  { slug: "take-a-passport-photo-on-iphone", label: "iPhone Passport Photo" },
                   { slug: "digital-passport-photo", label: "Digital Photo for Passport" },
                   { slug: "photo-size-35x45mm", label: "35×45 mm Photo Size" },
                   { slug: "image-to-passport-size-converter", label: "Image to Passport Converter" },
                   { slug: "passport-photo-at-home", label: "Passport Photo at Home" },
+                  { slug: "passport-photo-tool", label: "Online Passport Photo Tool" },
                   { slug: "online-id-photo-maker", label: "Online ID Photo Maker" },
                   { slug: "order-passport-photos-online", label: "Order Passport Photos" },
                 ].map((item) => (

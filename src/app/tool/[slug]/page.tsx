@@ -79,6 +79,7 @@ const ALL_POPULAR_TOOLS = [
   { slug: "photo-size-35x45mm", title: "35×45 mm Photo Size", flag: "📐", spec: "Standard Ratio", category: "Photo Tool" },
   { slug: "image-to-passport-size-converter", title: "Image to Passport Converter", flag: "🔄", spec: "Auto-Crop", category: "Photo Tool" },
   { slug: "passport-photo-at-home", title: "Passport Photo at Home", flag: "🏠", spec: "DIY & Print", category: "Photo Tool" },
+  { slug: "take-a-passport-photo-on-iphone", title: "iPhone Passport Photo", flag: "📱", spec: "iOS Shoot Guide", category: "Photo Tool" },
   { slug: "passport-photo-tool", title: "Passport Photo Tool", flag: "✂️", spec: "50+ Countries", category: "Photo Tool" },
   { slug: "online-id-photo-maker", title: "Online ID Photo Maker", flag: "🪪", spec: "All ID Types", category: "Photo Tool" },
   { slug: "order-passport-photos-online", title: "Order Passport Photos", flag: "📦", spec: "Digital & Prints", category: "Photo Tool" },

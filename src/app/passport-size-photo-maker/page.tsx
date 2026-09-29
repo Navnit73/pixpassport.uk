@@ -113,6 +113,12 @@ const POPULAR_TOOL_LINKS = [
     flag: "🏠",
   },
   {
+    slug: "take-a-passport-photo-on-iphone",
+    title: "iPhone Passport Photo",
+    spec: "iOS Shoot Guide",
+    flag: "📱",
+  },
+  {
     slug: "passport-photo-tool",
     title: "Passport Photo Tool",
     spec: "50+ Countries",

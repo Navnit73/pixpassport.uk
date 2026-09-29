@@ -53,6 +53,12 @@ export const PHOTO_TOOLS_MENU = {
       href: "/tool/passport-photo-at-home",
       icon: "🏠",
     },
+    {
+      title: "iPhone Passport Photo Guide",
+      description: "Step-by-step tips to shoot & crop compliant photos on iOS",
+      href: "/tool/take-a-passport-photo-on-iphone",
+      icon: "📱",
+    },
   ],
   countries: [
     {

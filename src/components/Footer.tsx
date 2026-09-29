@@ -34,6 +34,7 @@ export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
     { label: "35×45 mm Photo Size", href: "/tool/photo-size-35x45mm" },
     { label: "Image to Passport Converter", href: "/tool/image-to-passport-size-converter" },
     { label: "Passport Photo at Home", href: "/tool/passport-photo-at-home" },
+    { label: "iPhone Passport Photo", href: "/tool/take-a-passport-photo-on-iphone" },
     { label: "Online Passport Photo Tool", href: "/tool/passport-photo-tool" },
     { label: "Online ID Photo Maker", href: "/tool/online-id-photo-maker" },
     { label: "Order Passport Photos", href: "/tool/order-passport-photos-online" },
