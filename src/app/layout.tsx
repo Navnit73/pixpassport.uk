@@ -15,8 +15,28 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const getMetadataBase = (): URL => {
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  if (envUrl) {
+    try {
+      const formatted =
+        envUrl.startsWith("http://") || envUrl.startsWith("https://")
+          ? envUrl
+          : `https://${envUrl}`;
+      return new URL(formatted);
+    } catch {
+      // Fall back to default if invalid URL
+    }
+  }
+  return new URL("https://pixpassport.uk");
+};
+
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
+  process.env.NEXT_PUBLIC_SITE_URL &&
+  (process.env.NEXT_PUBLIC_SITE_URL.startsWith("http://") ||
+    process.env.NEXT_PUBLIC_SITE_URL.startsWith("https://"))
+    ? process.env.NEXT_PUBLIC_SITE_URL
+    : "https://pixpassport.uk";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -26,7 +46,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: getMetadataBase(),
 
   title: {
     default:
