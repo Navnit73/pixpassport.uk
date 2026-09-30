@@ -184,7 +184,7 @@ export default function RefundPolicyPage() {
               3. How to Request a Refund
             </h2>
             <p>
-              To submit a refund claim, please email our support team at <a href="mailto:support@pixpassport.uk" className="text-[#365314] font-bold underline">support@pixpassport.uk</a> within 30 days of your purchase date, including the following information:
+              To submit a refund claim, please email our support team at <a href="mailto:support@pixpassport.com" className="text-[#365314] font-bold underline">support@pixpassport.com</a> within 30 days of your purchase date, including the following information:
             </p>
             <ol className="list-decimal pl-5 space-y-2 text-sm sm:text-base">
               <li><strong>Your Full Name &amp; Email Address</strong> used during the transaction.</li>
@@ -225,11 +225,11 @@ export default function RefundPolicyPage() {
             </p>
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <a
-                href="mailto:support@pixpassport.uk"
+                href="mailto:support@pixpassport.com"
                 className="inline-flex items-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors focus-ring"
               >
                 <Mail className="w-4 h-4" aria-hidden="true" />
-                <span>support@pixpassport.uk</span>
+                <span>support@pixpassport.com</span>
               </a>
               <Link
                 href="/contact-us"

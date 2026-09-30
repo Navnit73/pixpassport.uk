@@ -515,7 +515,7 @@ export function generateInvoiceHtml(params: GenerateInvoiceHtmlParams): string {
           <div class="brand-title">PixPassport</div>
           <div class="brand-subtitle">Official Payment Receipt &amp; Tax Invoice</div>
           <div class="brand-contact">
-            support@pixpassport.uk &bull; <a href="${PRICING.siteUrl}">${PRICING.siteUrl.replace(/^https?:\/\//, '')}</a>
+            support@pixpassport.com &bull; <a href="${PRICING.siteUrl}">${PRICING.siteUrl.replace(/^https?:\/\//, '')}</a>
           </div>
         </div>
       </div>

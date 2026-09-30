@@ -84,7 +84,7 @@ export default function ContactUsPage() {
       },
       contactPoint: {
         "@type": "ContactPoint",
-        email: "support@pixpassport.uk",
+        email: "support@pixpassport.com",
         contactType: "customer support",
         areaServed: "GB",
         availableLanguage: ["English"],
@@ -163,10 +163,10 @@ export default function ContactUsPage() {
                       Email Address
                     </span>
                     <a
-                      href="mailto:support@pixpassport.uk"
+                      href="mailto:support@pixpassport.com"
                       className="text-base font-bold text-[#365314] hover:underline"
                     >
-                      support@pixpassport.uk
+                      support@pixpassport.com
                     </a>
                   </div>
 

@@ -253,11 +253,11 @@ export default function TermsOfServicePage() {
             </p>
             <div className="pt-2">
               <a
-                href="mailto:support@pixpassport.uk"
+                href="mailto:support@pixpassport.com"
                 className="inline-flex items-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] text-white font-bold text-sm px-5 py-3 rounded-xl transition-colors focus-ring"
               >
                 <Mail className="w-4 h-4" aria-hidden="true" />
-                <span>support@pixpassport.uk</span>
+                <span>support@pixpassport.com</span>
               </a>
             </div>
           </section>

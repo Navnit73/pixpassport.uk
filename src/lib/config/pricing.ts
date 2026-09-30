@@ -75,7 +75,7 @@ export const PRICING = {
   businessName: "PixPassport",
   /** Support email */
   supportEmail:
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL || "support@pixpassport.uk",
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL || "support@pixpassport.com",
   /** Website URL */
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk",
 } as const;

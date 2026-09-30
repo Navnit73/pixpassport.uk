@@ -67,7 +67,7 @@ export default function JsonLd({
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "customer support",
-        email: "support@pixpassport.uk",
+        email: "support@pixpassport.com",
         areaServed: "GB",
         availableLanguage: ["English"],
       },

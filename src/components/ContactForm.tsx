@@ -117,7 +117,7 @@ export default function ContactForm() {
       const msg =
         err instanceof Error
           ? err.message
-          : "An unexpected error occurred. Please try again or email us directly at support@pixpassport.uk.";
+          : "An unexpected error occurred. Please try again or email us directly at support@pixpassport.com.";
       setStatusMessage(msg);
     } finally {
       setIsSubmitting(false);

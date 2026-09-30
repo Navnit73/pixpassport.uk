@@ -20,7 +20,7 @@ export const FROM_EMAIL =
   process.env.RESEND_FROM_EMAIL || "PixPassport <photo@pixpassport.uk>";
 
 export const REPLY_TO_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL || "support@pixpassport.uk";
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL || "support@pixpassport.com";
 
 export const BCC_EMAILS: string[] = process.env.RESEND_BCC_EMAIL
   ? process.env.RESEND_BCC_EMAIL.split(",").map((s) => s.trim()).filter(Boolean)

@@ -40,6 +40,7 @@ interface PhotoMakerStudioProps {
   defaultDocumentType?: string;
   badgeText?: string;
   className?: string;
+  autoProcess?: boolean;
 }
 
 const ACCEPTED_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -62,6 +63,7 @@ function countryFlag(code: string): string {
 export default function PhotoMakerStudio({
   defaultCountryCode = "GB",
   defaultDocumentType = "passport",
+  autoProcess = true,
   className = "",
 }: PhotoMakerStudioProps) {
   const router = useRouter();
@@ -146,7 +148,7 @@ export default function PhotoMakerStudio({
   const inputRef = useRef<HTMLInputElement>(null);
   const processBtnRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to process CTA button upon successful photo upload
+  // Auto-scroll to process CTA button upon successful photo upload (if not auto-processing)
   useEffect(() => {
     if (preview && file && !isProcessing) {
       const timer = setTimeout(() => {
@@ -170,6 +172,130 @@ export default function PhotoMakerStudio({
     return null;
   }
 
+  const processPhoto = useCallback(
+    async (fileToProcess?: File, previewToUse?: string) => {
+      const targetFile = fileToProcess || file;
+      const targetPreview = previewToUse || preview;
+      if (!targetFile) return;
+
+      setIsProcessing(true);
+      setError(null);
+      setProcessingProgress(0);
+      setProcessingStepIndex(0);
+      setCountdown(10);
+
+      const startTime = Date.now();
+      const TOTAL_DURATION_MS = 10000;
+
+      const interval = setInterval(() => {
+        const elapsed = Date.now() - startTime;
+        const progressPct = Math.min(
+          100,
+          Math.round((elapsed / TOTAL_DURATION_MS) * 100)
+        );
+        setProcessingProgress(progressPct);
+
+        const remainingSec = Math.max(
+          0,
+          Math.ceil((TOTAL_DURATION_MS - elapsed) / 1000)
+        );
+        setCountdown(remainingSec);
+
+        if (progressPct >= 75) {
+          setProcessingStepIndex(3);
+        } else if (progressPct >= 50) {
+          setProcessingStepIndex(2);
+        } else if (progressPct >= 25) {
+          setProcessingStepIndex(1);
+        } else {
+          setProcessingStepIndex(0);
+        }
+      }, 100);
+
+      try {
+        const fileExt = targetFile.name.split(".").pop() || "jpg";
+        const timestamp = Date.now();
+        const fileName = `upload_${timestamp}.${fileExt}`;
+        const freshFile = new File([targetFile], fileName, {
+          type: targetFile.type,
+        });
+
+        const formData = new FormData();
+        formData.append("image", freshFile);
+        formData.append("country_code", selectedCountry.country_code);
+        formData.append(
+          "document_type",
+          defaultDocumentType || selectedCountry.document_type || "passport"
+        );
+
+        const apiPromise = fetch("/api/passport-photo", {
+          method: "POST",
+          body: formData,
+        }).then(async (res) => {
+          const data: PassportProcessResult = await res.json();
+          if (!res.ok || data.status === "error" || data.error) {
+            throw new Error(data.error || "Failed to process passport photo.");
+          }
+          return data;
+        });
+
+        const [apiResult] = await Promise.all([
+          apiPromise,
+          new Promise((res) => setTimeout(res, TOTAL_DURATION_MS)),
+        ]);
+
+        clearInterval(interval);
+        setProcessingProgress(100);
+
+        const resultId =
+          apiResult.result_id ||
+          `res_${selectedCountry.country_code.toLowerCase()}_${timestamp}`;
+
+        const payload = {
+          ...apiResult,
+          result_id: resultId,
+          country_code: selectedCountry.country_code,
+          country_name: selectedCountry.country_name,
+          target_dimensions: selectedCountry.dimensions,
+          document_type: selectedCountry.document_type,
+          original_preview: targetPreview,
+          timestamp,
+        };
+
+        if (typeof window !== "undefined") {
+          try {
+            sessionStorage.setItem(
+              `pixpassport_${resultId}`,
+              JSON.stringify(payload)
+            );
+            sessionStorage.setItem(
+              "pixpassport_latest",
+              JSON.stringify(payload)
+            );
+            localStorage.setItem(
+              `pixpassport_${resultId}`,
+              JSON.stringify(payload)
+            );
+            localStorage.setItem("pixpassport_latest", JSON.stringify(payload));
+          } catch {
+            // fallback
+          }
+        }
+
+        router.push(`/preview/${resultId}`);
+      } catch (err: unknown) {
+        clearInterval(interval);
+        setIsProcessing(false);
+        const msg =
+          err instanceof Error
+            ? err.message
+            : "An error occurred while communicating with the PixPassport API.";
+        setError(msg);
+      }
+    },
+    [file, preview, selectedCountry, defaultDocumentType, router]
+  );
+
   async function handleFile(f: File) {
     const err = validate(f);
     if (err) {
@@ -181,22 +307,42 @@ export default function PhotoMakerStudio({
     }
 
     setError(null);
-    setFile(f);
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setPreview(reader.result as string);
-    };
-    reader.readAsDataURL(f);
+    // Read preview data URL asynchronously
+    let previewData: string | null = null;
+    try {
+      previewData = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          if (typeof reader.result === "string") {
+            resolve(reader.result);
+          } else {
+            reject(new Error("Failed to read image file"));
+          }
+        };
+        reader.onerror = () => reject(reader.error);
+        reader.readAsDataURL(f);
+      });
+      setPreview(previewData);
+    } catch {
+      // If preview read fails, continue with file
+    }
 
     // Auto-compress to <= 3 MB
+    let uploadFile = f;
     try {
       const compResult = await compressImageTo3MB(f);
+      uploadFile = compResult.file;
       setFile(compResult.file);
       setCompressionInfo(compResult);
     } catch {
       setFile(f);
       setCompressionInfo(null);
+    }
+
+    // Automatically trigger processing immediately
+    if (autoProcess) {
+      processPhoto(uploadFile, previewData || undefined);
     }
   }
 
@@ -232,120 +378,6 @@ export default function PhotoMakerStudio({
     setCompressionInfo(null);
     if (inputRef.current) inputRef.current.value = "";
   }
-
-  const handleProcess = useCallback(async () => {
-    if (!file) return;
-
-    setIsProcessing(true);
-    setError(null);
-    setProcessingProgress(0);
-    setProcessingStepIndex(0);
-    setCountdown(10);
-
-    const startTime = Date.now();
-    const TOTAL_DURATION_MS = 10000;
-
-    const interval = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const progressPct = Math.min(100, Math.round((elapsed / TOTAL_DURATION_MS) * 100));
-      setProcessingProgress(progressPct);
-
-      const remainingSec = Math.max(0, Math.ceil((TOTAL_DURATION_MS - elapsed) / 1000));
-      setCountdown(remainingSec);
-
-      if (progressPct >= 75) {
-        setProcessingStepIndex(3);
-      } else if (progressPct >= 50) {
-        setProcessingStepIndex(2);
-      } else if (progressPct >= 25) {
-        setProcessingStepIndex(1);
-      } else {
-        setProcessingStepIndex(0);
-      }
-    }, 100);
-
-    try {
-      const uploadFile = file;
-      const fileExt = uploadFile.name.split(".").pop() || "jpg";
-      const timestamp = Date.now();
-      const fileName = `upload_${timestamp}.${fileExt}`;
-      const freshFile = new File([uploadFile], fileName, { type: uploadFile.type });
-
-      const formData = new FormData();
-      formData.append("image", freshFile);
-      formData.append("country_code", selectedCountry.country_code);
-      formData.append(
-        "document_type",
-        defaultDocumentType || selectedCountry.document_type || "passport"
-      );
-
-      const apiPromise = fetch("/api/passport-photo", {
-        method: "POST",
-        body: formData,
-      }).then(async (res) => {
-        const data: PassportProcessResult = await res.json();
-        if (!res.ok || data.status === "error" || data.error) {
-          throw new Error(data.error || "Failed to process passport photo.");
-        }
-        return data;
-      });
-
-      const [apiResult] = await Promise.all([
-        apiPromise,
-        new Promise((res) => setTimeout(res, TOTAL_DURATION_MS)),
-      ]);
-
-      clearInterval(interval);
-      setProcessingProgress(100);
-
-      const resultId =
-        apiResult.result_id ||
-        `res_${selectedCountry.country_code.toLowerCase()}_${timestamp}`;
-
-      const payload = {
-        ...apiResult,
-        result_id: resultId,
-        country_code: selectedCountry.country_code,
-        country_name: selectedCountry.country_name,
-        target_dimensions: selectedCountry.dimensions,
-        document_type: selectedCountry.document_type,
-        original_preview: preview,
-        timestamp,
-      };
-
-      if (typeof window !== "undefined") {
-        try {
-          sessionStorage.setItem(`pixpassport_${resultId}`, JSON.stringify(payload));
-          sessionStorage.setItem("pixpassport_latest", JSON.stringify(payload));
-          localStorage.setItem(`pixpassport_${resultId}`, JSON.stringify(payload));
-          localStorage.setItem("pixpassport_latest", JSON.stringify(payload));
-        } catch {
-          // fallback
-        }
-      }
-
-      router.push(`/preview/${resultId}`);
-    } catch (err: unknown) {
-      clearInterval(interval);
-      setIsProcessing(false);
-      const msg =
-        err instanceof Error
-          ? err.message
-          : "An error occurred while communicating with the PixPassport API.";
-      setError(msg);
-    }
-  }, [
-    file,
-    selectedCountry,
-    defaultDocumentType,
-    preview,
-    router,
-    setIsProcessing,
-    setError,
-    setProcessingProgress,
-    setProcessingStepIndex,
-    setCountdown,
-  ]);
 
   return (
     <div className={`space-y-4 sm:space-y-5 ${className}`}>
@@ -588,7 +620,7 @@ export default function PhotoMakerStudio({
           <div ref={processBtnRef} className="pt-5 sm:pt-6 border-t border-slate-100 mt-5 sm:mt-6">
             <button
               className="w-full inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-sm sm:text-base py-3.5 sm:py-4 rounded-xl transition-colors text-center shadow-xs focus-ring cursor-pointer"
-              onClick={handleProcess}
+              onClick={() => processPhoto()}
             >
               <Zap className="w-5 h-5 text-lime-300 shrink-0" aria-hidden="true" />
               <span className="truncate">

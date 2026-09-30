@@ -20,6 +20,7 @@ import {
   ZoomIn,
   Eye,
   Mail,
+  Clock,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -639,10 +640,20 @@ export default function PassportPhotoPreviewPage() {
                   Your <span className="text-lime-600">ID Photo</span> Is Ready{" "}
                   <span className="inline-block text-xl sm:text-2xl" aria-hidden="true">{flag}</span> {countryName}
                 </h1>
-                <div className="flex items-center justify-center lg:justify-start gap-1.5 mt-1.5 sm:mt-2 flex-wrap text-center lg:text-left">
-                  <Shield className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <div className="flex items-center justify-center lg:justify-start gap-2 mt-2 flex-wrap text-center lg:text-left">
+                  {/* 24*7 Mail Support Badge */}
+                  <a
+                    href={`mailto:support@pixpassport.com?subject=Support%20Request%20-%20Photo%20Session%20${encodeURIComponent(resultId)}`}
+                    className="inline-flex items-center gap-1.5 bg-lime-50 hover:bg-lime-100 text-lime-900 border border-lime-300 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold transition-colors shadow-2xs group"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" aria-hidden="true" />
+                    <Mail className="w-3.5 h-3.5 text-lime-700 group-hover:scale-110 transition-transform" aria-hidden="true" />
+                    <span>24/7 Email Support: <span className="underline font-extrabold text-lime-950">support@pixpassport.com</span></span>
+                  </a>
+
                   <p className="text-[11px] sm:text-[12px] text-slate-500 font-semibold flex items-center gap-1 flex-wrap justify-center lg:justify-start">
-                    Secure checkout &bull; 100% acceptance guarantee &bull; Refund if rejected
+                    <Shield className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                    <span>100% Acceptance Guarantee &bull; Refund if Rejected</span>
                     {isUK && (
                       <span className="ml-1 font-bold text-slate-700 inline-flex items-center gap-1">
                         <span>🇬🇧</span> UK Gov Compliant
@@ -780,6 +791,42 @@ export default function PassportPhotoPreviewPage() {
                       <p className="text-[11px] sm:text-[11.5px] text-lime-800 font-semibold leading-relaxed">
                         Background professionally corrected to official requirements
                       </p>
+                    </div>
+                  </div>
+
+                  {/* Dedicated 24/7 Mail Support Card */}
+                  <div className="bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 text-white rounded-2xl p-4 sm:p-5 shadow-xs border border-slate-700/60 relative overflow-hidden">
+                    <div className="flex items-start gap-3.5 relative z-10">
+                      <div className="w-10 h-10 rounded-xl bg-lime-400/20 border border-lime-400/30 text-lime-300 flex items-center justify-center shrink-0 mt-0.5">
+                        <Mail className="w-5 h-5" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap mb-1">
+                          <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
+                            24/7 Dedicated Email Support
+                          </h3>
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10.5px] font-bold border border-emerald-500/30">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            Live 24×7
+                          </span>
+                        </div>
+                        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mb-3">
+                          Questions about embassy requirements, print sizing, or need custom assistance with your photo? Our biometric support team is ready to help 24 hours a day, 7 days a week.
+                        </p>
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <a
+                            href={`mailto:support@pixpassport.com?subject=Passport%20Photo%20Support%20-%20Session%20${encodeURIComponent(resultId)}`}
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-lime-500 hover:bg-lime-400 text-slate-950 font-bold text-xs transition-colors shadow-xs cursor-pointer"
+                          >
+                            <Mail className="w-3.5 h-3.5" />
+                            <span>Email support@pixpassport.com</span>
+                          </a>
+                          <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1.5">
+                            <Clock className="w-3.5 h-3.5 text-lime-400" />
+                            Average reply &lt;15 mins
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -1043,64 +1090,102 @@ export default function PassportPhotoPreviewPage() {
                                 </div>
                               </div>
 
-                              {/* Razorpay Badge */}
-                              <div className="flex justify-center pt-1">
+                                {/* 24/7 Mail Support in Order Summary */}
+                                <div className="mt-3 pt-3 border-t border-slate-100">
+                                  <a
+                                    href={`mailto:support@pixpassport.com?subject=Passport%20Photo%20Support%20-%20Session%20${encodeURIComponent(resultId)}`}
+                                    className="group flex items-center gap-2.5 p-2.5 rounded-xl bg-slate-50 hover:bg-lime-50/80 border border-slate-200/90 hover:border-lime-300 transition-colors"
+                                  >
+                                    <div className="w-8 h-8 rounded-lg bg-lime-100 text-lime-800 flex items-center justify-center shrink-0">
+                                      <Mail className="w-4 h-4" />
+                                    </div>
+                                    <div className="min-w-0 flex-1 text-left">
+                                      <div className="flex items-center gap-1.5">
+                                        <p className="text-xs font-bold text-slate-900 group-hover:text-lime-900 transition-colors">
+                                          24/7 Email Support
+                                        </p>
+                                        <span className="text-[9px] font-bold bg-emerald-100 text-emerald-800 px-1.5 py-0.2 rounded-full">
+                                          Active
+                                        </span>
+                                      </div>
+                                      <p className="text-[11px] font-semibold text-slate-500 group-hover:text-lime-700 truncate">
+                                        support@pixpassport.com
+                                      </p>
+                                    </div>
+                                    <ExternalLink className="w-3 h-3 text-slate-400 group-hover:text-lime-700 shrink-0" />
+                                  </a>
+                                </div>
+
+                                {/* Razorpay Badge */}
+                                <div className="flex justify-center pt-2">
+                                  <a
+                                    href="https://razorpay.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    <img
+                                      referrerPolicy="origin"
+                                      src="https://badges.razorpay.com/badge-dark.png"
+                                      style={{ height: 40, width: 100 }}
+                                      alt="Razorpay | Payment Gateway | Neobank"
+                                    />
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Mobile Trust Badges Notice */}
+                            <div className="block lg:hidden pt-2 border-t border-slate-100">
+                              <div className="flex items-center justify-center gap-3 py-2 flex-wrap text-slate-500">
                                 <a
-                                  href="https://razorpay.com/"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
+                                  href={`mailto:support@pixpassport.com?subject=Passport%20Photo%20Support%20-%20Session%20${encodeURIComponent(resultId)}`}
+                                  className="flex items-center gap-1 text-lime-800 font-bold hover:underline"
                                 >
-                                  <img
-                                    referrerPolicy="origin"
-                                    src="https://badges.razorpay.com/badge-dark.png"
-                                    style={{ height: 40, width: 100 }}
-                                    alt="Razorpay | Payment Gateway | Neobank"
-                                  />
+                                  <Mail className="w-3 h-3 text-lime-700" />
+                                  <span className="text-[10.5px]">24/7 Mail Support: support@pixpassport.com</span>
                                 </a>
+                                <div className="flex items-center gap-1">
+                                  <Shield className="w-3 h-3 text-emerald-600" />
+                                  <span className="text-[10.5px] font-semibold">100% Acceptance Guarantee</span>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                  <RotateCcw className="w-3 h-3 text-emerald-600" />
+                                  <span className="text-[10.5px] font-semibold">Instant Refund</span>
+                                </div>
                               </div>
                             </div>
                           </div>
+                        ) : (
+                          /* Paid State Receipt */
+                          <div className="space-y-4">
+                            <div className="bg-emerald-50 rounded-2xl p-5 sm:p-6 text-center border border-emerald-200">
+                              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-2xl sm:text-3xl">
+                                🎉
+                              </div>
+                              <h2 className="text-emerald-800 font-bold text-lg sm:text-xl">
+                                Payment Successful!
+                              </h2>
+                              <p className="mt-2 text-emerald-700 text-xs leading-relaxed">
+                                Your photo is unlocked. Receipt and download links have been sent to{" "}
+                                <strong>{paymentState?.email || email}</strong>.
+                              </p>
+                            </div>
 
-                          {/* Mobile Trust Badges Notice (Without Button / Email Form) */}
-                          <div className="block lg:hidden pt-2 border-t border-slate-100">
-                            <div className="flex items-center justify-center gap-3 py-2 flex-wrap text-slate-500">
-                              <div className="flex items-center gap-1">
-                                <Shield className="w-3 h-3 text-emerald-600" />
-                                <span className="text-[10.5px] font-semibold">100% Acceptance Guarantee</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <RotateCcw className="w-3 h-3 text-emerald-600" />
-                                <span className="text-[10.5px] font-semibold">Instant Refund</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      ) : (
-                        /* Paid State Receipt */
-                        <div className="space-y-4">
-                          <div className="bg-emerald-50 rounded-2xl p-5 sm:p-6 text-center border border-emerald-200">
-                            <div className="w-12 h-12 sm:w-14 sm:h-14 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-2xl sm:text-3xl">
-                              🎉
-                            </div>
-                            <h2 className="text-emerald-800 font-bold text-lg sm:text-xl">
-                              Payment Successful!
-                            </h2>
-                            <p className="mt-2 text-emerald-700 text-xs leading-relaxed">
-                              Your photo is unlocked. Receipt and download links have been sent to{" "}
-                              <strong>{paymentState?.email || email}</strong>.
-                            </p>
-                          </div>
+                            <Link
+                              href={`/preview/${resultId}/thankyou?paymentId=${paymentState?.paymentId || ""}`}
+                              className="w-full bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold py-3.5 sm:py-4 rounded-xl flex items-center justify-center gap-2.5 transition-all text-sm sm:text-base shadow-md text-center cursor-pointer"
+                              style={{ color: "#ffffff" }}
+                            >
+                              <Download className="w-5 h-5 text-white" />
+                              <span className="!text-white text-white font-bold">Go to Download Studio &rarr;</span>
+                            </Link>
 
-                          <Link
-                            href={`/preview/${resultId}/thankyou?paymentId=${paymentState?.paymentId || ""}`}
-                            className="w-full bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold py-3.5 sm:py-4 rounded-xl flex items-center justify-center gap-2.5 transition-all text-sm sm:text-base shadow-md text-center cursor-pointer"
-                            style={{ color: "#ffffff" }}
-                          >
-                            <Download className="w-5 h-5 text-white" />
-                            <span className="!text-white text-white font-bold">Go to Download Studio &rarr;</span>
-                          </Link>
-                        </div>
-                      )}
+                            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-center gap-2 text-center text-xs text-slate-600">
+                              <Mail className="w-3.5 h-3.5 text-lime-700 shrink-0" />
+                              <span>Need assistance? 24/7 Support: <a href="mailto:support@pixpassport.com" className="font-bold text-slate-900 underline hover:text-lime-700">support@pixpassport.com</a></span>
+                            </div>
+                          </div>
+                        )}
                     </div>
                   </div>
                 </div>

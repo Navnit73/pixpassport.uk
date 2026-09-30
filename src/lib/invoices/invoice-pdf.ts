@@ -137,7 +137,7 @@ export async function generateInvoicePdfBuffer(params: InvoicePdfParams): Promis
     color: slate600,
   });
 
-  page.drawText(`support@pixpassport.uk  |  ${PRICING.siteUrl.replace(/^https?:\/\//, "")}`, {
+  page.drawText(`support@pixpassport.com  |  ${PRICING.siteUrl.replace(/^https?:\/\//, "")}`, {
     x: margin + 44,
     y: y - 32,
     size: 8.5,
