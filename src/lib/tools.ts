@@ -22,6 +22,9 @@ export interface ToolPageData {
   badge?: string;
   hero_title: string;
   hero_subtitle: string;
+  studio_title?: string;
+  studio_description?: string;
+  cta_description?: string;
   dimensions_mm: string;
   dimensions_px?: string;
   feature_image?: string;
@@ -42,8 +45,8 @@ export function getAllToolSlugs(): string[] {
 async function parseFaqsFromMarkdown(
   rawContent: string
 ): Promise<{ cleanedContent: string; faqs: FaqItem[] }> {
-  // Look for ## Frequently Asked Questions (or FAQ / FAQs) section
-  const faqHeaderRegex = /(?:^|\n)##\s+(?:Frequently Asked Questions|FAQs?)\b[^\n]*/i;
+  // Look for ## Frequently Asked Questions (or FAQ / FAQs / X. FAQs) section
+  const faqHeaderRegex = /(?:^|\n)##\s+(?:(?:\d+\.\s*)?[^\n]*\b(?:Frequently Asked Questions|FAQs?)\b[^\n]*)/i;
   const match = rawContent.match(faqHeaderRegex);
 
   if (!match || match.index === undefined) {
@@ -90,6 +93,9 @@ async function parseFaqsFromMarkdown(
     }
 
     if (question) {
+      // Strip leading section numbers (e.g., "4.1 ", "1. ")
+      question = question.replace(/^\d+(?:\.\d+)*\s*[-–.:]?\s*/, "").trim();
+
       // Strip HTML comments from answer
       const cleanedAnswer = rawAnswer.replace(/<!--[\s\S]*?-->/g, "").trim();
 
@@ -163,6 +169,9 @@ export async function getToolBySlug(slug: string): Promise<ToolPageData | null> 
       hero_subtitle:
         data.hero_subtitle ||
         "Upload a photo from your phone or desktop. Our AI crops, centers, and cleans the background to meet official government standards.",
+      studio_title: data.studio_title,
+      studio_description: data.studio_description,
+      cta_description: data.cta_description,
       dimensions_mm: data.dimensions_mm || "35 × 45 mm",
       dimensions_px: data.dimensions_px,
       feature_image:

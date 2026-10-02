@@ -29,6 +29,8 @@ export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
     { label: "Indian Passport & OCI", href: "/tool/indian-passport-photo-maker" },
   ],
   "Photo Tools": [
+    { label: "UK Passport Photo Checker", href: "/tool/passport-photo-checker-uk" },
+    { label: "Photo Guidance Wizard", href: "/tool/uk-passport-photo-guidance-wizard" },
     { label: "Print Template Generator", href: "/passport-photo-print-template-generator" },
     { label: "Digital Passport Photo", href: "/tool/digital-passport-photo" },
     { label: "35×45 mm Photo Size", href: "/tool/photo-size-35x45mm" },

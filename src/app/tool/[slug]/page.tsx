@@ -69,6 +69,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 const ALL_POPULAR_TOOLS = [
   { slug: "uk-passport-photo", title: "UK Passport Photo", flag: "🇬🇧", spec: "35×45 mm", category: "Country Guide" },
+  { slug: "passport-photo-checker-uk", title: "UK Photo Checker", flag: "✅", spec: "Compliance Test", category: "Photo Tool" },
+  { slug: "uk-passport-photo-guidance-wizard", title: "Passport Guidance Wizard", flag: "🧙‍♂️", spec: "Step-by-Step", category: "Photo Tool" },
   { slug: "passport-renewal-photo-online", title: "UK Passport Renewal", flag: "🔄", spec: "35×45 mm", category: "Country Guide" },
   { slug: "uk-baby-passport-photo", title: "UK Baby Passport Photo", flag: "👶", spec: "UK HMPO Infant", category: "Country Guide" },
   { slug: "uk-driving-licence-photo", title: "UK Driving Licence", flag: "🚗", spec: "DVLA 35×45 mm", category: "Country Guide" },
@@ -255,10 +257,11 @@ export default async function DynamicToolPage({ params }: PageProps) {
           <div className="container-narrow max-w-2xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-5 sm:mb-7">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                Create Your {tool.hero_title}
+                {tool.studio_title || `Create Your ${tool.hero_title}`}
               </h2>
               <p className="text-slate-700 text-xs sm:text-sm mt-1.5 max-w-md mx-auto leading-relaxed">
-                Select your country, upload your photo, and let AI automatically size and verify biometrics in 10 seconds.
+                {tool.studio_description ||
+                  "Select your country, upload your photo, and let AI automatically size and verify biometrics in 10 seconds."}
               </p>
             </div>
 
@@ -373,7 +376,8 @@ export default async function DynamicToolPage({ params }: PageProps) {
                   Ready to create your verified {tool.hero_title}?
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 mb-5 max-w-md mx-auto">
-                  Upload your photo in seconds and receive guaranteed HMPO / ICAO compliant digital photos and printable sheets.
+                  {tool.cta_description ||
+                    "Prepare your photo using UK passport photo requirements and review it before submitting your application."}
                 </p>
                 <a
                   href="#studio"

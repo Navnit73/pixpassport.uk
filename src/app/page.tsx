@@ -546,7 +546,21 @@ export default function HomePage() {
                     </ul>
 
                     <p className="text-sm bg-lime-50/80 border border-lime-200 text-[#365314] font-medium rounded-xl p-3.5 mb-5">
-                      If you’re using a photo taken on your own device, include your head, shoulders and upper body. Do not crop your photo - it will be done for you. Learn{" "}
+                      If you’re using a photo taken on your own device, include your head, shoulders and upper body. Do not crop your photo - it will be done for you. Test your picture with our{" "}
+                      <Link
+                        href="/tool/passport-photo-checker-uk"
+                        className="font-bold underline text-[#365314] hover:text-[#4D7C0F] transition-colors"
+                      >
+                        UK passport photo checker
+                      </Link>
+                      , follow our{" "}
+                      <Link
+                        href="/tool/uk-passport-photo-guidance-wizard"
+                        className="font-bold underline text-[#365314] hover:text-[#4D7C0F] transition-colors"
+                      >
+                        guidance wizard
+                      </Link>
+                      , or learn{" "}
                       <Link
                         href="/tool/take-a-passport-photo-on-iphone"
                         className="font-bold underline text-[#365314] hover:text-[#4D7C0F] transition-colors"
@@ -787,6 +801,8 @@ export default function HomePage() {
                   <ArrowRight className="w-3 h-3 text-lime-800" />
                 </Link>
                 {[
+                  { slug: "passport-photo-checker-uk", label: "UK Photo Checker" },
+                  { slug: "uk-passport-photo-guidance-wizard", label: "Photo Guidance Wizard" },
                   { slug: "passport-renewal-photo-online", label: "UK Passport Renewal" },
                   { slug: "take-a-passport-photo-on-iphone", label: "iPhone Passport Photo" },
                   { slug: "digital-passport-photo", label: "Digital Photo for Passport" },

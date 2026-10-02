@@ -48,6 +48,18 @@ export const PHOTO_TOOLS_MENU = {
       icon: "🪪",
     },
     {
+      title: "UK Passport Photo Checker",
+      description: "Test your photo against official UK biometric rules",
+      href: "/tool/passport-photo-checker-uk",
+      icon: "✅",
+    },
+    {
+      title: "Photo Guidance Wizard",
+      description: "Tailored step-by-step guidance for your application",
+      href: "/tool/uk-passport-photo-guidance-wizard",
+      icon: "🧙‍♂️",
+    },
+    {
       title: "Take Photo at Home Guide",
       description: "DIY mobile camera tips for 100% photo acceptance",
       href: "/tool/passport-photo-at-home",
