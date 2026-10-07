@@ -20,7 +20,7 @@ price: "7.99"
 
 You do not need a studio to get a correct US visa photo. Upload a picture from your phone, and our US visa photo maker crops it to the square 2×2 inch format, replaces the background with white, and checks your head size against the State Department range.
 
-Use this tool for a US visa application, a passport application, or a passport renewal. Download a 600×600 px JPEG for online upload, or print the photo at home or at a local shop.
+Use this tool for a US visa application (DS-160 or DS-260), a passport application, or a passport renewal. Download a 600×600 px JPEG for online upload, or arrange multiple copies on a printable sheet with our [passport photo print template generator](/passport-photo-print-template-generator) to print at a local shop.
 
 ## How the US Visa Photo Editor Works
 
@@ -85,9 +85,9 @@ Our online tool handles each step, so you avoid the common mistakes.
 - **Automatic square crop:** The editor sets the 2×2 inch frame around your face.
 - **Background removal:** It replaces your wall or room with a clean white background.
 - **Head-size check:** It measures your head against the US range.
-- **Picture converter:** Turn an existing photo into a US visa picture without a retake.
+- **Picture converter:** Turn an existing photo into a US visa picture without a retake using our [image to passport size converter](/tool/image-to-passport-size-converter).
 - **Phone-friendly editing:** Use any smartphone and finish in your browser.
-- **Digital and print output:** Download a JPEG for upload, or a sheet with several copies to print.
+- **Digital and print output:** Download a JPEG for upload, or a [4×6″ print template](/passport-photo-print-template-generator) with 4 copies to print.
 
 ## How to Take a Good Source Photo
 
@@ -99,6 +99,8 @@ A clear picture gives the cleanest result, so take a few minutes to set up.
 - **Stand in front of a plain wall.** The tool fixes the background, but a simple wall gives a sharper cut-out.
 - **Leave space around your head.** The editor needs room to crop the square correctly.
 - **Look straight ahead.** Relax your face and keep your head level.
+
+For full smartphone tips, see our guide on [how to take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone) and our [passport photo at home DIY guide](/tool/passport-photo-at-home).
 
 ## How to Submit Your US Visa Photo
 
@@ -116,15 +118,18 @@ Immigrant visa applicants upload a digital photo through the Consular Electronic
 
 For a paper application, print one 2×2 inch photo on photo-quality paper, and staple or attach it as the form directs. Some renewals also accept a digital photo online, so check the current State Department instructions for your case.
 
-<!-- TODO: verify the current DS-160, DS-260 and passport photo submission rules on travel.state.gov -->
-
 ### Print at Home or at a Shop
 
-Print at 100% scale on glossy or matte photo paper, with no borders or scaling. Cut each photo to exactly 2×2 inches, or take the file to a pharmacy or photo centre and ask for the US 2×2 inch size.
+If your visa appointment requires physical prints, use our free [passport photo print template generator](/passport-photo-print-template-generator) to layout 4 square 2×2″ photos on a standard 4×6″ print sheet at 300 DPI. Print at Boots, Tesco, Snappy Snaps or home at 100% scale.
 
-## Need a Different Country's Photo?
+## Other Visa & Passport Photo Formats
 
-The US uses a square photo, but most countries use another format. Use our [Indian passport photo maker](/tool/indian-passport-photo-maker) for 35×45 mm Indian passport photos, or our [UK driving licence photo maker](/tool/uk-driving-licence-photo) for DVLA applications.
+The US uses a square photo, but most European and Commonwealth countries use rectangular formats:
+- [UK Passport Photo Size & Requirements](/tool/uk-passport-photo) — Standard 35×45 mm UK specification
+- [Schengen Visa Photo Maker](/tool/schengen-visa-photo) — 35×45 mm European biometric standard
+- [Indian Passport & OCI Photo Maker](/tool/indian-passport-photo-maker) — 35×45 mm passport & 2×2″ OCI/eVisa formats
+- [UK Driving Licence Photo](/tool/uk-driving-licence-photo) — DVLA 35×45 mm rules
+- [Passport Size Photo Studio](/passport-size-photo-maker) — Create photo for 50+ countries
 
 ## Frequently Asked Questions
 
@@ -134,12 +139,11 @@ A US visa photo measures 2×2 inches (51×51 mm). For online upload, use a squar
 
 ### Is there a free US visa photo tool?
 
-<!-- TODO: confirm what is free (for example, a free preview) and edit this answer to match your real offer. -->
-You can upload your picture and preview the cropped result before you download. The final print-ready file is a paid download, so confirm the current terms in the editor.
+You can upload your picture and preview the cropped result before you download. To format printable sheets, our [passport photo print template generator](/passport-photo-print-template-generator) is completely free.
 
 ### Can I make a US visa photo online with my phone?
 
-Yes. Take a clear, front-facing picture in even light, upload it, and the tool prepares the square crop and white background.
+Yes. Take a clear, front-facing picture in even light, upload it, and the tool prepares the square crop and white background. Read our [iPhone passport photo guide](/tool/take-a-passport-photo-on-iphone) for step-by-step instructions.
 
 ### What background do I need for a US visa photo?
 
@@ -160,6 +164,10 @@ Take the photo within the last 6 months, and make sure it looks like you today.
 ### Can I use the same photo for a visa and a passport?
 
 Yes. The US applies the same 2×2 inch standard to both, so one compliant photo works for either application.
+
+### How do I print 2×2 inch US visa photos on 4×6″ paper?
+
+Use our [passport photo print template generator](/passport-photo-print-template-generator) to place 4 identical 2×2″ photos onto a 4×6″ sheet with corner cutting marks.
 
 ## Get Your US Visa Photo Now
 

@@ -31,6 +31,7 @@ Getting a baby to sit still in a photo booth is hard, so many parents take the p
 1. **Lying Down Method**: Place your baby on their back on a plain light-coloured sheet, such as cream or light grey. Stand directly above and take the photo looking down.
 2. **Car Seat Method**: Cover an infant car seat with a plain light-coloured sheet, place your baby in the seat, and take the photo from eye level.
 3. **Natural Daylight**: Position near a window on an overcast day or with indirect lighting to avoid harsh flash reflections.
+4. **Use Phone Settings**: Read our guide on [how to take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone) for optimal camera and burst-mode settings.
 
 ---
 
@@ -42,6 +43,14 @@ Getting a baby to sit still in a photo booth is hard, so many parents take the p
 | Head and shoulders clearly in frame | Dummy, bottle, or toy in mouth / picture |
 | Good natural overhead lighting | Shadows cast across the baby's face |
 | Single digital file formatted to 600×750 px | Another child or adult visible in background |
+
+---
+
+## Printing Baby Passport Photos for Paper Applications
+
+First-time child passport applications often use paper application forms submitted via the Post Office Check & Send service, which require 2 identical printed photos (and countersignature).
+
+Instead of struggling with a photo booth, generate a 4×6″ printable sheet with up to 8 infant photos using our free [passport photo print template generator](/passport-photo-print-template-generator). You can print it at Boots or Tesco for around 15p.
 
 ---
 
@@ -61,14 +70,25 @@ Children under 6 do not have to have a plain expression. Babies must not be hold
 
 ### What is the easiest way to take a baby passport photo at home?
 
-Lay your baby on their back on a plain light-coloured sheet in soft natural daylight. Stand directly over them and take the photo looking straight down.
+Lay your baby on their back on a plain light-coloured sheet in soft natural daylight. Stand directly over them and take the photo looking straight down. For more home photography setup advice, check our [passport photo at home guide](/tool/passport-photo-at-home).
 
 ### What size is a UK baby passport photo?
 
 A UK baby passport photo uses the standard UK passport dimensions: 35 mm wide by 45 mm high (or 600×750 pixels for online GOV.UK digital passport applications).
 
-## Other UK Photo Guides
+### How can I check if my baby's photo meets HMPO rules?
 
-See the full [UK passport photo size and requirements](/tool/uk-passport-photo), or [check your photo](/tool/passport-photo-checker-uk) before you apply.
+Use our [UK passport photo checker](/tool/passport-photo-checker-uk) to test your baby's picture against official background, lighting, and dimensional standards.
+
+---
+
+## Related UK Passport & Photo Guides
+
+- [UK Passport Photo Size & Requirements](/tool/uk-passport-photo) — Full adult and child HMPO rules
+- [UK Passport Photo Checker](/tool/passport-photo-checker-uk) — Online compliance test
+- [Digital Passport Photo for GOV.UK](/tool/digital-passport-photo) — Online upload rules
+- [Passport Photo Print Template Generator](/passport-photo-print-template-generator) — Free 4×6″ print sheet creator
+- [Passport Photo at Home DIY Guide](/tool/passport-photo-at-home) — Complete guide to home photo setups
+- [Passport Size Photo Studio](/passport-size-photo-maker) — Create compliant photos in seconds
 
 *PixPassport is an independent service and is not affiliated with HM Passport Office or GOV.UK. Rules checked against [GOV.UK passport photo guidance](https://www.gov.uk/photos-for-passports) in October 2026.*

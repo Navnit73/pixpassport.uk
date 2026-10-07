@@ -18,22 +18,22 @@ price: "7.99"
 
 ## Make Your UK Driving Licence Photo Online
 
-You do not need a photo booth to get a UK driving licence photo. Take a picture on your phone, upload it to our editor, and the tool crops it to 35×45 mm, replaces the background with a plain light one and checks your face position. You can then download a digital photo for your online application or print a copy for a postal form.
+You do not need a photo booth to get a UK driving licence photo. Take a picture on your phone, upload it to our editor, and the tool crops it to 35×45 mm, replaces the background with a plain light one and checks your face position. You can then download a digital photo for your online application or print a copy for a postal form using our [passport photo print template generator](/passport-photo-print-template-generator).
 
-Use it for a first provisional licence, a photocard renewal, a replacement, or a change of name or address. The DVLA applies the same photo rules to every one of these applications.
+Use it for a first provisional licence, a photocard renewal, a replacement, or a change of name or address. The DVLA applies the same photo rules to every one of these applications as the standard [UK passport photo](/tool/uk-passport-photo).
 
 ## How to Create a Driving Licence Photo in 4 Steps
 
 1. **Upload your picture.** Choose a recent, sharp, front-facing photo from your phone or computer.
 2. **Let the tool crop it.** The editor centres your head and sets the 35×45 mm frame (at least 600×750 px for digital upload).
-3. **Review the checks.** The tool tests your background, head size and framing against the DVLA standard.
+3. **Review the checks.** The tool tests your background, head size and framing against the DVLA standard. You can also verify it with our [UK passport photo checker](/tool/passport-photo-checker-uk).
 4. **Download your photo.** Save the digital file for GOV.UK, or arrange copies on a sheet to print.
 
 The process takes about two minutes, and you can retake the picture as often as you like.
 
 ## UK Driving Licence Photo Requirements
 
-The DVLA asks for a photo that meets the same standard as a digital UK passport photo. Read the rules below before you take your picture, because an incorrect photo is one of the most common reasons an application stalls.
+The DVLA asks for a photo that meets the same standard as a [digital UK passport photo](/tool/digital-passport-photo). Read the rules below before you take your picture, because an incorrect photo is one of the most common reasons an application stalls.
 
 ### DVLA Photo Size and Format
 
@@ -79,7 +79,7 @@ Different forms use different units, so here is the same size in each:
 | Centimetres | 3.5 × 4.5 cm |
 | Digital minimum | 600 × 750 px |
 
-If you have a UK passport photo that follows the same size and rules, you can often reuse it. Check the DVLA instructions for your application to confirm.
+If you have a [UK passport photo](/tool/uk-passport-photo) that follows the same [35×45 mm photo size](/tool/photo-size-35x45mm) and rules, you can often reuse it. Check the DVLA instructions for your application to confirm.
 
 ## How to Apply With Your Driving Licence Photo
 
@@ -91,7 +91,9 @@ For a provisional licence or a photocard renewal, the online service may let you
 
 ### Apply by Post With a D1 Form
 
-For a paper application, send a recent printed passport-style photo with your D1 form. Print on photo-quality paper, cut to exactly 35×45 mm, and follow the placement instructions on the form. Do not staple the photo, and check the form to see how many photos it asks for. <!-- TODO: confirm photo count and countersignature rules for the current D1 form -->
+For a paper application, send a recent printed passport-style photo with your D1 form. Print on photo-quality paper, cut to exactly 35×45 mm, and follow the placement instructions on the form.
+
+To print at Boots, Tesco or Asda for around 15p, use our [passport photo print template generator](/passport-photo-print-template-generator) to lay out up to 8 copies on a standard 4×6″ sheet with corner cutting marks.
 
 ### Change the Photo on Your Driving Licence
 
@@ -108,7 +110,7 @@ Our online tool handles each step and helps you avoid the usual mistakes.
 - **Automatic cropping:** The editor sets the 35×45 mm frame around your face.
 - **Background replacement:** It swaps your wall for a plain light background.
 - **Head-size check:** It compares your head height with the 29–34 mm range.
-- **Digital and print output:** Download a JPEG for GOV.UK, or lay out several copies to print.
+- **Digital and print output:** Download a JPEG for GOV.UK, or lay out several copies on a [print template sheet](/passport-photo-print-template-generator) to print.
 - **Phone-friendly editing:** Use any smartphone and finish in your browser.
 
 ## Tips for Taking a Better Source Photo
@@ -122,6 +124,16 @@ A good picture gives the cleanest result, so take a few minutes to set up.
 - **Leave space around your head.** The tool needs room to crop correctly.
 - **Look straight ahead.** Relax your face and keep your head level.
 
+For complete smartphone shooting instructions, read our guide on [how to take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone) or our general [passport photo at home DIY guide](/tool/passport-photo-at-home).
+
+## Related UK Photo Guides
+
+- [UK Passport Photo Size & Requirements](/tool/uk-passport-photo) — Complete guide to HMPO rules
+- [UK Passport Photo Checker](/tool/passport-photo-checker-uk) — Test your picture before submitting
+- [UK Digital Passport Photo](/tool/digital-passport-photo) — Photo codes vs taking your own photo on GOV.UK
+- [UK Visa & ETA Photo Requirements](/tool/uk-visa-photo) — Biometric rules for UKVI applications
+- [Passport Size Photo Studio](/passport-size-photo-maker) — Create photo for 50+ document types
+
 ## Frequently Asked Questions
 
 ### What size is a UK driving licence photo?
@@ -134,7 +146,7 @@ The photo must be a recent colour picture with a plain cream or light grey backg
 
 ### Can I use a passport photo for my driving licence?
 
-Yes, if it meets the same rules and is recent. When you apply online, the DVLA may also retrieve your passport photo if you hold a valid UK passport.
+Yes, if it meets the same rules and is recent. When you apply online, the DVLA may also retrieve your passport photo if you hold a valid UK passport. Read our [UK passport photo guide](/tool/uk-passport-photo) for detailed specifications.
 
 ### What background do I need for a driving licence photo?
 
@@ -150,7 +162,7 @@ Take them off where you can. The DVLA follows passport photo rules, which allow 
 
 ### Can I take a driving licence photo with my phone?
 
-Yes. Take a clear, front-facing picture in even light, upload it, and the tool prepares the correct size and background.
+Yes. Take a clear, front-facing picture in even light, upload it, and the tool prepares the correct size and background. See our [iPhone passport photo guide](/tool/take-a-passport-photo-on-iphone) for camera settings.
 
 ### How do I change the photo on my driving licence?
 

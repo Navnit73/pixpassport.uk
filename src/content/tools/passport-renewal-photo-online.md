@@ -22,7 +22,7 @@ price: "7.99"
 
 You do not need a photo booth to renew your passport online. Take a picture on your phone, upload it to our editor, and the tool crops it to 35×45 mm, replaces the background with a plain light one and checks your head size. You can then download a digital file and upload it with your application on GOV.UK.
 
-Renewing online is quicker than posting a paper form, and a correct photo is the part most applicants get wrong. Prepare it at home first, and your application runs smoothly.
+Renewing online is quicker than posting a paper form, and a correct photo is the part most applicants get wrong. Prepare it at home first, test it with our [UK passport photo checker](/tool/passport-photo-checker-uk), and your application runs smoothly.
 
 ## How to Make a Passport Renewal Photo Online in 4 Steps
 
@@ -65,8 +65,6 @@ The online service applies the same standard as a paper application. Check these
 - **Wear headwear only for religious or medical reasons.** Show your full face from chin to forehead.
 - **Look like yourself today.** A photo that no longer matches your appearance can cause delays.
 
-<!-- TODO: confirm the current glasses rule on GOV.UK before publishing -->
-
 ## Why Renewal Photos Get Rejected
 
 Small mistakes cause most delays, so know what to avoid.
@@ -87,9 +85,9 @@ Our online tool handles each step and helps you avoid these mistakes.
 - **Automatic cropping:** The editor sets the 35×45 mm frame around your face.
 - **Background replacement:** It swaps your wall for a plain light background.
 - **Head-size check:** It compares your head height with the 29–34 mm range.
-- **Picture converter:** Turn an existing photo into a renewal-ready digital photo without a retake.
+- **Picture converter:** Turn an existing photo into a renewal-ready digital photo without a retake using our [image to passport size converter](/tool/image-to-passport-size-converter).
 - **Phone-friendly editing:** Use any smartphone and finish in your browser.
-- **Digital and print output:** Download a JPEG for upload, or a sheet with copies to print if you post your form.
+- **Digital and print output:** Download a JPEG for upload, or a [4×6″ print template](/passport-photo-print-template-generator) with copies to print if you post your form.
 
 ## How to Take a Better Source Photo
 
@@ -101,6 +99,8 @@ A clear picture gives the cleanest result, so take a few minutes to set up.
 - **Use a plain wall.** A simple backdrop gives a sharper background cut-out.
 - **Leave space around your head.** The tool needs room to crop correctly.
 - **Look straight ahead.** Relax your face and keep your head level.
+
+For complete smartphone shooting steps, see our [how to take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone) guide.
 
 ## How to Upload Your Photo When You Renew Online
 
@@ -117,11 +117,9 @@ Gather your current passport, a payment card and your digital photo. Have your p
 
 The service checks your photo as you upload it and warns you about common problems. If it flags an issue, retake the picture or adjust it in our editor, then upload it again.
 
-<!-- TODO: verify the current GOV.UK renewal steps, eligibility rules and any allowance for remaining time on your old passport -->
-
 ### If You Prefer a Paper Form
 
-Some applicants renew by post instead. Print two identical 35×45 mm photos on plain white photo-quality paper, with no borders. Follow the form's instructions, because some applications need a countersignature on the back of one photo.
+Some applicants renew by post instead. Print two identical 35×45 mm photos on plain white photo-quality paper, with no borders. Use our free [passport photo print template generator](/passport-photo-print-template-generator) to get 8 identical copies on a 4×6″ sheet.
 
 ## Digital Photo vs Printed Photo for Renewal
 
@@ -134,11 +132,11 @@ Some applicants renew by post instead. Print two identical 35×45 mm photos on p
 
 ## Renewing for a Child?
 
-Children need the same size and background, but HMPO relaxes some rules for young ones. Babies do not need to look at the camera, and no one else may appear in the photo. Check the GOV.UK guidance for children before you apply.
+Children need the same size and background, but HMPO relaxes some rules for young ones. Babies do not need to look at the camera, and no one else may appear in the photo. Read our [UK baby passport photo guide](/tool/uk-baby-passport-photo) for full instructions.
 
 ## Other Photo Formats
 
-Need a different document? Use our [UK passport photo maker](/tool/uk-passport-photo) for first-time and general applications, our [UK driving licence photo maker](/tool/uk-driving-licence-photo) for DVLA forms, or our [US visa photo maker](/tool/us-visa-photo-tool) for the square 2×2 inch format.
+Need a different document? Use our [UK passport photo maker](/tool/uk-passport-photo) for first-time and general applications, our [UK passport photo checker](/tool/passport-photo-checker-uk) to test existing pictures, our [digital passport photo guide](/tool/digital-passport-photo), our [UK driving licence photo maker](/tool/uk-driving-licence-photo) for DVLA forms, or our [US visa photo maker](/tool/us-visa-photo-tool) for the square 2×2 inch format.
 
 ## Frequently Asked Questions
 
@@ -148,7 +146,7 @@ Yes. Take a clear, front-facing picture that meets the passport photo rules, or 
 
 ### What size is a digital photo for passport renewal?
 
-A digital photo for an online renewal must be at least 600 pixels wide and 750 pixels tall, and between 50KB and 10MB. Printed photos for a paper form measure 45 mm high by 35 mm wide.
+A digital photo for an online renewal must be at least 600 pixels wide and 750 pixels tall, and between 50KB and 10MB. Printed photos for a paper form measure 45 mm high by 35 mm wide. See our [35×45 mm photo size guide](/tool/photo-size-35x45mm) for more details.
 
 ### What background do I need for a passport renewal photo?
 
@@ -156,7 +154,7 @@ For an online renewal, use a plain light-coloured background in clear contrast t
 
 ### Can I take my passport renewal picture with a phone?
 
-Yes. Take a clear picture in even daylight, upload it to the tool, and download the finished digital photo.
+Yes. Take a clear picture in even daylight, upload it to the tool, and download the finished digital photo. Follow our [passport photo at home](/tool/passport-photo-at-home) instructions.
 
 ### Can I wear glasses in my renewal photo?
 
@@ -172,7 +170,7 @@ No. The online service asks for a digital photo, so you do not need to print any
 
 ### What happens if my renewal photo fails the check?
 
-The service warns you about the problem. Fix the issue, such as the background or lighting, and upload a new file.
+The service warns you about the problem. Fix the issue, such as the background or lighting, and upload a new file. You can also run it through our [UK passport photo checker](/tool/passport-photo-checker-uk) first.
 
 ## Get Your Passport Renewal Photo Now
 

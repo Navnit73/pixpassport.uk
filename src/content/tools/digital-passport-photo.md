@@ -66,7 +66,7 @@ In the photo, you must:
 | Background | Plain, light-coloured | Plain cream or light grey |
 | Printing | Not needed | Printed to a professional standard on plain white photographic paper |
 
-Need prints for a paper form? See the [UK passport photo size and requirements](/tool/uk-passport-photo) guide.
+Need prints for a paper form? See our [UK passport photo size and requirements](/tool/uk-passport-photo) guide or generate a print sheet with our [passport photo print template generator](/passport-photo-print-template-generator).
 
 ## Common Digital Photo Problems
 
@@ -89,13 +89,16 @@ Need prints for a paper form? See the [UK passport photo size and requirements](
 - **Frame your head, shoulders and upper body.** Leave space around you rather than zooming in.
 - **Keep a plain expression,** with your mouth closed and your eyes open.
 
-For more setup tips, see how to [take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone).
+For full shooting instructions, see our guides on [how to take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone) and [how to take a passport photo at home](/tool/passport-photo-at-home).
 
 ## Check Your Photo Before You Submit
 
-Upload your picture to our tool and it checks your background, head position and framing against these rules, so you can spot problems before GOV.UK does. If you are applying on paper instead, you can download a 6×4″ print sheet to take to a photo shop.
+Upload your picture to our [UK passport photo checker](/tool/passport-photo-checker-uk) and it checks your background, head position and framing against these rules, so you can spot problems before GOV.UK does. If you are applying on paper instead, you can download a 6×4″ print sheet to take to a photo shop using our [print template generator](/passport-photo-print-template-generator).
 
-Renewing? Read our [passport renewal photo guide](/tool/passport-renewal-photo-online). Applying for a child? See the [baby passport photo guide](/tool/uk-baby-passport-photo). Need a photo for another country? Use the [passport size photo maker](/passport-size-photo-maker).
+- **Renewing?** Read our [passport renewal photo guide](/tool/passport-renewal-photo-online).
+- **Applying for a child?** See the [UK baby passport photo guide](/tool/uk-baby-passport-photo).
+- **Need a driving licence photo?** Check the [UK driving licence photo guide](/tool/uk-driving-licence-photo).
+- **Need a photo for another country?** Use the [passport size photo maker](/passport-size-photo-maker) or check the [35×45 mm photo size guide](/tool/photo-size-35x45mm).
 
 ## Frequently Asked Questions
 
@@ -109,7 +112,7 @@ At least 600 pixels wide and 750 pixels tall, with a file size of at least 50KB 
 
 ### Can I take a digital passport photo with my phone?
 
-Yes. GOV.UK lets you take a photo using your own device during your application, but you need someone to help you take it.
+Yes. GOV.UK lets you take a photo using your own device during your application, but you need someone to help you take it. Follow our [iPhone passport photo guide](/tool/take-a-passport-photo-on-iphone) for the right camera settings.
 
 ### Should I crop my digital passport photo?
 
@@ -121,7 +124,7 @@ A plain light-coloured background in clear contrast to you, with no shadows behi
 
 ### Do I need to print a digital passport photo?
 
-No. An online application only needs the digital photo. Printed photos are only for paper application forms.
+No. An online application only needs the digital photo. Printed photos are only for paper application forms. If you do need prints, use our free [passport photo print template generator](/passport-photo-print-template-generator).
 
 ### Is a booth photo better than a phone photo?
 
@@ -129,6 +132,6 @@ GOV.UK says photos from a booth or shop are more likely to be approved than phot
 
 ### Will my digital passport photo definitely be accepted?
 
-No tool can promise that. HM Passport Office makes the final decision, but checking your photo first helps you avoid the most common mistakes.
+No tool can promise that. HM Passport Office makes the final decision, but checking your photo with our [UK passport photo checker](/tool/passport-photo-checker-uk) first helps you avoid the most common mistakes.
 
 *PixPassport is an independent service and is not affiliated with HM Passport Office or GOV.UK. Rules checked against [GOV.UK digital photo guidance](https://www.gov.uk/photos-for-passports/rules-for-digital-photos) in October 2026.*
