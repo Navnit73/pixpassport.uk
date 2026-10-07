@@ -6,6 +6,7 @@ country_code: "US"
 document_type: "visa"
 badge: "US Dept of State 2×2 in Standard"
 hero_title: "US Visa Photo Maker Online"
+cta_button_text: "Create My US Visa Photo"
 hero_subtitle: "Use our US visa photo tool to turn any picture into a square 2×2 inch (600×600 px) photo. Crop, remove the background, and check your head size in minutes."
 dimensions_mm: "2 × 2 inches (51 × 51 mm)"
 # TODO: replace with a US-format image (current filename says "uk"). Suggested alt text is in feature_image_alt.

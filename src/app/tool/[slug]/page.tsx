@@ -7,14 +7,15 @@ import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import PhotoMakerStudio from "@/components/PhotoMakerStudio";
 import FaqAccordion from "@/components/FaqAccordion";
+import GovUkPhotoNotice from "@/components/GovUkPhotoNotice";
 import { getAllToolSlugs, getToolBySlug } from "@/lib/tools";
+import { TOOL_DIRECTORY } from "@/lib/tool-directory";
 import {
   Sparkles,
   ArrowRight,
   Globe,
   Crop,
   Zap,
-  Star,
 } from "lucide-react";
 
 interface PageProps {
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
 
   return {
-    title: tool.title,
+    title: tool.meta_title || tool.title,
     description: tool.meta_description,
     alternates: {
       canonical: `${siteUrl}/tool/${slug}`,
@@ -52,9 +53,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       images: [
         {
           url: tool.feature_image || `${siteUrl}/pixpassport.jpg`,
-          width: 1200,
-          height: 630,
-          alt: `${tool.title} — PixPassport`,
+          alt: tool.feature_image_alt || `${tool.title} — PixPassport`,
         },
       ],
     },
@@ -67,25 +66,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-const ALL_POPULAR_TOOLS = [
-  { slug: "uk-passport-photo", title: "UK Passport Photo", flag: "🇬🇧", spec: "35×45 mm", category: "Country Guide" },
-  { slug: "passport-photo-checker-uk", title: "UK Photo Checker", flag: "✅", spec: "Compliance Test", category: "Photo Tool" },
-  { slug: "uk-passport-photo-guidance-wizard", title: "Passport Guidance Wizard", flag: "🧙‍♂️", spec: "Step-by-Step", category: "Photo Tool" },
-  { slug: "passport-renewal-photo-online", title: "UK Passport Renewal", flag: "🔄", spec: "35×45 mm", category: "Country Guide" },
-  { slug: "uk-baby-passport-photo", title: "UK Baby Passport Photo", flag: "👶", spec: "UK HMPO Infant", category: "Country Guide" },
-  { slug: "uk-driving-licence-photo", title: "UK Driving Licence", flag: "🚗", spec: "DVLA 35×45 mm", category: "Country Guide" },
-  { slug: "us-visa-photo-tool", title: "US Visa & Passport", flag: "🇺🇸", spec: "2×2 inches", category: "Country Guide" },
-  { slug: "schengen-visa-photo", title: "Schengen Visa Photo", flag: "🇪🇺", spec: "35×45 mm", category: "Country Guide" },
-  { slug: "indian-passport-photo-maker", title: "Indian Passport & OCI", flag: "🇮🇳", spec: "35×45 mm / 2×2″", category: "Country Guide" },
-  { slug: "digital-passport-photo", title: "Digital Passport Photo", flag: "💻", spec: "Online Upload", category: "Photo Tool" },
-  { slug: "photo-size-35x45mm", title: "35×45 mm Photo Size", flag: "📐", spec: "Standard Ratio", category: "Photo Tool" },
-  { slug: "image-to-passport-size-converter", title: "Image to Passport Converter", flag: "🔄", spec: "Auto-Crop", category: "Photo Tool" },
-  { slug: "passport-photo-at-home", title: "Passport Photo at Home", flag: "🏠", spec: "DIY & Print", category: "Photo Tool" },
-  { slug: "take-a-passport-photo-on-iphone", title: "iPhone Passport Photo", flag: "📱", spec: "iOS Shoot Guide", category: "Photo Tool" },
-  { slug: "passport-photo-tool", title: "Passport Photo Tool", flag: "✂️", spec: "50+ Countries", category: "Photo Tool" },
-  { slug: "online-id-photo-maker", title: "Online ID Photo Maker", flag: "🪪", spec: "All ID Types", category: "Photo Tool" },
-  { slug: "order-passport-photos-online", title: "Order Passport Photos", flag: "📦", spec: "Digital & Prints", category: "Photo Tool" },
-];
 
 export default async function DynamicToolPage({ params }: PageProps) {
   const { slug } = await params;
@@ -108,10 +88,13 @@ export default async function DynamicToolPage({ params }: PageProps) {
         description={tool.meta_description}
         price={tool.price || "7.99"}
         priceCurrency="GBP"
+        pageUrl={`${siteUrl}/tool/${slug}`}
+        pageName={tool.meta_title || tool.title}
+        pageDescription={tool.meta_description}
         breadcrumbs={[
           { name: "Home", url: siteUrl },
-          { name: "Photo Tools", url: `${siteUrl}/passport-size-photo-maker` },
-          { name: tool.title, url: `${siteUrl}/tool/${slug}` },
+          { name: "Photo Guides", url: `${siteUrl}/tool` },
+          { name: tool.hero_title, url: `${siteUrl}/tool/${slug}` },
         ]}
         includeOrganization={false}
         includeWebsite={false}
@@ -137,8 +120,8 @@ export default async function DynamicToolPage({ params }: PageProps) {
                 </li>
                 <li aria-hidden="true" className="text-slate-400">/</li>
                 <li>
-                  <Link href="/passport-size-photo-maker" className="text-slate-600 hover:text-lime-800 transition-colors font-medium">
-                    Photo Tools
+                  <Link href="/tool" className="text-slate-600 hover:text-lime-800 transition-colors font-medium">
+                    Photo Guides
                   </Link>
                 </li>
                 <li aria-hidden="true" className="text-slate-400">/</li>
@@ -164,7 +147,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
 
                 {/* Sub-heading */}
                 <p className="text-lg sm:text-xl text-[#334155] font-semibold mb-4 leading-snug">
-                  {tool.dimensions_mm} · Instant Government Biometric Compliance &amp; Background Removal
+                  {tool.dimensions_mm} · Size, background and framing checked before you download
                 </p>
 
                 {/* Body description */}
@@ -178,7 +161,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
                     href="#studio"
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-base px-7 py-3.5 sm:py-4 rounded-xl transition-colors text-center shadow-xs cursor-pointer"
                   >
-                    <span>Create My Passport Photo</span>
+                    <span>{tool.cta_button_text || "Create My Passport Photo"}</span>
                     <span aria-hidden="true">&rarr;</span>
                   </a>
                   <a
@@ -187,18 +170,6 @@ export default async function DynamicToolPage({ params }: PageProps) {
                   >
                     How It Works
                   </a>
-                </div>
-
-                {/* Rating & Social Proof */}
-                <div className="flex items-center gap-2.5 mb-6 text-sm" aria-label="Rated 4.9 out of 5 stars based on 17,000+ reviews">
-                  <div className="flex items-center text-amber-500 gap-0.5" aria-hidden="true">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-current" />
-                    ))}
-                  </div>
-                  <span className="text-slate-900 text-sm font-bold">
-                    4.9 · <span className="font-medium text-slate-700">Trusted by 17,000+ applicants</span>
-                  </span>
                 </div>
 
                 {/* Features Badges Row */}
@@ -270,6 +241,9 @@ export default async function DynamicToolPage({ params }: PageProps) {
               defaultCountryCode={tool.country_code}
               defaultDocumentType={tool.document_type || "passport"}
             />
+            {tool.country_code === "GB" && tool.document_type === "passport" && (
+              <GovUkPhotoNotice className="mt-5" />
+            )}
           </div>
         </section>
 
@@ -283,10 +257,10 @@ export default async function DynamicToolPage({ params }: PageProps) {
                 Simple 3-Step Process
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
-                How to Create a Digital Photo for Passport Online
+                {tool.how_it_works_title || "How It Works in 3 Steps"}
               </h2>
               <p className="text-slate-600 text-sm sm:text-base">
-                Three steps take you from a regular photo to an accepted biometric passport picture.
+                Three steps take you from a regular phone photo to a correctly sized, checked photo.
               </p>
             </div>
 
@@ -324,7 +298,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
                     2. Upload and Auto-Crop
                   </h3>
                   <p className="text-slate-600 text-sm leading-relaxed">
-                    Upload any photo. Our built-in tool centres your face, straightens your head position, and removes the background cleanly.
+                    Upload a clear, recent photo. The tool centres your face, sets the head size and checks the background and framing.
                   </p>
                 </div>
               </div>
@@ -343,7 +317,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
                     3. Preview and Download
                   </h3>
                   <p className="text-slate-600 text-sm leading-relaxed">
-                    In under 10 seconds you get a compliant digital photo plus a print-ready 6×4″ sheet, ready to submit online or print at home.
+                    In under 10 seconds you get a digital photo plus a print-ready 6×4″ sheet to upload or take to a photo shop for printing.
                   </p>
                 </div>
               </div>
@@ -373,7 +347,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
               {/* In-Article CTA */}
               <div className="mt-12 pt-8 border-t border-slate-100 text-center bg-slate-50 rounded-2xl p-6 sm:p-8">
                 <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2">
-                  Ready to create your verified {tool.hero_title}?
+                  Ready to create your {tool.hero_title}?
                 </h3>
                 <p className="text-xs sm:text-sm text-slate-600 mb-5 max-w-md mx-auto">
                   {tool.cta_description ||
@@ -409,7 +383,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
             </div>
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {ALL_POPULAR_TOOLS.filter((t) => t.slug !== slug).map((t) => (
+              {TOOL_DIRECTORY.filter((t) => t.slug !== slug).map((t) => (
                 <Link
                   key={t.slug}
                   href={`/tool/${t.slug}`}
@@ -420,7 +394,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
                     <div className="min-w-0">
                       <div className="flex items-center gap-1.5 mb-0.5">
                         <span className="text-xs font-semibold text-lime-800 bg-lime-50 px-1.5 py-0.5 rounded text-[10px]">
-                          {t.category}
+                          {t.group}
                         </span>
                       </div>
                       <span className="text-sm font-bold text-slate-900 group-hover:text-lime-900 transition-colors block truncate">

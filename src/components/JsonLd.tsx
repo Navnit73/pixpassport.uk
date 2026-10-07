@@ -16,6 +16,11 @@ export interface JsonLdProps {
   price?: string;
   priceCurrency?: string;
   faqItems?: JsonLdFaqEntry[];
+  /** Absolute URL of the page the FAQs and breadcrumbs belong to. */
+  pageUrl?: string;
+  /** Emits a WebPage node for `pageUrl` when set. */
+  pageName?: string;
+  pageDescription?: string;
   breadcrumbs?: Array<{ name: string; url: string }>;
   includeOrganization?: boolean;
   includeWebsite?: boolean;
@@ -34,7 +39,7 @@ const DEFAULT_SITE_URL =
 export default function JsonLd({
   siteUrl = DEFAULT_SITE_URL,
   siteName = "PixPassport",
-  description = "Create a digital photo for passport applications and renewals online. Official UK passport photo maker for £7.99.",
+  description = "Make a UK passport photo online for GOV.UK applications and renewals, checked against HMPO guidance.",
   logoUrl = `${DEFAULT_SITE_URL}/pixpassport.jpg`,
   imageUrl = `${DEFAULT_SITE_URL}/pixpassport.jpg`,
   appName,
@@ -44,6 +49,9 @@ export default function JsonLd({
   price = "7.99",
   priceCurrency = "GBP",
   faqItems,
+  pageUrl,
+  pageName,
+  pageDescription,
   breadcrumbs,
   includeOrganization = true,
   includeWebsite = true,
@@ -60,8 +68,8 @@ export default function JsonLd({
       logo: {
         "@type": "ImageObject",
         url: logoUrl,
-        width: 512,
-        height: 512,
+        width: 640,
+        height: 640,
       },
       image: imageUrl,
       contactPoint: {
@@ -113,10 +121,28 @@ export default function JsonLd({
     });
   }
 
+  const pageId = `${pageUrl ?? `${siteUrl}/`}`;
+  const hasBreadcrumbs = Boolean(breadcrumbs && breadcrumbs.length > 0);
+
+  if (pageUrl && pageName) {
+    graph.push({
+      "@type": "WebPage",
+      "@id": `${pageId}#webpage`,
+      url: pageUrl,
+      name: pageName,
+      ...(pageDescription ? { description: pageDescription } : {}),
+      inLanguage: "en-GB",
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      publisher: { "@id": `${siteUrl}/#organization` },
+      ...(hasBreadcrumbs ? { breadcrumb: { "@id": `${pageId}#breadcrumb` } } : {}),
+      ...(includeWebApp ? { mainEntity: { "@id": appId || `${siteUrl}/#webapp` } } : {}),
+    });
+  }
+
   if (faqItems && faqItems.length > 0) {
     graph.push({
       "@type": "FAQPage",
-      "@id": `${siteUrl}/#faq`,
+      "@id": `${pageId}#faq`,
       mainEntity: faqItems.map((entry) => ({
         "@type": "Question",
         name: entry.question,
@@ -128,9 +154,10 @@ export default function JsonLd({
     });
   }
 
-  if (breadcrumbs && breadcrumbs.length > 0) {
+  if (breadcrumbs && hasBreadcrumbs) {
     graph.push({
       "@type": "BreadcrumbList",
+      "@id": `${pageId}#breadcrumb`,
       itemListElement: breadcrumbs.map((crumb, idx) => ({
         "@type": "ListItem",
         position: idx + 1,

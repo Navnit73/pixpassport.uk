@@ -28,14 +28,14 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${SITE_URL}/pixpassport.jpg`,
-        width: 1200,
-        height: 630,
+        width: 640,
+        height: 640,
         alt: "PixPassport Privacy Policy",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Privacy Policy — PixPassport",
     description:
       "Read the PixPassport Privacy Policy. Understand what data we collect, our UK GDPR compliance, cookie practices, and how your privacy is protected.",

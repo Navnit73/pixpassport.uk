@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${SITE_URL}/pixpassport.jpg`,
-        width: 1200,
-        height: 630,
+        width: 640,
+        height: 640,
         alt: "About PixPassport — UK Passport Photo Maker",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "About Us — PixPassport",
     description:
       "Learn about PixPassport.uk — our mission, privacy-first technology, UK HMPO compliance standards, and commitment to accessible passport photo creation.",
@@ -185,10 +185,10 @@ export default function AboutUsPage() {
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5">
                 <h3 className="font-bold text-slate-900 text-base mb-2 flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-[#4D7C0F] shrink-0" aria-hidden="true" />
-                  <span>100% In-Browser Privacy</span>
+                  <span>Privacy First</span>
                 </h3>
                 <p className="text-sm text-slate-700 leading-relaxed">
-                  Unlike platforms that catalogue personal faces to train AI models or sell contact data, your photo is processed ephemerally for your active session only.
+                  Unlike platforms that catalogue personal faces to train AI models or sell contact data, we use your photo only to create the files you ordered. Our privacy policy explains what we keep and for how long.
                 </p>
               </div>
 

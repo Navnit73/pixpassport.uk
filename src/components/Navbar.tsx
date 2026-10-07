@@ -54,14 +54,8 @@ export const PHOTO_TOOLS_MENU = {
       icon: "✅",
     },
     {
-      title: "Photo Guidance Wizard",
-      description: "Tailored step-by-step guidance for your application",
-      href: "/tool/uk-passport-photo-guidance-wizard",
-      icon: "🧙‍♂️",
-    },
-    {
       title: "Take Photo at Home Guide",
-      description: "DIY mobile camera tips for 100% photo acceptance",
+      description: "Set up and take your own photo on a phone",
       href: "/tool/passport-photo-at-home",
       icon: "🏠",
     },

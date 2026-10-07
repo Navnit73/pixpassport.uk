@@ -1,25 +1,26 @@
 ---
 slug: "indian-passport-photo-maker"
-title: "ICAO Compliant Indian Passport Size Photo Online (35×45 mm)"
-meta_description: "Create an ICAO compliant Indian passport size photo online. Convert any image to 35×45 mm (630×810 px) with a white background. Try the editor now."
+title: "Indian Passport Size Photo Online (35×45 mm): Guide for UK Applicants"
+meta_description: "Make an Indian passport size photo online from the UK: 35×45 mm (630×810 px) with a white background, for passport renewals and re-issues. Check your centre's checklist."
 country_code: "IN"
 document_type: "passport"
 badge: "Indian Passport 35×45 mm"
-hero_title: "ICAO Compliant Indian Passport Size Photo Online"
+hero_title: "Indian Passport Size Photo Online"
+cta_button_text: "Create My Indian Passport Photo"
 hero_subtitle: "Use our online Indian passport photo maker to convert any image to Indian passport size. Auto-crop to 35×45 mm (630×810 px), get a white background and check your head size."
 dimensions_mm: "35 × 45 mm (3.5 × 4.5 cm)"
 # TODO: replace with an Indian-format image (current filename says "uk"). Suggested alt text: "ICAO compliant Indian passport size photo 35×45 mm"
 feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790579562/icao_compliant_indian_passport_photo_example_xswij6.webp"
-feature_image_alt: "ICAO compliant Indian passport size photo 35×45 mm with white background"
+feature_image_alt: "Indian passport size photo 35×45 mm with white background"
 dimensions_px: "630 × 810 px"
 price: "7.99"
 ---
 
-## Create an ICAO Compliant Indian Passport Size Photo Online
+## Create an Indian Passport Size Photo Online
 
-You do not need a studio to get an ICAO compliant Indian passport size photo. Upload a picture from your phone, and our online Indian passport photo maker crops it to 35×45 mm, replaces the background with white and sizes your head to the required range.
+You do not need a studio to get an Indian passport size photo, whether you live in India or are applying from the UK. Upload a picture from your phone, and our online Indian passport photo maker crops it to 35×45 mm, replaces the background with white and sizes your head to the required range.
 
-Use this Indian passport size photo editor for a new passport, a renewal or a re-issue. You can convert an image to Indian passport size (a 630×810 px JPEG) for online upload, or print it at home or at a local shop.
+Use this Indian passport size photo editor for a new passport, a renewal or a re-issue. You can convert an image to Indian passport size (a 630×810 px JPEG) for online upload, or get it printed at a photo shop.
 
 ## How to Convert Your Image to Indian Passport Size (4 Steps)
 
@@ -44,7 +45,7 @@ Here is how the sizes compare across Indian documents:
 
 <!-- TODO: verify. Some Indian missions abroad have historically asked for 2×2 in passport photos. Confirm current rules and adjust the note below. -->
 
-**Applying from abroad?** Some Indian embassies, consulates and outsourced centres (VFS Global, BLS International) may set their own photo requirements. Check your local mission's checklist before you print.
+**Applying from the UK?** Indian passport and OCI services in the UK are handled through the High Commission of India and its outsourced service provider, which can set their own photo requirements. Check the current checklist for your service before you print, because some services still ask for a square photo.
 
 ## Photo for Indian eVisa: Which Size Do You Need?
 
@@ -151,6 +152,6 @@ Use a plain white background. Our tool replaces your background with white autom
 
 Take them off. Current guidance only allows glasses with a documented medical reason.
 
-## Get Your ICAO Compliant Indian Passport Size Photo Now
+## Get Your Indian Passport Size Photo Now
 
 Upload your picture, and get a correctly sized 35×45 mm Indian passport photo in minutes. No studio visit and no editing skills needed.

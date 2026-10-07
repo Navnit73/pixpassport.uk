@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -23,6 +24,28 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import PhotoMakerStudio from "@/components/PhotoMakerStudio";
+import GovUkPhotoNotice from "@/components/GovUkPhotoNotice";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "UK Passport Photo Online — Digital & Printed | PixPassport",
+  },
+  description:
+    "Make a UK passport photo online for GOV.UK applications and renewals. Upload a phone photo, check it against HMPO guidance and download for £7.99.",
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-GB": "/",
+    },
+  },
+  openGraph: {
+    title: "UK Passport Photo Online — PixPassport",
+    description:
+      "Turn a phone photo into a UK passport photo. Checked against HMPO guidance, ready for GOV.UK or printing.",
+    url: "/",
+  },
+};
 
 const steps = [
   {
@@ -44,7 +67,7 @@ const steps = [
     step: 3,
     title: "Preview and Download",
     description:
-      "In under 10 seconds you get a compliant digital photo plus a print-ready 6×4″ sheet, ready to submit online or print at home.",
+      "In under 10 seconds you get a compliant digital photo plus a print-ready 6×4″ sheet, ready to upload or take to a photo shop for professional printing.",
   },
 ];
 
@@ -65,7 +88,7 @@ const features = [
     icon: Shield,
     title: "Biometric AI Verification",
     description:
-      "Every upload is checked for head height, eye position, background colour, and lighting, so your digital photo for passport applications is accepted the first time.",
+      "Every upload is checked for head height, eye position, background colour, and lighting, so you can fix problems before you submit your application.",
   },
   {
     icon: RefreshCw,
@@ -77,7 +100,7 @@ const features = [
     icon: Printer,
     title: "Print Passport Photo Online",
     description:
-      "Download a high-resolution file and print your passport photo online at home, or take the ready-made 6×4″ sheet to any pharmacy or photo kiosk.",
+      "Download a high-resolution file, then take the ready-made 6×4″ sheet to a pharmacy or photo shop. UK passport photos must be printed to a professional standard on plain white photographic paper.",
   },
   {
     icon: Lock,
@@ -111,7 +134,7 @@ const trustPoints = [
   },
   {
     icon: Shield,
-    title: "Independently Verified Compliance",
+    title: "Automated Compliance Checks",
     description:
       "Each photo runs through automated biometric checks before download, so you can see exactly why a photo passes or fails instead of guessing.",
   },
@@ -125,19 +148,24 @@ const trustPoints = [
 
 const faqs = [
   {
-    question: "How do I create a passport picture online?",
+    question: "How do I make a UK passport photo online?",
     answer:
-      "Choose your country, upload a clear photo of your face against a plain background, and let the tool crop and resize it automatically. You will get a compliant digital photo for passport use in under a minute, with no software to install.",
+      "Ask someone to take a photo of you facing a window, in front of a plain light-coloured wall. Upload it, and the tool sizes it and checks it against HM Passport Office guidance in about 10 seconds. You get a digital photo plus a 6×4″ print sheet for paper forms.",
+  },
+  {
+    question: "Can I take my UK passport photo on my phone?",
+    answer:
+      "Yes. GOV.UK lets you take a digital photo on your own device, but you need someone to help you take it. Include your head, shoulders and upper body, because GOV.UK crops the photo for you. GOV.UK also notes that photos from a booth or shop are more likely to be approved.",
   },
   {
     question: "What are the official UK passport photo size requirements?",
     answer:
-      "A UK digital passport photo must be 600×750 pixels, or 35 mm wide by 45 mm high when printed. Head height from chin to crown must measure 29 mm to 34 mm, which is 70–80% of the image height.",
+      "A UK digital passport photo must be at least 600 pixels wide and 750 pixels tall, with a file size between 50KB and 10MB. Printed photos must be 45 mm high by 35 mm wide, with the face measuring 29 mm to 34 mm from chin to crown.",
   },
   {
     question: "Can I use this for a passport renewal photo?",
     answer:
-      "Yes. Passport offices require a brand-new photo for every renewal, even if your appearance has not changed much. Our tool creates a fresh digital photo for passport renewal that meets the same rules as a first-time application.",
+      "Yes. HM Passport Office requires a new photo, taken in the last month, for every renewal, even if your appearance has not changed. Our tool creates a fresh digital photo for passport renewal that meets the same rules as a first-time application.",
   },
   {
     question: "How does the passport picture cropping tool work?",
@@ -145,14 +173,14 @@ const faqs = [
       "The cropping tool detects your face, eyes, and shoulders, then aligns your head to the correct height and position before trimming the image to your chosen country's exact dimensions, so nothing is cropped by hand.",
   },
   {
-    question: "Can I print my passport photo online, or only at home?",
+    question: "How do I get my passport photo printed?",
     answer:
-      "Both. Download the print-ready 6×4″ sheet and take it to a pharmacy or photo kiosk, or print passport photos online through a print-mailing service using the same high-resolution file.",
+      "Download the print-ready 6×4″ sheet and take it to a pharmacy or photo shop, or upload it to an online print service. For a UK paper passport form, GOV.UK says photos must be printed to a professional standard, in colour, on plain white photographic paper with no border.",
   },
   {
-    question: "Which countries and documents are supported?",
+    question: "Do you make visa photos for other countries?",
     answer:
-      "PixPassport supports 53 countries, including the UK, US, Canada, Australia, India, the Schengen Area, Japan, China, Singapore, and New Zealand, for passports, visas, and national ID photos.",
+      "Yes. As well as UK passport photos, PixPassport supports 53 countries, including the US, Canada, Australia, India and the Schengen Area, for passport, visa and ID photos.",
   },
   {
     question: "What file formats can I upload?",
@@ -173,9 +201,12 @@ export default function HomePage() {
         price="7.99"
         priceCurrency="GBP"
         faqItems={faqs}
+        pageUrl="https://pixpassport.uk/"
+        pageName="UK Passport Photo Online — Digital & Printed"
+        pageDescription="Make a UK passport photo online for GOV.UK applications and renewals. Upload a phone photo, check it against HMPO guidance and download for £7.99."
       />
 
-      <Navbar ctaText="Upload Photo" ctaHref="/passport-size-photo-maker" />
+      <Navbar ctaText="Upload Photo" ctaHref="#studio" />
 
       <main className="flex-1 bg-white text-slate-900" id="main-content">
         {/* =========================================================================
@@ -189,61 +220,43 @@ export default function HomePage() {
                 {/* Official Biometric Badge */}
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-lime-50 border border-lime-300 text-xs font-bold text-[#365314] tracking-wide mb-5">
                   <span className="w-2 h-2 rounded-full bg-[#4D7C0F]" aria-hidden="true" />
-                  <span>UK PASSPORT PHOTO TOOL · ICAO COMPLIANT</span>
+                  <span>UK PASSPORT PHOTO · BASED ON GOV.UK GUIDANCE</span>
                 </div>
 
                 {/* Main Heading */}
                 <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-[#0F172A] tracking-tight leading-[1.18] mb-3">
-                  Create a Passport Picture Online
+                  UK Passport Photo Online
                 </h1>
 
                 {/* Sub-heading */}
                 <p className="text-lg sm:text-xl text-[#334155] font-semibold mb-4 leading-snug">
-                  The UK passport photo maker for new applications and renewals
+                  Digital and printed passport photos for new applications and renewals
                 </p>
 
                 {/* Body description */}
                 <p className="text-sm sm:text-base text-slate-700 leading-relaxed mb-7 max-w-xl">
-                  Upload one photo and get a ready-to-submit digital photo for your
-                  passport, visa, or passport renewal. We crop, resize, and check
-                  your photo against official government rules for the UK, US,
-                  Schengen Area, and 50+ other countries in under 10 seconds.
+                  Take a photo on your phone, upload it, and get a UK passport
+                  photo sized and checked against HM Passport Office guidance in
+                  under 10 seconds. Use it for a GOV.UK online application, or
+                  print it for a paper form. Visa photos for the US, Schengen
+                  Area and 50+ other countries are also supported.
                 </p>
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 mb-7">
-                  <Link
-                    href="/passport-size-photo-maker"
+                  <a
+                    href="#studio"
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] active:bg-[#365314] !text-white text-white font-bold text-base px-7 py-3.5 sm:py-4 rounded-xl transition-colors text-center shadow-xs focus-ring"
                   >
-                    <span>Create My Passport Photo</span>
+                    <span>Create My UK Passport Photo</span>
                     <ArrowRight className="w-4 h-4 ml-0.5" aria-hidden="true" />
-                  </Link>
+                  </a>
                   <a
                     href="#how-it-works"
                     className="w-full sm:w-auto inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-800 font-semibold text-base px-6 py-3.5 sm:py-4 rounded-xl border border-slate-300 transition-colors text-center focus-ring"
                   >
                     How It Works
                   </a>
-                </div>
-
-                {/* Rating & Social Proof */}
-                <div className="flex items-center gap-2.5 mb-6 text-sm" aria-label="Rated 4.9 out of 5 stars based on 17,000+ reviews">
-                  <div className="flex items-center text-amber-500 gap-0.5" aria-hidden="true">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        className="w-4 h-4 fill-current"
-                        viewBox="0 0 20 20"
-                        aria-hidden="true"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-slate-900 text-sm font-bold">
-                    4.9 · <span className="font-medium text-slate-700">Trusted by 17,000+ users</span>
-                  </span>
                 </div>
 
                 {/* Features Badges Row */}
@@ -269,7 +282,7 @@ export default function HomePage() {
                   <div className="relative overflow-hidden aspect-[4/5]">
                     <Image
                       src="/images/digital-passport-photo_example.webp"
-                      alt="Official UK Passport Size Photo Sample"
+                      alt="Example UK passport photo, 35×45 mm, plain light grey background"
                       fill
                       priority
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
@@ -283,6 +296,25 @@ export default function HomePage() {
         </section>
 
         {/* =========================================================================
+            1b. PHOTO MAKER STUDIO (UK passport by default)
+           ========================================================================= */}
+        <section className="bg-slate-50 py-10 sm:py-16 border-b border-slate-200/80" id="studio" aria-labelledby="studio-heading">
+          <div className="container-narrow max-w-2xl mx-auto px-4 sm:px-6">
+            <div className="text-center mb-5 sm:mb-7">
+              <h2 id="studio-heading" className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Create Your UK Passport Photo
+              </h2>
+              <p className="text-slate-700 text-xs sm:text-sm mt-1.5 max-w-md mx-auto leading-relaxed">
+                Upload a recent photo and we will size it and check it against HM Passport Office guidance.
+                Applying for a visa or another country? Change the country below.
+              </p>
+            </div>
+            <PhotoMakerStudio defaultCountryCode="GB" defaultDocumentType="passport" />
+            <GovUkPhotoNotice className="mt-5" />
+          </div>
+        </section>
+
+        {/* =========================================================================
             2. HOW IT WORKS SECTION (Clean connected layout, no heavy boxy cards)
            ========================================================================= */}
         <section className="bg-slate-50/70 py-14 sm:py-20 border-b border-slate-200/80" id="how-it-works">
@@ -292,11 +324,11 @@ export default function HomePage() {
                 Simple 3-Step Process
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0F172A] tracking-tight mb-3">
-                How to Create a Digital Photo for Passport Online
+                How to Make a UK Passport Photo Online
               </h2>
               <p className="text-slate-700 text-sm sm:text-base">
-                Three steps take you from a regular photo to an accepted
-                biometric passport picture for the UK and 50+ countries.
+                Three steps take you from a regular phone photo to a correctly
+                sized, checked passport photo for the UK and 50+ countries.
               </p>
             </div>
 
@@ -329,14 +361,14 @@ export default function HomePage() {
             </div>
 
             <div className="text-center mt-10 sm:mt-12">
-              <Link
-                href="/passport-size-photo-maker"
+              <a
+                href="#studio"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-base px-8 py-3.5 sm:py-4 rounded-xl transition-colors text-center shadow-xs"
               >
                 <Upload className="w-5 h-5" aria-hidden="true" />
                 <span>Upload &amp; Create Photo Now</span>
                 <ArrowRight className="w-4 h-4 ml-0.5" aria-hidden="true" />
-              </Link>
+              </a>
             </div>
           </div>
         </section>
@@ -553,12 +585,12 @@ export default function HomePage() {
                       >
                         UK passport photo checker
                       </Link>
-                      , follow our{" "}
+                      , read the full{" "}
                       <Link
-                        href="/tool/uk-passport-photo-guidance-wizard"
+                        href="/tool/uk-passport-photo"
                         className="font-bold underline text-[#365314] hover:text-[#4D7C0F] transition-colors"
                       >
-                        guidance wizard
+                        UK passport photo requirements
                       </Link>
                       , or learn{" "}
                       <Link
@@ -686,12 +718,12 @@ export default function HomePage() {
                   ))}
                 </ul>
 
-                <Link
-                  href="/passport-size-photo-maker"
+                <a
+                  href="#studio"
                   className="inline-flex items-center justify-center w-full text-center bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-base py-3.5 sm:py-4 rounded-xl transition-colors shadow-xs"
                 >
                   Create Your Passport Photo Now
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -747,7 +779,7 @@ export default function HomePage() {
                 {
                   slug: "indian-passport-photo-maker",
                   title: "Indian Passport & OCI",
-                  spec: "51×51 mm (2×2 inches)",
+                  spec: "35×45 mm (630×810 px)",
                   flag: "🇮🇳",
                   desc: "VFS Global & High Commission compliant dimensions for Indian passport renewal and OCI cards.",
                 },
@@ -802,7 +834,7 @@ export default function HomePage() {
                 </Link>
                 {[
                   { slug: "passport-photo-checker-uk", label: "UK Photo Checker" },
-                  { slug: "uk-passport-photo-guidance-wizard", label: "Photo Guidance Wizard" },
+                  { slug: "uk-visa-photo", label: "UK Visa Photo" },
                   { slug: "passport-renewal-photo-online", label: "UK Passport Renewal" },
                   { slug: "take-a-passport-photo-on-iphone", label: "iPhone Passport Photo" },
                   { slug: "digital-passport-photo", label: "Digital Photo for Passport" },

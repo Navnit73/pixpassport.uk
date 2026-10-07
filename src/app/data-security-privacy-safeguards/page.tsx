@@ -20,7 +20,7 @@ const SITE_URL =
 export const metadata: Metadata = {
   title: "Data Security & Privacy Safeguards",
   description:
-    "Explore PixPassport's technical security safeguards, TLS 1.3 encryption, in-browser compression, and zero-retention biometric privacy architecture.",
+    "How PixPassport protects your photos and payments: TLS encryption, in-browser compression, server-side API keys and limited data collection.",
   alternates: {
     canonical: `${SITE_URL}/data-security-privacy-safeguards`,
     languages: {
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Data Security & Privacy Safeguards — PixPassport",
     description:
-      "Explore PixPassport's technical security safeguards, TLS 1.3 encryption, in-browser compression, and zero-retention biometric privacy architecture.",
+      "How PixPassport protects your photos and payments: TLS encryption, in-browser compression, server-side API keys and limited data collection.",
     url: `${SITE_URL}/data-security-privacy-safeguards`,
     siteName: "PixPassport",
     locale: "en_GB",
@@ -38,17 +38,17 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${SITE_URL}/pixpassport.jpg`,
-        width: 1200,
-        height: 630,
+        width: 640,
+        height: 640,
         alt: "PixPassport Data Security & Privacy Safeguards",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Data Security & Privacy Safeguards — PixPassport",
     description:
-      "Explore PixPassport's technical security safeguards, TLS 1.3 encryption, in-browser compression, and zero-retention biometric privacy architecture.",
+      "How PixPassport protects your photos and payments: TLS encryption, in-browser compression, server-side API keys and limited data collection.",
     images: [`${SITE_URL}/pixpassport.jpg`],
   },
 };

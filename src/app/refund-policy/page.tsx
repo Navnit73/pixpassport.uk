@@ -35,14 +35,14 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${SITE_URL}/pixpassport.jpg`,
-        width: 1200,
-        height: 630,
+        width: 640,
+        height: 640,
         alt: "PixPassport Refund Policy & Acceptance Guarantee",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Refund Policy & Acceptance Guarantee — PixPassport",
     description:
       "Review PixPassport's transparent refund policy, official dimensional acceptance guarantee, eligible refund scenarios, and claims procedure.",

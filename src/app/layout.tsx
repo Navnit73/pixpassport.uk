@@ -49,65 +49,37 @@ export const metadata: Metadata = {
   metadataBase: getMetadataBase(),
 
   title: {
-    default:
-      "Digital Photo for Passport — Create Passport Picture Online | PixPassport",
+    default: "UK Passport Photo Online — Digital & Printed | PixPassport",
     template: "%s | PixPassport",
   },
 
   description:
-    "Create a digital photo for passport applications and renewals online. PixPassport is an official UK passport photo maker — upload, adjust, and download HMPO-compliant passport photos for £7.99.",
-
-  keywords: [
-   
-  ],
-
-  icons: {
-    icon: [
-      { url: "/pixpassport.jpg", type: "image/jpeg" },
-    ],
-    shortcut: ["/pixpassport.jpg"],
-    apple: [
-      { url: "/pixpassport.jpg", sizes: "180x180", type: "image/jpeg" },
-    ],
-  },
+    "Make a UK passport photo online for GOV.UK applications and renewals. Upload a phone photo, check it against HMPO guidance and download for £7.99.",
 
   authors: [{ name: "PixPassport", url: SITE_URL }],
 
   creator: "PixPassport",
   publisher: "PixPassport",
 
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-GB": "/",
-    },
-  },
+  // Canonical is set per page. A canonical here would be inherited by every
+  // route that does not define its own and point it at the homepage.
 
   openGraph: {
-    title:
-      "Digital Photo for Passport — Create Passport Picture Online | PixPassport",
-    description:
-      "Create a digital photo for passport applications and renewals online. Official UK biometric passport photo maker for £7.99.",
-    url: SITE_URL,
     siteName: "PixPassport",
     locale: "en_GB",
     type: "website",
     images: [
       {
         url: "/pixpassport.jpg",
-        width: 1200,
-        height: 630,
-        alt: "PixPassport — Official UK Passport Photo Maker",
+        width: 640,
+        height: 640,
+        alt: "PixPassport — UK passport photo maker",
       },
     ],
   },
 
   twitter: {
-    card: "summary_large_image",
-    title:
-      "Digital Photo for Passport — UK Passport Photo Maker | PixPassport",
-    description:
-      "Create a digital photo for passport applications and renewals. Official, private, HMPO-compliant UK passport photo maker for £7.99.",
+    card: "summary",
     images: ["/pixpassport.jpg"],
   },
 
@@ -123,6 +95,8 @@ export const metadata: Metadata = {
     },
   },
 
+  // Required by CLAUDE.md. Google ignores these; the .uk ccTLD, en-GB content
+  // and GBP pricing are the signals that matter for UK targeting.
   other: {
     "geo.region": "GB",
     "geo.placename": "United Kingdom",

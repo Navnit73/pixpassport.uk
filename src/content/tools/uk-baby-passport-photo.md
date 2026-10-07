@@ -1,12 +1,14 @@
 ---
 slug: "uk-baby-passport-photo"
-title: "UK Baby Passport Photo Maker Online (UK HMPO Compliant Infant Photo)"
-meta_description: "Create official UK baby and child passport photos online. 100% compliant with HMPO infant rules. Automatic white sheet background clean-up and sizing."
+title: "Baby Passport Photo UK: Rules, Tips and Online Maker"
+meta_description: "How to take a UK baby passport photo at home: HMPO rules for babies under 1 and children under 6, safe setups, and an online maker that sizes the photo."
 country_code: "GB"
 document_type: "passport"
 badge: "UK HMPO Infant Standard"
-hero_title: "Baby Passport Photo Maker Online"
-hero_subtitle: "Take your baby's passport photo comfortably at home on your phone. Calibrated to HMPO infant guidelines with automatic background cleaning and 100% acceptance guarantee."
+hero_title: "UK Baby Passport Photo"
+cta_button_text: "Create My Baby's Passport Photo"
+how_it_works_title: "How to Make a Baby Passport Photo in 3 Steps"
+hero_subtitle: "Take your baby's passport photo at home on your phone, then size it and check it against HM Passport Office guidance for babies and young children."
 dimensions_mm: "35 × 45 mm"
 feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790579370/uk_baby_passport_size_photo_example_fptfhf.webp"
 feature_image_alt: "UK baby passport photo 35×45 mm meeting HMPO infant standards"
@@ -16,18 +18,18 @@ price: "7.99"
 
 ## Official UK Baby & Child Passport Photo Rules (HMPO)
 
-Taking a baby passport photo in a high-street photo booth is stressful and often leads to rejections. His Majesty's Passport Office (HMPO) accommodates special rules for infants and young children:
+Getting a baby to sit still in a photo booth is hard, so many parents take the photo at home. HM Passport Office (HMPO) relaxes some rules for babies and young children:
 
 ### Relaxed Rules for Babies & Children
-- **Babies under 1 year old**: Do not need to have their eyes open or be looking at the camera. You can support their head from behind, as long as your hands are not visible in the frame.
-- **Children under 6 years old**: Do not need a strict neutral expression or direct camera gaze.
-- **Children of all ages**: Must be alone in the picture with no toys, blankets covering the face, or dummies (pacifiers).
+- **Babies under 1 year old**: Do not need to have their eyes open. You can support their head with your hand, as long as your hand is not visible in the photo. They can lie on a plain light-coloured sheet, photographed from above.
+- **Children under 6 years old**: Do not have to look directly at the camera or have a plain expression.
+- **Children of all ages**: Must be on their own in the picture. Babies must not be holding toys or using dummies.
 
 ---
 
 ## Tips for Photographing Babies at Home
-1. **Lying Down Method**: Place your baby on their back on a plain white or light-coloured sheet or blanket. Stand directly above and take the photo looking down.
-2. **Car Seat Method**: Cover an infant car seat with a plain white sheet, place your baby in the seat, and snap a portrait from eye level.
+1. **Lying Down Method**: Place your baby on their back on a plain light-coloured sheet, such as cream or light grey. Stand directly above and take the photo looking down.
+2. **Car Seat Method**: Cover an infant car seat with a plain light-coloured sheet, place your baby in the seat, and take the photo from eye level.
 3. **Natural Daylight**: Position near a window on an overcast day or with indirect lighting to avoid harsh flash reflections.
 
 ---
@@ -47,21 +49,26 @@ Taking a baby passport photo in a high-street photo booth is stressful and often
 
 ### Can a baby's eyes be closed in a UK passport photo?
 
-Yes. His Majesty's Passport Office (HMPO) allows babies under 1 year old to have their eyes closed or partially open, and they do not need to look directly at the camera.
+Yes. HM Passport Office allows children under 1 to have their eyes closed. Children under 6 also do not have to look directly at the camera.
 
 ### Can I hold my baby in the passport photo?
 
-You can support your baby's head from behind with your hand, but no part of your hands, arms, fingers, or body can be visible in the final cropped photograph.
+You can support your baby's head with your hand, but your hand must not be visible in the photo. No other person can appear in the picture.
 
 ### Can babies smile or have a dummy in the passport photo?
 
-Children under 6 do not need a strict neutral expression. However, dummies (pacifiers), toys, bottles, and headbands covering the face are strictly prohibited.
+Children under 6 do not have to have a plain expression. Babies must not be holding toys or using dummies, and nothing should cover the face.
 
 ### What is the easiest way to take a baby passport photo at home?
 
-Lay your baby flat on their back on a plain white cot sheet or blanket in good natural daylight. Stand directly over them and snap a photo looking down at eye level.
+Lay your baby on their back on a plain light-coloured sheet in soft natural daylight. Stand directly over them and take the photo looking straight down.
 
 ### What size is a UK baby passport photo?
 
 A UK baby passport photo uses the standard UK passport dimensions: 35 mm wide by 45 mm high (or 600×750 pixels for online GOV.UK digital passport applications).
 
+## Other UK Photo Guides
+
+See the full [UK passport photo size and requirements](/tool/uk-passport-photo), or [check your photo](/tool/passport-photo-checker-uk) before you apply.
+
+*PixPassport is an independent service and is not affiliated with HM Passport Office or GOV.UK. Rules checked against [GOV.UK passport photo guidance](https://www.gov.uk/photos-for-passports) in October 2026.*

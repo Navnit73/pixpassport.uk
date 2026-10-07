@@ -1,11 +1,12 @@
 ---
 slug: "schengen-visa-photo"
 title: "Schengen Visa Photo Maker Online (European Biometric 35×45mm)"
-meta_description: "Create official Schengen visa photos online (35x45mm). 100% compliant with European consulate rules for France, Germany, Spain, Italy, and 27 member states."
+meta_description: "Make a Schengen visa photo online from the UK: 35×45 mm, plain light background, sized for France, Germany, Spain, Italy and the other Schengen countries."
 country_code: "DE"
 document_type: "visa"
 badge: "Schengen 35×45mm Standard"
 hero_title: "Schengen Visa Photo Maker Online"
+cta_button_text: "Create My Schengen Visa Photo"
 hero_subtitle: "Turn any picture into an official European Schengen visa photo. Meets official ICAO 35×45mm rules for all 29 member countries including France, Germany, Italy, and Spain."
 dimensions_mm: "35 × 45 mm"
 feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"

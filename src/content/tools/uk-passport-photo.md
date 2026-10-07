@@ -1,12 +1,13 @@
 ---
 slug: "uk-passport-photo"
-title: "UK Passport Photo Maker Online: 35×45 mm, HMPO Compliant"
-meta_description: "Make a UK passport photo online. Get the correct 35×45 mm size, a plain background and a digital file that follows HMPO and GOV.UK rules."
+title: "UK Passport Photo Size & Requirements (35×45 mm)"
+meta_description: "UK passport photo size and rules explained: 35×45 mm prints, 600×750 px digital photos, background, glasses and child rules from GOV.UK, plus a photo maker."
 country_code: "GB"
 document_type: "passport"
 badge: "HMPO 35×45 mm Standard"
-hero_title: "UK Passport Photo Maker Online"
-hero_subtitle: "Turn a phone picture into a British passport photo. Get the 35×45 mm size, a plain light background and a head-size check before you apply."
+hero_title: "UK Passport Photo Size and Requirements"
+how_it_works_title: "How to Make a UK Passport Photo in 3 Steps"
+hero_subtitle: "Every HM Passport Office photo rule in one place, for digital and printed photos. Then turn a phone picture into a correctly sized UK passport photo and check it before you apply."
 dimensions_mm: "35 × 45 mm"
 # TODO: replace the feature image if you have a cleaner UK passport example
 feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790579164/Online-Passport-Photo-Tool_uohrxk.webp"
@@ -40,10 +41,9 @@ Forms and websites quote the size in different units. Here is the same photo in 
 | Centimetres | 3.5 × 4.5 cm |
 | Inches | About 1.38 × 1.77 in |
 | Digital minimum | 600 × 750 px |
+| Digital file size | 50KB to 10MB |
 
-The head, from the bottom of your chin to the crown, must measure between 29 mm and 34 mm. That fills roughly two-thirds to three-quarters of the photo height.
-
-<!-- TODO: verify the size, pixel and head-size figures against the current GOV.UK photo guidance -->
+For a printed photo, the face, from the bottom of your chin to the crown of your head, must measure between 29 mm and 34 mm.
 
 ## Official UK Passport Photo Requirements
 
@@ -51,15 +51,15 @@ Whether you apply on GOV.UK or by post, your photo must meet the same standard. 
 
 ### Format and Quality
 
-- **Size:** 35 mm wide by 45 mm high for a printed photo.
-- **Digital file:** Upload a JPEG of at least 600×750 pixels. The GOV.UK service also sets a file-size range, so check the current limits before you submit.
-- **Colour:** Use a colour photo with no filters, effects or retouching.
+- **Size:** 45 mm high by 35 mm wide for a printed photo.
+- **Digital file:** At least 600 pixels wide and 750 pixels tall, and between 50KB and 10MB.
+- **Colour:** Use a colour photo, unaltered by computer software. No filters, effects or retouching.
 - **Quality:** Make sure the image is sharp, clear and evenly lit, with no red-eye.
 - **Age:** Take the photo within the last month.
 
 ### Background and Lighting
 
-- **Background:** Use a plain cream or light grey background. White is not accepted.
+- **Background:** For printed photos, use a plain cream or light grey background. Digital photos need a plain light-coloured background in clear contrast to you.
 - **Shadows:** Keep shadows off your face and the wall behind you.
 - **Objects:** Keep other people, furniture and patterns out of the frame.
 
@@ -71,21 +71,20 @@ Whether you apply on GOV.UK or by post, your photo must meet the same standard. 
 
 ### Glasses and Head Coverings
 
-- **Glasses:** Take them off. HMPO accepts glasses only in limited medical cases, and sunglasses or tinted lenses never pass.
+- **Glasses:** Do not wear glasses unless you have to. If you must, they cannot be sunglasses or tinted, and the frames, glare or reflections must not cover your eyes.
 - **Head coverings:** Wear one only for religious or medical reasons, and show your full face from chin to forehead.
-
-<!-- TODO: confirm the current glasses rule on GOV.UK before publishing -->
 
 ## Accepted vs Rejected UK Passport Photos
 
 | Accepted by HMPO ✅ | Common reasons for rejection ❌ |
 | :--- | :--- |
 | Neutral expression, mouth closed | Smiling, laughing or frowning |
-| Plain cream or light grey background | White, dark, patterned or shadowed background |
+| Plain cream or light grey background | Dark, patterned or shadowed background |
 | Both eyes open and clearly visible | Hair across the eyes, or heavy frames |
 | Sharp, high-resolution colour image | Blurry, pixelated or filtered picture |
 | Full head, neck and shoulders in frame | Cropped hair, chin or a tight close-up |
-| Recent photo of you today | Old photo or a heavily edited selfie |
+| Taken in the last month | Old photo, or one edited to smooth skin or remove marks |
+| Head, shoulders and upper body (online upload) | A tight crop of your face uploaded to GOV.UK |
 
 ## What You Get With Our UK Passport Photo Editor
 
@@ -113,21 +112,27 @@ A clear picture gives the cleanest result, so take a few minutes to set up.
 
 ### Apply Online on GOV.UK
 
-Upload your digital JPEG when the online passport service asks for it. The service checks the photo automatically and warns you about common problems, so read any message and fix the issue it names.
+An online application needs a digital photo. You can enter a photo code from a booth or shop, or upload a photo you have taken yourself. If you upload your own photo, include your head, shoulders and upper body, and do not crop it, because GOV.UK crops it for you. The service checks the photo and tells you about common problems. GOV.UK notes that photos from a booth or shop are more likely to be approved than photos taken on your own device, so check yours carefully before you submit.
 
 ### Apply by Post With a Paper Form
 
-Print two identical 35×45 mm photos on plain white photo-quality paper, with no borders. Cut them to size and attach them as the form directs. Some applications need a countersignature on the back of one photo, so follow the instructions for your case. You can also ask a Post Office branch about its Check and Send service.
+Paper forms need two identical printed photos, 45 mm high by 35 mm wide. They must be printed to a professional standard on plain white photographic paper, with no borders, creases or marks. Do not attach them to the form.
 
-<!-- TODO: confirm the number of photos and countersignature rules for the current paper form -->
+First adult and child passports, replacements for lost, stolen or damaged passports, renewals for children aged 11 or under, and renewals where your appearance has changed also need a countersignatory. They write "I certify that this is a true likeness of [name]" on the back of one photo, then sign and date it.
 
-### Print at Home or at a Shop
+### Get Your Photos Printed
 
-Print at 100% scale, with no fit-to-page setting. Take the file to a pharmacy, supermarket or photo kiosk and ask for the UK 35×45 mm size. Do not choose a generic passport option that may use another format.
+GOV.UK says printed photos must be printed to a professional standard, in colour, on plain white photographic paper with no border. They must not be a cut-down version of a larger picture. Take your print sheet to a photo lab or shop and ask for 100% scale, with no fit-to-page setting, so each photo stays 35×45 mm.
 
 ## Children and Babies
 
-Children need the same size, but HMPO relaxes some rules for young ones. Babies do not need to look at the camera, and very young children may not have to keep a neutral expression. Take the photo against a plain background, and make sure no one else appears in the frame. Check the GOV.UK child guidance before you apply.
+Children need the same size, but some rules are relaxed:
+
+- Children must be on their own in the photo. Babies must not hold toys or use dummies.
+- Children under 6 do not have to look straight at the camera or have a plain expression.
+- Children under 1 do not need their eyes open. They can lie on a plain light-coloured sheet, photographed from above.
+
+See our [baby passport photo guide](/tool/uk-baby-passport-photo) for tips.
 
 ## Need Passport Photos in London or Elsewhere in the UK?
 
@@ -135,13 +140,13 @@ Booths and high-street shops charge more than most people expect, and queues add
 
 ## Other Photo Formats
 
-Applying for another document? Use our [UK driving licence photo maker](/tool/uk-driving-licence-photo) for DVLA applications, our [UK passport renewal photo tool](/tool/passport-renewal-photo-online), or our [US visa photo maker](/tool/us-visa-photo-tool) for the square 2×2 inch format.
+Not sure your photo passes? Run it through the [UK passport photo checker](/tool/passport-photo-checker-uk) first. Applying for another document? See the [UK visa photo guide](/tool/uk-visa-photo), the [UK driving licence photo maker](/tool/uk-driving-licence-photo), the [passport renewal photo tool](/tool/passport-renewal-photo-online), or the [US visa photo maker](/tool/us-visa-photo-tool) for the square 2×2 inch format.
 
 ## Frequently Asked Questions
 
 ### What size is a UK passport photo?
 
-A UK passport photo measures 35 mm wide by 45 mm high (3.5 × 4.5 cm). For a digital upload, use at least 600×750 pixels.
+A printed UK passport photo measures 45 mm high by 35 mm wide (4.5 × 3.5 cm). A digital photo must be at least 600 pixels wide and 750 pixels tall, and between 50KB and 10MB.
 
 ### Is there a free UK passport photo checker online?
 
@@ -154,7 +159,7 @@ Yes. Take a clear, front-facing picture in even daylight, upload it, and the too
 
 ### What background do I need for a UK passport photo?
 
-Use a plain cream or light grey background with no shadows or patterns. White is not accepted, and our tool replaces your background automatically.
+Use a plain cream or light grey background for a printed photo, or a plain light-coloured background for a digital photo, with no shadows or patterns.
 
 ### Can I smile in my UK passport photo?
 
@@ -162,7 +167,7 @@ No. Keep a neutral expression with your mouth closed and your eyes open.
 
 ### Can I wear glasses in my UK passport photo?
 
-Take them off. HMPO accepts glasses only in limited medical cases, and sunglasses are never acceptable.
+Only if you have to wear them. Sunglasses and tinted lenses are not allowed, and your eyes must not be covered by the frames, glare or reflections.
 
 ### How recent must my passport photo be?
 
@@ -170,10 +175,10 @@ Take it within the last month, and make sure it looks like you now.
 
 ### Are the DVLA and passport photo rules the same?
 
-They are very similar. For details, see our [UK driving licence photo page](/tool/uk-driving-licence-photo).
+For a postal application, DVLA asks for a recent printed passport-type photo. Online, you can reuse your passport photo or upload a new one. See our [UK driving licence photo page](/tool/uk-driving-licence-photo).
 
 ## Get Your UK Passport Photo Now
 
 Upload your picture, and get a correctly sized 35×45 mm UK passport photo in minutes. No studio visit and no editing skills needed.
 
-<!-- Recommended notice: "We are an independent service, not affiliated with HMPO or GOV.UK. HMPO makes the final decision on every photo." -->
+*PixPassport is an independent service and is not affiliated with HM Passport Office or GOV.UK. HM Passport Office makes the final decision on every photo. Rules checked against [GOV.UK passport photo guidance](https://www.gov.uk/photos-for-passports) in October 2026.*

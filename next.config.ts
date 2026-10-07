@@ -106,6 +106,12 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        // Merged into the checker: the wizard page described a questionnaire UI that never existed.
+        source: "/tool/uk-passport-photo-guidance-wizard",
+        destination: "/tool/passport-photo-checker-uk",
+        permanent: true,
+      },
+      {
         source: "/passport-size-photo-online",
         destination: "/passport-size-photo-maker",
         permanent: true,

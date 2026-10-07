@@ -50,6 +50,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
+      url: `${SITE_URL}/tool`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          "en-GB": `${SITE_URL}/tool`,
+        },
+      },
+    },
+    {
       url: `${SITE_URL}/about-us`,
       changeFrequency: "monthly",
       priority: 0.8,

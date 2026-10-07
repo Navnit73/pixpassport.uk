@@ -6,6 +6,7 @@ country_code: "GB"
 document_type: "id"
 badge: "DVLA UK 35×45 mm Standard"
 hero_title: "UK Driving Licence Photo Online"
+cta_button_text: "Create My Driving Licence Photo"
 hero_subtitle: "Turn a phone picture into a driving licence photo that follows DVLA rules. Get the correct 35×45 mm size, a plain light background and a clear face check before you apply."
 dimensions_mm: "35 × 45 mm"
 # TODO: replace with a driving licence or UK-format image (current file is a generic passport image)

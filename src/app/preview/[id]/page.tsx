@@ -130,7 +130,7 @@ const METRIC_FIXES = [
   { key: "gov12", label: "ICAO Standard photo" },
   { key: "gov", label: "Government compliant photo" },
   { key: "gov5", label: "AI biometric validation" },
-  { key: "gov2", label: "100% acceptance guarantee" },
+  { key: "gov2", label: "Acceptance guarantee" },
   { key: "gov0", label: "Refund if rejected" },
   { key: "gov3", label: "Instant download + print sheet" },
 ];
@@ -143,7 +143,7 @@ const BEFORE_AFTER_PAIRS = [
     afterImg:
       "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786627664/eu_pixpassport.com_ppfhlr.jpg",
     beforeTag: "Original: Wall Shadow & Yellow Tint",
-    afterTag: "Expert Fixed: 100% Compliant White BG",
+    afterTag: "Expert Fixed: Plain White Background",
   },
   {
     title: "Biometric Eye Level & Face Centering",
@@ -224,7 +224,7 @@ const BEFORE_AFTER_PAIRS = [
     afterImg:
       "https://res.cloudinary.com/dipzpwbbk/image/upload/v1786630114/3606955d-8470-4d49-a65d-7425be0b182f_photo_qsbsbu.jpg",
     beforeTag: "Original: Non-Standard Photo",
-    afterTag: "Expert Fixed: 100% Embassy Approved",
+    afterTag: "Expert Fixed: Checked Against Guidance",
   },
 ];
 
@@ -653,7 +653,7 @@ export default function PassportPhotoPreviewPage() {
 
                   <p className="text-[11px] sm:text-[12px] text-slate-500 font-semibold flex items-center gap-1 flex-wrap justify-center lg:justify-start">
                     <Shield className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                    <span>100% Acceptance Guarantee &bull; Refund if Rejected</span>
+                    <span>Acceptance Guarantee &bull; Refund if Rejected</span>
                     {isUK && (
                       <span className="ml-1 font-bold text-slate-700 inline-flex items-center gap-1">
                         <span>🇬🇧</span> UK Gov Compliant
@@ -876,7 +876,7 @@ export default function PassportPhotoPreviewPage() {
                                   "AI Biometric Check",
                                   "Instant digital download",
                                   "Official 6×4″ print sheet",
-                                  "100% acceptance guarantee",
+                                  "Acceptance guarantee",
                                 ].map((f) => (
                                   <li
                                     key={f}
@@ -1146,7 +1146,7 @@ export default function PassportPhotoPreviewPage() {
                                 </a>
                                 <div className="flex items-center gap-1">
                                   <Shield className="w-3 h-3 text-emerald-600" />
-                                  <span className="text-[10.5px] font-semibold">100% Acceptance Guarantee</span>
+                                  <span className="text-[10.5px] font-semibold">Acceptance Guarantee</span>
                                 </div>
                                 <div className="flex items-center gap-1">
                                   <RotateCcw className="w-3 h-3 text-emerald-600" />
@@ -1383,7 +1383,7 @@ export default function PassportPhotoPreviewPage() {
 
                     <p className="text-[10.5px] sm:text-[11px] text-center text-slate-400 flex items-center justify-center gap-1.5 pt-1">
                       <Shield className="w-3 h-3 text-emerald-600" />
-                      <span>100% money-back guarantee if rejected by embassy</span>
+                      <span>Money-back guarantee if your photo is rejected</span>
                     </p>
                   </form>
                 </div>
@@ -1484,7 +1484,7 @@ export default function PassportPhotoPreviewPage() {
                         Human Expert Review
                       </span>
                       <span className="text-[11px] text-slate-500 font-medium hidden sm:inline">
-                        &bull; 100% Acceptance Guaranteed
+                        &bull; Acceptance Guaranteed
                       </span>
                     </div>
                     <h3 className="text-base sm:text-xl font-bold text-slate-900 leading-tight">

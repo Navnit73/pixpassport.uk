@@ -6,6 +6,7 @@ country_code: "GB"
 document_type: "passport"
 badge: "UK Passport Renewal 35×45 mm"
 hero_title: "Online Passport Renewal Photo Maker"
+cta_button_text: "Create My Renewal Photo"
 hero_subtitle: "Prepare a digital photo for your online passport renewal. Crop your picture to 35×45 mm, get a plain light background and check your head size before you upload."
 dimensions_mm: "35 × 45 mm"
 # TODO: replace the feature image with a renewal-specific or clean UK passport example
@@ -38,18 +39,17 @@ The online service applies the same standard as a paper application. Check these
 
 | Requirement | Standard |
 | :--- | :--- |
-| Format | JPEG, in colour, with no filters or retouching |
-| Size | 35 × 45 mm, at least 600 × 750 px |
-| Head size | 29 to 34 mm from chin to crown |
-| Background | Plain cream or light grey, with no shadows |
+| Format | In colour, clear and in focus, unaltered by computer software |
+| Size | At least 600 px wide and 750 px tall |
+| File size | At least 50KB and no more than 10MB |
+| Framing | Head, shoulders and upper body. Do not crop it yourself, GOV.UK crops it for you |
+| Background | Plain and light-coloured, in clear contrast to you, with no shadows |
 | Photo age | Taken within the last month |
 | Expression | Neutral, with eyes open and mouth closed |
 
-<!-- TODO: verify every figure above, and the file-size range, against the current GOV.UK digital photo guidance -->
-
 ### Background and Lighting
 
-- **Use a plain cream or light grey background.** White is not accepted.
+- **Use a plain light-coloured background.** It must be in clear contrast to you. (Printed photos for a paper form need plain cream or light grey.)
 - **Keep shadows off your face and the wall.** Even lighting matters more than any camera.
 - **Keep the frame clear.** Other people, furniture and patterns cause rejections.
 
@@ -148,11 +148,11 @@ Yes. Take a clear, front-facing picture that meets the passport photo rules, or 
 
 ### What size is a digital photo for passport renewal?
 
-The photo measures 35 × 45 mm, and the digital file needs at least 600×750 pixels. Save it as a JPEG.
+A digital photo for an online renewal must be at least 600 pixels wide and 750 pixels tall, and between 50KB and 10MB. Printed photos for a paper form measure 45 mm high by 35 mm wide.
 
 ### What background do I need for a passport renewal photo?
 
-Use a plain cream or light grey background with no shadows or patterns. White is not accepted, and our tool replaces your background automatically.
+For an online renewal, use a plain light-coloured background in clear contrast to you, with no shadows or patterns. For a paper form, printed photos need a plain cream or light grey background.
 
 ### Can I take my passport renewal picture with a phone?
 

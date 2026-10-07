@@ -16,6 +16,8 @@ export interface FaqItem {
 export interface ToolPageData {
   slug: string;
   title: string;
+  /** Optional <title> override; falls back to `title`. */
+  meta_title?: string;
   meta_description: string;
   country_code: string;
   document_type: string;
@@ -25,6 +27,9 @@ export interface ToolPageData {
   studio_title?: string;
   studio_description?: string;
   cta_description?: string;
+  how_it_works_title?: string;
+  /** Hero button label; defaults to "Create My Passport Photo". */
+  cta_button_text?: string;
   dimensions_mm: string;
   dimensions_px?: string;
   feature_image?: string;
@@ -124,7 +129,9 @@ export async function getToolBySlug(slug: string): Promise<ToolPageData | null> 
     if (!fs.existsSync(fullPath)) return null;
 
     const fileContents = fs.readFileSync(fullPath, "utf8");
-    const { data, content } = matter(fileContents);
+    const { data, content: rawContent } = matter(fileContents);
+    // Editorial HTML comments (TODOs, notes) must not ship in the page source.
+    const content = rawContent.replace(/<!--[\s\S]*?-->/g, "");
 
     // Extract FAQs from markdown if present
     const { cleanedContent, faqs: parsedFaqs } = await parseFaqsFromMarkdown(content);
@@ -159,9 +166,10 @@ export async function getToolBySlug(slug: string): Promise<ToolPageData | null> 
     return {
       slug,
       title: data.title || "Passport Photo Maker",
+      meta_title: data.meta_title,
       meta_description:
         data.meta_description ||
-        "Create verified biometric passport and visa photos online. 100% compliant with official government requirements.",
+        "Create passport and visa photos online, sized and checked against official photo guidance.",
       country_code: data.country_code || "GB",
       document_type: data.document_type || "passport",
       badge: data.badge || "Verified Biometric Standard",
@@ -172,6 +180,8 @@ export async function getToolBySlug(slug: string): Promise<ToolPageData | null> 
       studio_title: data.studio_title,
       studio_description: data.studio_description,
       cta_description: data.cta_description,
+      how_it_works_title: data.how_it_works_title,
+      cta_button_text: data.cta_button_text,
       dimensions_mm: data.dimensions_mm || "35 × 45 mm",
       dimensions_px: data.dimensions_px,
       feature_image:

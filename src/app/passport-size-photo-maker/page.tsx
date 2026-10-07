@@ -10,9 +10,9 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
 
 export const metadata: Metadata = {
-  title: "Passport Size Photo Maker Online (Official Biometric Dimensions)",
+  title: "Passport Size Photo Maker Online: UK, US, Schengen & 50+ Countries",
   description:
-    "Create official biometric passport photos online for the UK (35×45mm), US (2×2″), Schengen Area, India, and 50+ countries. Automatic cropping, background removal, and instant download.",
+    "Make passport and visa photos online for the UK (35×45 mm), US (2×2″), Schengen Area, India and 50+ countries. Automatic cropping and sizing, then download or print.",
   alternates: {
     canonical: `${SITE_URL}/passport-size-photo-maker`,
     languages: {
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${SITE_URL}/pixpassport.jpg`,
-        width: 1200,
-        height: 630,
+        width: 640,
+        height: 640,
         alt: "Passport Size Photo Maker Online — PixPassport",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Passport Size Photo Maker Online — PixPassport",
     description:
       "Create official biometric passport photos online for the UK (35×45mm), US, Schengen Area, and 50+ countries. Automatic cropping, AI verification, and instant download.",

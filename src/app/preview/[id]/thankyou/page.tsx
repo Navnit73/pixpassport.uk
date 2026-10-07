@@ -243,7 +243,7 @@ export default function ThankYouDownloadPage() {
                 <div>
                 
                   <p className="text-xs sm:text-sm text-slate-600 font-medium mt-0.5">
-                    100% compliant with official <strong>{countryName}</strong> {flag} passport &amp; visa standards.
+                    sized and checked against official <strong>{countryName}</strong> {flag} passport &amp; visa standards.
                   </p>
                 </div>
               </div>

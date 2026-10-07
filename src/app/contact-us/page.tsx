@@ -29,14 +29,14 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${SITE_URL}/pixpassport.jpg`,
-        width: 1200,
-        height: 630,
+        width: 640,
+        height: 640,
         alt: "PixPassport Customer Support",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Contact PixPassport Support",
     description:
       "Contact PixPassport customer support for assistance with UK passport photos, biometric compliance queries, refund requests, or order inquiries.",

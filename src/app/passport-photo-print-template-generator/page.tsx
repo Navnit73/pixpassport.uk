@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     images: [
       {
         url: `${SITE_URL}/pixpassport.jpg`,
-        width: 1200,
-        height: 630,
+        width: 640,
+        height: 640,
         alt: "Free passport photo sheet maker for 4×6 and A4 — PixPassport",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Free Passport Photo Sheet Maker (4×6″ & A4) — PixPassport",
     description:
       "Convert your passport photo to 4x6 free. Print-ready 300 DPI sheets for Boots, Tesco, Snappy Snaps and home printers.",
@@ -138,7 +138,7 @@ export default function PrintTemplateGeneratorPage() {
         priceCurrency="GBP"
         breadcrumbs={[
           { name: "Home", url: SITE_URL },
-          { name: "Photo Tools", url: `${SITE_URL}/passport-size-photo-maker` },
+          { name: "Photo Guides", url: `${SITE_URL}/tool` },
           {
             name: "Print Template Generator",
             url: `${SITE_URL}/passport-photo-print-template-generator`,
@@ -165,8 +165,8 @@ export default function PrintTemplateGeneratorPage() {
                 </li>
                 <li aria-hidden="true">/</li>
                 <li>
-                  <Link href="/passport-size-photo-maker" className="text-slate-600 hover:text-lime-800 transition-colors font-medium">
-                    Photo Tools
+                  <Link href="/tool" className="text-slate-600 hover:text-lime-800 transition-colors font-medium">
+                    Photo Guides
                   </Link>
                 </li>
                 <li aria-hidden="true">/</li>

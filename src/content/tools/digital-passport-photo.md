@@ -1,175 +1,134 @@
 ---
 slug: "digital-passport-photo"
-title: "Digital Photo for Passport: Create One Online, Correctly Sized"
-meta_description: "Need a digital photo for your passport application? Create a digital passport photo online, sized and cropped to meet official rules."
-country_code: "ALL"
+title: "Digital Photo for Passport: How to Get One for a GOV.UK Application"
+meta_title: "Digital Passport Photo UK: Photo Codes, Phone Photos & Rules"
+meta_description: "How to get a digital photo for a UK passport application: a photo code from a booth or shop, or a photo on your own device. GOV.UK rules, file size and common mistakes."
+country_code: "GB"
 document_type: "passport"
-badge: "Digital Passport Photo"
-hero_title: "Digital Photo for Passport Online"
-hero_subtitle: "Create a digital passport photo from any picture. Choose your country, crop and resize to the right pixels, replace the background and download a JPEG ready to upload."
-dimensions_mm: "Varies by country"
-# TODO: replace with a neutral image showing a digital passport photo on a phone or laptop
+badge: "UK Digital Passport Photo"
+hero_title: "Digital Photo for Passport Applications"
+cta_button_text: "Create My Digital Photo"
+how_it_works_title: "How to Check Your Digital Photo in 3 Steps"
+hero_subtitle: "You need a digital photo to apply for a UK passport online. Here are the two ways GOV.UK lets you get one, the rules your photo must meet, and how to check it before you submit."
+dimensions_mm: "No print size (digital)"
 feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790578820/digital-passport-photo_example_kehhir.webp"
-feature_image_alt: "Digital photo for passport application on a phone with plain background"
-dimensions_px: "Varies by country"
+feature_image_alt: "Digital photo for a UK passport application on a phone, plain light background"
+dimensions_px: "At least 600 × 750 px"
 price: "7.99"
 ---
 
-## Get a Digital Photo for Your Passport Application
+## Two Ways to Get a Digital Photo for Your UK Passport
 
-Many passport services now ask you to upload a digital photo instead of posting a print. You do not need a studio to get one. Take a picture on your phone, upload it to our online passport photo maker, and we crop it to the right size, replace the background and check your head against the official range.
+You need a digital photo to apply for a UK passport online, including renewals. GOV.UK gives you two options:
 
-Then download a JPEG and upload it with your application. The whole process takes about two minutes.
-
-## How to Create a Digital Passport Photo in 5 Steps
-
-1. **Choose your country.** Pick the passport format you need, because pixel sizes differ around the world.
-2. **Upload your picture.** Select a clear, front-facing photo from your phone or computer.
-3. **Let the tool crop and resize it.** The editor centres your face and sets the correct dimensions.
-4. **Review the checks.** The tool removes the background and tests your head size and framing.
-5. **Download your JPEG.** Save the file, then upload it to your passport application.
-
-You can retake the picture as often as you like until every check passes.
-
-## Digital Passport Photo Specifications by Country
-
-A digital photo must meet the right pixel size, file type and file size. Here are common examples:
-
-| Country | Digital size | Format and notes |
+| Option | How it works | Good to know |
 | :--- | :--- | :--- |
-| United Kingdom | At least 600 × 750 px (35 × 45 mm ratio) | JPEG, colour, taken within the last month |
-| United States | 600 × 600 to 1200 × 1200 px (square) | JPEG, colour, under 240 KB |
-| India | 630 × 810 px | JPEG, small file, plain white background |
-| European Union (Schengen) | Varies by country | Usually 35 × 45 mm ratio, so check your portal |
+| **Photo code from a booth or shop** | Get a digital passport photo from a photo booth or shop and choose the option to get a code. Enter the code during your application and your photo is added for you. | GOV.UK says these photos are more likely to be approved than photos taken on your own device. |
+| **Take a photo on your own device** | Take the photo during your application on a phone, tablet or camera. | You need someone to help you take it. Include your head, shoulders and upper body, and do not crop it, because the service crops it for you. |
 
-<!-- TODO: verify every figure, and the file-size limits, against the official source for each country before publishing -->
+Either way, the photo must have been taken in the last month, and you need a new photo every time you get a new passport, even if your appearance has not changed.
 
-Each service sets its own limits, so always read the upload page before you submit. For country details, see our pages for the [UK passport photo](/tool/uk-passport-photo), [UK passport renewal photo](/tool/passport-renewal-photo-online), [US visa and passport photo](/tool/us-visa-photo-tool) and [Indian passport photo](/tool/indian-passport-photo-maker).
+## GOV.UK Rules for Digital Passport Photos
 
-## What Makes a Good Digital Passport Photo?
+### Quality
 
-A digital photo faces both human rules and technical ones. Check both before you upload.
+Your digital photo must be:
 
-### Technical Requirements
+- clear and in focus
+- in colour
+- unaltered by computer software
+- at least 600 pixels wide and 750 pixels tall
+- at least 50KB and no more than 10MB
 
-- **File type:** Save the photo as a JPEG. Phones often save HEIC or PNG files that portals reject.
-- **Pixel size:** Match the exact or minimum pixels your country asks for.
-- **File size:** Stay within the portal's limit, because oversized files fail to upload.
-- **Colour:** Use a colour photo with no filters or effects.
-- **No resizing afterwards:** Do not stretch, shrink or recompress the file after you download it.
+### What the Photo Must Show
 
-### Photo Requirements
+The photo must contain no other objects or people, be taken against a plain light-coloured background, be in clear contrast to the background, and not have red eye.
 
-- **Face the camera.** Look straight at the lens with your head level.
-- **Keep a neutral expression.** Close your mouth and keep your eyes open.
-- **Use a plain background.** Most countries ask for white, cream or light grey.
-- **Avoid shadows.** Light your face and the wall evenly.
-- **Remove your glasses.** Many countries no longer accept them, except for documented medical reasons.
-- **Show your full face.** Keep hair away from your eyes, and wear headwear only for religious or medical reasons.
+In the photo, you must:
 
-<!-- TODO: remind users to check their own country's current rules, as glasses and headwear rules vary -->
+- face forwards and look straight at the camera
+- have a plain expression and your mouth closed
+- have your eyes open and visible
+- not have hair in front of your eyes
+- not wear a head covering, unless it is for religious or medical reasons
+- not have anything covering your face
+- not have any shadows on your face or behind you
+
+**Glasses:** do not wear glasses unless you have to. If you must, they cannot be sunglasses or tinted, and your eyes must not be covered by the frames or any glare, reflection or shadow.
 
 ## Digital vs Printed Passport Photos
 
-Choose the output that fits your application.
-
-| | Digital photo | Printed photo |
+| | Digital photo | Printed photos |
 | :--- | :--- | :--- |
-| Best for | Online applications and portals | Paper forms and in-person visits |
-| Output | JPEG at the required pixel size | Prints at the exact millimetre size |
-| Checking | Portals often check it automatically | You check it yourself |
-| Cost | Low, with no printing | Printing cost per set |
-| Speed | Instant download | Depends on printing or delivery |
+| Used for | Online applications on GOV.UK | Paper application forms |
+| How many | One | 2 identical photos |
+| Size | At least 600 × 750 px, 50KB to 10MB | 45 mm high by 35 mm wide, head 29 mm to 34 mm |
+| Background | Plain, light-coloured | Plain cream or light grey |
+| Printing | Not needed | Printed to a professional standard on plain white photographic paper |
 
-If you need both, download the JPEG and a print sheet. For printing tips, read our guide to taking a [passport photo at home](/tool/passport-photo-at-home).
+Need prints for a paper form? See the [UK passport photo size and requirements](/tool/uk-passport-photo) guide.
 
-## Common Digital Passport Photo Mistakes
+## Common Digital Photo Problems
 
-| Mistake ❌ | Fix ✅ |
+| Problem ❌ | Fix ✅ |
 | :--- | :--- |
-| Uploading a HEIC or PNG file | Save as a JPEG |
-| Wrong pixel size | Choose your country in the tool |
-| File too large | Use the tool's output, and do not add filters |
-| Resizing the photo after download | Upload the file exactly as downloaded |
-| Shadows or a patterned background | Use a plain wall and let the tool replace the background |
-| Smiling or squinting | Keep a neutral face, and take several shots |
-| Scanned old photo | Take a fresh picture |
-| Filters or retouching | Use the untouched picture |
+| Taking a selfie at arm's length | Ask someone to take the photo, as GOV.UK requires |
+| Cropping tightly around your face | Include your head, shoulders and upper body for an own-device photo |
+| Shadows on your face or the wall | Face a window in soft daylight, and stand away from the wall |
+| Patterned or dark background | Stand in front of a plain, light-coloured wall |
+| Filters, beauty mode or retouching | Turn them off. The photo must be unaltered by software |
+| Hair over your eyes, or glare on glasses | Move hair away and take glasses off if you can |
+| An old photo | Use one taken in the last month |
 
-## What You Get With Our Digital Passport Photo Maker
+## How to Take a Good Digital Photo at Home
 
-- **Automatic cropping:** The editor sets the correct frame around your face.
-- **Exact resizing:** It outputs the pixel size your country asks for.
-- **Background replacement:** It swaps your wall or room for a plain background.
-- **Head-size check:** It measures your head against the official range.
-- **JPEG export:** It gives you a file that portals accept.
-- **Photo converter:** Turn an existing picture into a digital passport photo without a retake.
-- **Phone-friendly design:** Upload straight from your camera roll.
+- **Ask someone to help.** GOV.UK says you need someone to help you take a photo on your own device.
+- **Face a window.** Soft, even daylight keeps shadows off your face.
+- **Use a plain, light wall.** Stand a step or two away from it so you do not cast a shadow.
+- **Hold the camera at eye level,** about an arm's length or more away, and keep it straight.
+- **Frame your head, shoulders and upper body.** Leave space around you rather than zooming in.
+- **Keep a plain expression,** with your mouth closed and your eyes open.
 
-## How to Take a Good Source Picture
+For more setup tips, see how to [take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone).
 
-A clear picture gives the cleanest result, so take a few minutes to set up.
+## Check Your Photo Before You Submit
 
-- **Ask someone to help.** Selfies distort your face, so have a friend hold the camera at eye level.
-- **Face a window.** Soft daylight removes shadows from your face.
-- **Stand about one metre from the camera.** Keep the lens level with your eyes.
-- **Use a plain wall.** A simple backdrop gives a sharper background cut-out.
-- **Leave space around your head.** The tool needs room to crop correctly.
-- **Look straight ahead.** Relax your face and keep your head level.
+Upload your picture to our tool and it checks your background, head position and framing against these rules, so you can spot problems before GOV.UK does. If you are applying on paper instead, you can download a 6×4″ print sheet to take to a photo shop.
 
-If you already have a picture, our [image to passport size converter](/tool/image-to-passport-size-converter) explains which pictures convert well.
-
-## How to Upload Your Digital Photo
-
-1. **Start your application** on your country's official passport website.
-2. **Find the photo step,** and select your JPEG file.
-3. **Wait for the automatic check,** if the service offers one.
-4. **Fix any warning.** Retake the picture or adjust it in our editor, then upload it again.
-5. **Complete and submit** your application.
-
-Always use the official government website, and avoid third-party sites that ask you to hand over your passport details.
-
-## Digital Passport Photos for Children and Babies
-
-Children need the same size and background, but many countries relax some rules for young ones. Babies often do not need to look at the camera, and no one else may appear in the photo. Check your country's guidance for children before you apply.
+Renewing? Read our [passport renewal photo guide](/tool/passport-renewal-photo-online). Applying for a child? See the [baby passport photo guide](/tool/uk-baby-passport-photo). Need a photo for another country? Use the [passport size photo maker](/passport-size-photo-maker).
 
 ## Frequently Asked Questions
 
-### How do I get a digital photo for my passport?
+### How do I get a digital photo for my UK passport?
 
-Take a clear, front-facing picture, upload it to our tool, and choose your country. Download the JPEG and upload it with your application.
+Either get a photo code from a photo booth or shop and enter it in your application, or take a photo on your own device during your application with someone to help you.
 
-### What file format does a digital passport photo need?
+### What size is a digital passport photo in the UK?
 
-Most services want a JPEG. Phones sometimes save HEIC files, so convert or export as a JPEG before you upload.
-
-### What size is a digital passport photo?
-
-It depends on the country. The UK asks for at least 600×750 pixels, India asks for 630×810 pixels, and the US asks for a square between 600×600 and 1200×1200 pixels.
-
-### Is there a free digital passport photo maker?
-
-<!-- TODO: confirm what is free (for example, a free preview) and edit this answer to match your real offer. -->
-You can upload your picture and preview the result before you download. The final file is a paid download, so confirm the current terms in the editor.
+At least 600 pixels wide and 750 pixels tall, with a file size of at least 50KB and no more than 10MB.
 
 ### Can I take a digital passport photo with my phone?
 
-Yes. Take a clear picture in even daylight, upload it, and the tool prepares the size and background.
+Yes. GOV.UK lets you take a photo using your own device during your application, but you need someone to help you take it.
 
-### Can I use a selfie for a digital passport photo?
+### Should I crop my digital passport photo?
 
-Only if it is sharp, front-facing and well lit. Use the rear camera, and have someone else take the picture if you can.
+Not if you took it on your own device. GOV.UK asks you to include your head, shoulders and upper body and says not to crop the photo, because it will be done for you.
+
+### What background does a digital passport photo need?
+
+A plain light-coloured background in clear contrast to you, with no shadows behind you.
 
 ### Do I need to print a digital passport photo?
 
-No, if your application is fully online. Some paper applications still need prints, so check your instructions.
+No. An online application only needs the digital photo. Printed photos are only for paper application forms.
+
+### Is a booth photo better than a phone photo?
+
+GOV.UK says photos from a booth or shop are more likely to be approved than photos taken on your own device.
 
 ### Will my digital passport photo definitely be accepted?
 
-No tool can promise that. The issuing authority makes the final decision, but our checks help you avoid the most common mistakes.
+No tool can promise that. HM Passport Office makes the final decision, but checking your photo first helps you avoid the most common mistakes.
 
-## Get Your Digital Passport Photo Now
-
-Upload your picture, choose your country, and download a correctly sized digital passport photo in minutes. No studio visit and no editing skills needed.
-
-<!-- Recommended notice: "We are an independent service, not affiliated with any government. The issuing authority makes the final decision on every photo." -->
+*PixPassport is an independent service and is not affiliated with HM Passport Office or GOV.UK. Rules checked against [GOV.UK digital photo guidance](https://www.gov.uk/photos-for-passports/rules-for-digital-photos) in October 2026.*

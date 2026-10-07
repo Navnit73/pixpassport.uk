@@ -6,6 +6,7 @@ country_code: "ALL"
 document_type: "id"
 badge: "Online ID Photo Maker"
 hero_title: "Online ID Photo Maker"
+cta_button_text: "Create My ID Photo"
 hero_subtitle: "Create an ID photo online from any picture. Choose your document, crop and resize to the right dimensions, replace the background and check your head size in minutes."
 dimensions_mm: "Varies by document"
 # TODO: replace with a neutral image showing several ID photo formats
