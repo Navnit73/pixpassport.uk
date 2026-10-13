@@ -833,6 +833,7 @@ export default function HomePage() {
                   <ArrowRight className="w-3 h-3 text-lime-800" />
                 </Link>
                 {[
+                  { slug: "british-passport-picture-maker", label: "British Passport Picture" },
                   { slug: "passport-photo-checker-uk", label: "UK Photo Checker" },
                   { slug: "uk-visa-photo", label: "UK Visa Photo" },
                   { slug: "passport-renewal-photo-online", label: "UK Passport Renewal" },

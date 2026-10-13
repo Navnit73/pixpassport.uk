@@ -21,6 +21,7 @@ export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
   ],
   "Country Guides": [
     { label: "UK Passport Photo (35×45mm)", href: "/tool/uk-passport-photo" },
+    { label: "British Passport Picture Maker", href: "/tool/british-passport-picture-maker" },
     { label: "UK Passport Renewal Photo", href: "/tool/passport-renewal-photo-online" },
     { label: "UK Baby Passport Photo", href: "/tool/uk-baby-passport-photo" },
     { label: "UK Driving Licence Photo", href: "/tool/uk-driving-licence-photo" },

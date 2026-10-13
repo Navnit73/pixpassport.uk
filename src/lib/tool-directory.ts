@@ -22,6 +22,7 @@ export const TOOL_GROUPS: ToolGroup[] = [
 /** Every /tool/[slug] page, in display order. Used by the /tool hub and the related-tools grid. */
 export const TOOL_DIRECTORY: ToolDirectoryEntry[] = [
   { slug: "uk-passport-photo", title: "UK Passport Photo Size & Rules", flag: "🇬🇧", spec: "35×45 mm", group: "UK Passport Photos" },
+  { slug: "british-passport-picture-maker", title: "British Passport Picture Maker", flag: "🇬🇧", spec: "35×45 mm", group: "UK Passport Photos" },
   { slug: "passport-photo-checker-uk", title: "UK Passport Photo Checker", flag: "✅", spec: "Compliance Test", group: "UK Passport Photos" },
   { slug: "digital-passport-photo", title: "UK Digital Passport Photo", flag: "💻", spec: "GOV.UK Online", group: "UK Passport Photos" },
   { slug: "passport-renewal-photo-online", title: "UK Passport Renewal Photo", flag: "🔄", spec: "600×750 px", group: "UK Passport Photos" },

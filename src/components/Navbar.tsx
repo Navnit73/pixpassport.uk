@@ -74,6 +74,12 @@ export const PHOTO_TOOLS_MENU = {
       flag: "🇬🇧",
     },
     {
+      title: "British Passport Picture",
+      spec: "35 × 45 mm (HMPO)",
+      href: "/tool/british-passport-picture-maker",
+      flag: "🇬🇧",
+    },
+    {
       title: "UK Driving Licence Photo",
       spec: "35 × 45 mm (DVLA)",
       href: "/tool/uk-driving-licence-photo",
@@ -121,7 +127,7 @@ export const PHOTO_TOOLS_MENU = {
 export const DEFAULT_NAV_LINKS: NavLinkItem[] = [
   { label: "How It Works", href: "/#how-it-works" },
   { label: "Features", href: "/#features" },
-  { label: "Pricing", href: "/#pricing" },
+
   { label: "FAQ", href: "/#faq" },
   { label: "About Us", href: "/about-us" },
   { label: "Contact", href: "/contact-us" },
