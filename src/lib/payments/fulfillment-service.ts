@@ -193,6 +193,7 @@ export async function fulfillPayment(paymentId: string): Promise<FulfillmentResu
           downloadUrl,
           invoiceUrl,
           invoicePdfUrl,
+          photoUrl: payment.image?.imageUrl || payment.image?.previewUrl,
           pdfBuffer,
           countryName: payment.metadata?.countryName,
           dimensions: payment.image?.dimensions,

@@ -15,6 +15,7 @@ export function paymentSuccessEmail(params: {
   downloadUrl: string;
   invoiceUrl: string;
   invoicePdfUrl?: string;
+  photoUrl?: string;
   countryName?: string;
   dimensions?: string;
   planType?: "standard" | "expert_edit";
@@ -76,6 +77,17 @@ export function paymentSuccessEmail(params: {
         : ""
     }
 
+    ${
+      params.photoUrl
+        ? `
+    <!-- User Photo -->
+    <div style="text-align:center;margin-bottom:24px;">
+      <img src="${escapeHtml(params.photoUrl)}" alt="Your passport photo" width="175" style="width:175px;max-width:100%;height:auto;border:1px solid #e2e8f0;border-radius:8px;display:inline-block;"/>
+    </div>
+    `
+        : ""
+    }
+
     <!-- Order Details -->
     <div style="background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:20px;margin-bottom:24px;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;">
@@ -117,12 +129,8 @@ export function paymentSuccessEmail(params: {
       This download link expires in 72 hours.
     </p>
 
-    <!-- Invoice PDF Attachment Box -->
-    <div style="background-color:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:14px 16px;margin-bottom:24px;text-align:center;font-size:13px;color:#166534;">
-      📄 <strong>Official Tax Invoice Attached:</strong><br/>
-      We have attached <strong>Invoice-${escapeHtml(params.invoiceNumber)}.pdf</strong> to this email.
-      ${params.invoicePdfUrl ? `<br/><a href="${escapeHtml(params.invoicePdfUrl)}" target="_blank" style="display:inline-block;margin-top:8px;color:#15803d;font-weight:700;text-decoration:underline;">View Cloud Hosted Invoice PDF &rarr;</a>` : ""}
-    </div>
+
+  
 
     <hr style="border:0;border-top:1px solid #e2e8f0;margin:24px 0;"/>
 

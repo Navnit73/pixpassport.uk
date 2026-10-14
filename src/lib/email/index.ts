@@ -21,6 +21,7 @@ export interface SendPaymentSuccessEmailParams {
   downloadUrl: string;
   invoiceUrl: string;
   invoicePdfUrl?: string;
+  photoUrl?: string;
   pdfBuffer?: Buffer;
   countryName?: string;
   dimensions?: string;
