@@ -110,6 +110,12 @@ export const PHOTO_TOOLS_MENU = {
       flag: "🇮🇳",
     },
     {
+      title: "Australian Passport Photo",
+      spec: "35–40 × 45–50 mm",
+      href: "/tool/australian-passport-photo-uk",
+      flag: "🇦🇺",
+    },
+    {
       title: "UK Passport Renewal",
       spec: "Online renewal photo",
       href: "/tool/passport-renewal-photo-online",

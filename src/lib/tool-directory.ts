@@ -32,6 +32,7 @@ export const TOOL_DIRECTORY: ToolDirectoryEntry[] = [
   { slug: "us-visa-photo-tool", title: "US Visa & Passport Photo", flag: "🇺🇸", spec: "2×2 inches", group: "Visas & Other Countries" },
   { slug: "schengen-visa-photo", title: "Schengen Visa Photo", flag: "🇪🇺", spec: "35×45 mm", group: "Visas & Other Countries" },
   { slug: "indian-passport-photo-maker", title: "Indian Passport & OCI Photo", flag: "🇮🇳", spec: "35×45 mm", group: "Visas & Other Countries" },
+  { slug: "australian-passport-photo-uk", title: "Australian Passport Photo UK", flag: "🇦🇺", spec: "35–40×45–50 mm", group: "Visas & Other Countries" },
 
   { slug: "take-a-passport-photo-on-iphone", title: "Passport Photo on iPhone", flag: "📱", spec: "iPhone Guide", group: "How-To Guides & Tools" },
   { slug: "passport-photo-at-home", title: "Passport Photo at Home", flag: "🏠", spec: "Home Setup", group: "How-To Guides & Tools" },
