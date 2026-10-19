@@ -2,6 +2,7 @@
  * Payment success + image delivery email template
  */
 
+import { formatMoney } from "@/lib/currency";
 import { baseEmailTemplate, escapeHtml } from "./base";
 import { PRICING } from "@/lib/config/pricing";
 
@@ -20,23 +21,12 @@ export function paymentSuccessEmail(params: {
   dimensions?: string;
   planType?: "standard" | "expert_edit";
 }): { subject: string; html: string } {
-  const currencySymbols: Record<string, string> = {
-    GBP: "£",
-    INR: "₹",
-    USD: "$",
-    EUR: "€",
-    CAD: "CA$",
-    AUD: "A$",
-  };
   const isExpert = params.planType === "expert_edit";
   const productName = isExpert
     ? "Official Passport Photo + Expert Manual Edit & Review"
     : PRICING.productName;
 
-  const symbol = currencySymbols[params.currency?.toUpperCase()] || "";
-  const amountFormatted = symbol
-    ? `${symbol}${(params.amount / 100).toFixed(2)}`
-    : `${(params.amount / 100).toFixed(2)} ${params.currency}`;
+  const amountFormatted = formatMoney(params.amount, params.currency);
 
   const subject = isExpert
     ? `Your Passport Photo & Expert Review Order Confirmed — ${escapeHtml(PRICING.businessName)}`
@@ -78,7 +68,7 @@ export function paymentSuccessEmail(params: {
     }
 
     ${
-      params.photoUrl
+      params.photoUrl && !isExpert
         ? `
     <!-- User Photo -->
     <div style="text-align:center;margin-bottom:24px;">

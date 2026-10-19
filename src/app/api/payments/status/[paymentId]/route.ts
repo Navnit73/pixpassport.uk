@@ -38,6 +38,8 @@ export async function GET(_req: NextRequest, context: RouteContext) {
       paymentId: payment.paymentId,
       status: payment.status,
       planType: payment.planType || "standard",
+      amount: payment.amount,
+      currency: payment.currency,
       email: payment.email,
       fulfillmentStatus: payment.fulfillmentStatus,
       downloadToken: payment.status === "paid" ? payment.downloadToken : undefined,

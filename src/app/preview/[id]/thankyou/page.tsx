@@ -18,7 +18,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PrintTemplateGenerator from "@/components/PrintTemplateGenerator";
 import type { PassportProcessResult } from "@/lib/passport-api";
-import { getPlanPricing } from "@/lib/config/pricing";
+import { usePricing } from "@/components/PricingProvider";
+import { formatMoney } from "@/lib/currency";
 
 interface StoredPassportResult extends PassportProcessResult {
   country_code?: string;
@@ -37,6 +38,9 @@ interface StoredPaymentInfo {
   email: string;
   paidAt?: string;
   planType?: "standard" | "expert_edit";
+  /** Amount actually charged, in minor units */
+  amount?: number;
+  currency?: string;
 }
 
 function subscribeToStorage(callback: () => void) {
@@ -162,6 +166,8 @@ export default function ThankYouDownloadPage() {
             email: paymentState?.email || "customer@pixpassport.uk",
             paidAt: resData.paidAt || new Date().toISOString(),
             planType: resData.planType || paymentState?.planType || "standard",
+            amount: resData.amount,
+            currency: resData.currency,
           };
           setPaymentState(updated);
           try {
@@ -225,7 +231,12 @@ export default function ThankYouDownloadPage() {
   const paymentId = paymentState?.paymentId || queryPaymentId;
   const userEmail = paymentState?.email || "your email";
   const activePlanType = paymentState?.planType || "standard";
-  const expertPricing = getPlanPricing("expert_edit");
+  const { expert_edit: expertPricing } = usePricing();
+  // Prefer the amount actually charged over the current regional price
+  const expertAmountPaid =
+    activePlanType === "expert_edit" && paymentState?.amount && paymentState.currency
+      ? formatMoney(paymentState.amount, paymentState.currency, { trimWholeNumbers: true })
+      : expertPricing.amountFormatted;
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-100/60 text-slate-900">
@@ -263,7 +274,7 @@ export default function ThankYouDownloadPage() {
                 <div className="flex items-center justify-between gap-2 flex-wrap mb-1">
                   <div className="font-black text-[#854D0E] flex items-center gap-1.5 text-xs sm:text-sm">
                     <Sparkles className="w-4 h-4 text-[#CA8A04] shrink-0" />
-                    <span>VIP Expert Manual Review &amp; Edit Included ({expertPricing.amountFormatted})</span>
+                    <span>VIP Expert Manual Review &amp; Edit Included ({expertAmountPaid})</span>
                   </div>
                   <span className="bg-amber-100 text-amber-900 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-amber-200 flex items-center gap-1">
                     <Clock className="w-3 h-3 text-amber-700" />

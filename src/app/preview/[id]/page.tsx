@@ -14,6 +14,7 @@ import {
   ExternalLink,
   ArrowRight,
   Shield,
+  Wallet,
   RotateCcw,
   Star,
   X,
@@ -25,7 +26,9 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import type { PassportProcessResult } from "@/lib/passport-api";
-import { PRICING, getPlanPricing, type PlanType } from "@/lib/config/pricing";
+import { PRICING, type PlanType } from "@/lib/config/pricing";
+import { usePricing } from "@/components/PricingProvider";
+import { supportsPayPal } from "@/lib/currency";
 
 interface StoredPassportResult extends PassportProcessResult {
   country_code?: string;
@@ -43,6 +46,9 @@ interface StoredPaymentInfo {
   email: string;
   paidAt?: string;
   planType?: PlanType;
+  /** Amount actually charged, in minor units */
+  amount?: number;
+  currency?: string;
 }
 
 function subscribeToStorage(callback: () => void) {
@@ -316,8 +322,12 @@ export default function PassportPhotoPreviewPage() {
       : undefined);
 
   const isPaid = paymentState?.status === "paid";
-  const standardPricing = getPlanPricing("standard");
-  const expertPricing = getPlanPricing("expert_edit");
+  const {
+    currency: displayCurrency,
+    standard: standardPricing,
+    expert_edit: expertPricing,
+    setCurrency: setDisplayCurrency,
+  } = usePricing();
 
   const isValidEmail = (val: string): boolean => {
     const trimmed = val.trim().toLowerCase();
@@ -392,15 +402,29 @@ export default function PassportPhotoPreviewPage() {
           sizeKb: data?.size_kb || 150,
           countryCode,
           countryName,
+          expectedCurrency: displayCurrency,
+          expectedAmount: (activePlan === "expert_edit" ? expertPricing : standardPricing)
+            .amountInSubunits,
         }),
       });
 
       const orderData = await res.json();
+      if (orderData.code === "PRICE_CHANGED" && orderData.pricing?.currency) {
+        if (orderData.pricing.currency === displayCurrency) {
+          // Same currency, different amount: this page's bundle is stale (prices changed in a deploy)
+          throw new Error("Our prices have been updated. Please refresh the page to see the latest price.");
+        }
+        setDisplayCurrency(orderData.pricing.currency);
+      }
       if (!res.ok || !orderData.success) {
         throw new Error(orderData.error || "Failed to initiate payment. Please try again.");
       }
 
       const { paymentId, razorpayOrderId, amount, currency, keyId } = orderData;
+      // Server may fall back to the base currency if a regional one is unavailable
+      if (currency && currency !== displayCurrency) {
+        setDisplayCurrency(currency);
+      }
 
       // 3. Open Razorpay Checkout Modal
       const RazorpayConstructor = (window as unknown as {
@@ -421,6 +445,23 @@ export default function PassportPhotoPreviewPage() {
             : `${countryName} Biometric Passport Photo & Print Sheet`,
         image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790589684/pixpassport_eq8aay.jpg",
         order_id: razorpayOrderId,
+        // Feature PayPal at the top for international currencies; cards/wallets still follow
+        ...(supportsPayPal(currency)
+          ? {
+              config: {
+                display: {
+                  blocks: {
+                    paypal: {
+                      name: "Pay with PayPal",
+                      instruments: [{ method: "wallet", wallets: ["paypal"] }],
+                    },
+                  },
+                  sequence: ["block.paypal"],
+                  preferences: { show_default_blocks: true },
+                },
+              },
+            }
+          : {}),
         prefill: {
           email: targetEmail,
         },
@@ -481,6 +522,8 @@ export default function PassportPhotoPreviewPage() {
               email: targetEmail,
               paidAt: new Date().toISOString(),
               planType: activePlan,
+              amount,
+              currency,
             };
 
             saveStoredPayment(resultId, paidInfo);
@@ -1088,6 +1131,12 @@ export default function PassportPhotoPreviewPage() {
                                   <Lock className="w-3.5 h-3.5 text-slate-400" />
                                   <span className="text-[11px] font-semibold">256-bit SSL</span>
                                 </div>
+                                {supportsPayPal(displayCurrency) && (
+                                  <div className="flex items-center gap-1.5 text-slate-500">
+                                    <Wallet className="w-3.5 h-3.5 text-emerald-600" />
+                                    <span className="text-[11px] font-semibold">Cards &amp; PayPal</span>
+                                  </div>
+                                )}
                               </div>
 
                                 {/* 24/7 Mail Support in Order Summary */}
@@ -1116,8 +1165,8 @@ export default function PassportPhotoPreviewPage() {
                                   </a>
                                 </div>
 
-                                {/* Razorpay Badge */}
-                                <div className="flex justify-center pt-2">
+                                {/* Payment Partner Badges */}
+                                <div className="flex items-center justify-center gap-3 pt-2">
                                   <a
                                     href="https://razorpay.com/"
                                     target="_blank"
@@ -1128,6 +1177,18 @@ export default function PassportPhotoPreviewPage() {
                                       src="https://badges.razorpay.com/badge-dark.png"
                                       style={{ height: 40, width: 100 }}
                                       alt="Razorpay | Payment Gateway | Neobank"
+                                    />
+                                  </a>
+                                  <a
+                                    href="https://www.paypal.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center h-10 px-3 rounded-md bg-white border border-slate-200"
+                                  >
+                                    <img
+                                      src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png"
+                                      style={{ height: 26, width: 100 }}
+                                      alt="PayPal"
                                     />
                                   </a>
                                 </div>

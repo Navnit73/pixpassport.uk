@@ -1,69 +1,40 @@
 /**
  * Pricing configuration.
- * Automatically configured via environment variables for testing/production.
+ * Price points per currency live in src/lib/currency.ts; the charged currency is
+ * resolved server-side from the visitor's geo-IP country.
  * Never accept payment amounts directly from client-side input — always derive from here.
  */
 
-const currency = (process.env.NEXT_PUBLIC_PAYMENT_CURRENCY || "GBP").toUpperCase();
+import {
+  BASE_CURRENCY,
+  CURRENCIES,
+  formatMoney,
+  getPriceInMinorUnits,
+  type CurrencyCode,
+  type PlanType,
+} from "@/lib/currency";
 
-const currencySymbols: Record<string, string> = {
-  GBP: "£",
-  INR: "₹",
-  USD: "$",
-  EUR: "€",
-  CAD: "CA$",
-  AUD: "A$",
-};
+export type { PlanType };
 
-const defaultAmounts: Record<string, number> = {
-  GBP: 7.99,
-  INR: 1.00, // ₹1.00 for testing Razorpay UPI/Netbanking/Cards
-  USD: 9.99,
-  EUR: 8.99,
-};
-
-const defaultExpertAmounts: Record<string, number> = {
-  GBP: 13.99,
-  INR: 2.00, // ₹2.00 for testing Razorpay UPI/Netbanking/Cards in INR
-  USD: 16.99,
-  EUR: 15.99,
-};
-
-const parsedAmount = process.env.NEXT_PUBLIC_PAYMENT_AMOUNT
-  ? parseFloat(process.env.NEXT_PUBLIC_PAYMENT_AMOUNT)
-  : (defaultAmounts[currency] ?? 7.99);
-
-const amount = isNaN(parsedAmount) || parsedAmount <= 0 ? (defaultAmounts[currency] ?? 7.99) : parsedAmount;
-const amountInSubunits = Math.round(amount * 100);
-
-// Expert Edit pricing (£13.99 for GBP, or ₹2 for test mode)
-const parsedExpertAmount = process.env.NEXT_PUBLIC_EXPERT_EDIT_AMOUNT
-  ? parseFloat(process.env.NEXT_PUBLIC_EXPERT_EDIT_AMOUNT)
-  : (defaultExpertAmounts[currency] ?? (currency === "INR" ? 2.00 : 13.99));
-
-const expertEditAmount =
-  isNaN(parsedExpertAmount) || parsedExpertAmount <= 0
-    ? (defaultExpertAmounts[currency] ?? (currency === "INR" ? 2.00 : 13.99))
-    : parsedExpertAmount;
-
-const expertEditAmountInSubunits = Math.round(expertEditAmount * 100);
+const baseAmountInSubunits = getPriceInMinorUnits(BASE_CURRENCY, "standard");
+const baseExpertAmountInSubunits = getPriceInMinorUnits(BASE_CURRENCY, "expert_edit");
 
 export const PRICING = {
-  /** Standard Pack amount in standard currency units (e.g. 7.99 GBP or 1.00 INR) */
-  amount,
+  /** Standard Pack amount in base currency units (e.g. 7.99 GBP) */
+  amount: baseAmountInSubunits / 100,
   /** Amount in smallest currency unit (pence/paise/cents) for Razorpay */
-  amountInPence: amountInSubunits,
-  amountInSubunits,
+  amountInPence: baseAmountInSubunits,
+  amountInSubunits: baseAmountInSubunits,
 
-  /** Expert Edit amount in standard currency units (e.g. 13.99 GBP or 2.00 INR) */
-  expertEditAmount,
-  expertEditAmountInPence: expertEditAmountInSubunits,
-  expertEditAmountInSubunits,
+  /** Expert Edit amount in base currency units (e.g. 13.99 GBP) */
+  expertEditAmount: baseExpertAmountInSubunits / 100,
+  expertEditAmountInPence: baseExpertAmountInSubunits,
+  expertEditAmountInSubunits: baseExpertAmountInSubunits,
 
-  /** ISO 4217 currency code */
-  currency,
-  /** Human-readable currency symbol */
-  currencySymbol: currencySymbols[currency] || (currency === "INR" ? "₹" : "£"),
+  /** Base (fallback) ISO 4217 currency code */
+  currency: BASE_CURRENCY,
+  /** Human-readable base currency symbol */
+  currencySymbol: CURRENCIES[BASE_CURRENCY].symbol,
   /** Product identifier */
   productType: "digital_passport_photo",
   /** Product display name */
@@ -80,21 +51,21 @@ export const PRICING = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk",
 } as const;
 
-export type PlanType = "standard" | "expert_edit";
+export type PlanPricing = ReturnType<typeof getPlanPricing>;
 
-export function getPlanPricing(plan: PlanType = "standard") {
+export function getPlanPricing(plan: PlanType = "standard", currency: CurrencyCode = BASE_CURRENCY) {
   const isExpert = plan === "expert_edit";
-  const planAmount = isExpert ? PRICING.expertEditAmount : PRICING.amount;
-  const planSubunits = isExpert ? PRICING.expertEditAmountInSubunits : PRICING.amountInSubunits;
+  const def = CURRENCIES[currency];
+  const planSubunits = getPriceInMinorUnits(currency, plan);
 
   return {
     planType: plan,
     title: isExpert ? "Expert Edit & Review" : "Standard Photo",
-    amount: planAmount,
-    amountFormatted: `${PRICING.currencySymbol}${Number.isInteger(planAmount) ? planAmount : planAmount.toFixed(2)}`,
+    amount: planSubunits / 10 ** def.exponent,
+    amountFormatted: formatMoney(planSubunits, currency, { trimWholeNumbers: true }),
     amountInSubunits: planSubunits,
-    currency: PRICING.currency,
-    currencySymbol: PRICING.currencySymbol,
+    currency,
+    currencySymbol: def.symbol,
     description: isExpert
       ? "AI-processed photo + 100% human expert manual inspection, touchups & guaranteed government acceptance."
       : "AI-processed, government-compliant biometric passport photo with instant download & print sheet.",

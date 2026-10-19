@@ -85,6 +85,8 @@ export interface PaymentDocument {
     sessionId?: string;
     countryCode?: string;
     countryName?: string;
+    /** Visitor's geo-IP country used to pick the charged currency */
+    geoCountry?: string;
     isExpertEdit?: boolean;
     originalPreviewUrl?: string;
   };

@@ -9,9 +9,20 @@ import {
   type PaymentStatus,
 } from "@/lib/models/Payment";
 import { PRICING, getPlanPricing, type PlanType } from "@/lib/config/pricing";
+import { BASE_CURRENCY, type CurrencyCode } from "@/lib/currency";
 import { createRazorpayOrder } from "@/lib/payments/razorpay";
 import { uploadOriginalPhotoToCloudinary } from "@/lib/storage/cloudinary";
 import { logActivity } from "@/lib/logging/activity-logger";
+
+/**
+ * Razorpay rejects unsupported currencies with a 400 BAD_REQUEST_ERROR naming the
+ * currency field, e.g. { statusCode: 400, error: { field: "currency", description: "Currency is not supported" } }.
+ */
+function isRazorpayCurrencyError(err: unknown): boolean {
+  const e = err as { statusCode?: number; error?: { field?: string; description?: string } } | null;
+  if (!e || e.statusCode !== 400) return false;
+  return e.error?.field === "currency" || /currency/i.test(e.error?.description || "");
+}
 
 /**
  * Create a new pending payment and Razorpay order.
@@ -28,6 +39,10 @@ export async function createPaymentOrder(params: {
   sizeKb?: number;
   countryCode?: string;
   countryName?: string;
+  /** Currency resolved server-side from the visitor's geo-IP country */
+  currency?: CurrencyCode;
+  /** Visitor's geo-IP country (ISO alpha-2), for audit */
+  geoCountry?: string | null;
   userAgent?: string;
   ipHash?: string;
 }): Promise<{
@@ -40,13 +55,13 @@ export async function createPaymentOrder(params: {
   const paymentId = crypto.randomUUID();
   const col = await getPaymentCollection();
   const plan = params.planType || "standard";
-  const planPricing = getPlanPricing(plan);
+  let planPricing = getPlanPricing(plan, params.currency || BASE_CURRENCY);
 
   // Check for duplicate pending orders for the same image, email, & plan
   const existing = await col.findOne({
     "image.resultId": params.resultId,
     email: params.email,
-    currency: PRICING.currency,
+    currency: planPricing.currency,
     amount: planPricing.amountInSubunits,
     planType: plan,
     status: "pending",
@@ -65,19 +80,40 @@ export async function createPaymentOrder(params: {
   }
 
   // Create Razorpay order — amount comes from server config, NOT from client
-  const rzOrder = await createRazorpayOrder({
-    amount: planPricing.amountInSubunits,
-    currency: PRICING.currency,
-    receipt: paymentId,
-    notes: {
-      paymentId,
-      email: params.email,
-      resultId: params.resultId,
-      planType: plan,
-      productType: plan === "expert_edit" ? "expert_edit_passport_photo" : PRICING.productType,
-      country: params.countryName || "GB",
-    },
-  });
+  const orderNotes = {
+    paymentId,
+    email: params.email,
+    resultId: params.resultId,
+    planType: plan,
+    productType: plan === "expert_edit" ? "expert_edit_passport_photo" : PRICING.productType,
+    country: params.countryName || "GB",
+    geoCountry: params.geoCountry || "unknown",
+  };
+
+  let rzOrder: Awaited<ReturnType<typeof createRazorpayOrder>>;
+  try {
+    rzOrder = await createRazorpayOrder({
+      amount: planPricing.amountInSubunits,
+      currency: planPricing.currency,
+      receipt: paymentId,
+      notes: orderNotes,
+    });
+  } catch (err) {
+    // Currency not enabled on the Razorpay account — fall back to the base currency.
+    // Any other failure (network, auth) is rethrown so we never silently switch currency.
+    if (planPricing.currency === BASE_CURRENCY || !isRazorpayCurrencyError(err)) throw err;
+    console.warn(
+      `[payment-service] Razorpay order in ${planPricing.currency} failed, falling back to ${BASE_CURRENCY}:`,
+      err
+    );
+    planPricing = getPlanPricing(plan, BASE_CURRENCY);
+    rzOrder = await createRazorpayOrder({
+      amount: planPricing.amountInSubunits,
+      currency: planPricing.currency,
+      receipt: paymentId,
+      notes: orderNotes,
+    });
+  }
 
   // If originalPreview provided (data URI / URL), upload to Cloudinary in background or save
   let originalImageUrl: string | undefined = undefined;
@@ -104,7 +140,7 @@ export async function createPaymentOrder(params: {
     email: params.email,
     razorpayOrderId: rzOrder.id,
     amount: planPricing.amountInSubunits,
-    currency: PRICING.currency,
+    currency: planPricing.currency,
     status: "pending",
     fulfillmentStatus: "pending",
     productType: plan === "expert_edit" ? "expert_edit_passport_photo" : PRICING.productType,
@@ -129,6 +165,7 @@ export async function createPaymentOrder(params: {
       ipHash: params.ipHash,
       countryCode: params.countryCode,
       countryName: params.countryName,
+      geoCountry: params.geoCountry || undefined,
       isExpertEdit: plan === "expert_edit",
       originalPreviewUrl: originalImageUrl || (params.originalPreview ? params.originalPreview.slice(0, 500) : undefined),
     },
@@ -148,6 +185,7 @@ export async function createPaymentOrder(params: {
       resultId: params.resultId,
       planType: plan,
       amount: planPricing.amountInSubunits,
+      currency: planPricing.currency,
     },
   });
 
@@ -155,7 +193,7 @@ export async function createPaymentOrder(params: {
     paymentId,
     razorpayOrderId: rzOrder.id,
     amount: planPricing.amountInSubunits,
-    currency: PRICING.currency,
+    currency: planPricing.currency,
     keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
   };
 }

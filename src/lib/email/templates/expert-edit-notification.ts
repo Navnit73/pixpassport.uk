@@ -2,6 +2,7 @@
  * Template for Expert Edit / Manual Review order notification sent to the editing team.
  */
 
+import { formatMoney } from "@/lib/currency";
 import { baseEmailTemplate, escapeHtml } from "./base";
 
 export interface ExpertEditNotificationParams {
@@ -22,18 +23,7 @@ export interface ExpertEditNotificationParams {
 export function expertEditNotificationEmail(
   params: ExpertEditNotificationParams
 ): { subject: string; html: string } {
-  const currencySymbols: Record<string, string> = {
-    GBP: "£",
-    INR: "₹",
-    USD: "$",
-    EUR: "€",
-    CAD: "CA$",
-    AUD: "A$",
-  };
-  const symbol = currencySymbols[params.currency?.toUpperCase()] || "";
-  const amountFormatted = symbol
-    ? `${symbol}${(params.amount / 100).toFixed(2)}`
-    : `${(params.amount / 100).toFixed(2)} ${params.currency}`;
+  const amountFormatted = formatMoney(params.amount, params.currency);
 
   const country = params.countryName || "United Kingdom";
   const code = params.countryCode || "GB";

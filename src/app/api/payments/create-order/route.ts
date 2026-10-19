@@ -8,6 +8,8 @@ import { z } from "zod";
 import crypto from "crypto";
 import { createPaymentOrder } from "@/lib/payments/payment-service";
 import { logActivity } from "@/lib/logging/activity-logger";
+import { getPlanPricing } from "@/lib/config/pricing";
+import { resolveCurrencyFromHeaders } from "@/lib/currency";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -27,6 +29,9 @@ const CreateOrderSchema = z.object({
   sizeKb: z.number().optional(),
   countryCode: z.string().optional(),
   countryName: z.string().optional(),
+  /** Price the client displayed — used only to detect a regional/price change, never to charge */
+  expectedCurrency: z.string().optional(),
+  expectedAmount: z.number().int().optional(),
 });
 
 export async function POST(req: NextRequest) {
@@ -55,6 +60,32 @@ export async function POST(req: NextRequest) {
 
     const userAgent = req.headers.get("user-agent") || undefined;
 
+    // Currency is always resolved server-side from the edge geo-IP country
+    const { country: geoCountry, currency } = resolveCurrencyFromHeaders(req.headers);
+
+    // Never charge a different price than the customer was shown
+    const chargedAmount = getPlanPricing(data.planType, currency).amountInSubunits;
+    const currencyChanged =
+      !!data.expectedCurrency && data.expectedCurrency.toUpperCase() !== currency;
+    const amountChanged =
+      data.expectedAmount !== undefined && data.expectedAmount !== chargedAmount;
+    if (currencyChanged || amountChanged) {
+      return NextResponse.json(
+        {
+          success: false,
+          code: "PRICE_CHANGED",
+          error: "Prices have been updated for your region. Please review the new price and try again.",
+          pricing: {
+            currency,
+            country: geoCountry,
+            standard: getPlanPricing("standard", currency),
+            expert_edit: getPlanPricing("expert_edit", currency),
+          },
+        },
+        { status: 409 }
+      );
+    }
+
     await logActivity({
       event: "checkout_initiated",
       status: "started",
@@ -74,6 +105,8 @@ export async function POST(req: NextRequest) {
       sizeKb: data.sizeKb,
       countryCode: data.countryCode,
       countryName: data.countryName,
+      currency,
+      geoCountry,
       userAgent,
       ipHash,
     });
