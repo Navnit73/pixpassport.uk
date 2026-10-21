@@ -40,6 +40,7 @@ export function getAllSiteUrls(): string[] {
     baseUrl,
     `${baseUrl}/passport-size-photo-maker`,
     `${baseUrl}/passport-photo-print-template-generator`,
+    `${baseUrl}/print-passport-photos-at-home`,
     `${baseUrl}/about-us`,
     `${baseUrl}/contact-us`,
     `${baseUrl}/data-security-privacy-safeguards`,

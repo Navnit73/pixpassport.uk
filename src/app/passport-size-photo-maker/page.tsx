@@ -218,7 +218,11 @@ export default function PassportSizePhotoMakerPage() {
                   Need to print on 4×6″ (10×15 cm) paper?
                 </h3>
                 <p className="text-slate-300 text-xs sm:text-sm mt-1 max-w-lg leading-relaxed">
-                  Tile multiple passport photos onto standard 4×6″ or A4 sheets with cutting guides. Save money at Boots, Tesco, or home printers.
+                  Tile multiple passport photos onto standard 4×6″ or A4 sheets with cutting guides. Save money at Boots, Tesco, or{" "}
+                  <Link href="/print-passport-photos-at-home" className="underline text-lime-300 hover:text-lime-200">
+                    print passport photos at home
+                  </Link>
+                  .
                 </p>
               </div>
               <Link

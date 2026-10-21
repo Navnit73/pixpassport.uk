@@ -832,6 +832,14 @@ export default function HomePage() {
                   <span>Print Template Generator (4×6″)</span>
                   <ArrowRight className="w-3 h-3 text-lime-800" />
                 </Link>
+                <Link
+                  href="/print-passport-photos-at-home"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-lime-100 hover:bg-lime-200 border border-lime-300 text-xs font-bold text-lime-950 transition-colors shadow-2xs"
+                >
+                  <span className="text-lime-700">🏠</span>
+                  <span>Print Passport Photos at Home</span>
+                  <ArrowRight className="w-3 h-3 text-lime-800" />
+                </Link>
                 {[
                   { slug: "british-passport-picture-maker", label: "British Passport Picture" },
                   { slug: "passport-photo-checker-uk", label: "UK Photo Checker" },

@@ -131,7 +131,7 @@ Printing is where many photos go wrong. Follow these steps for an exact size.
 5. **Measure the result.** Check one photo with a ruler for exactly 35 × 45 mm.
 6. **Cut along the guides.** Use a trimmer or sharp scissors for straight edges.
 
-For more tips, read our guide to taking a [passport photo at home](/tool/passport-photo-at-home).
+For more tips, read our guide to taking a [passport photo at home](/tool/passport-photo-at-home), or learn how to [print passport photos at home](/print-passport-photos-at-home) on A4 or 4×6″ photo paper.
 
 ## Common 35x45 mm Photo Mistakes
 

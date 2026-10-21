@@ -119,7 +119,7 @@ The service checks your photo as you upload it and warns you about common proble
 
 ### If You Prefer a Paper Form
 
-Some applicants renew by post instead. Print two identical 35×45 mm photos on plain white photo-quality paper, with no borders. Use our free [passport photo print template generator](/passport-photo-print-template-generator) to get 8 identical copies on a 4×6″ sheet.
+Some applicants renew by post instead. Print two identical 35×45 mm photos on plain white photo-quality paper, with no borders. Use our free [passport photo print template generator](/passport-photo-print-template-generator) to get 8 identical copies on a 4×6″ sheet, or [print passport photos at home](/print-passport-photos-at-home) on A4 photo paper.
 
 ## Digital Photo vs Printed Photo for Renewal
 

@@ -122,7 +122,7 @@ First adult and child passports, replacements for lost, stolen or damaged passpo
 
 ### Get Your Photos Printed
 
-GOV.UK says printed photos must be printed to a professional standard, in colour, on plain white photographic paper with no border. They must not be a cut-down version of a larger picture. Take your print sheet to a photo lab or shop and ask for 100% scale, with no fit-to-page setting, so each photo stays 35×45 mm.
+GOV.UK says printed photos must be printed to a professional standard, in colour, on plain white photographic paper with no border. They must not be a cut-down version of a larger picture. Take your print sheet to a photo lab or shop and ask for 100% scale, with no fit-to-page setting, so each photo stays 35×45 mm. Prefer your own printer? Follow our guide to [printing passport photos at home](/print-passport-photos-at-home).
 
 ## Children and Babies
 

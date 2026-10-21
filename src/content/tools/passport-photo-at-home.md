@@ -95,6 +95,8 @@ Printing is where many DIY photos go wrong. Follow these steps for a clean resul
 5. **Check the print.** Measure one photo with a ruler to confirm the exact size.
 6. **Cut along the guides.** Use a trimmer or a sharp pair of scissors for straight edges.
 
+For a free A4 or 4×6″ sheet and a full printer-settings walkthrough, see our guide to [printing passport photos at home](/print-passport-photos-at-home).
+
 ### Print Settings Checklist
 
 | Setting | Choose |

@@ -35,6 +35,7 @@ export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
   "Photo Tools": [
     { label: "UK Passport Photo Checker", href: "/tool/passport-photo-checker-uk" },
     { label: "Print Template Generator", href: "/passport-photo-print-template-generator" },
+    { label: "Print Passport Photos at Home", href: "/print-passport-photos-at-home" },
     { label: "Digital Passport Photo", href: "/tool/digital-passport-photo" },
     { label: "35×45 mm Photo Size", href: "/tool/photo-size-35x45mm" },
     { label: "Image to Passport Converter", href: "/tool/image-to-passport-size-converter" },

@@ -50,6 +50,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
+      url: `${SITE_URL}/print-passport-photos-at-home`,
+      changeFrequency: "weekly",
+      priority: 0.9,
+      alternates: {
+        languages: {
+          "en-GB": `${SITE_URL}/print-passport-photos-at-home`,
+        },
+      },
+    },
+    {
       url: `${SITE_URL}/tool`,
       changeFrequency: "weekly",
       priority: 0.8,

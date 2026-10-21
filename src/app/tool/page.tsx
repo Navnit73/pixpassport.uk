@@ -140,7 +140,11 @@ export default function ToolHubPage() {
               <Link href="/passport-photo-print-template-generator" className="font-bold underline text-[#365314] hover:text-[#4D7C0F]">
                 passport photo print template generator
               </Link>{" "}
-              to lay out copies on a 6×4″ sheet for a photo shop.
+              to lay out copies on a 6×4″ sheet for a photo shop, or follow our guide to{" "}
+              <Link href="/print-passport-photos-at-home" className="font-bold underline text-[#365314] hover:text-[#4D7C0F]">
+                printing passport photos at home
+              </Link>{" "}
+              on your own printer.
             </p>
           </section>
         </div>

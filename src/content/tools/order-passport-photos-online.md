@@ -117,7 +117,7 @@ Choose the output that fits your application.
 | Checking | Portals often check it automatically | You check it yourself |
 | Delivery | Instant download | Posted or printed by you |
 
-If you print at home or at a shop, choose 100% scale with no fit-to-page setting. Cut each photo to the exact size, or ask for your country's passport format.
+If you print at home or at a shop, choose 100% scale with no fit-to-page setting. Our guide to [printing passport photos at home](/print-passport-photos-at-home) walks through paper and printer settings. Cut each photo to the exact size, or ask for your country's passport format.
 
 ## Passport Photos Delivered to Your Door
 

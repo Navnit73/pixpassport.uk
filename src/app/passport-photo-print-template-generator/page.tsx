@@ -113,15 +113,16 @@ const PAPER_SIZES = [
 ];
 
 const RELATED_TOOLS = [
-  { slug: "uk-passport-photo", title: "UK Passport Photo", spec: "35×45 mm", flag: "🇬🇧" },
-  { slug: "passport-renewal-photo-online", title: "UK Passport Renewal", spec: "35×45 mm", flag: "🔄" },
-  { slug: "us-visa-photo-tool", title: "US Visa & Passport", spec: "2×2 inches", flag: "🇺🇸" },
-  { slug: "schengen-visa-photo", title: "Schengen Visa Photo", spec: "35×45 mm", flag: "🇪🇺" },
-  { slug: "uk-baby-passport-photo", title: "UK Baby Passport Photo", spec: "HMPO Infant", flag: "👶" },
-  { slug: "indian-passport-photo-maker", title: "Indian Passport & OCI", spec: "35×45 / 2×2″", flag: "🇮🇳" },
-  { slug: "uk-driving-licence-photo", title: "UK Driving Licence", spec: "DVLA 35×45 mm", flag: "🚗" },
-  { slug: "passport-photo-at-home", title: "Passport Photo at Home", spec: "DIY & Print", flag: "🏠" },
-  { slug: "image-to-passport-size-converter", title: "Image to Passport Converter", spec: "Auto-Crop", flag: "🔄" },
+  { href: "/print-passport-photos-at-home", title: "Print Passport Photos at Home", spec: "Printer Settings", flag: "🖨️" },
+  { href: "/tool/uk-passport-photo", title: "UK Passport Photo", spec: "35×45 mm", flag: "🇬🇧" },
+  { href: "/tool/passport-renewal-photo-online", title: "UK Passport Renewal", spec: "35×45 mm", flag: "🔄" },
+  { href: "/tool/us-visa-photo-tool", title: "US Visa & Passport", spec: "2×2 inches", flag: "🇺🇸" },
+  { href: "/tool/schengen-visa-photo", title: "Schengen Visa Photo", spec: "35×45 mm", flag: "🇪🇺" },
+  { href: "/tool/uk-baby-passport-photo", title: "UK Baby Passport Photo", spec: "HMPO Infant", flag: "👶" },
+  { href: "/tool/indian-passport-photo-maker", title: "Indian Passport & OCI", spec: "35×45 / 2×2″", flag: "🇮🇳" },
+  { href: "/tool/uk-driving-licence-photo", title: "UK Driving Licence", spec: "DVLA 35×45 mm", flag: "🚗" },
+  { href: "/tool/passport-photo-at-home", title: "Passport Photo at Home", spec: "DIY & Print", flag: "🏠" },
+  { href: "/tool/image-to-passport-size-converter", title: "Image to Passport Converter", spec: "Auto-Crop", flag: "🔄" },
 ];
 
 export default function PrintTemplateGeneratorPage() {
@@ -290,7 +291,11 @@ export default function PrintTemplateGeneratorPage() {
               4×6″ or A4: Which Sheet Should You Choose?
             </h2>
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-              Pick 4×6″ for cheap kiosk prints. Pick A4 if you would rather print at home or need several sets at once.
+              Pick 4×6″ for cheap kiosk prints. Pick A4 if you would rather print at home or need several sets at once. See our guide to{" "}
+              <Link href="/print-passport-photos-at-home" className="text-lime-800 font-semibold underline underline-offset-2">
+                printing passport photos at home
+              </Link>{" "}
+              for the right printer settings and paper.
             </p>
 
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden mb-10">
@@ -407,8 +412,8 @@ export default function PrintTemplateGeneratorPage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {RELATED_TOOLS.map((t) => (
                 <Link
-                  key={t.slug}
-                  href={`/tool/${t.slug}`}
+                  key={t.href}
+                  href={t.href}
                   className="bg-white border border-slate-200 hover:border-lime-600 p-4.5 sm:p-5 rounded-2xl flex items-center justify-between transition-all group shadow-2xs"
                 >
                   <div className="flex items-center gap-3">

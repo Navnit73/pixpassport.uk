@@ -30,6 +30,12 @@ export const PHOTO_TOOLS_MENU = {
       badge: "New",
     },
     {
+      title: "Print Passport Photos at Home",
+      description: "Printer settings, paper & free A4 sheet for exact 35×45 mm prints",
+      href: "/print-passport-photos-at-home",
+      icon: "🏠",
+    },
+    {
       title: "Digital Passport Photo Maker",
       description: "Online photo ready for government portal submission",
       href: "/tool/digital-passport-photo",

@@ -158,7 +158,7 @@ Paper applications need printed photos. You have two easy options.
 1. **Print at a shop or kiosk.** Save the 6 × 4 inch (10 × 15 cm) print sheet to your iPhone, take it to a pharmacy or photo kiosk, and ask for a 6 × 4 inch print with no cropping.
 2. **Print at home with AirPrint.** Open the sheet, tap **Share**, tap **Print** and choose your printer. Load glossy or matt photo paper and select the highest quality.
 
-Then measure one photo with a ruler to confirm the exact size. Cut along the guides with a trimmer or sharp scissors. Some applications also ask for a countersignature on the back of one photo, so read your form.
+Then measure one photo with a ruler to confirm the exact size. Our guide to [printing passport photos at home](/print-passport-photos-at-home) covers the printer settings that keep each photo at 100% scale. Cut along the guides with a trimmer or sharp scissors. Some applications also ask for a countersignature on the back of one photo, so read your form.
 
 ![Print-ready passport photo sheet 6x4 inch from an iPhone](https://res.cloudinary.com/dipzpwbbk/image/upload/v1785679205/MakePassportPhoto_ph2uog_ryefxt.webp)
 
