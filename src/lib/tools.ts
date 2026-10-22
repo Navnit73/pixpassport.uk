@@ -30,6 +30,8 @@ export interface ToolPageData {
   how_it_works_title?: string;
   /** Hero button label; defaults to "Create My Passport Photo". */
   cta_button_text?: string;
+  /** Renders the in-browser PassportPhotoChecker above the studio. */
+  show_checker?: boolean;
   dimensions_mm: string;
   dimensions_px?: string;
   feature_image?: string;
@@ -182,6 +184,7 @@ export async function getToolBySlug(slug: string): Promise<ToolPageData | null> 
       cta_description: data.cta_description,
       how_it_works_title: data.how_it_works_title,
       cta_button_text: data.cta_button_text,
+      show_checker: data.show_checker === true,
       dimensions_mm: data.dimensions_mm || "35 × 45 mm",
       dimensions_px: data.dimensions_px,
       feature_image:

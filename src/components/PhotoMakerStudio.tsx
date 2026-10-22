@@ -33,7 +33,11 @@ import {
   compressImageTo3MB,
   type CompressionResult,
 } from "@/lib/image-compress";
-import type { PassportProcessResult } from "@/lib/passport-api";
+import {
+  readFileAsDataUrl,
+  requestPhotoProcessing,
+  saveProcessedResult,
+} from "@/lib/photo-processing";
 
 interface PhotoMakerStudioProps {
   defaultCountryCode?: string;
@@ -213,31 +217,11 @@ export default function PhotoMakerStudio({
       }, 100);
 
       try {
-        const fileExt = targetFile.name.split(".").pop() || "jpg";
-        const timestamp = Date.now();
-        const fileName = `upload_${timestamp}.${fileExt}`;
-        const freshFile = new File([targetFile], fileName, {
-          type: targetFile.type,
-        });
-
-        const formData = new FormData();
-        formData.append("image", freshFile);
-        formData.append("country_code", selectedCountry.country_code);
-        formData.append(
-          "document_type",
+        const apiPromise = requestPhotoProcessing(
+          targetFile,
+          selectedCountry.country_code,
           defaultDocumentType || selectedCountry.document_type || "passport"
         );
-
-        const apiPromise = fetch("/api/passport-photo", {
-          method: "POST",
-          body: formData,
-        }).then(async (res) => {
-          const data: PassportProcessResult = await res.json();
-          if (!res.ok || data.status === "error" || data.error) {
-            throw new Error(data.error || "Failed to process passport photo.");
-          }
-          return data;
-        });
 
         const [apiResult] = await Promise.all([
           apiPromise,
@@ -247,40 +231,13 @@ export default function PhotoMakerStudio({
         clearInterval(interval);
         setProcessingProgress(100);
 
-        const resultId =
-          apiResult.result_id ||
-          `res_${selectedCountry.country_code.toLowerCase()}_${timestamp}`;
-
-        const payload = {
-          ...apiResult,
-          result_id: resultId,
-          country_code: selectedCountry.country_code,
-          country_name: selectedCountry.country_name,
-          target_dimensions: selectedCountry.dimensions,
-          document_type: selectedCountry.document_type,
-          original_preview: targetPreview,
-          timestamp,
-        };
-
-        if (typeof window !== "undefined") {
-          try {
-            sessionStorage.setItem(
-              `pixpassport_${resultId}`,
-              JSON.stringify(payload)
-            );
-            sessionStorage.setItem(
-              "pixpassport_latest",
-              JSON.stringify(payload)
-            );
-            localStorage.setItem(
-              `pixpassport_${resultId}`,
-              JSON.stringify(payload)
-            );
-            localStorage.setItem("pixpassport_latest", JSON.stringify(payload));
-          } catch {
-            // fallback
-          }
-        }
+        const resultId = saveProcessedResult(apiResult, {
+          countryCode: selectedCountry.country_code,
+          countryName: selectedCountry.country_name,
+          targetDimensions: selectedCountry.dimensions,
+          documentType: selectedCountry.document_type,
+          originalPreview: targetPreview,
+        });
 
         router.push(`/preview/${resultId}`);
       } catch (err: unknown) {
@@ -311,18 +268,7 @@ export default function PhotoMakerStudio({
     // Read preview data URL asynchronously
     let previewData: string | null = null;
     try {
-      previewData = await new Promise<string>((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          if (typeof reader.result === "string") {
-            resolve(reader.result);
-          } else {
-            reject(new Error("Failed to read image file"));
-          }
-        };
-        reader.onerror = () => reject(reader.error);
-        reader.readAsDataURL(f);
-      });
+      previewData = await readFileAsDataUrl(f);
       setPreview(previewData);
     } catch {
       // If preview read fails, continue with file

@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import PhotoMakerStudio from "@/components/PhotoMakerStudio";
+import PassportPhotoChecker from "@/components/PassportPhotoChecker";
 import FaqAccordion from "@/components/FaqAccordion";
 import GovUkPhotoNotice from "@/components/GovUkPhotoNotice";
 import { getAllToolSlugs, getToolBySlug } from "@/lib/tools";
@@ -76,6 +77,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
   }
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
+  const primaryAnchor = tool.show_checker ? "#checker" : "#studio";
 
   return (
     <>
@@ -102,7 +104,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
         faqItems={tool.faqs}
       />
 
-      <Navbar ctaText="Create Photo" ctaHref="#studio" />
+      <Navbar ctaText={tool.show_checker ? "Check Photo" : "Create Photo"} ctaHref={primaryAnchor} />
 
       <main className="flex-1 bg-white text-slate-900" id="main-content">
         {/* =========================================================================
@@ -158,7 +160,7 @@ export default async function DynamicToolPage({ params }: PageProps) {
                 {/* CTA Buttons - Scrolls smoothly to #studio */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-3.5 mb-7">
                   <a
-                    href="#studio"
+                    href={primaryAnchor}
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#4D7C0F] hover:bg-[#3F650C] !text-white text-white font-bold text-base px-7 py-3.5 sm:py-4 rounded-xl transition-colors text-center shadow-xs cursor-pointer"
                   >
                     <span>{tool.cta_button_text || "Create My Passport Photo"}</span>
@@ -222,17 +224,37 @@ export default async function DynamicToolPage({ params }: PageProps) {
         </section>
 
         {/* =========================================================================
+            1b. IN-BROWSER PHOTO CHECKER (checker pages only)
+           ========================================================================= */}
+        {tool.show_checker && (
+          <section className="bg-base-200 py-10 sm:py-16 border-b border-base-300" id="checker" aria-label="Passport photo checker">
+            <div className="container-narrow max-w-5xl mx-auto px-4 sm:px-6">
+              <PassportPhotoChecker
+                defaultCountryCode={tool.country_code}
+                defaultDocumentType={tool.document_type || "passport"}
+                heading={tool.studio_title || "Passport Photo Checker"}
+                description={tool.studio_description}
+              />
+            </div>
+          </section>
+        )}
+
+        {/* =========================================================================
             2. PHOTO MAKER STUDIO SECTION (Placed directly below Hero Section)
            ========================================================================= */}
         <section className="bg-slate-50 py-10 sm:py-16 border-b border-slate-200/80" id="studio" aria-label="Photo Maker Studio">
           <div className="container-narrow max-w-2xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-5 sm:mb-7">
               <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                {tool.studio_title || `Create Your ${tool.hero_title}`}
+                {tool.show_checker
+                  ? "Fix Your Photo Automatically"
+                  : tool.studio_title || `Create Your ${tool.hero_title}`}
               </h2>
               <p className="text-slate-700 text-xs sm:text-sm mt-1.5 max-w-md mx-auto leading-relaxed">
-                {tool.studio_description ||
-                  "Select your country, upload your photo, and let AI automatically size and verify biometrics in 10 seconds."}
+                {tool.show_checker
+                  ? "Failed a check? Upload the same photo and we'll crop, resize and clean the background to the official rules."
+                  : tool.studio_description ||
+                    "Select your country, upload your photo, and let AI automatically size and verify biometrics in 10 seconds."}
               </p>
             </div>
 
