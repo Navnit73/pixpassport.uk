@@ -47,7 +47,7 @@ For a printed photo, the face, from the bottom of your chin to the crown of your
 
 ## Official UK Passport Photo Requirements
 
-Whether you apply on GOV.UK or by post, your photo must meet the same standard. Read these rules before you take your picture.
+Whether you apply on GOV.UK or by post, your photo must meet the same standard. Read these rules before you take your picture. For the full standard, including hair, head coverings and rejection reasons, see our [UK passport picture rules](/tool/passport-picture-rules-uk).
 
 ### Format and Quality
 

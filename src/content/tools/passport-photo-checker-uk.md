@@ -60,7 +60,7 @@ Checking is free. The download costs a one-off **£7.99**.
 
 ## 2. What Our Passport Photo Checker Tests
 
-Our **passport photo checker** compares your picture with the written GOV.UK rules. The table below shows how the digital and printed requirements differ.
+Our **passport photo checker** compares your picture with the written GOV.UK rules, explained in full in our [UK passport picture rules](/tool/passport-picture-rules-uk) guide. The table below shows how the digital and printed requirements differ.
 
 | Rule             | Digital photo (online application)                    | Printed photos (paper application)                    |
 | :--------------- | :---------------------------------------------------- | :---------------------------------------------------- |

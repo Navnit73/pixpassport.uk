@@ -17,8 +17,6 @@ dimensions_px: "No official pixel size (print photo)"
 price: "7.99"
 ---
 
-# Australia Passport Photo: Size and Requirements for Applicants in the UK
-
 If you are an Australian citizen living in the UK, you apply through the Australian High Commission in London. You need **2 printed Australia passport photos** that meet Australian rules. These differ from UK passport photos, so a standard UK booth strip will not work.
 
 **Quick answer:** an Australia passport photo is **35–40 mm wide by 45–50 mm high**, with a face height of **32–36 mm** from chin to crown, on a plain white or light background, taken in the last 6 months.

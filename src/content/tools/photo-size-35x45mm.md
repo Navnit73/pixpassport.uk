@@ -1,7 +1,8 @@
 ---
 slug: "photo-size-35x45mm"
 title: "35x45 Photo Size Online: Crop and Resize to 35×45 mm"
-meta_description: "Make a 35x45 mm photo online. Crop and resize any picture to the 35 x 45 mm passport photo size and download it for printing."
+meta_title: "35x45 mm Photo Online: Crop & Resize to 3.5×4.5 cm"
+meta_description: "Crop and resize any picture to 35x45 mm (3.5 × 4.5 cm, 413 × 531 px at 300 DPI). Plain background, head-size check and a 6×4″ print sheet. Free preview."
 country_code: "ALL"
 document_type: "passport"
 badge: "35×45 mm Photo Size"
@@ -87,7 +88,7 @@ Use our [US visa photo maker](/tool/us-visa-photo-tool) for the square US format
 
 ## 35×45 mm Photo Requirements That Apply Almost Everywhere
 
-Most authorities that use this size follow the ICAO principles. Get these right, and you avoid most rejections.
+Most authorities that use this size follow the [ICAO photo standards](/tool/icao-standards-photo-online-free). Get these right, and you avoid most rejections.
 
 ### Pose and Expression
 

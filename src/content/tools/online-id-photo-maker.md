@@ -1,6 +1,7 @@
 ---
 slug: "online-id-photo-maker"
 title: "Online ID Photo Maker: Create an ID Photo From Any Picture"
+meta_title: "Online ID Photo Maker: Passport, Visa & ID Card Sizes"
 meta_description: "Create an ID photo online from any picture. Crop and resize to standard ID and passport photo sizes, then download or print it in minutes."
 country_code: "ALL"
 document_type: "id"

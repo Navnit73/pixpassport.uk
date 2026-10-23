@@ -17,8 +17,6 @@ dimensions_px: "Minimum 90 px between eye centres"
 price: "7.99"
 ---
 
-# ICAO Photo Standards: Requirements and Free Online Photo Check
-
 **ICAO photo standards** are the international rules for the face photo in a biometric passport or travel document. They are published by the International Civil Aviation Organization in **Doc 9303** and are based on the ISO/IEC 19794-5 face image standard. They cover how your face is positioned, lit and framed so that machines and border officers can match you to your photo.
 
 **Quick answer:** an ICAO compliant photo shows your whole face looking straight at the camera, with a neutral expression, eyes open, even lighting, no shadows or glare, a plain light background, and enough resolution for at least **90 pixels between the centres of your eyes**. The exact photo size in mm or pixels is set by the country that issues your document, not by ICAO.

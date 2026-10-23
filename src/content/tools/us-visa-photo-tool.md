@@ -33,7 +33,7 @@ The whole process takes about two minutes, and you can retake the photo as often
 
 ## US Visa Photo Requirements at a Glance
 
-The US Department of State sets one photo standard for visas and passports. Check these rules before you take your picture.
+The US Department of State sets one photo standard for visas and passports. Check these rules before you take your picture. For DS-160 pixel sizes, interview prints and green card photos, see our [US visa photo size guide](/tool/us-visa-passport-photo-size).
 
 | Requirement | US standard |
 | :--- | :--- |

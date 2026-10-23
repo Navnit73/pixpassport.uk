@@ -1,6 +1,7 @@
 ---
 slug: "uk-driving-licence-photo"
 title: "UK Driving Licence Photo Online: DVLA Size & Requirements (35×45 mm)"
+meta_title: "Driving Licence Photo UK: DVLA Rules & Online Maker"
 meta_description: "Make a UK driving licence photo online. Check DVLA photo requirements, get the right 35×45 mm size and a plain background, and download a digital photo in minutes."
 country_code: "GB"
 document_type: "id"

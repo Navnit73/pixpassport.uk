@@ -17,8 +17,6 @@ dimensions_px: "600 × 600 to 1200 × 1200 px"
 price: "7.99"
 ---
 
-# US Visa Photo: Size, Requirements and Online Photo Check
-
 A US visa photo must be **square: 2 × 2 inches (51 × 51 mm) for a print, or between 600 × 600 and 1200 × 1200 pixels for a digital upload** such as the DS-160 form. It needs a plain white or off-white background, a neutral expression, no glasses, and must be taken in the last 6 months.
 
 This is different from a standard UK passport photo (35 × 45 mm), so a UK photo booth strip is the wrong size for a US visa.
