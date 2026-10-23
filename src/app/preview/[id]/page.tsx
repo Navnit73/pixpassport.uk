@@ -72,15 +72,16 @@ function getRawStoredResult(resultId: string): string {
   }
 }
 
-function getStoredPayment(resultId: string): StoredPaymentInfo | null {
-  if (typeof window === "undefined") return null;
+function getRawStoredPayment(resultId: string): string {
+  if (typeof window === "undefined") return "";
   try {
-    const raw =
+    return (
       sessionStorage.getItem(`pixpassport_paid_${resultId}`) ||
-      localStorage.getItem(`pixpassport_paid_${resultId}`);
-    return raw ? (JSON.parse(raw) as StoredPaymentInfo) : null;
+      localStorage.getItem(`pixpassport_paid_${resultId}`) ||
+      ""
+    );
   } catch {
-    return null;
+    return "";
   }
 }
 
@@ -255,24 +256,32 @@ export default function PassportPhotoPreviewPage() {
     }
   }, [rawData]);
 
-  const [paymentState, setPaymentState] = useState<StoredPaymentInfo | null>(() => {
-    if (typeof window === "undefined") return null;
-    return getStoredPayment(resultId);
-  });
-  const [selectedPlan, setSelectedPlan] = useState<PlanType>(() => {
-    if (typeof window === "undefined") return "standard";
-    const existing = getStoredPayment(resultId);
-    return existing?.planType || "standard";
-  });
+  // Read stored payment via useSyncExternalStore so the server render and
+  // hydration both start from null (avoids a hydration mismatch).
+  const rawPayment = useSyncExternalStore(
+    subscribeToStorage,
+    () => getRawStoredPayment(resultId),
+    () => ""
+  );
+  const storedPayment = useMemo<StoredPaymentInfo | null>(() => {
+    if (!rawPayment) return null;
+    try {
+      return JSON.parse(rawPayment) as StoredPaymentInfo;
+    } catch {
+      return null;
+    }
+  }, [rawPayment]);
+
+  const [newPayment, setPaymentState] = useState<StoredPaymentInfo | null>(null);
+  const paymentState = newPayment ?? storedPayment;
+  const [planChoice, setSelectedPlan] = useState<PlanType | null>(null);
+  const selectedPlan = planChoice ?? storedPayment?.planType ?? "standard";
   const [isFixModalOpen, setIsFixModalOpen] = useState(false);
   const [isZoomOpen, setIsZoomOpen] = useState(false);
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
 
-  const [email, setEmail] = useState<string>(() => {
-    if (typeof window === "undefined") return "";
-    const existing = getStoredPayment(resultId);
-    return existing?.email || "";
-  });
+  const [emailInput, setEmail] = useState<string | null>(null);
+  const email = emailInput ?? storedPayment?.email ?? "";
   const [emailError, setEmailError] = useState("");
   const [modalEmail, setModalEmail] = useState("");
   const [modalEmailError, setModalEmailError] = useState("");

@@ -4,7 +4,7 @@ title: "US Visa Passport Photo: Size, Requirements and Free Photo Check (2x2 inc
 meta_title: "US Visa Passport Photo: Size, Requirements & Photo Check"
 meta_description: "US visa photo size is 2x2 inches (51x51 mm) or 600x600 px for DS-160. See requirements, head size, background, file size, and check your photo online."
 country_code: "US"
-document_type: "visa"
+document_type: "passport"
 badge: "US Visa Passport Photo"
 hero_title: "US Visa Photo: Size, Requirements and Online Photo Check"
 cta_button_text: "Check My US Visa Photo"

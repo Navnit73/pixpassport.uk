@@ -5,7 +5,6 @@ import {
   useRef,
   type ChangeEvent,
   type DragEvent,
-  useCallback,
   useEffect,
 } from "react";
 import { useRouter } from "next/navigation";
@@ -149,6 +148,7 @@ export default function PhotoMakerStudio({
   const [processingProgress, setProcessingProgress] = useState(0);
   const [processingStepIndex, setProcessingStepIndex] = useState(0);
   const [countdown, setCountdown] = useState(10);
+  const [processingPreview, setProcessingPreview] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const processBtnRef = useRef<HTMLDivElement>(null);
 
@@ -176,82 +176,81 @@ export default function PhotoMakerStudio({
     return null;
   }
 
-  const processPhoto = useCallback(
-    async (fileToProcess?: File, previewToUse?: string) => {
-      const targetFile = fileToProcess || file;
-      const targetPreview = previewToUse || preview;
-      if (!targetFile) return;
+  async function processPhoto(fileToProcess?: File, previewToUse?: string) {
+    const targetFile = fileToProcess || file;
+    const targetPreview = previewToUse || preview;
+    if (!targetFile) return;
 
-      setIsProcessing(true);
-      setError(null);
-      setProcessingProgress(0);
-      setProcessingStepIndex(0);
-      setCountdown(10);
+    setIsProcessing(true);
+    setProcessingPreview(targetPreview);
+    setError(null);
+    setProcessingProgress(0);
+    setProcessingStepIndex(0);
+    setCountdown(10);
 
-      const startTime = Date.now();
-      const TOTAL_DURATION_MS = 10000;
+    const TOTAL_DURATION_MS = 10000;
+    let startTime: number | undefined;
 
-      const interval = setInterval(() => {
-        const elapsed = Date.now() - startTime;
-        const progressPct = Math.min(
-          100,
-          Math.round((elapsed / TOTAL_DURATION_MS) * 100)
-        );
-        setProcessingProgress(progressPct);
+    const interval = setInterval(() => {
+      startTime ??= Date.now();
+      const elapsed = Date.now() - startTime;
+      const progressPct = Math.min(
+        100,
+        Math.round((elapsed / TOTAL_DURATION_MS) * 100)
+      );
+      setProcessingProgress(progressPct);
 
-        const remainingSec = Math.max(
-          0,
-          Math.ceil((TOTAL_DURATION_MS - elapsed) / 1000)
-        );
-        setCountdown(remainingSec);
+      const remainingSec = Math.max(
+        0,
+        Math.ceil((TOTAL_DURATION_MS - elapsed) / 1000)
+      );
+      setCountdown(remainingSec);
 
-        if (progressPct >= 75) {
-          setProcessingStepIndex(3);
-        } else if (progressPct >= 50) {
-          setProcessingStepIndex(2);
-        } else if (progressPct >= 25) {
-          setProcessingStepIndex(1);
-        } else {
-          setProcessingStepIndex(0);
-        }
-      }, 100);
-
-      try {
-        const apiPromise = requestPhotoProcessing(
-          targetFile,
-          selectedCountry.country_code,
-          defaultDocumentType || selectedCountry.document_type || "passport"
-        );
-
-        const [apiResult] = await Promise.all([
-          apiPromise,
-          new Promise((res) => setTimeout(res, TOTAL_DURATION_MS)),
-        ]);
-
-        clearInterval(interval);
-        setProcessingProgress(100);
-
-        const resultId = saveProcessedResult(apiResult, {
-          countryCode: selectedCountry.country_code,
-          countryName: selectedCountry.country_name,
-          targetDimensions: selectedCountry.dimensions,
-          documentType: selectedCountry.document_type,
-          originalPreview: targetPreview,
-        });
-
-        router.push(`/preview/${resultId}`);
-      } catch (err: unknown) {
-        clearInterval(interval);
-        setIsProcessing(false);
-        const msg =
-          err instanceof Error
-            ? err.message
-            : "An error occurred while communicating with the PixPassport API.";
-        setError(msg);
+      if (progressPct >= 75) {
+        setProcessingStepIndex(3);
+      } else if (progressPct >= 50) {
+        setProcessingStepIndex(2);
+      } else if (progressPct >= 25) {
+        setProcessingStepIndex(1);
+      } else {
+        setProcessingStepIndex(0);
       }
-    },
-    [file, preview, selectedCountry, defaultDocumentType, router]
-  );
+    }, 100);
+
+    try {
+      const apiPromise = requestPhotoProcessing(
+        targetFile,
+        selectedCountry.country_code,
+        defaultDocumentType || selectedCountry.document_type || "passport"
+      );
+
+      const [apiResult] = await Promise.all([
+        apiPromise,
+        new Promise((res) => setTimeout(res, TOTAL_DURATION_MS)),
+      ]);
+
+      clearInterval(interval);
+      setProcessingProgress(100);
+
+      const resultId = saveProcessedResult(apiResult, {
+        countryCode: selectedCountry.country_code,
+        countryName: selectedCountry.country_name,
+        targetDimensions: selectedCountry.dimensions,
+        documentType: selectedCountry.document_type,
+        originalPreview: targetPreview,
+      });
+
+      router.push(`/preview/${resultId}`);
+    } catch (err: unknown) {
+      clearInterval(interval);
+      setIsProcessing(false);
+      const msg =
+        err instanceof Error
+          ? err.message
+          : "An error occurred while communicating with the PixPassport API.";
+      setError(msg);
+    }
+  }
 
   async function handleFile(f: File) {
     const err = validate(f);
@@ -623,7 +622,17 @@ export default function PhotoMakerStudio({
 
             {/* Countdown circle */}
             <div className="relative mx-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-lime-50 border border-lime-200 flex items-center justify-center mb-4">
-              <Camera className="w-7 h-7 sm:w-8 sm:h-8 text-[#4D7C0F]" aria-hidden="true" />
+              {processingPreview ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={processingPreview}
+                  alt=""
+                  aria-hidden="true"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              ) : (
+                <Camera className="w-7 h-7 sm:w-8 sm:h-8 text-[#4D7C0F]" aria-hidden="true" />
+              )}
               <span className="absolute -bottom-1 -right-1 font-mono text-xs font-extrabold bg-[#4D7C0F] text-white px-1.5 py-0.5 rounded-full" aria-hidden="true">
                 {countdown}s
               </span>

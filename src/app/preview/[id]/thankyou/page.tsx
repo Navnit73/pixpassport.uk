@@ -64,15 +64,16 @@ function getRawStoredResult(resultId: string): string {
   }
 }
 
-function getStoredPayment(resultId: string): StoredPaymentInfo | null {
-  if (typeof window === "undefined") return null;
+function getRawStoredPayment(resultId: string): string {
+  if (typeof window === "undefined") return "";
   try {
-    const raw =
+    return (
       sessionStorage.getItem(`pixpassport_paid_${resultId}`) ||
-      localStorage.getItem(`pixpassport_paid_${resultId}`);
-    return raw ? (JSON.parse(raw) as StoredPaymentInfo) : null;
+      localStorage.getItem(`pixpassport_paid_${resultId}`) ||
+      ""
+    );
   } catch {
-    return null;
+    return "";
   }
 }
 
@@ -119,7 +120,23 @@ export default function ThankYouDownloadPage() {
 
   const [activeTab, setActiveTab] = useState<"single" | "sheet">("single");
   const [downloading, setDownloading] = useState(false);
-  const [paymentState, setPaymentState] = useState<StoredPaymentInfo | null>(() => getStoredPayment(resultId));
+  // Read stored payment via useSyncExternalStore so the server render and
+  // hydration both start from null (avoids a hydration text mismatch).
+  const rawPayment = useSyncExternalStore(
+    subscribeToStorage,
+    () => getRawStoredPayment(resultId),
+    () => ""
+  );
+  const storedPayment = useMemo<StoredPaymentInfo | null>(() => {
+    if (!rawPayment) return null;
+    try {
+      return JSON.parse(rawPayment) as StoredPaymentInfo;
+    } catch {
+      return null;
+    }
+  }, [rawPayment]);
+  const [fetchedPayment, setPaymentState] = useState<StoredPaymentInfo | null>(null);
+  const paymentState = fetchedPayment ?? storedPayment;
   const [, setIsLoadingStatus] = useState(false);
 
   const countryName = data?.country_name || "United Kingdom";
