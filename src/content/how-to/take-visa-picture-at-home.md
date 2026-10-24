@@ -10,6 +10,13 @@ date_published: "2026-10-24"
 hero_title: "How to Take a Visa Photo at Home"
 hero_subtitle: "You can take your own visa photo with a smartphone, a plain wall and window light. The one thing that changes is the size and background, which depend on the country you're applying to."
 total_time: "PT15M"
+related_tools:
+  - "uk-visa-photo"
+  - "schengen-visa-photo"
+  - "us-visa-photo-tool"
+  - "us-visa-passport-photo-size"
+  - "digital-passport-photo"
+  - "passport-photo-checker-uk"
 steps:
   - name: "Check your visa's photo rules"
     text: "Look up the photo size, background colour and file type on the official website for your visa. They differ by country and sometimes by visa type."
@@ -64,7 +71,7 @@ Always confirm the current rules on the official site for your visa. These are t
 | US DV lottery | Digital image only | White or off-white | Same digital rules as a US visa: square JPEG, 600 to 1200 pixels, max 240 KB |
 | US green card | 2 x 2 inches (51 x 51 mm) | White or off-white | Printed photo, usually taken within the last 30 days |
 
-Rules change, and some embassies, visa centres and visa categories add their own requirements. Our [UK passport picture rules](/tool/passport-picture-rules-uk) guide covers the UK standard in detail.
+Rules change, and some embassies, visa centres and visa categories add their own requirements. Our [UK passport picture rules](/tool/passport-picture-rules-uk) guide covers the UK standard in detail. For country-specific sizes, see our [UK visa photo](/tool/uk-visa-photo), [Schengen visa photo](/tool/schengen-visa-photo) and [US visa photo size](/tool/us-visa-passport-photo-size) pages.
 
 ## How to Take a US Visa Photo at Home
 
@@ -77,7 +84,7 @@ If you're applying for a US visa, the photo rules are more specific than for mos
 - **Pose:** Facing the camera, neutral expression, both eyes open, glasses removed.
 - **No edits:** Don't retouch, filter or smooth the photo.
 
-The Department of State also offers a free online photo tool that lets you select a photo from your computer, crop it and check it. Even then, a consular officer makes the final decision on whether the photo is accepted.
+The Department of State also offers a free online photo tool that lets you select a photo from your computer, crop it and check it. Even then, a consular officer makes the final decision on whether the photo is accepted. You can also use our [US visa photo maker](/tool/us-visa-photo-tool) to crop your picture to 2 x 2 inches with a white background.
 
 ## How to Take a DV Lottery Photo at Home
 
@@ -104,7 +111,7 @@ A few phone settings make a big difference:
 
 ## How to Take a Digital Passport Photo at Home for a Visa
 
-Some visa applications ask for a "digital passport photo". This is simply a photo that meets passport standards, uploaded as a file instead of printed. Use the same steps as above, then check the file type, pixel size and file size the application asks for. A sharp, evenly lit photo with a plain background will pass most automated checks. Photos with shadows, glare or uneven lighting often don't, so run your photo through our [passport photo checker](/tool/passport-photo-checker-uk) to catch them before you upload.
+Some visa applications ask for a "digital passport photo". This is simply a photo that meets passport standards, uploaded as a file instead of printed. Use the same steps as above, then check the file type, pixel size and file size the application asks for. Our [digital passport photo](/tool/digital-passport-photo) page explains the UK digital rules. A sharp, evenly lit photo with a plain background will pass most automated checks. Photos with shadows, glare or uneven lighting often don't, so run your photo through our [passport photo checker](/tool/passport-photo-checker-uk) to catch them before you upload.
 
 ## Common Mistakes When You Take a Visa Picture at Home
 

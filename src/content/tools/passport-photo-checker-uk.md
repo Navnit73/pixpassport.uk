@@ -60,7 +60,7 @@ Checking is free. The download costs a one-off **£7.99**.
 
 ## 2. What Our Passport Photo Checker Tests
 
-Our **passport photo checker** compares your picture with the written GOV.UK rules, explained in full in our [UK passport picture rules](/tool/passport-picture-rules-uk) guide. The table below shows how the digital and printed requirements differ.
+Our **passport photo checker** compares your picture with the written GOV.UK rules, explained in full in our [UK passport picture rules](/tool/passport-picture-rules-uk) guide and summarised on our [UK passport photo requirements](/tool/passport-picture-requirements-uk-tool) page. The table below shows how the digital and printed requirements differ.
 
 | Rule             | Digital photo (online application)                    | Printed photos (paper application)                    |
 | :--------------- | :---------------------------------------------------- | :---------------------------------------------------- |
@@ -168,7 +168,7 @@ Yes. This **passport photo checker** works in your mobile browser, so you can ta
 
 ### What should I do if my photo fails the check?
 
-Read the fix for each failed rule, then take a new picture, ideally with someone helping you. Face the camera with a plain expression and your mouth closed, and stand in front of a plain, light-coloured background in even light. Check it again until it passes. For renewals, read our [UK passport renewal photo](/tool/passport-renewal-photo-online) guide. For tips on shooting your own picture, see how to take a [passport photo at home](/tool/passport-photo-at-home). If you already have a picture, our [image to passport size converter](/tool/image-to-passport-size-converter) can help.
+Read the fix for each failed rule, then take a new picture, ideally with someone helping you. Face the camera with a plain expression and your mouth closed, and stand in front of a plain, light-coloured background in even light. Check it again until it passes. For renewals, read our [UK passport renewal photo](/tool/passport-renewal-photo-online) guide. For tips on shooting your own picture, see [how to take a passport photo at home](/how-to/take-a-passport-photo-at-home). If you already have a picture, our [image to passport size converter](/tool/image-to-passport-size-converter) can help.
 
 ### What size should my passport photo be?
 

@@ -34,6 +34,7 @@ export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
   ],
   "Photo Tools": [
     { label: "UK Passport Photo Checker", href: "/tool/passport-photo-checker-uk" },
+    { label: "UK Passport Photo Requirements", href: "/tool/passport-picture-requirements-uk-tool" },
     { label: "Print Template Generator", href: "/passport-photo-print-template-generator" },
     { label: "Print Passport Photos at Home", href: "/print-passport-photos-at-home" },
     { label: "Digital Passport Photo", href: "/tool/digital-passport-photo" },
@@ -44,6 +45,9 @@ export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
     { label: "Online Passport Photo Tool", href: "/tool/passport-photo-tool" },
     { label: "Online ID Photo Maker", href: "/tool/online-id-photo-maker" },
     { label: "Order Passport Photos", href: "/tool/order-passport-photos-online" },
+    { label: "How to Take a Passport Photo at Home", href: "/how-to/take-a-passport-photo-at-home" },
+    { label: "How to Take a Visa Photo at Home", href: "/how-to/take-visa-picture-at-home" },
+    { label: "How to Change Your DVLA Photo", href: "/how-to/change-dvla-photo" },
     { label: "All How-To Guides", href: "/how-to" },
   ],
   "Company & Legal": [

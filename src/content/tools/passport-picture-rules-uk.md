@@ -126,7 +126,7 @@ The **UK digital passport photo requirements** also cover how you supply the pho
 1. **Photo code from a booth or shop:** get a digital photo before you apply and choose the option to receive a code. You enter the **UK passport photo code** during your application and the photo is added automatically.
 2. **Your own device:** take a photo during your application. You need someone to help you take it, which means a selfie does not meet the guidance.
 
-GOV.UK says photos from a booth or shop are more likely to be approved than a photo taken on your own device. If you do use your own device, our [passport photo at home](/tool/passport-photo-at-home) guide covers lighting and framing.
+GOV.UK says photos from a booth or shop are more likely to be approved than a photo taken on your own device. If you do use your own device, our step-by-step guide on [how to take a passport photo at home](/how-to/take-a-passport-photo-at-home) covers lighting and framing.
 
 ## 7. Passport Renewal Photo Requirements UK
 
@@ -153,7 +153,7 @@ Most problems come from a short list of mistakes. Use this table to avoid them.
 
 ## 9. Check Your Picture Against the Rules
 
-Reading the rules is one thing; seeing whether your photo meets them is another. Our [UK passport photo checker](/tool/passport-photo-checker-uk) tests your picture against these standards and shows a pass or fail for each rule. You can also use our [image to passport size converter](/tool/image-to-passport-size-converter) if you need to resize an existing photo, or read our [UK passport photo](/tool/uk-passport-photo) guide for more detail.
+Reading the rules is one thing; seeing whether your photo meets them is another. Our [UK passport photo checker](/tool/passport-photo-checker-uk) tests your picture against these standards and shows a pass or fail for each rule. You can also use our [image to passport size converter](/tool/image-to-passport-size-converter) if you need to resize an existing photo, or read our [UK passport photo](/tool/uk-passport-photo) guide for more detail. For a quick summary of every rule next to a built-in checker, see our [UK passport photo requirements](/tool/passport-picture-requirements-uk-tool) page.
 
 ## Frequently Asked Questions
 

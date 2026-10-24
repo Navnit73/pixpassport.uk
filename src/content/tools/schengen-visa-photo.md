@@ -61,6 +61,7 @@ Need a photo for another country or UK document? Explore our dedicated guides:
 - [US Visa & Passport Photo Tool](/tool/us-visa-photo-tool) — 2×2 inch square format for DS-160 and US passports
 - [UK Visa & ETA Photo Requirements](/tool/uk-visa-photo) — Rules for UKVI and ETA applications
 - [Indian Passport & OCI Photo Maker](/tool/indian-passport-photo-maker) — 35×45 mm and 2×2″ specifications
+- [How to Take a Visa Photo at Home](/how-to/take-visa-picture-at-home) — Phone setup, lighting and sizes by country
 - [How to Take a Passport Photo on iPhone](/tool/take-a-passport-photo-on-iphone) — Step-by-step mobile photography setup
 - [Passport Size Photo Studio](/passport-size-photo-maker) — Interactive photo maker for 50+ countries
 

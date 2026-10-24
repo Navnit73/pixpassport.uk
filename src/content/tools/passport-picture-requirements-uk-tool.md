@@ -132,7 +132,7 @@ You cannot wear a head covering in your photo unless you wear it for religious o
 
 ## UK Passport Photo Requirements for Babies and Children
 
-Children follow the same size, quality and background rules as adults. HM Passport Office relaxes a few pose rules for young children.
+Children follow the same size, quality and background rules as adults. HM Passport Office relaxes a few pose rules for young children. For step-by-step help, see our [UK baby passport photo](/tool/uk-baby-passport-photo) guide.
 
 ### Children Under 6
 
@@ -169,7 +169,7 @@ You have two options:
 1. **Use a booth or shop.** Ask for a digital photo with a code, then enter the code during your application.
 2. **Use your own device.** Take the photo during your application, with someone's help.
 
-HM Passport Office says booth and shop photos are more likely to be approved than photos you take on your own device.
+HM Passport Office says booth and shop photos are more likely to be approved than photos you take on your own device. Our [UK digital passport photo](/tool/digital-passport-photo) page explains both routes.
 
 ### How to Send Printed Photos
 
@@ -178,6 +178,8 @@ When you post a paper application, follow these steps:
 1. **Separate the photos.** Keep the two photos apart from each other.
 2. **Leave them loose.** Do not attach them to the form.
 3. **Keep the backs clean.** Write nothing on either side unless a countersignatory must sign one.
+
+To print two exact 35 × 45 mm copies yourself, follow our guide to [printing passport photos at home](/print-passport-photos-at-home) or use the free [print template generator](/passport-photo-print-template-generator).
 
 ## How to Take a UK Passport Photo at Home
 
@@ -189,6 +191,8 @@ You can take a compliant photo at home if you follow the rules carefully.
 4. **Stand back slightly.** Leave room for your head, shoulders and upper body.
 5. **Look straight ahead.** Keep your head level, your mouth closed and your eyes open.
 6. **Check the result.** Upload the picture to our checker, and fix any problems before you apply.
+
+For the full walkthrough, read our step-by-step guide on [how to take a passport photo at home](/how-to/take-a-passport-photo-at-home), or our tips for [taking a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone).
 
 ## Common Reasons for UK Passport Photo Rejection
 
@@ -207,7 +211,7 @@ You can take a compliant photo at home if you follow the rules carefully.
 
 Every new passport needs a new photo, even if your appearance has not changed. The one-month rule applies to renewals, replacements and first applications alike.
 
-Need a photo for a renewal? Use our [UK passport renewal photo](/tool/passport-renewal-photo-online) page, or open the main [UK passport photo](/tool/uk-passport-photo) tool.
+Need a photo for a renewal? Use our [UK passport renewal photo](/tool/passport-renewal-photo-online) page, or open the main [UK passport photo](/tool/uk-passport-photo) tool. The same photo standard applies to your [UK driving licence photo](/tool/uk-driving-licence-photo).
 
 ## Help With Passport Photos for Disabled People
 

@@ -11,6 +11,7 @@ import FaqAccordion from "@/components/FaqAccordion";
 import GovUkPhotoNotice from "@/components/GovUkPhotoNotice";
 import { getAllToolSlugs, getToolBySlug } from "@/lib/tools";
 import { TOOL_DIRECTORY } from "@/lib/tool-directory";
+import { getAllHowToSummaries } from "@/lib/how-to";
 import {
   Sparkles,
   ArrowRight,
@@ -78,6 +79,13 @@ export default async function DynamicToolPage({ params }: PageProps) {
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
   const primaryAnchor = tool.show_checker ? "#checker" : "#studio";
+
+  // Guides that list this tool as related come first, so each page links to its most relevant how-tos.
+  const allGuides = getAllHowToSummaries();
+  const relatedGuides = [
+    ...allGuides.filter((g) => g.related_tools.includes(slug)),
+    ...allGuides.filter((g) => !g.related_tools.includes(slug)),
+  ].slice(0, 3);
 
   return (
     <>
@@ -381,6 +389,43 @@ export default async function DynamicToolPage({ params }: PageProps) {
             </article>
           </div>
         </section>
+
+        {/* Step-by-step how-to guides (Internal Linking) */}
+        {relatedGuides.length > 0 && (
+          <section className="py-14 sm:py-16 bg-slate-50/70 border-b border-slate-200/80" aria-labelledby="related-how-to-guides">
+            <div className="container-narrow max-w-5xl">
+              <div className="flex items-end justify-between gap-4 mb-8">
+                <h2 id="related-how-to-guides" className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight">
+                  Step-by-Step How-To Guides
+                </h2>
+                <Link href="/how-to" className="text-sm font-bold text-[#365314] hover:text-[#4D7C0F] underline shrink-0">
+                  All guides
+                </Link>
+              </div>
+              <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 list-none p-0 m-0">
+                {relatedGuides.map((g) => (
+                  <li key={g.slug}>
+                    <Link
+                      href={`/how-to/${g.slug}`}
+                      className="bg-white border border-slate-200 hover:border-lime-600 p-5 rounded-2xl flex items-start justify-between gap-3 transition-all group h-full"
+                    >
+                      <span className="flex items-start gap-3 min-w-0">
+                        <span className="text-2xl shrink-0" aria-hidden="true">{g.icon}</span>
+                        <span className="min-w-0">
+                          <span className="text-sm font-bold text-slate-900 group-hover:text-lime-900 transition-colors block">
+                            {g.title}
+                          </span>
+                          <span className="text-xs text-slate-600 leading-relaxed block mt-1">{g.summary}</span>
+                        </span>
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#4D7C0F] shrink-0 mt-1" aria-hidden="true" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
 
         {/* =========================================================================
             5. OTHER POPULAR PASSPORT & VISA TOOLS (Internal Linking SEO Grid)

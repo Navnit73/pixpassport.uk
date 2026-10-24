@@ -72,7 +72,7 @@ ICAO does not give a single mm size. Common examples set by countries include:
 | **Australian passport photo** | 35–40 × 45–50 mm |
 | **Finland digital photo** | 500 × 653 px |
 
-Because these differ, use the size published by the authority you are applying to. See our guides for [UK passport photo size](/tool/uk-passport-photo), [US visa photo size](/tool/us-visa-photo) and [Australian passport photo size](/tool/australian-passport-photo-uk).
+Because these differ, use the size published by the authority you are applying to. See our guides for [UK passport photo size](/tool/uk-passport-photo), [US visa photo size](/tool/us-visa-passport-photo-size) and [Australian passport photo size](/tool/australian-passport-photo-uk).
 
 ### ICAO Biometric Photo Size in Pixels
 
@@ -138,7 +138,7 @@ An online ICAO photo check reviews the things a tool can measure: background, he
 
 ### ICAO Photo Converter and Photo Maker
 
-If your photo is almost right, a photo maker can crop and resize it to a country's size. Try our [passport size photo maker](/tool/passport-size-photo-maker) to crop to the correct dimensions, then lay out prints with the [passport photo print template generator](/passport-photo-print-template-generator).
+If your photo is almost right, a photo maker can crop and resize it to a country's size. Try our [passport size photo maker](/passport-size-photo-maker) to crop to the correct dimensions, then lay out prints with the [passport photo print template generator](/passport-photo-print-template-generator).
 
 ### What an Online Tool Cannot Do
 

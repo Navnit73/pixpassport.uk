@@ -80,7 +80,7 @@ Passport photo sizes vary, so choose the right format before you print. Here are
 
 <!-- TODO: verify every size and background note against the official source for each country before publishing -->
 
-Need a specific format? See our pages for the [UK passport photo](/tool/uk-passport-photo), [UK passport renewal photo](/tool/passport-renewal-photo-online), [Indian passport photo](/tool/indian-passport-photo-maker) and [US visa and passport photo](/tool/us-visa-photo-tool).
+For a detailed 7-step walkthrough, read our guide on [how to take a passport photo at home](/how-to/take-a-passport-photo-at-home), or see [how to take a visa photo at home](/how-to/take-visa-picture-at-home). Need a specific format? See our pages for the [UK passport photo](/tool/uk-passport-photo), [UK passport renewal photo](/tool/passport-renewal-photo-online), [Indian passport photo](/tool/indian-passport-photo-maker) and [US visa and passport photo](/tool/us-visa-photo-tool).
 
 ## How to Print Your Passport Photo at Home
 

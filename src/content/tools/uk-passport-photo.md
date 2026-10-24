@@ -47,7 +47,7 @@ For a printed photo, the face, from the bottom of your chin to the crown of your
 
 ## Official UK Passport Photo Requirements
 
-Whether you apply on GOV.UK or by post, your photo must meet the same standard. Read these rules before you take your picture. For the full standard, including hair, head coverings and rejection reasons, see our [UK passport picture rules](/tool/passport-picture-rules-uk).
+Whether you apply on GOV.UK or by post, your photo must meet the same standard. Read these rules before you take your picture. For the full standard, including hair, head coverings and rejection reasons, see our [UK passport picture rules](/tool/passport-picture-rules-uk) or the [UK passport photo requirements](/tool/passport-picture-requirements-uk-tool) checklist.
 
 ### Format and Quality
 
@@ -140,7 +140,7 @@ Booths and high-street shops charge more than most people expect, and queues add
 
 ## Other Photo Formats
 
-Not sure your photo passes? Run it through the [UK passport photo checker](/tool/passport-photo-checker-uk) first. Applying for another document? See the [UK visa photo guide](/tool/uk-visa-photo), the [UK driving licence photo maker](/tool/uk-driving-licence-photo), the [passport renewal photo tool](/tool/passport-renewal-photo-online), or the [US visa photo maker](/tool/us-visa-photo-tool) for the square 2×2 inch format.
+Not sure your photo passes? Run it through the [UK passport photo checker](/tool/passport-photo-checker-uk) first. Taking it yourself? Read [how to take a passport photo at home](/how-to/take-a-passport-photo-at-home). Applying for another document? See the [UK visa photo guide](/tool/uk-visa-photo), the [UK driving licence photo maker](/tool/uk-driving-licence-photo), the [passport renewal photo tool](/tool/passport-renewal-photo-online), or the [US visa photo maker](/tool/us-visa-photo-tool) for the square 2×2 inch format.
 
 ## Frequently Asked Questions
 

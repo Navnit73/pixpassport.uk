@@ -143,7 +143,7 @@ Sizes differ, so choose the right format before you print. Here are common ones:
 | Canada                    | 50 × 70 mm                       | Larger portrait format                   |
 | Australia                 | 35 × 45 mm                       | Plain, light background                  |
 
-Always confirm current rules with your country's passport authority before you apply. Need a specific format? See our pages for the [UK passport photo](/tool/uk-passport-photo), [Indian passport photo](/tool/indian-passport-photo-maker) and [US visa and passport photo](/tool/us-visa-photo-tool).
+Always confirm current rules with your country's passport authority before you apply. Using an Android phone or a camera? Read our general guide on [how to take a passport photo at home](/how-to/take-a-passport-photo-at-home). Need a specific format? See our pages for the [UK passport photo](/tool/uk-passport-photo), [Indian passport photo](/tool/indian-passport-photo-maker) and [US visa and passport photo](/tool/us-visa-photo-tool).
 
 ## Passport Photo App for iPhone vs Online Tool
 

@@ -100,7 +100,7 @@ A clear picture gives the cleanest result, so take a few minutes to set up.
 - **Leave space around your head.** The editor needs room to crop the square correctly.
 - **Look straight ahead.** Relax your face and keep your head level.
 
-For full smartphone tips, see our guide on [how to take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone) and our [passport photo at home DIY guide](/tool/passport-photo-at-home).
+For US-specific home setup, including DV lottery and green card photos, read [how to take a visa photo at home](/how-to/take-visa-picture-at-home). For full smartphone tips, see our guide on [how to take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone) and our [passport photo at home DIY guide](/tool/passport-photo-at-home).
 
 ## How to Submit Your US Visa Photo
 

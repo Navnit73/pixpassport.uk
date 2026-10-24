@@ -37,6 +37,8 @@ export interface HowToSummary {
   /** Lower numbers are listed first within a category. */
   order: number;
   reading_time?: string;
+  /** `/tool/[slug]` pages this guide links to in its related-tools grid, and that link back to it. */
+  related_tools: string[];
 }
 
 export interface HowToPageData extends HowToSummary {
@@ -109,6 +111,7 @@ function toSummary(slug: string, data: Record<string, unknown>, content: string)
     icon: String(data.icon || "📘"),
     order: typeof data.order === "number" ? data.order : 100,
     reading_time: data.reading_time ? String(data.reading_time) : estimateReadingTime(content),
+    related_tools: Array.isArray(data.related_tools) ? data.related_tools.map(String) : [],
   };
 }
 

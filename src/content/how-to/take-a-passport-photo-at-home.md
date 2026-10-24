@@ -10,6 +10,13 @@ date_published: "2026-10-24"
 hero_title: "How to Take a Passport Photo at Home"
 hero_subtitle: "You can take your own passport photo with a smartphone, a plain wall and window light. Follow these 7 steps to get a photo HM Passport Office will accept."
 total_time: "PT15M"
+related_tools:
+  - "uk-passport-photo"
+  - "passport-picture-requirements-uk-tool"
+  - "passport-photo-checker-uk"
+  - "passport-photo-at-home"
+  - "take-a-passport-photo-on-iphone"
+  - "uk-baby-passport-photo"
 steps:
   - name: "Choose a plain background"
     text: "Stand in front of a plain, light-coloured wall with no patterns, texture or objects behind you. Cream or light grey works best."
@@ -65,7 +72,7 @@ The catch is that your photo must meet strict rules. GOV.UK asks for a **clear, 
 | Age of photo   | Taken within the last month                                         |
 | Digital size   | At least 600 pixels wide and 750 pixels tall, as a JPG              |
 
-These rules can change, so check the latest guidance on GOV.UK before you apply. Rules for babies and young children are different, and our [UK passport picture rules](/tool/passport-picture-rules-uk) guide covers them in full.
+These rules can change, so check the latest guidance on GOV.UK before you apply. Rules for babies and young children are different, and our [UK passport photo requirements](/tool/passport-picture-requirements-uk-tool) page covers every rule in full, including [baby passport photos](/tool/uk-baby-passport-photo).
 
 ## How to Take a Passport Photo From Your Mobile
 
@@ -77,7 +84,7 @@ Most people use their phone, and a few settings make a big difference:
 - **Keep the phone level.** Tilting it up or down changes how your head looks in the frame.
 - **Use portrait orientation** and leave space above your head and around your shoulders so you can crop later.
 
-If you only have a phone and no helper, a timer and a stack of books can replace a tripod.
+If you only have a phone and no helper, a timer and a stack of books can replace a tripod. iPhone users can follow our step-by-step guide to [taking a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone).
 
 ## Common Mistakes When You Do a Passport Photo at Home
 
@@ -89,7 +96,7 @@ If you only have a phone and no helper, a timer and a stack of books can replace
 
 ## Fix Your Background and Check Your Photo Before You Submit
 
-If your wall isn't quite plain enough, our [passport photo maker](/passport-size-photo-maker) can replace the background with a compliant one and crop the photo to the right size. It can't fix problems with your face, such as shadows, a tilted head or glare, so get those right when you take the photo. Before you submit, run your photo through the [UK passport photo checker](/tool/passport-photo-checker-uk) to catch problems early.
+If your wall isn't quite plain enough, our [passport photo maker](/passport-size-photo-maker) can replace the background with a compliant one and crop the photo to the right size. It can't fix problems with your face, such as shadows, a tilted head or glare, so get those right when you take the photo. Before you submit, run your photo through the [UK passport photo checker](/tool/passport-photo-checker-uk) to catch problems early. Applying by post? Use our guide to [printing passport photos at home](/print-passport-photos-at-home). The same steps also work for a [visa photo](/how-to/take-visa-picture-at-home) or a [DVLA driving licence photo](/how-to/change-dvla-photo).
 
 ## Frequently Asked Questions
 

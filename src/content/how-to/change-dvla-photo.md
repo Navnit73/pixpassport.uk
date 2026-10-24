@@ -10,6 +10,11 @@ date_published: "2026-10-25"
 hero_title: "DVLA Photo: How to Take and Change Your Driving Licence Photo"
 hero_subtitle: "You can take your own DVLA photo with a smartphone, a plain wall and daylight. Follow these 6 steps, then renew your licence online or by post."
 total_time: "PT15M"
+related_tools:
+  - "uk-driving-licence-photo"
+  - "passport-picture-requirements-uk-tool"
+  - "passport-photo-checker-uk"
+  - "uk-passport-photo"
 steps:
   - name: "Check that you need a new photo"
     text: "Renew your photocard licence every 10 years. Renew sooner if you want a new photo, because you can only change your photo by renewing your licence."
@@ -65,7 +70,7 @@ The DVLA expects the same standard as a UK passport photo. Check the latest word
 | Quality        | Submit a sharp, in-focus colour photo with no filters or red-eye                 |
 | Age of photo   | Use a photo taken recently, ideally within the last month                        |
 
-Shadows cause many rejections. Our guide on [how to avoid shadows in a passport photo](/how-to-avoid-shadows-in-a-passport-photo) explains how to fix them, and our [UK passport picture rules](/tool/passport-picture-rules-uk) page covers the full standard.
+Shadows cause many rejections. Face a window and step away from the wall to avoid them. Our [UK passport photo requirements](/tool/passport-picture-requirements-uk-tool) page explains how to fix lighting problems, and our [UK passport picture rules](/tool/passport-picture-rules-uk) page covers the full standard.
 
 ## How to Change or Renew the Photo on Your Driving Licence
 
@@ -84,7 +89,7 @@ You cannot use the online service if your name or title has changed since you re
 Complete a D1 form, which you can get from a Post Office or order from the DVLA, and send it with:
 
 - Your current photocard licence
-- A recent, printed passport-style photo
+- A recent, printed passport-style photo (see [how to print passport photos at home](/print-passport-photos-at-home))
 - The fee, which is £17 by post at the time of writing
 
 The DVLA says a new licence should arrive within three weeks. You can keep driving while you wait.
@@ -116,7 +121,7 @@ Drivers aged 70 or over, and people with a medical short-period licence, pay not
 
 ## Fix Your Background Before You Apply
 
-If your wall is not quite plain enough, our [passport photo maker](/passport-size-photo-maker) can replace the background and crop your photo to the right size. It cannot remove shadows from your face, so retake the photo if you spot any. Run the result through the [UK passport photo checker](/tool/passport-photo-checker-uk) before you submit. If you also need a passport photo, read [how to take a passport photo at home](/how-to-take-a-passport-photo-at-home).
+If your wall is not quite plain enough, our [passport photo maker](/passport-size-photo-maker) can replace the background and crop your photo to the right size. It cannot remove shadows from your face, so retake the photo if you spot any. Run the result through the [UK passport photo checker](/tool/passport-photo-checker-uk) before you submit. Need the exact DVLA size and pixel dimensions? See our [UK driving licence photo](/tool/uk-driving-licence-photo) page. If you also need a passport photo, read [how to take a passport photo at home](/how-to/take-a-passport-photo-at-home).
 
 ## Frequently Asked Questions
 

@@ -10,6 +10,7 @@ import FaqAccordion from "@/components/FaqAccordion";
 import PhotoMakerStudio from "@/components/PhotoMakerStudio";
 import GovUkPhotoNotice from "@/components/GovUkPhotoNotice";
 import { getAllHowToSlugs, getAllHowToSummaries, getHowToBySlug } from "@/lib/how-to";
+import { TOOL_DIRECTORY, type ToolDirectoryEntry } from "@/lib/tool-directory";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -91,6 +92,10 @@ export default async function HowToGuidePage({ params }: PageProps) {
     ...otherGuides.filter((g) => g.category === guide.category),
     ...otherGuides.filter((g) => g.category !== guide.category),
   ].slice(0, RELATED_LIMIT);
+
+  const relatedTools = guide.related_tools
+    .map((toolSlug) => TOOL_DIRECTORY.find((t) => t.slug === toolSlug))
+    .filter((t): t is ToolDirectoryEntry => t !== undefined);
 
   return (
     <>
@@ -271,6 +276,43 @@ export default async function HowToGuidePage({ params }: PageProps) {
             </article>
           </div>
         </section>
+
+        {/* Related tools */}
+        {relatedTools.length > 0 && (
+          <section className="py-14 sm:py-20 bg-white border-b border-slate-200/80" aria-labelledby="related-tools">
+            <div className="container-narrow max-w-5xl">
+              <div className="flex items-end justify-between gap-4 mb-8">
+                <h2 id="related-tools" className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight">
+                  Tools &amp; Rules for This Guide
+                </h2>
+                <Link href="/tool" className="text-sm font-bold text-[#365314] hover:text-[#4D7C0F] underline shrink-0">
+                  All photo tools
+                </Link>
+              </div>
+              <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 list-none p-0 m-0">
+                {relatedTools.map((t) => (
+                  <li key={t.slug}>
+                    <Link
+                      href={`/tool/${t.slug}`}
+                      className="bg-white border border-slate-200 hover:border-lime-600 p-5 rounded-2xl flex items-center justify-between transition-all group h-full"
+                    >
+                      <span className="flex items-center gap-3 min-w-0">
+                        <span className="text-2xl shrink-0" aria-hidden="true">{t.flag}</span>
+                        <span className="min-w-0">
+                          <span className="text-sm font-bold text-slate-900 group-hover:text-lime-900 transition-colors block">
+                            {t.title}
+                          </span>
+                          <span className="text-xs text-slate-500 font-mono">{t.spec}</span>
+                        </span>
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#4D7C0F] shrink-0 ml-2" aria-hidden="true" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
 
         {/* Related guides */}
         {relatedGuides.length > 0 && (

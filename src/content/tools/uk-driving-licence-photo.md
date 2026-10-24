@@ -125,11 +125,12 @@ A good picture gives the cleanest result, so take a few minutes to set up.
 - **Leave space around your head.** The tool needs room to crop correctly.
 - **Look straight ahead.** Relax your face and keep your head level.
 
-For complete smartphone shooting instructions, read our guide on [how to take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone) or our general [passport photo at home DIY guide](/tool/passport-photo-at-home).
+For complete smartphone shooting instructions, read our guide on [how to take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone) or our general [passport photo at home DIY guide](/tool/passport-photo-at-home). To renew or change the photo on your licence, follow our [DVLA photo guide](/how-to/change-dvla-photo).
 
 ## Related UK Photo Guides
 
 - [UK Passport Photo Size & Requirements](/tool/uk-passport-photo) — Complete guide to HMPO rules
+- [How to Take and Change Your DVLA Photo](/how-to/change-dvla-photo) — Step-by-step home photo and renewal guide
 - [UK Passport Photo Checker](/tool/passport-photo-checker-uk) — Test your picture before submitting
 - [UK Digital Passport Photo](/tool/digital-passport-photo) — Photo codes vs taking your own photo on GOV.UK
 - [UK Visa & ETA Photo Requirements](/tool/uk-visa-photo) — Biometric rules for UKVI applications

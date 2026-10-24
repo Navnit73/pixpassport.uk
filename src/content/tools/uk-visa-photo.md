@@ -60,6 +60,8 @@ You may still need a printed or digital photo for other documents linked to your
 - a [UK driving licence](/tool/uk-driving-licence-photo)
 - a [Schengen visa](/tool/schengen-visa-photo) or a [US visa](/tool/us-visa-photo-tool) for travel from the UK
 
+Taking the photo yourself? Follow our guide on [how to take a visa photo at home](/how-to/take-visa-picture-at-home).
+
 Each document sets its own rules, so check the guidance for the one you are applying for.
 
 ## Frequently Asked Questions
