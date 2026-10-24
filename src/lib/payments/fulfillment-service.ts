@@ -17,6 +17,9 @@ import {
 import { logActivity } from "@/lib/logging/activity-logger";
 import { PRICING } from "@/lib/config/pricing";
 
+/** A "processing"/"sending" lock older than this is treated as abandoned (e.g. a killed function). */
+const STALE_LOCK_MS = 5 * 60 * 1000;
+
 export interface FulfillmentResult {
   downloadToken?: string;
   invoiceNumber?: string;
@@ -51,11 +54,15 @@ export async function fulfillPayment(paymentId: string): Promise<FulfillmentResu
     };
   }
 
-  // Claim fulfillment lock atomically
+  // Claim fulfillment lock atomically (also reclaims a stale "processing" lock)
+  const staleBefore = new Date(Date.now() - STALE_LOCK_MS);
   const lockResult = await col.updateOne(
     {
       paymentId,
-      fulfillmentStatus: { $in: ["pending", "failed"] as FulfillmentStatus[] },
+      $or: [
+        { fulfillmentStatus: { $in: ["pending", "failed"] as FulfillmentStatus[] } },
+        { fulfillmentStatus: "processing", updatedAt: { $lt: staleBefore } },
+      ],
     },
     { $set: { fulfillmentStatus: "processing" as FulfillmentStatus, updatedAt: new Date() } }
   );
@@ -166,7 +173,10 @@ export async function fulfillPayment(paymentId: string): Promise<FulfillmentResu
     const emailLock = await col.findOneAndUpdate(
       {
         paymentId,
-        "emailDelivery.status": { $in: ["pending", "failed"] },
+        $or: [
+          { "emailDelivery.status": { $in: ["pending", "failed"] } },
+          { "emailDelivery.status": "sending", updatedAt: { $lt: staleBefore } },
+        ],
       },
       {
         $set: {
@@ -220,31 +230,6 @@ export async function fulfillPayment(paymentId: string): Promise<FulfillmentResu
           email: payment.email,
           metadata: { resendId, invoiceNumber, hasAttachment: !!pdfBuffer, planType: payment.planType },
         });
-
-        // If Expert Edit was selected, dispatch the expert review notification to the editing specialists
-        if (payment.planType === "expert_edit" || payment.metadata?.isExpertEdit) {
-          try {
-            await sendExpertEditTeamNotificationAction({
-              email: payment.email,
-              paymentId: payment.paymentId,
-              razorpayPaymentId: payment.razorpayPaymentId || "",
-              amount: payment.amount,
-              currency: payment.currency,
-              countryName: payment.metadata?.countryName,
-              countryCode: payment.metadata?.countryCode,
-              dimensions: payment.image?.dimensions,
-              originalImageUrl:
-                payment.image?.originalImageUrl ||
-                payment.metadata?.originalPreviewUrl ||
-                payment.image?.imageUrl,
-              processedImageUrl: payment.image?.imageUrl,
-              previewUrl: payment.image?.previewUrl,
-              paidAt: payment.paidAt,
-            });
-          } catch (expertAlertErr) {
-            console.warn("[fulfillment] Expert edit team alert warning:", expertAlertErr);
-          }
-        }
       } catch (emailErr) {
         const errMsg = emailErr instanceof Error ? emailErr.message : "Unknown email error";
         await col.updateOne(
@@ -268,6 +253,42 @@ export async function fulfillPayment(paymentId: string): Promise<FulfillmentResu
         });
 
         console.warn(`[fulfillment] Email delivery warning for ${paymentId}:`, errMsg);
+      }
+
+      // If Expert Edit was selected, alert the editing specialists — independent of whether the
+      // customer email succeeded, so a paid expert order is never silently dropped
+      if (payment.planType === "expert_edit" || payment.metadata?.isExpertEdit) {
+        try {
+          await sendExpertEditTeamNotificationAction({
+            email: payment.email,
+            paymentId: payment.paymentId,
+            razorpayPaymentId: payment.razorpayPaymentId || "",
+            amount: payment.amount,
+            currency: payment.currency,
+            countryName: payment.metadata?.countryName,
+            countryCode: payment.metadata?.countryCode,
+            dimensions: payment.image?.dimensions,
+            originalImageUrl:
+              payment.image?.originalImageUrl ||
+              payment.metadata?.originalPreviewUrl ||
+              payment.image?.imageUrl,
+            processedImageUrl: payment.image?.imageUrl,
+            previewUrl: payment.image?.previewUrl,
+            paidAt: payment.paidAt,
+          });
+        } catch (expertAlertErr) {
+          console.error("[fulfillment] Expert edit team alert failed:", expertAlertErr);
+          await logActivity({
+            event: "email_failed",
+            status: "error",
+            paymentId,
+            email: payment.email,
+            metadata: {
+              type: "expert_edit_request",
+              error: expertAlertErr instanceof Error ? expertAlertErr.message : String(expertAlertErr),
+            },
+          });
+        }
       }
     }
 

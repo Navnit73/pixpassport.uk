@@ -25,7 +25,7 @@ export interface PaymentInvoice {
 }
 
 export interface PaymentEmailDelivery {
-  status: "pending" | "sent" | "failed";
+  status: "pending" | "sending" | "sent" | "failed";
   resendEmailId?: string;
   attempts: number;
   lastError?: string;

@@ -7,7 +7,7 @@
  *   Events: payment.captured, payment.failed
  */
 
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse, after, type NextRequest } from "next/server";
 import { verifyWebhookSignature } from "@/lib/payments/razorpay";
 import { markPaymentPaid, markPaymentFailed } from "@/lib/payments/payment-service";
 import { fulfillPayment } from "@/lib/payments/fulfillment-service";
@@ -97,10 +97,18 @@ export async function POST(req: NextRequest) {
         );
       }
 
-      // Trigger fulfillment (idempotent) if payment exists
+      // Trigger fulfillment (idempotent) if payment exists.
+      // after() keeps the serverless function alive until fulfillment finishes —
+      // a bare un-awaited promise gets frozen once the response is sent, leaving
+      // the payment stuck in "processing" with no email delivered.
       if (payment) {
-        fulfillPayment(payment.paymentId).catch((err) => {
-          console.error("[webhook] Fulfillment error:", err);
+        const paymentId = payment.paymentId;
+        after(async () => {
+          try {
+            await fulfillPayment(paymentId);
+          } catch (err) {
+            console.error("[webhook] Fulfillment error:", err);
+          }
         });
       }
 
