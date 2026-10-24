@@ -49,7 +49,7 @@ export function getAllToolSlugs(): string[] {
     .map((file) => file.replace(/\.md$/, ""));
 }
 
-async function parseFaqsFromMarkdown(
+export async function parseFaqsFromMarkdown(
   rawContent: string
 ): Promise<{ cleanedContent: string; faqs: FaqItem[] }> {
   // Look for ## Frequently Asked Questions (or FAQ / FAQs / X. FAQs) section

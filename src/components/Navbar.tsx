@@ -139,6 +139,7 @@ export const PHOTO_TOOLS_MENU = {
 export const DEFAULT_NAV_LINKS: NavLinkItem[] = [
   { label: "How It Works", href: "/#how-it-works" },
   { label: "Features", href: "/#features" },
+  { label: "How-To", href: "/how-to" },
 
   { label: "FAQ", href: "/#faq" },
   { label: "About Us", href: "/about-us" },
@@ -372,7 +373,8 @@ export default function Navbar({
 
           {/* Standard Navigation Links */}
           {navLinks.map((link) => {
-            const isActive = pathname === link.href;
+            const isActive =
+              pathname === link.href || Boolean(pathname?.startsWith(`${link.href}/`));
             return (
               <Link
                 key={link.href}
@@ -524,7 +526,8 @@ export default function Navbar({
 
               {/* Standard Nav Links */}
               {navLinks.map((link) => {
-                const isActive = pathname === link.href;
+                const isActive =
+                  pathname === link.href || Boolean(pathname?.startsWith(`${link.href}/`));
                 return (
                   <Link
                     key={link.href}

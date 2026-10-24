@@ -44,6 +44,7 @@ export const DEFAULT_FOOTER_LINKS: Record<string, FooterLinkItem[]> = {
     { label: "Online Passport Photo Tool", href: "/tool/passport-photo-tool" },
     { label: "Online ID Photo Maker", href: "/tool/online-id-photo-maker" },
     { label: "Order Passport Photos", href: "/tool/order-passport-photos-online" },
+    { label: "All How-To Guides", href: "/how-to" },
   ],
   "Company & Legal": [
     { label: "About Us", href: "/about-us" },

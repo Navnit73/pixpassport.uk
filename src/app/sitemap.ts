@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllToolSlugs } from "@/lib/tools";
+import { getAllHowToSlugs } from "@/lib/how-to";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://pixpassport.uk";
@@ -14,6 +15,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     alternates: {
       languages: {
         "en-GB": `${SITE_URL}/tool/${slug}`,
+      },
+    },
+  }));
+
+  const howToEntries: MetadataRoute.Sitemap = getAllHowToSlugs().map((slug) => ({
+    url: `${SITE_URL}/how-to/${slug}`,
+    changeFrequency: "monthly",
+    priority: 0.8,
+    alternates: {
+      languages: {
+        "en-GB": `${SITE_URL}/how-to/${slug}`,
       },
     },
   }));
@@ -66,6 +78,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: {
           "en-GB": `${SITE_URL}/tool`,
+        },
+      },
+    },
+    {
+      url: `${SITE_URL}/how-to`,
+      changeFrequency: "weekly",
+      priority: 0.8,
+      alternates: {
+        languages: {
+          "en-GB": `${SITE_URL}/how-to`,
         },
       },
     },
@@ -130,5 +152,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     ...toolEntries,
+    ...howToEntries,
   ];
 }

@@ -3,6 +3,24 @@ export interface JsonLdFaqEntry {
   answer: string;
 }
 
+export interface JsonLdHowTo {
+  name: string;
+  description?: string;
+  /** ISO 8601 duration, e.g. "PT10M". */
+  totalTime?: string;
+  imageUrl?: string;
+  steps: Array<{ name: string; text: string }>;
+}
+
+export interface JsonLdArticle {
+  headline: string;
+  description?: string;
+  imageUrl?: string;
+  /** ISO 8601 date, e.g. "2026-10-24". */
+  datePublished?: string;
+  dateModified?: string;
+}
+
 export interface JsonLdProps {
   siteUrl?: string;
   siteName?: string;
@@ -22,6 +40,12 @@ export interface JsonLdProps {
   pageName?: string;
   pageDescription?: string;
   breadcrumbs?: Array<{ name: string; url: string }>;
+  /** Emits a HowTo node for `pageUrl`. Steps must match the steps visible on the page. */
+  howTo?: JsonLdHowTo;
+  /** Emits an Article node for `pageUrl`, published by the Organization. */
+  article?: JsonLdArticle;
+  /** Emits an ItemList node for a hub page listing these URLs in order. */
+  itemList?: Array<{ name: string; url: string }>;
   includeOrganization?: boolean;
   includeWebsite?: boolean;
   includeWebApp?: boolean;
@@ -53,6 +77,9 @@ export default function JsonLd({
   pageName,
   pageDescription,
   breadcrumbs,
+  howTo,
+  article,
+  itemList,
   includeOrganization = true,
   includeWebsite = true,
   includeWebApp = true,
@@ -150,6 +177,56 @@ export default function JsonLd({
           "@type": "Answer",
           text: entry.answer,
         },
+      })),
+    });
+  }
+
+  if (article && pageUrl) {
+    graph.push({
+      "@type": "Article",
+      "@id": `${pageId}#article`,
+      headline: article.headline,
+      ...(article.description ? { description: article.description } : {}),
+      image: article.imageUrl || imageUrl,
+      ...(article.datePublished ? { datePublished: article.datePublished } : {}),
+      ...(article.dateModified || article.datePublished
+        ? { dateModified: article.dateModified || article.datePublished }
+        : {}),
+      author: { "@id": `${siteUrl}/#organization` },
+      publisher: { "@id": `${siteUrl}/#organization` },
+      mainEntityOfPage: { "@id": `${pageId}#webpage` },
+      inLanguage: "en-GB",
+    });
+  }
+
+  if (itemList && itemList.length > 0) {
+    graph.push({
+      "@type": "ItemList",
+      "@id": `${pageId}#itemlist`,
+      numberOfItems: itemList.length,
+      itemListElement: itemList.map((item, idx) => ({
+        "@type": "ListItem",
+        position: idx + 1,
+        name: item.name,
+        url: item.url,
+      })),
+    });
+  }
+
+  if (howTo && howTo.steps.length > 0) {
+    graph.push({
+      "@type": "HowTo",
+      "@id": `${pageId}#howto`,
+      name: howTo.name,
+      ...(howTo.description ? { description: howTo.description } : {}),
+      ...(howTo.totalTime ? { totalTime: howTo.totalTime } : {}),
+      ...(howTo.imageUrl ? { image: howTo.imageUrl } : {}),
+      inLanguage: "en-GB",
+      step: howTo.steps.map((step, idx) => ({
+        "@type": "HowToStep",
+        position: idx + 1,
+        name: step.name,
+        text: step.text,
       })),
     });
   }

@@ -146,6 +146,13 @@ export default function ToolHubPage() {
               </Link>{" "}
               on your own printer.
             </p>
+            <p className="text-slate-700 text-sm sm:text-base mt-3">
+              Need help taking or uploading your photo? Browse our{" "}
+              <Link href="/how-to" className="font-bold underline text-[#365314] hover:text-[#4D7C0F]">
+                passport photo how-to guides
+              </Link>
+              .
+            </p>
           </section>
         </div>
       </main>
