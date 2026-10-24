@@ -147,11 +147,6 @@ export default async function DynamicToolPage({ params }: PageProps) {
                   {tool.hero_title}
                 </h1>
 
-                {/* Sub-heading */}
-                <p className="text-lg sm:text-xl text-[#334155] font-semibold mb-4 leading-snug">
-                  {tool.dimensions_mm} · Size, background and framing checked before you download
-                </p>
-
                 {/* Body description */}
                 <p className="text-sm sm:text-base text-[#334155] leading-relaxed mb-7 max-w-xl">
                   {tool.hero_subtitle}
