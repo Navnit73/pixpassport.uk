@@ -16,6 +16,7 @@ const toolSlugs = [
   "passport-photo-at-home",
   "passport-photo-tool",
   "photo-size-35x45mm",
+  "photo-railcard",
   "schengen-visa-photo",
   "uk-baby-passport-photo",
   "uk-driving-licence-photo",

@@ -31,6 +31,7 @@ export const TOOL_DIRECTORY: ToolDirectoryEntry[] = [
   { slug: "uk-baby-passport-photo", title: "UK Baby Passport Photo", flag: "👶", spec: "Babies & Children", group: "UK Passport Photos" },
   { slug: "uk-driving-licence-photo", title: "UK Driving Licence Photo", flag: "🚗", spec: "DVLA 35×45 mm", group: "Other UK Documents" },
   { slug: "uk-visa-photo", title: "UK Visa Photo", flag: "🛂", spec: "UKVI & ETA", group: "Other UK Documents" },
+  { slug: "photo-railcard", title: "UK Railcard Photo", flag: "🚆", spec: "35×45 mm", group: "Other UK Documents" },
   { slug: "us-visa-photo-tool", title: "US Visa Photo Maker", flag: "🇺🇸", spec: "2×2 inches", group: "Visas & Other Countries" },
   { slug: "us-visa-passport-photo-size", title: "US Visa Photo Size & Rules", flag: "📏", spec: "DS-160 600×600 px", group: "Visas & Other Countries" },
   { slug: "schengen-visa-photo", title: "Schengen Visa Photo", flag: "🇪🇺", spec: "35×45 mm", group: "Visas & Other Countries" },

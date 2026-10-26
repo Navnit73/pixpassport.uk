@@ -46,6 +46,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/photo-railcard",
+        destination: "/tool/photo-railcard",
+        permanent: true,
+      },
+      {
         source: "/us-visa-photo",
         destination: "/tool/us-visa-photo-tool",
         permanent: true,
