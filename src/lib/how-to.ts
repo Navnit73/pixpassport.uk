@@ -144,7 +144,9 @@ export async function getHowToBySlug(slug: string): Promise<HowToPageData | null
 
     // Editorial HTML comments (TODOs, notes) must not ship in the page source.
     const content = rawContent.replace(/<!--[\s\S]*?-->/g, "");
-    const { cleanedContent, faqs } = await parseFaqsFromMarkdown(content);
+    // The hero already renders the page's single <h1>, so drop a leading markdown H1.
+    const contentNoH1 = content.replace(/^\s*# .*\r?\n/, "");
+    const { cleanedContent, faqs } = await parseFaqsFromMarkdown(contentNoH1);
 
     const processedContent = await remark()
       .use(remarkGfm)

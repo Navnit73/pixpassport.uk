@@ -5,6 +5,8 @@ meta_description: "Learn how to take a DVLA driving licence photo at home, meet 
 summary: "Take a compliant driving licence photo at home and renew or change it with the DVLA."
 category: "Taking Your Photo"
 icon: "🚗"
+feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1794911224/dvla-change-photo-hero-photo-driving-licence_wuxeup.webp"
+feature_image_alt: "UK driving licence photo being prepared for a DVLA photo change"
 order: 3
 date_published: "2026-10-25"
 hero_title: "DVLA Photo: How to Take and Change Your Driving Licence Photo"
@@ -47,6 +49,8 @@ This guide shows you how to take the photo, what rules to follow and how to appl
 5. **Take several photos and choose the best.** Take five or six shots with the rear camera. Switch off filters and beauty mode, then pick the sharpest, most even photo.
 6. **Renew online or by post.** Apply online on GOV.UK and use your passport photo or upload your new one. Alternatively, send a printed photo with a D1 form by post.
 
+![Smartphone on a stand set up in front of a plain wall to take a UK DVLA driving licence photo at home](https://res.cloudinary.com/dipzpwbbk/image/upload/v1794910993/uk-dvla-passport-photo-setup-with-smartphone_efikma.webp)
+
 ### What You Need Before You Start
 
 - A smartphone with a working rear camera
@@ -72,6 +76,8 @@ The DVLA expects the same standard as a UK passport photo. Check the latest word
 
 Shadows cause many rejections. Face a window and step away from the wall to avoid them. Our [UK passport photo requirements](/tool/passport-picture-requirements-uk-tool) page explains how to fix lighting problems, and our [UK passport picture rules](/tool/passport-picture-rules-uk) page covers the full standard.
 
+![Example of a compliant UK DVLA driving licence photo with a plain background and neutral expression](https://res.cloudinary.com/dipzpwbbk/image/upload/v1794910993/uk-dvla-driving-licence-exampl_t0r71d.webp)
+
 ## How to Change or Renew the Photo on Your Driving Licence
 
 You cannot simply swap your photo. You must renew your full or provisional licence to get a new one with an updated photo.
@@ -93,6 +99,8 @@ Complete a D1 form, which you can get from a Post Office or order from the DVLA,
 - The fee, which is £17 by post at the time of writing
 
 The DVLA says a new licence should arrive within three weeks. You can keep driving while you wait.
+
+![DVLA photo change passport photo 4x6 inch print template with passport-size photos](https://res.cloudinary.com/dipzpwbbk/image/upload/v1794910992/dvla-photo-change-passport-photo-4_6-template_dneegs.webp)
 
 ### Change a Photo on a Provisional Licence
 
@@ -121,7 +129,11 @@ Drivers aged 70 or over, and people with a medical short-period licence, pay not
 
 ## Fix Your Background Before You Apply
 
+![Woman editing a passport-style photo on a laptop at a desk before submitting it to the DVLA](https://res.cloudinary.com/dipzpwbbk/image/upload/v1794910993/woman-editing_passport-photo-at-desk_dxddvx.webp)
+
 If your wall is not quite plain enough, our [passport photo maker](/passport-size-photo-maker) can replace the background and crop your photo to the right size. It cannot remove shadows from your face, so retake the photo if you spot any. Run the result through the [UK passport photo checker](/tool/passport-photo-checker-uk) before you submit. Need the exact DVLA size and pixel dimensions? See our [UK driving licence photo](/tool/uk-driving-licence-photo) page. If you also need a passport photo, read [how to take a passport photo at home](/how-to/take-a-passport-photo-at-home).
+
+![UK driving licence photo editor showing a photo cropped and ready for the DVLA](https://res.cloudinary.com/dipzpwbbk/image/upload/v1794910993/uk-driving-licence-photo-editor_mzanse.webp)
 
 ## Frequently Asked Questions
 

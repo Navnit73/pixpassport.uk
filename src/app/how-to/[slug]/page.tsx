@@ -138,7 +138,7 @@ export default async function HowToGuidePage({ params }: PageProps) {
       <main className="flex-1 bg-white text-slate-900" id="main-content">
         {/* Hero */}
         <section className="bg-slate-50/80 py-10 sm:py-16 border-b border-slate-200/80" aria-label="Guide overview">
-          <div className="container-narrow max-w-4xl">
+          <div className="container-narrow max-w-[38.4rem]">
             <nav className="text-xs text-slate-600 mb-6" aria-label="Breadcrumb">
               <ol className="flex items-center gap-1.5 list-none p-0 m-0">
                 <li>
@@ -233,23 +233,24 @@ export default async function HowToGuidePage({ params }: PageProps) {
 
         {/* Article */}
         <section className="py-12 sm:py-16 bg-white border-b border-slate-200/80 scroll-mt-20" id="guide" aria-label="Guide content">
-          <div className="container-narrow max-w-4xl">
+          <div className="container-narrow max-w-[38.4rem]">
             <article>
               {guide.feature_image && (
-                <figure className="relative w-full aspect-[16/9] mb-10 rounded-3xl overflow-hidden border border-slate-200 bg-slate-50">
+                <figure className="w-full max-w-md mx-auto mb-8 rounded-2xl overflow-hidden border border-slate-200 bg-slate-50">
                   <Image
                     src={guide.feature_image}
                     alt={guide.feature_image_alt || guide.hero_title}
-                    fill
+                    width={1672}
+                    height={941}
                     priority
-                    sizes="(max-width: 896px) 100vw, 896px"
-                    className="object-cover"
+                    sizes="(max-width: 448px) 100vw, 448px"
+                    className="block w-full h-auto"
                   />
                 </figure>
               )}
 
               <div
-                className="markdown-content max-w-none"
+                className="markdown-content howto-content max-w-none"
                 dangerouslySetInnerHTML={{ __html: guide.contentHtml }}
               />
 

@@ -580,3 +580,13 @@ img {
 .markdown-content summary::-webkit-details-marker {
   display: none;
 }
+
+.howto-content img {
+  display: block;
+  width: 100%;
+  max-width: 36rem;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+}
