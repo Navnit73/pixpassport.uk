@@ -40,7 +40,7 @@ The editor centres your face and crops the image to the 35 × 45 mm passport pho
 
 ### 1.3 Step 3: Download Your Photo
 
-Review the preview, then download your finished photo. If the result is not right, go back and retake it at no extra effort.
+Review the preview, then download your finished photo. If the result is not right, go back and retake it at no extra effort. Before you submit the application, you can also run the file through a [UK Passport Photo Checker Online Free](https://passport-photo-checker.com/checker/uk-passport-photo-checker-online-free) for a second check against HM Passport Office rules.
 
 #### 1.3.1 Digital file and printable sheet options
 
