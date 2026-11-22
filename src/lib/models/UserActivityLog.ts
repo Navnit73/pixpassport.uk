@@ -19,15 +19,28 @@ const COLLECTION_NAME = "user_activity_logs";
 
 let _ensured = false;
 
-async function ensureIndexes(col: Collection<UserActivityLogDocument>) {
-  if (_ensured) return;
-  await col.createIndex({ paymentId: 1 }, { sparse: true });
-  await col.createIndex({ email: 1 }, { sparse: true });
-  await col.createIndex({ event: 1 });
-  await col.createIndex({ createdAt: -1 });
-  // TTL: auto-delete logs older than 90 days
-  await col.createIndex({ createdAt: 1 }, { expireAfterSeconds: 90 * 86400 });
-  _ensured = true;
+let _ensuring: Promise<void> | null = null;
+
+function ensureIndexes(col: Collection<UserActivityLogDocument>): Promise<void> {
+  if (_ensured) return Promise.resolve();
+  // Parallel and non-fatal: logging indexes must never block or break a request
+  _ensuring ??= Promise.all([
+    col.createIndex({ paymentId: 1 }, { sparse: true }),
+    col.createIndex({ email: 1 }, { sparse: true }),
+    col.createIndex({ event: 1 }),
+    col.createIndex({ createdAt: -1 }),
+    // TTL: auto-delete logs older than 90 days
+    col.createIndex({ createdAt: 1 }, { expireAfterSeconds: 90 * 86400 }),
+  ]).then(
+    () => {
+      _ensured = true;
+    },
+    (err) => {
+      console.warn("[UserActivityLog] index setup skipped:", err?.message || err);
+      _ensured = true;
+    }
+  );
+  return _ensuring;
 }
 
 export async function getActivityLogCollection(

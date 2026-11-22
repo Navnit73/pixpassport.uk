@@ -122,21 +122,34 @@ async function safeCreateIndex(
   }
 }
 
-async function ensureIndexes(col: Collection<PaymentDocument>) {
-  if (_ensured) return;
-  await safeCreateIndex(col, { paymentId: 1 }, { unique: true });
-  // Matches the existing production index (partial, so documents without an order id are allowed)
-  await safeCreateIndex(
-    col,
-    { razorpayOrderId: 1 },
-    { unique: true, partialFilterExpression: { razorpayOrderId: { $type: "string" } } }
+let _ensuring: Promise<void> | null = null;
+
+function ensureIndexes(col: Collection<PaymentDocument>): Promise<void> {
+  if (_ensured) return Promise.resolve();
+  // One shared in-flight promise, indexes created in parallel (not 7 sequential round trips)
+  _ensuring ??= Promise.all([
+    safeCreateIndex(col, { paymentId: 1 }, { unique: true }),
+    // Matches the existing production index (partial, so documents without an order id are allowed)
+    safeCreateIndex(
+      col,
+      { razorpayOrderId: 1 },
+      { unique: true, partialFilterExpression: { razorpayOrderId: { $type: "string" } } }
+    ),
+    safeCreateIndex(col, { email: 1 }),
+    safeCreateIndex(col, { status: 1 }),
+    safeCreateIndex(col, { createdAt: -1 }),
+    safeCreateIndex(col, { "image.resultId": 1 }),
+    safeCreateIndex(col, { downloadToken: 1 }, { sparse: true }),
+  ]).then(
+    () => {
+      _ensured = true;
+    },
+    (err) => {
+      _ensuring = null; // allow retry on next request
+      throw err;
+    }
   );
-  await safeCreateIndex(col, { email: 1 });
-  await safeCreateIndex(col, { status: 1 });
-  await safeCreateIndex(col, { createdAt: -1 });
-  await safeCreateIndex(col, { "image.resultId": 1 });
-  await safeCreateIndex(col, { downloadToken: 1 }, { sparse: true });
-  _ensured = true;
+  return _ensuring;
 }
 
 export async function getPaymentCollection(

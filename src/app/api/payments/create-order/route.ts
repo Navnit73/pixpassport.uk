@@ -3,7 +3,7 @@
  * Creates a Razorpay order and a pending payment record.
  */
 
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse, after, type NextRequest } from "next/server";
 import { z } from "zod";
 import crypto from "crypto";
 import { createPaymentOrder } from "@/lib/payments/payment-service";
@@ -86,12 +86,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    await logActivity({
-      event: "checkout_initiated",
-      status: "started",
-      email: data.email,
-      metadata: { resultId: data.resultId },
-    });
+    // Logging is best-effort and must not delay the checkout
+    after(() =>
+      logActivity({
+        event: "checkout_initiated",
+        status: "started",
+        email: data.email,
+        metadata: { resultId: data.resultId },
+      })
+    );
 
     const order = await createPaymentOrder({
       email: data.email,

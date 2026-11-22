@@ -99,19 +99,24 @@ function saveStoredPayment(resultId: string, info: StoredPaymentInfo) {
 /**
  * Dynamically load Razorpay checkout script
  */
+let razorpayScriptPromise: Promise<boolean> | null = null;
+
 function loadRazorpayScript(): Promise<boolean> {
-  return new Promise((resolve) => {
-    if (typeof window === "undefined") return resolve(false);
-    if ((window as unknown as { Razorpay?: unknown }).Razorpay) {
-      return resolve(true);
-    }
+  if (typeof window === "undefined") return Promise.resolve(false);
+  if ((window as unknown as { Razorpay?: unknown }).Razorpay) return Promise.resolve(true);
+  razorpayScriptPromise ??= new Promise<boolean>((resolve) => {
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.async = true;
     script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
+    script.onerror = () => {
+      razorpayScriptPromise = null; // allow a retry on the next click
+      script.remove();
+      resolve(false);
+    };
     document.body.appendChild(script);
   });
+  return razorpayScriptPromise;
 }
 
 function getCountryFlag(countryCode?: string, countryName?: string): string {
@@ -289,6 +294,11 @@ export default function PassportPhotoPreviewPage() {
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
   const [paymentError, setPaymentError] = useState("");
   const [downloading, setDownloading] = useState(false);
+
+  // Warm up the payment gateway script so the Pay click doesn't wait on a download
+  useEffect(() => {
+    void loadRazorpayScript();
+  }, []);
 
   // Handle ESC key to close open modals
   useEffect(() => {

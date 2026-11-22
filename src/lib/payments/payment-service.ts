@@ -3,6 +3,7 @@
  */
 
 import crypto from "crypto";
+import { after } from "next/server";
 import {
   getPaymentCollection,
   type PaymentDocument,
@@ -115,25 +116,13 @@ export async function createPaymentOrder(params: {
     });
   }
 
-  // If originalPreview provided (data URI / URL), upload to Cloudinary in background or save
-  let originalImageUrl: string | undefined = undefined;
-  if (params.originalPreview) {
-    try {
-      if (params.originalPreview.startsWith("http")) {
-        originalImageUrl = params.originalPreview;
-      } else {
-        const uploadRes = await uploadOriginalPhotoToCloudinary({
-          imageSource: params.originalPreview,
-          resultId: params.resultId,
-        });
-        if (uploadRes) {
-          originalImageUrl = uploadRes.secureUrl;
-        }
-      }
-    } catch (uploadErr) {
-      console.warn("[payment-service] Original photo upload warning:", uploadErr);
-    }
-  }
+  // Original photo: an http(s) URL is stored directly. A data URI is uploaded to Cloudinary
+  // AFTER the response (below), so the customer isn't kept waiting on a multi-MB upload.
+  const originalImageUrl: string | undefined = params.originalPreview?.startsWith("http")
+    ? params.originalPreview
+    : undefined;
+  const originalToUpload =
+    params.originalPreview && !originalImageUrl ? params.originalPreview : undefined;
 
   const payment: PaymentDocument = {
     paymentId,
@@ -167,7 +156,7 @@ export async function createPaymentOrder(params: {
       countryName: params.countryName,
       geoCountry: params.geoCountry || undefined,
       isExpertEdit: plan === "expert_edit",
-      originalPreviewUrl: originalImageUrl || (params.originalPreview ? params.originalPreview.slice(0, 500) : undefined),
+      originalPreviewUrl: originalImageUrl,
     },
     createdAt: new Date(),
     updatedAt: new Date(),
@@ -175,18 +164,42 @@ export async function createPaymentOrder(params: {
 
   await col.insertOne(payment);
 
-  await logActivity({
-    event: "razorpay_order_created",
-    status: "success",
-    paymentId,
-    email: params.email,
-    metadata: {
-      razorpayOrderId: rzOrder.id,
-      resultId: params.resultId,
-      planType: plan,
-      amount: planPricing.amountInSubunits,
-      currency: planPricing.currency,
-    },
+  after(async () => {
+    if (originalToUpload) {
+      try {
+        const uploadRes = await uploadOriginalPhotoToCloudinary({
+          imageSource: originalToUpload,
+          resultId: params.resultId,
+        });
+        if (uploadRes) {
+          await col.updateOne(
+            { paymentId },
+            {
+              $set: {
+                "image.originalImageUrl": uploadRes.secureUrl,
+                "metadata.originalPreviewUrl": uploadRes.secureUrl,
+                updatedAt: new Date(),
+              },
+            }
+          );
+        }
+      } catch (uploadErr) {
+        console.warn("[payment-service] Original photo upload warning:", uploadErr);
+      }
+    }
+    await logActivity({
+      event: "razorpay_order_created",
+      status: "success",
+      paymentId,
+      email: params.email,
+      metadata: {
+        razorpayOrderId: rzOrder.id,
+        resultId: params.resultId,
+        planType: plan,
+        amount: planPricing.amountInSubunits,
+        currency: planPricing.currency,
+      },
+    });
   });
 
   return {
