@@ -100,15 +100,42 @@ const COLLECTION_NAME = "payments";
 
 let _ensured = false;
 
+/**
+ * Create an index, tolerating a pre-existing index with the same name but different options
+ * (Mongo codes 85 IndexOptionsConflict / 86 IndexKeySpecsConflict). The database is shared, so
+ * an equivalent index may already exist; that must never take a request down.
+ */
+async function safeCreateIndex(
+  col: Collection<PaymentDocument>,
+  spec: Parameters<Collection<PaymentDocument>["createIndex"]>[0],
+  options?: Parameters<Collection<PaymentDocument>["createIndex"]>[1]
+) {
+  try {
+    await col.createIndex(spec, options);
+  } catch (err) {
+    const code = (err as { code?: number }).code;
+    if (code === 85 || code === 86) {
+      console.warn("[Payment] index already exists with different options, skipping:", JSON.stringify(spec));
+      return;
+    }
+    throw err;
+  }
+}
+
 async function ensureIndexes(col: Collection<PaymentDocument>) {
   if (_ensured) return;
-  await col.createIndex({ paymentId: 1 }, { unique: true });
-  await col.createIndex({ razorpayOrderId: 1 }, { unique: true });
-  await col.createIndex({ email: 1 });
-  await col.createIndex({ status: 1 });
-  await col.createIndex({ createdAt: -1 });
-  await col.createIndex({ "image.resultId": 1 });
-  await col.createIndex({ downloadToken: 1 }, { sparse: true });
+  await safeCreateIndex(col, { paymentId: 1 }, { unique: true });
+  // Matches the existing production index (partial, so documents without an order id are allowed)
+  await safeCreateIndex(
+    col,
+    { razorpayOrderId: 1 },
+    { unique: true, partialFilterExpression: { razorpayOrderId: { $type: "string" } } }
+  );
+  await safeCreateIndex(col, { email: 1 });
+  await safeCreateIndex(col, { status: 1 });
+  await safeCreateIndex(col, { createdAt: -1 });
+  await safeCreateIndex(col, { "image.resultId": 1 });
+  await safeCreateIndex(col, { downloadToken: 1 }, { sparse: true });
   _ensured = true;
 }
 
