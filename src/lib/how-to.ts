@@ -14,7 +14,7 @@ export type HowToCategory =
   | "Applying & Uploading"
   | "Printing";
 
-/** Display order of categories on the /how-to hub. Unknown categories are listed last. */
+/** Displayh order of categories on the /how-to hub. Unknown categories are listed last. */
 export const HOW_TO_CATEGORIES: HowToCategory[] = [
   "Taking Your Photo",
   "Editing & Checking",
