@@ -74,3 +74,6 @@ Thumbs.db
 .cache/
 .eslintcache
 .turbo/
+
+# Local VPS deploy guide (not committed)
+DEPLOY.md
