@@ -87,6 +87,8 @@ export interface PaymentDocument {
     countryName?: string;
     /** Visitor's geo-IP country used to pick the charged currency */
     geoCountry?: string;
+    /** Site the payment originated from, e.g. "pixpassport.uk" */
+    source?: string;
     isExpertEdit?: boolean;
     originalPreviewUrl?: string;
   };

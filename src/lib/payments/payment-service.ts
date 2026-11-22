@@ -15,6 +15,8 @@ import { createRazorpayOrder } from "@/lib/payments/razorpay";
 import { uploadOriginalPhotoToCloudinary } from "@/lib/storage/cloudinary";
 import { logActivity } from "@/lib/logging/activity-logger";
 
+const PAYMENT_SOURCE = "pixpassport.uk";
+
 /**
  * Razorpay rejects unsupported currencies with a 400 BAD_REQUEST_ERROR naming the
  * currency field, e.g. { statusCode: 400, error: { field: "currency", description: "Currency is not supported" } }.
@@ -82,6 +84,9 @@ export async function createPaymentOrder(params: {
 
   // Create Razorpay order — amount comes from server config, NOT from client
   const orderNotes = {
+    // Identifies which site the payment came from (the Razorpay account is shared across sites)
+    source: PAYMENT_SOURCE,
+    website: `https://${PAYMENT_SOURCE}`,
     paymentId,
     email: params.email,
     resultId: params.resultId,
@@ -155,6 +160,7 @@ export async function createPaymentOrder(params: {
       countryCode: params.countryCode,
       countryName: params.countryName,
       geoCountry: params.geoCountry || undefined,
+      source: PAYMENT_SOURCE,
       isExpertEdit: plan === "expert_edit",
       originalPreviewUrl: originalImageUrl,
     },
