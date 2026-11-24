@@ -46,7 +46,7 @@ export const CURRENCIES = {
   HKD: { code: "HKD", symbol: "HK$", exponent: 2, prices: { standard: 7900, expert_edit: 12900 }, paypal: true },
   CHF: { code: "CHF", symbol: "CHF ", exponent: 2, prices: { standard: 899, expert_edit: 1499 }, paypal: true },
   AED: { code: "AED", symbol: "AED ", exponent: 2, prices: { standard: 3699, expert_edit: 6299 }, paypal: false },
-  INR: { code: "INR", symbol: "₹", exponent: 2, prices: { standard: 49900, expert_edit: 89900 }, paypal: false },
+  INR: { code: "INR", symbol: "₹", exponent: 2, prices: { standard: 1000, expert_edit: 89900 }, paypal: false },
 } as const satisfies Record<string, CurrencyDefinition>;
 
 export type CurrencyCode = keyof typeof CURRENCIES;
