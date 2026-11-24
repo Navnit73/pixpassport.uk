@@ -38,7 +38,7 @@ export interface CurrencyDefinition {
 export const CURRENCIES = {
   GBP: { code: "GBP", symbol: "£", exponent: 2, prices: { standard: 799, expert_edit: 1399 }, paypal: true },
   USD: { code: "USD", symbol: "$", exponent: 2, prices: { standard: 999, expert_edit: 1699 }, paypal: true },
-  EUR: { code: "EUR", symbol: "€", exponent: 2, prices: { standard: 899, expert_edit: 1599 }, paypal: true },
+  EUR: { code: "EUR", symbol: "€", exponent: 2, prices: { standard: 799, expert_edit: 1599 }, paypal: true },
   CAD: { code: "CAD", symbol: "CA$", exponent: 2, prices: { standard: 1399, expert_edit: 2399 }, paypal: true },
   AUD: { code: "AUD", symbol: "A$", exponent: 2, prices: { standard: 1499, expert_edit: 2599 }, paypal: true },
   NZD: { code: "NZD", symbol: "NZ$", exponent: 2, prices: { standard: 1699, expert_edit: 2899 }, paypal: true },
