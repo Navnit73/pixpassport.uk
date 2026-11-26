@@ -1,280 +1,222 @@
 ---
-title: "UK Passport Photo Requirements: Size, Background and Rules"
-meta_title: "UK Passport Photo Requirements 2026: Size, Rules and Checker"
-meta_description: "UK passport photo requirements explained: 35 × 45 mm prints, 600 × 750 px digital photos, background, glasses and pose rules. Check your photo free."
-summary: "Every HM Passport Office photo rule in plain English, for printed and digital photos, with a free checker to test yours before you apply."
-category: "Taking Your Photo"
+title: "UK Passport Photo Checklist: 12 Rules to Check Before You Apply"
+meta_title: "UK Passport Photo Checklist: 12 Rules Before You Apply"
+meta_description: "Tick off 12 UK passport photo rules before you apply: size, head height, background, shadows, expression, glasses and age. Free photo check in seconds."
+summary: "A 12-point checklist to test your UK passport photo against HM Passport Office rules before you upload or post it."
+category: "Editing & Checking"
 icon: "📋"
 order: 1
 date_published: "2026-11-21"
-hero_title: "UK Passport Photo Requirements (Size, Background and Rules)"
-hero_subtitle: "Size, background, pose, glasses and head covering rules for printed and digital UK passport photos, so your application is not delayed by a bad photo."
-total_time: "PT15M"
+date_modified: "2026-11-26"
+hero_title: "UK Passport Photo Checklist: 12 Rules to Check Before You Apply"
+hero_subtitle: "Run through these 12 checks in five minutes. If your photo passes every one, it meets the HM Passport Office requirements for printed and digital photos."
+total_time: "PT5M"
 cta_href: "/tool/passport-photo-checker-uk"
-cta_title: "Check your photo against UK rules"
-cta_description: "Upload a photo and test its size, background, lighting and face position in seconds before you apply."
+cta_title: "Let the checker tick the list for you"
+cta_description: "Upload your photo and test its size, background, lighting and face position against the UK rules in seconds."
 cta_button_text: "Check my photo free"
 related_tools:
   - "passport-photo-checker-uk"
   - "uk-passport-photo"
   - "photo-size-35x45mm"
+  - "passport-picture-requirements-uk-tool"
   - "uk-baby-passport-photo"
-  - "passport-photo-at-home"
 steps:
-  - name: "Find a plain, light wall"
-    text: "Stand in front of a plain cream, light grey or other light-coloured wall with nothing behind you. Move about half a metre away from it so your body does not cast a shadow."
-  - name: "Face a window"
-    text: "Use daylight from a window in front of you so light falls evenly on both sides of your face. Turn off the flash and avoid lamps above or beside you."
-  - name: "Get a helper to hold the phone"
-    text: "Ask someone to hold the phone at your eye level, about 1 to 1.5 metres away. Use the rear camera, not the selfie camera."
-  - name: "Pose correctly"
-    text: "Face the camera straight on with your head upright. Keep your mouth closed, your expression plain, your eyes open and your hair away from your eyes."
-  - name: "Take several shots"
-    text: "Take five or six photos and switch off filters, beauty mode and portrait mode. Pick the sharpest one with no shadows."
-  - name: "Check the photo before you use it"
-    text: "Run the photo through a passport photo checker, then upload it or have it printed at 35 × 45 mm."
+  - name: "Check the size"
+    text: "A printed photo must be 35 mm wide by 45 mm high. A digital photo must be at least 600 pixels wide and 750 pixels tall."
+  - name: "Check the file size"
+    text: "A digital photo file must be between 50KB and 10MB. Use the original file, not a screenshot or a compressed copy."
+  - name: "Check the head size and framing"
+    text: "On a printed photo, your head must be 29 mm to 34 mm from chin to crown. On a photo taken on your own device, show your head, shoulders and upper body and do not crop it."
+  - name: "Check the background"
+    text: "Printed photos need a plain cream or light grey background. Digital photos need a plain, light-coloured background in clear contrast to you."
+  - name: "Check for shadows"
+    text: "Make sure there are no shadows on your face or on the wall behind you."
+  - name: "Check your head position"
+    text: "Face forwards and look straight at the camera, with your head upright and not tilted."
+  - name: "Check your expression"
+    text: "Keep a plain expression with your mouth closed. Do not smile, frown or raise your eyebrows."
+  - name: "Check your eyes"
+    text: "Your eyes must be open and visible, with no hair in front of them and no red-eye."
+  - name: "Check nothing else is in the photo"
+    text: "You must be alone in the photo, with nothing covering your face and no other objects in shot."
+  - name: "Check glasses and head coverings"
+    text: "Remove glasses unless you must wear them. Wear a head covering only for religious or medical reasons, with your full face visible."
+  - name: "Check the quality"
+    text: "The photo must be in colour, sharp and in focus, and not altered by filters, retouching or other software."
+  - name: "Check the date"
+    text: "The photo must have been taken in the last month and look like you now."
 ---
 
-# UK Passport Photo Requirements (Size, Background and Rules)
+# UK Passport Photo Checklist: 12 Rules to Check Before You Apply
 
-> **Quick answer:** A printed UK passport photo must be 35 mm wide × 45 mm high, with your head 29 to 34 mm from chin to crown, on a plain cream or light grey background. A digital photo must be at least 600 × 750 pixels and 50 KB to 10 MB, on a plain light-coloured background. Both must have been taken in the last month.
+> **Quick answer:** Before you apply, check that your photo is the right size (35 × 45 mm printed, or at least 600 × 750 px and 50KB–10MB digital), your head is 29–34 mm, the background is plain and light with no shadows, you have a plain expression with eyes open, and the photo is unedited and taken in the last month.
 
-> **[Check my photo free →](/tool/passport-photo-checker-uk)** Test your photo against these rules in seconds, before you send your application.
+> **[Check my photo free →](/tool/passport-photo-checker-uk)** Let the checker test most of this list for you in seconds.
 
-If your photo does not meet HM Passport Office (HMPO) rules, your application will be delayed. Here is every rule in plain English.
+A photo that fails even one rule delays your passport application. This checklist turns the HM Passport Office (HMPO) rules into 12 quick yes-or-no checks. For the full explanation of each requirement, see our main [UK passport photo requirements](/tool/uk-passport-photo) page.
 
-## UK passport photo size and format at a glance
+## The 12-Point UK Passport Photo Checklist
 
-### Printed photo specifications
+1. **Check the size.** A printed photo must be 35 mm wide by 45 mm high. A digital photo must be at least 600 pixels wide and 750 pixels tall.
+2. **Check the file size.** A digital photo file must be between 50KB and 10MB. Use the original file, not a screenshot or a compressed copy.
+3. **Check the head size and framing.** On a printed photo, your head must be 29 mm to 34 mm from chin to crown. On a photo taken on your own device, show your head, shoulders and upper body and do not crop it.
+4. **Check the background.** Printed photos need a plain cream or light grey background. Digital photos need a plain, light-coloured background in clear contrast to you.
+5. **Check for shadows.** Make sure there are no shadows on your face or on the wall behind you.
+6. **Check your head position.** Face forwards and look straight at the camera, with your head upright and not tilted.
+7. **Check your expression.** Keep a plain expression with your mouth closed. Do not smile, frown or raise your eyebrows.
+8. **Check your eyes.** Your eyes must be open and visible, with no hair in front of them and no red-eye.
+9. **Check nothing else is in the photo.** You must be alone in the photo, with nothing covering your face and no other objects in shot.
+10. **Check glasses and head coverings.** Remove glasses unless you must wear them. Wear a head covering only for religious or medical reasons, with your full face visible.
+11. **Check the quality.** The photo must be in colour, sharp and in focus, and not altered by filters, retouching or other software.
+12. **Check the date.** The photo must have been taken in the last month and look like you now.
 
-You need printed photos if you apply with a paper form. These are the rules from GOV.UK:
+The sections below explain how to test each check quickly.
 
-| Requirement | Printed photo rule |
+## Size and Format Checks (Checks 1 to 3)
+
+### How to check a printed photo
+
+Measure one photo with a ruler. It should be exactly 35 mm wide and 45 mm high, and your head should measure 29–34 mm from chin to crown.
+
+| Check | Printed photo rule |
 | :--- | :--- |
 | Size | 35 mm wide × 45 mm high |
-| Head size | 29 mm to 34 mm, from chin to crown |
+| Head size | 29 mm to 34 mm, chin to crown |
 | Number of photos | 2 identical photos |
-| Background | Plain cream or light grey |
 | Paper | Plain white photographic paper, in colour, no border |
 | Print quality | Printed to a professional standard |
 | Condition | No creases or tears, unmarked on both sides (unless countersigned) |
-| Framing | Close-up of your full head and upper shoulders |
-| Age of photo | Taken in the last month |
 
-The photo must not be a cut-down version of a bigger picture. For sizes in centimetres and inches, see our [quick UK passport photo size guide](/how-to/passport-photo-size-uk).
+The photo must not be a cut-down version of a bigger picture. Our [35x45 mm photo size guide](/tool/photo-size-35x45mm) shows the head-height band on a diagram.
 
-### Digital photo specifications (online application)
+### How to check a digital photo
 
-You need a digital photo if you apply online. GOV.UK sets these rules:
+On a phone, open the photo's details (the "i" or "Info" button) to see the pixel dimensions and file size.
 
-| Requirement | Digital photo rule |
+| Check | Digital photo rule |
 | :--- | :--- |
-| Pixel size | At least 600 pixels wide × 750 pixels high |
-| File size | At least 50 KB and no more than 10 MB |
-| Background | Plain and light-coloured, with clear contrast to you |
-| Colour | In colour, clear and in focus |
-| Editing | Not altered by computer software |
-| Framing (own device) | Head, shoulders and upper body. Do not crop it yourself |
-| Age of photo | Taken in the last month |
+| Pixel size | At least 600 × 750 px |
+| File size | 50KB to 10MB |
+| Framing (own device) | Head, shoulders and upper body. Do not crop it |
+| Background | Plain and light-coloured, in clear contrast to you |
 
-GOV.UK does not name a file type, but JPG is what most phones and booths produce. For pixel sizes at each DPI, use our [35 × 45 mm pixel and inch converter](/how-to/35x45mm-in-pixels-inches-cm).
+GOV.UK does not name a file type, but JPG is what most phones and booths produce, so it is the safest choice. For pixel sizes at each DPI, see our [35 × 45 mm pixel and inch converter](/how-to/35x45mm-in-pixels-inches-cm).
 
-### Printed vs digital: which one do you need?
+## Background and Lighting Checks (Checks 4 and 5)
 
-It depends on how you apply. If you apply online on GOV.UK, you need a digital photo. If you fill in a paper form, you need two printed photos.
+### Is the background plain enough?
 
-## What background and lighting do you need?
+Look at the edges of the photo. If you can see a light switch, a picture frame, a door edge or a pattern, it fails. A plain white wall usually works for a digital photo, but cream or light grey is safer for printed photos and pale skin.
 
-### Background colour for printed and digital photos
+### Are there any shadows?
 
-Printed photos need a plain cream or light grey background. Digital photos need a plain, light-coloured background with clear contrast to you. Neither can show objects or other people.
+Zoom in on both sides of your face, under your chin and on the wall behind your head. If one cheek is darker, retake the photo facing a window. If there is a dark halo behind your head, stand about half a metre further from the wall.
 
-### How to avoid shadows and glare
+## Face and Pose Checks (Checks 6 to 9)
 
-GOV.UK says there must be no shadows on your face or behind you. The easiest fix is soft, even daylight.
+### Is your head straight?
 
-- Face a window so light falls on both sides of your face.
-- Stand about half a metre away from the wall to stop a shadow forming behind your head.
-- Turn off the flash and avoid lamps directly above you.
+Your eyes should be level and your nose centred. A phone held below eye level tilts your head back and makes your chin look bigger.
 
-### Can I use a white wall at home?
+### Is your expression plain?
 
-Yes, a plain white or off-white wall usually works for a digital photo, because it is light-coloured. Make sure it has no marks, switches or picture frames in shot.
+Mouth closed, no smile and eyebrows relaxed. Even a small smile can delay your application. Children under 6 are the only exception.
 
-For printed photos, the rule says cream or light grey, so check how the wall looks on camera. Our [UK passport photo maker](/tool/uk-passport-photo) can help you prepare it.
+### Are both eyes clearly visible?
 
-## What pose and expression are allowed?
+Both eyes open, no hair across them and no red-eye. Daylight instead of flash avoids red-eye.
 
-### Neutral expression and closed mouth
+### Is anything else in the photo?
 
-You must have a plain expression with your mouth closed. Do not smile, frown or raise your eyebrows.
+No other people, hands, toys, earphones or objects. Nothing can cover any part of your face.
 
-### Looking straight at the camera
+## Glasses and Head Covering Checks (Check 10)
 
-Face forwards and look straight at the camera. Keep your head upright, not tilted to one side or up and down.
+### Glasses
 
-### Eyes open and visible (no red eye)
+The safest answer is to take them off. If you must wear them, they cannot be sunglasses or tinted, the frames must not cover your eyes, and there must be no glare or reflection on the lenses.
 
-Your eyes must be open and visible. Hair must not fall in front of your eyes.
+### Head coverings
 
-The photo must not have red eye. Using daylight instead of flash is the simplest way to avoid it.
+Wear one only for religious or medical reasons, with your full face visible from chin to forehead and no shadow across it. See our [passport picture requirements for glasses, hair and clothing](/tool/passport-picture-requirements-uk-tool) and the [hijab passport photo guide](/tool/hijab-passport-photo) for detail.
 
-## Can I wear glasses, a hat or a head covering?
+## Quality, Editing and Age Checks (Checks 11 and 12)
 
-### Glasses rules
+### Is the photo sharp and unedited?
 
-Do not wear glasses in your photo unless you have to. If you must wear them:
+Zoom in on your eyes. If they are soft or grainy, retake the photo. Turn off beauty mode, portrait mode and filters. The photo must not be altered by computer software.
 
-- They cannot be sunglasses or tinted glasses.
-- The frames must not cover your eyes.
-- There must be no glare, reflection or shadow over your eyes.
+### Was it taken in the last month?
 
-### Religious or medical head coverings
+You need a new photo for every new passport, even if you look the same. Do not reuse a photo from an old passport, visa or driving licence.
 
-You must not wear a head covering unless it is for religious or medical reasons. If you do wear one, your full face must still be visible.
+## Extra Checks for Paper Applications
 
-Nothing can cover your face. Make sure the covering does not cast a shadow across your forehead or cheeks.
+- Do you have **2 identical** photos?
+- Are they **loose**, not stapled or glued to the form?
+- Does your application need a **countersignatory**? First applications, lost or stolen replacements, renewals for children aged 11 or under, and renewals where your appearance has changed all do. They write "I certify that this is a true likeness of [name]" on the back of one photo, then sign and date it.
+- Were they printed at **100% scale**? See our guide to [printing passport photos at home](/print-passport-photos-at-home).
 
-### Hair, jewellery and earphones
+## Extra Checks for Children and Babies
 
-Your hair must not be in front of your eyes. Tie it back or push it behind your ears if needed.
+- Children under 6 do not have to look at the camera or have a plain expression.
+- Babies under 1 do not need their eyes open.
+- Every child must be alone, with no toys, dummies or visible hands.
 
-GOV.UK says nothing can cover your face and there must be no other objects in the photo. Take out earphones and remove anything that hides part of your face.
+Read our [UK baby passport photo rules](/how-to/baby-passport-photo-rules-uk) for step-by-step tips.
 
-## How to take a UK passport photo at home
+## What to Do if Your Photo Fails a Check
 
-### Step-by-step with a phone
+| Failed check | Quick fix |
+| :--- | :--- |
+| Size or head height | Let a [35x45 mm photo tool](/tool/photo-size-35x45mm) crop it to the exact frame |
+| Background | Retake against a plain wall, or replace the background in our [UK passport photo maker](/tool/uk-passport-photo) |
+| Shadows | Face a window and stand away from the wall, then retake |
+| Expression or head tilt | Retake with a helper holding the phone at eye level |
+| Glare on glasses | Take your glasses off and retake |
+| Blurry or edited | Retake with filters and beauty mode turned off |
+| Older than a month | Take a new photo |
 
-1. **Find a plain, light wall.** Stand in front of a plain cream, light grey or other light-coloured wall with nothing behind you. Move about half a metre away from it so your body does not cast a shadow.
-2. **Face a window.** Use daylight from a window in front of you so light falls evenly on both sides of your face. Turn off the flash and avoid lamps above or beside you.
-3. **Get a helper to hold the phone.** Ask someone to hold the phone at your eye level, about 1 to 1.5 metres away. Use the rear camera, not the selfie camera.
-4. **Pose correctly.** Face the camera straight on with your head upright. Keep your mouth closed, your expression plain, your eyes open and your hair away from your eyes.
-5. **Take several shots.** Take five or six photos and switch off filters, beauty mode and portrait mode. Pick the sharpest one with no shadows.
-6. **Check the photo before you use it.** Run the photo through a passport photo checker, then upload it or have it printed at 35 × 45 mm.
-
-### Best distance, height and light
-
-Hold the phone at eye level, about 1 to 1.5 metres away. Very close phone shots can stretch your nose and forehead.
-
-The best light is bright daylight from a window, without direct sun.
-
-### Why you should ask someone else to take it
-
-GOV.UK says you will need someone to help you take a photo during your online application. Selfies held at arm's length are often tilted, too close or shadowed.
-
-A helper can keep the phone level and check your pose.
-
-## How to print or upload your photo
-
-### Printing on the right paper
-
-Printed photos must be in colour on plain white photographic paper, printed to a professional standard, with no border. Home printing on plain office paper is not suitable.
-
-You need two identical photos at exactly 35 × 45 mm, left loose and not attached to your form. See our guide to [printing passport photos at home](/print-passport-photos-at-home). For a first passport and some other paper applications, a countersignatory must sign the back of one photo, as explained on GOV.UK.
-
-### Uploading a digital photo online
-
-When you take the photo on your own device during your application, upload the full image. GOV.UK says not to crop it, as it will be done for you.
-
-Before you upload, make sure the file is at least 600 × 750 pixels and between 50 KB and 10 MB. A quick check now saves a delay later.
-
-### Getting a photo code from a booth or shop
-
-Many photo booths and shops can give you a digital photo code. Choose the option to get a code with your photos, then enter it during your online application.
-
-GOV.UK says photos from a booth or shop are more likely to be approved than photos taken on your own device.
-
-## Why passport photos get rejected
-
-### The 8 most common mistakes
-
-1. Shadows on your face or on the wall behind you
-2. A patterned, dark or cluttered background
-3. Smiling, an open mouth or a tilted head
-4. Glare on glasses or frames covering your eyes
-5. Hair covering your eyes
-6. Filters, beauty mode or other editing
-7. A blurry or low-resolution image
-8. A photo older than one month
-
-### What happens if your photo is rejected
-
-GOV.UK says your application will be delayed if your photos do not meet the rules. Our guide on [why passport photos get rejected](/how-to/passport-photo-rejected-uk) explains each problem and how to fix it.
-
-### Check your photo before you apply (tool CTA)
-
-The quickest way to avoid a delay is to check your photo first. Our [passport photo checker](/tool/passport-photo-checker-uk) tests the size, background, lighting and face position.
-
-If it passes, your photo has a good chance of passing HMPO's checks too.
-
-## Special cases
-
-### Babies and children (link to /how-to/baby-passport-photo-rules-uk)
-
-Some rules are relaxed for young children. Children under 6 do not have to look straight at the camera or have a plain expression. Babies under one do not need their eyes open.
-
-Children must be alone in the photo, with no toys or dummies. Read our [UK baby passport photo rules](/how-to/baby-passport-photo-rules-uk) for step-by-step tips.
-
-### Applicants who cannot meet every rule
-
-Some people cannot meet every rule because of a disability or medical condition. GOV.UK has a separate page on passport services for disabled people that explains the help available.
+Already had a photo rejected by HMPO? Our guide to [why passport photos get rejected](/how-to/passport-photo-rejected-uk) explains each problem in more detail. If you still need to take the photo, read [how to take a passport photo at home](/how-to/take-a-passport-photo-at-home).
 
 > **[Check my photo free →](/tool/passport-photo-checker-uk)** Find shadows, background problems and head-size issues before HMPO does.
 
-## Frequently asked questions
+## Frequently Asked Questions
+
+### How do I check if my passport photo is acceptable?
+
+Work through the 12 checks above, or upload it to a free [passport photo checker](/tool/passport-photo-checker-uk). The checker tests the size, background, lighting and face position in seconds.
+
+### How do I check the pixel size of my photo?
+
+On iPhone, open the photo and tap the "i" button. On Android, open the photo and choose "Details". You need at least 600 × 750 pixels and a file of 50KB to 10MB.
 
 ### Can I smile in my UK passport photo?
 
-No. GOV.UK says you must have a plain expression with your mouth closed, so a smile, even a small one, could delay your application. Keep your face relaxed, your eyes open and look straight at the camera. Children under 6 are the exception and do not need a plain expression.
-
-### Can I take my own passport photo?
-
-Yes, you can take a digital photo on your own device during your online application. GOV.UK says you will need someone to help you take it, so avoid arm's-length selfies. Use a plain light background, daylight from a window and a phone held at eye level about 1 to 1.5 metres away.
-
-### How recent must the photo be?
-
-Your photo must have been taken in the last month. You need a new photo for each new passport, even if your appearance has not changed. Do not reuse a photo from an old passport, visa or driving licence, as it will not meet the one-month rule and could delay your application.
+No. GOV.UK says you must have a plain expression with your mouth closed. Children under 6 are the exception.
 
 ### Can I use a filter or edit my photo?
 
-No. Your photo must be unaltered by computer software. That means no beauty filters, skin smoothing, background replacement or colour changes. Turn off beauty mode and portrait mode on your phone before you take it. Simple cropping to the right size is fine for printed photos.
-
-### What file type is accepted?
-
-GOV.UK does not name a specific file type on its photo guidance. It says a digital photo must be at least 600 × 750 pixels and between 50 KB and 10 MB. JPG is the format most phones and photo booths produce, so it is the safest choice for uploading.
+No. The photo must not be altered by computer software, so no beauty filters, skin smoothing or colour changes.
 
 ### Is a photo booth photo better than a phone photo?
 
-GOV.UK says photos from a booth or shop are more likely to be approved than photos taken on your own device. Booths have even lighting and a fixed background. A careful phone photo can still have a good chance of passing if you follow every rule and check it first.
+GOV.UK says photos from a booth or shop are more likely to be approved than photos taken on your own device. A careful phone photo that passes every check on this list still has a good chance.
 
-## Official sources
+### Does the checklist apply to renewals?
+
+Yes. Every new passport needs a new photo that meets the same rules, including renewals and replacements.
+
+## Official Sources
 
 - [GOV.UK: Photos for passports (digital photos)](https://www.gov.uk/photos-for-passports)
 - [GOV.UK: Photos for passports (printed photos)](https://www.gov.uk/photos-for-passports/photo-requirements)
 - [GOV.UK: Countersigning passport applications and photos](https://www.gov.uk/countersigning-passport-applications)
-- [GOV.UK: Apply for or renew a passport](https://www.gov.uk/apply-renew-passport)
 - [GOV.UK: Passport services for disabled people](https://www.gov.uk/passport-services-disabled)
 
 <!--
-Suggested images:
-1. uk-passport-photo-requirements-example.webp | alt: "Example of a UK passport photo that meets HMPO rules" | A correct passport photo: plain light grey background, neutral expression, head centred.
-2. uk-passport-photo-size-diagram.webp | alt: "UK passport photo size diagram: 35 mm wide by 45 mm high, head 29 to 34 mm" | Labelled diagram of print size and head height.
-3. passport-photo-lighting-window.webp | alt: "Person facing a window for even lighting in a passport photo" | Home setup with window light and helper holding phone.
-4. passport-photo-glasses-glare.webp | alt: "Passport photo with glare on glasses compared with a clear photo" | Side-by-side wrong vs right glasses photo.
-5. passport-photo-common-mistakes.webp | alt: "Common UK passport photo mistakes: shadows, smiling, tilted head" | Grid of rejected examples.
-6. passport-photo-countersign-back.webp | alt: "Back of a passport photo countersigned with a true likeness statement" | Countersignature wording on the back of a print.
-
-Internal links:
-- /tool/passport-photo-checker-uk | "Check my photo free", "passport photo checker"
-- /tool/uk-passport-photo | "UK passport photo maker"
-- /print-passport-photos-at-home | "printing passport photos at home"
-- /how-to/passport-photo-rejected-uk | "why passport photos get rejected"
-- /how-to/baby-passport-photo-rules-uk | "UK baby passport photo rules"
-- /how-to/passport-photo-size-uk | "quick UK passport photo size guide"
-- /how-to/35x45mm-in-pixels-inches-cm | "35 × 45 mm pixel and inch converter"
-
 VERIFY notes:
 - GOV.UK does not name a digital file type; the page says JPG is the common/safe choice, not an official rule.
-- GOV.UK does not state glossy vs matt; page says "plain white photographic paper" only.
-- After publishing: 301 redirect /tool/passport-picture-rules-uk and /tool/passport-picture-requirements-uk-tool to this page (per brief).
+- This page is the checklist; /tool/uk-passport-photo is the primary "UK passport photo requirements" page. Do not retarget this page to the same head term.
 -->

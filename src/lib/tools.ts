@@ -133,7 +133,9 @@ export async function getToolBySlug(slug: string): Promise<ToolPageData | null> 
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content: rawContent } = matter(fileContents);
     // Editorial HTML comments (TODOs, notes) must not ship in the page source.
-    const content = rawContent.replace(/<!--[\s\S]*?-->/g, "");
+    const withoutComments = rawContent.replace(/<!--[\s\S]*?-->/g, "");
+    // The hero already renders the page's single <h1>, so drop a leading markdown H1.
+    const content = withoutComments.replace(/^\s*# .*\r?\n/, "");
 
     // Extract FAQs from markdown if present
     const { cleanedContent, faqs: parsedFaqs } = await parseFaqsFromMarkdown(content);

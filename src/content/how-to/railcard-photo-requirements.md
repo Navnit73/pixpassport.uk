@@ -1,12 +1,13 @@
 ---
 title: "Railcard Photo Requirements: 16-25, 26-30 and Other Railcards"
 meta_title: "Railcard Photo Requirements UK (16-25, 26-30, Senior)"
-meta_description: "Railcard photo requirements explained: selfie rules, plain light background, JPG or PNG up to 5MB, and which railcards need a photo. Make yours free."
+meta_description: "Railcard photo requirements: selfie rules, plain light background, JPG or PNG up to 5MB, and which railcards need a photo. Make yours with a free preview."
 summary: "Which railcards need a photo, what it must look like, and how to upload it first time."
 category: "Applying & Uploading"
 icon: "🚆"
 order: 5
 date_published: "2026-11-21"
+date_modified: "2026-11-26"
 hero_title: "Railcard Photo Requirements (16-25, 26-30 and Other Railcards)"
 hero_subtitle: "Most railcards need a passport-style photo, and you can take it yourself. Here's what the photo must look like and how to upload it without errors."
 total_time: "PT10M"

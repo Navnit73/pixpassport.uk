@@ -1,176 +1,136 @@
 ---
 slug: "us-visa-photo-tool"
-title: "US Visa Photo Tool: Make a US Visa Photo Online"
-meta_description: "Make a US visa photo online. Crop your picture to the square 2x2 inch format, then download an image ready for your application."
+title: "US Visa Photo Maker: 2x2 Inch Photo Online (Free Preview)"
+meta_title: "US Visa Photo Maker: 2x2 Inch Photo Online, Free Preview"
+meta_description: "Make a 2x2 inch US visa photo online from the UK. Square 600×600 px DS-160 JPEG, white background, head-size check. Free preview, then £7.99 download."
 country_code: "US"
 document_type: "passport"
 badge: "US Dept of State 2×2 in Standard"
-hero_title: "US Visa Photo Maker Online"
+hero_title: "US Visa Photo Maker: 2x2 Inch Photo Online"
 cta_button_text: "Create My US Visa Photo"
-hero_subtitle: "Use our US visa photo tool to turn any picture into a square 2×2 inch (600×600 px) photo. Crop, remove the background, and check your head size in minutes."
+how_it_works_title: "Make a US Visa Photo in 3 Steps"
+hero_subtitle: "Turn a phone picture into a square 2×2 inch (600×600 px) US visa photo for the DS-160. We crop it, whiten the background and check your head size. Preview free, pay only when you download."
 dimensions_mm: "2 × 2 inches (51 × 51 mm)"
 # TODO: replace with a US-format image (current filename says "uk"). Suggested alt text is in feature_image_alt.
 feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790578095/us_passport_size_phoro_novzyr.webp"
 feature_image_alt: "US visa photo 2×2 inch square with plain white background"
 dimensions_px: "600 × 600 px"
 price: "7.99"
+cta_description: "Upload a phone photo, preview your square 2×2 inch US visa photo for free, and download the DS-160 JPEG and a 6×4″ print sheet for £7.99."
 ---
 
-## Make a US Visa Photo Online in Minutes
+## Make a 2x2 Inch US Visa Photo Online From the UK
 
-You do not need a studio to get a correct US visa photo. Upload a picture from your phone, and our US visa photo maker crops it to the square 2×2 inch format, replaces the background with white, and checks your head size against the State Department range.
+Most UK photo booths and high-street shops print 35 × 45 mm photos, which is the wrong shape for a US visa. Our US visa photo maker turns a picture from your phone into the square **2 × 2 inch (51 × 51 mm)** format the US Department of State asks for. You get a **600 × 600 px JPEG** for the DS-160 upload and a print sheet if your embassy appointment needs a paper copy.
 
-Use this tool for a US visa application (DS-160 or DS-260), a passport application, or a passport renewal. Download a 600×600 px JPEG for online upload, or arrange multiple copies on a printable sheet with our [passport photo print template generator](/passport-photo-print-template-generator) to print at a local shop.
+- **Square crop:** the maker sets a 1:1 frame around your face.
+- **White background:** it replaces your wall with plain white.
+- **Head-size check:** it sizes your head to the State Department range.
+- **Free preview:** you see the finished photo before you pay £7.99.
 
-## How the US Visa Photo Editor Works
+Need the full rules first? Our [US visa photo size guide](/tool/us-visa-passport-photo-size) covers every measurement, and the [US visa photo requirements](/how-to/us-visa-photo-requirements) guide covers pose, glasses and background in detail.
 
-1. **Upload your picture.** Choose a clear, front-facing photo from your phone or computer.
-2. **Let the tool crop it.** The editor centres your face and converts the image to a 1:1 square.
-3. **Check the result.** The tool removes the background and shows whether your head size fits the rules.
-4. **Download your photo.** Save a digital JPEG for your application, or a print-ready sheet.
+## How the US Visa Photo Maker Works
 
-The whole process takes about two minutes, and you can retake the photo as often as you like.
+1. **Take or upload a photo.** Use a clear, front-facing picture with your whole head and shoulders in frame.
+2. **Let the maker crop it.** It centres your face in a 2 × 2 inch square and replaces the background with white.
+3. **Check the preview.** Look at the head size, lighting and framing. Retake as many times as you like at no cost.
+4. **Download.** Get a DS-160-ready 600 × 600 px JPEG and a 6×4″ print sheet.
 
-## US Visa Photo Requirements at a Glance
+The whole process takes about two minutes.
 
-The US Department of State sets one photo standard for visas and passports. Check these rules before you take your picture. For DS-160 pixel sizes, interview prints and green card photos, see our [US visa photo size guide](/tool/us-visa-passport-photo-size).
+## US Visa Photo Spec Our Maker Uses
 
-| Requirement | US standard |
-| :--- | :--- |
-| Print size | 2 × 2 inches (51 × 51 mm) |
-| Digital size | 600×600 to 1200×1200 px, square |
-| File format | JPEG, in colour, under 240 KB |
-| Head size | 1 to 1 3/8 inches (25–35 mm), about 50–69% of the image height |
-| Background | Plain white or off-white, with no shadows |
-| Photo age | Taken within the last 6 months |
+| Setting       | What you get                                         |
+| :------------ | :--------------------------------------------------- |
+| Print size    | 2 × 2 inches (51 × 51 mm), square                    |
+| Digital size  | 600 × 600 px JPEG, within the 600–1200 px DS-160 range |
+| Head height   | Sized to fall within 50–69% of the image height      |
+| Background    | Plain white                                          |
+| Print sheet   | 2 × 2 inch photos laid out on a 6×4″ sheet           |
 
-<!-- TODO: verify every figure above against travel.state.gov before publishing -->
+For eye-line measurements, file-size limits and the difference between DS-160, green card and DV lottery photos, see the [US visa photo size](/tool/us-visa-passport-photo-size) page.
 
-## Detailed US Photo Guidelines
+## US Visa Photo Maker vs a UK Photo Studio
 
-### Size, Format and Quality
+| Option                      | Typical cost (UK)       | Square 2×2″? | Digital DS-160 file? |
+| :-------------------------- | :---------------------- | :----------- | :------------------- |
+| PixPassport online maker    | Free preview, £7.99     | Yes          | Yes                  |
+| High-street photo studio    | Often £10 to £15        | Ask first    | Sometimes extra      |
+| UK photo booth              | About £8 to £10         | Usually no   | Usually no           |
 
-- **Keep the image square.** A rectangular or stretched photo fails the upload check.
-- **Stay within the pixel range.** Use at least 600×600 px and no more than 1200×1200 px.
-- **Submit a real photograph.** Do not scan an old print, and do not use a filtered or edited image.
-- **Use a colour photo.** Black-and-white images fail.
+Studio and booth prices vary by shop and location, so treat these as rough guides. Many UK shops default to 35 × 45 mm, so if you use a studio, ask specifically for a US visa photo, 2 × 2 inches, with a digital copy.
 
-### Pose and Expression
+## Where to Use Your US Visa Photo
 
-- **Face the camera.** Look straight at the lens, with your head level and both eyes open.
-- **Keep it natural.** Use a neutral expression or a natural, unforced smile.
-- **Show your full face.** Keep hair, hands and objects away from your eyes and face.
+### DS-160 Online Visa Application
 
-### Glasses, Clothing and Head Coverings
+Upload the 600 × 600 px JPEG in the photo step of the DS-160 nonimmigrant visa form. The form checks the photo on upload. If it fails, read the error message, fix the issue it names, and try again. If the upload keeps failing, you can usually continue and bring a printed photo to your interview, but check the instructions for your case.
 
-- **Remove your glasses.** The State Department no longer accepts glasses in visa or passport photos.
-- **Wear everyday clothing.** Avoid uniforms and camouflage patterns.
-- **Wear head coverings only for religious or medical reasons.** You may need a signed statement, and your full face must stay visible.
+### US Embassy London or Consulate Belfast Interview
 
-## What to Do vs What to Avoid
+Some US embassies and consulates ask applicants to bring one printed 2 × 2 inch photo to the interview. Check your appointment confirmation and the [US Embassy & Consulates in the UK](https://uk.usembassy.gov/visas/) website before you go. Our download includes a print sheet you can take to Boots, Asda, Tesco or Snappy Snaps for a 6×4″ print.
 
-| Do this ✅ | Avoid this ❌ |
-| :--- | :--- |
-| Use a square 1:1 photo (600×600 px or 2×2 in) | Cropping to a rectangle or stretching the image |
-| Take the photo without glasses | Wearing glasses, tinted lenses or sunglasses |
-| Use a plain white or off-white background | Textured walls, patterns or shadows |
-| Look straight at the camera at eye level | Tilting your head up, down or sideways |
-| Light your face evenly | Glare, harsh shadows or a dark, grainy image |
-| Use a recent photo | Submitting a photo older than 6 months |
+### DS-260 Immigrant Visa and US Passport Renewal
 
-## What You Get With Our US Visa Photo Maker
+Immigrant visa applicants upload the same square JPEG through the Consular Electronic Application Center. US citizens in the UK renewing a passport use the same 2 × 2 inch standard. Follow the instructions in your case portal or on the State Department website.
 
-Our online tool handles each step, so you avoid the common mistakes.
+## How to Take a Good Photo for the Maker
 
-- **Automatic square crop:** The editor sets the 2×2 inch frame around your face.
-- **Background removal:** It replaces your wall or room with a clean white background.
-- **Head-size check:** It measures your head against the US range.
-- **Picture converter:** Turn an existing photo into a US visa picture without a retake using our [image to passport size converter](/tool/image-to-passport-size-converter).
-- **Phone-friendly editing:** Use any smartphone and finish in your browser.
-- **Digital and print output:** Download a JPEG for upload, or a [4×6″ print template](/passport-photo-print-template-generator) with 4 copies to print.
+A clean source photo gives the sharpest result.
 
-## How to Take a Good Source Photo
+- **Ask someone to take it.** Selfies distort your face, so use the rear camera held at eye level.
+- **Face a window.** Soft daylight from the front stops shadows on your face.
+- **Stand half a metre from a plain wall.** This stops your shadow falling behind you.
+- **Take your glasses off.** The State Department does not allow glasses in visa photos.
+- **Leave space around your head.** The maker needs room to crop the square correctly.
 
-A clear picture gives the cleanest result, so take a few minutes to set up.
+For a full walkthrough, read [how to take a visa photo at home](/how-to/take-visa-picture-at-home).
 
-- **Ask someone to help.** Selfies distort your face, so use the rear camera and have a friend hold it at eye level.
-- **Face a window.** Soft daylight removes shadows from your face.
-- **Stand about three feet from the camera.** Keep the lens level with your eyes.
-- **Stand in front of a plain wall.** The tool fixes the background, but a simple wall gives a sharper cut-out.
-- **Leave space around your head.** The editor needs room to crop the square correctly.
-- **Look straight ahead.** Relax your face and keep your head level.
+## Print 2x2 Inch US Visa Photos on 6×4″ Paper
 
-For US-specific home setup, including DV lottery and green card photos, read [how to take a visa photo at home](/how-to/take-visa-picture-at-home). For full smartphone tips, see our guide on [how to take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone) and our [passport photo at home DIY guide](/tool/passport-photo-at-home).
+Your download includes a 6×4″ sheet of 2 × 2 inch photos. Print it at 100% scale, with no "fit to page", at home or at a photo kiosk. If you want a different layout, the free [passport photo print template generator](/passport-photo-print-template-generator) can build one.
 
-## How to Submit Your US Visa Photo
+## Need a Different Size?
 
-The photo you need depends on how you apply.
-
-### Online Visa Application (DS-160)
-
-Upload your JPEG in the photo section of the DS-160 nonimmigrant visa form. The system checks the photo on upload, so read any error message and fix the issue it names. If the upload fails, bring a printed 2×2 inch photo to your interview.
-
-### Immigrant Visa Application (DS-260)
-
-Immigrant visa applicants upload a digital photo through the Consular Electronic Application Center (CEAC). Use the same 2×2 inch square JPEG, and follow the instructions in your case portal.
-
-### US Passport Application or Renewal
-
-For a paper application, print one 2×2 inch photo on photo-quality paper, and staple or attach it as the form directs. Some renewals also accept a digital photo online, so check the current State Department instructions for your case.
-
-### Print at Home or at a Shop
-
-If your visa appointment requires physical prints, use our free [passport photo print template generator](/passport-photo-print-template-generator) to layout 4 square 2×2″ photos on a standard 4×6″ print sheet at 300 DPI. Print at Boots, Tesco, Snappy Snaps or home at 100% scale.
-
-## Other Visa & Passport Photo Formats
-
-The US uses a square photo, but most European and Commonwealth countries use rectangular formats:
-- [UK Passport Photo Size & Requirements](/tool/uk-passport-photo) — Standard 35×45 mm UK specification
-- [Schengen Visa Photo Maker](/tool/schengen-visa-photo) — 35×45 mm European biometric standard
-- [Indian Passport & OCI Photo Maker](/tool/indian-passport-photo-maker) — 35×45 mm passport & 2×2″ OCI/eVisa formats
-- [UK Driving Licence Photo](/tool/uk-driving-licence-photo) — DVLA 35×45 mm rules
-- [Passport Size Photo Studio](/passport-size-photo-maker) — Create photo for 50+ countries
+- [US visa photo size and DS-160 rules](/tool/us-visa-passport-photo-size): 2 × 2 inch, 600 × 600 px and eye-line measurements
+- [UK passport photo requirements](/tool/uk-passport-photo): 35 × 45 mm UK standard
+- [Schengen visa photo](/tool/schengen-visa-photo): 35 × 45 mm for European visas
+- [Indian passport and OCI photo](/tool/indian-passport-photo-maker): 35 × 45 mm and 2 × 2 inch formats
+- [Passport size photo maker](/passport-size-photo-maker): 50+ countries
 
 ## Frequently Asked Questions
 
-### What size is a US visa photo?
+### How much does the US visa photo maker cost?
 
-A US visa photo measures 2×2 inches (51×51 mm). For online upload, use a square JPEG between 600×600 and 1200×1200 pixels.
+The preview is free. You can retake and preview as often as you like, then pay £7.99 to download the 600 × 600 px JPEG and the 6×4″ print sheet.
 
 ### Is there a free US visa photo tool?
 
-You can upload your picture and preview the cropped result before you download. To format printable sheets, our [passport photo print template generator](/passport-photo-print-template-generator) is completely free.
+Our preview is free. The US Department of State also offers a free tool that crops an existing image to 600 × 600 px, but it does not replace the background or check your head size. Our [print template generator](/passport-photo-print-template-generator) is also free.
 
-### Can I make a US visa photo online with my phone?
+### What size does the US visa photo maker produce?
 
-Yes. Take a clear, front-facing picture in even light, upload it, and the tool prepares the square crop and white background. Read our [iPhone passport photo guide](/tool/take-a-passport-photo-on-iphone) for step-by-step instructions.
+A square 2 × 2 inch (51 × 51 mm) photo, saved as a 600 × 600 px JPEG for the DS-160, plus a 6×4″ print sheet.
 
-### What background do I need for a US visa photo?
+### Can I make a US visa photo on my phone?
 
-Use a plain white or off-white background with no shadows or patterns. Our tool replaces your background automatically.
+Yes. Take a clear, front-facing photo in daylight, upload it in your browser, and the maker prepares the square crop and white background.
 
-### Can I wear glasses in a US visa photo?
+### Can I use a UK passport photo for my US visa?
 
-No. The State Department no longer accepts glasses in visa or passport photos, so remove them before you take the picture.
+No. A UK passport photo is 35 × 45 mm and portrait-shaped. A US visa photo must be a 2 × 2 inch square, and the head-size rule is different.
 
-### Can I smile in my US visa photo?
+### My DS-160 photo upload failed. What should I do?
 
-You can use a neutral expression or a natural, unforced smile. Keep your eyes open and your mouth relaxed.
+Read the error message. Common causes are a non-square image, a file over 240 KB, shadows or glasses. Make a new photo with the maker, which outputs a square 600 × 600 px JPEG, and upload it again.
 
-### How recent must my US visa photo be?
+### Do I need a printed photo for my US visa interview in London?
 
-Take the photo within the last 6 months, and make sure it looks like you today.
+Some applicants are asked to bring one. Check your appointment confirmation and the US Embassy & Consulates in the UK website. Your download includes a print sheet in case you need it.
 
-### Can I use the same photo for a visa and a passport?
+### Will my US visa photo definitely be accepted?
 
-Yes. The US applies the same 2×2 inch standard to both, so one compliant photo works for either application.
+No tool can promise that. The US embassy or consulate makes the final decision, but the maker sizes and checks the photo to avoid the most common mistakes.
 
-### How do I print 2×2 inch US visa photos on 4×6″ paper?
-
-Use our [passport photo print template generator](/passport-photo-print-template-generator) to place 4 identical 2×2″ photos onto a 4×6″ sheet with corner cutting marks.
-
-## Get Your US Visa Photo Now
-
-Upload your picture, and get a correctly sized 2×2 inch US visa photo in minutes. No studio visit and no editing skills needed.
-
-<!-- Recommended notice: "We are an independent service, not affiliated with the US Department of State. The Department makes the final decision on every photo." -->
+_PixPassport is an independent service and is not affiliated with the US Department of State or any US embassy or consulate. The embassy or consulate makes the final decision on every photo._

@@ -1,15 +1,15 @@
 ---
 slug: "digital-passport-photo"
-title: "Digital Photo for Passport: How to Get One for a GOV.UK Application"
-meta_title: "Digital Passport Photo UK: Photo Codes, Phone Photos & Rules"
-meta_description: "How to get a digital photo for a UK passport application: a photo code from a booth or shop, or a photo on your own device. GOV.UK rules, file size and common mistakes."
+title: "Digital Photo for Passport: Get One for Your UK Application or Renewal"
+meta_title: "Digital Photo for Passport UK: Renewal & New Applications"
+meta_description: "Get a digital photo for your UK passport or passport renewal: 600×750 px, 50KB–10MB, plain light background. Check it free online, download for £7.99."
 country_code: "GB"
 document_type: "passport"
 badge: "UK Digital Passport Photo"
-hero_title: "Digital Photo for Passport Applications"
+hero_title: "Digital Photo for Passport Applications and Renewals (UK)"
 cta_button_text: "Create My Digital Photo"
 how_it_works_title: "How to Check Your Digital Photo in 3 Steps"
-hero_subtitle: "You need a digital photo to apply for a UK passport online. Here are the two ways GOV.UK lets you get one, the rules your photo must meet, and how to check it before you submit."
+hero_subtitle: "Applying or renewing online on GOV.UK? You need one digital photo, not prints. See the two ways to get it, the exact file rules, and check your photo free before you submit."
 dimensions_mm: "No print size (digital)"
 feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790578820/digital-passport-photo_example_kehhir.webp"
 feature_image_alt: "Digital photo for a UK passport application on a phone, plain light background"
@@ -17,7 +17,7 @@ dimensions_px: "At least 600 × 750 px"
 price: "7.99"
 ---
 
-## Two Ways to Get a Digital Photo for Your UK Passport
+## How to Get a Digital Photo for Your Passport
 
 You need a digital photo to apply for a UK passport online, including renewals. GOV.UK gives you two options:
 
@@ -28,7 +28,7 @@ You need a digital photo to apply for a UK passport online, including renewals. 
 
 Either way, the photo must have been taken in the last month, and you need a new photo every time you get a new passport, even if your appearance has not changed.
 
-## GOV.UK Rules for Digital Passport Photos
+## Digital Passport Photo Requirements (GOV.UK Rules)
 
 ### Quality
 
@@ -55,6 +55,26 @@ In the photo, you must:
 - not have any shadows on your face or behind you
 
 **Glasses:** do not wear glasses unless you have to. If you must, they cannot be sunglasses or tinted, and your eyes must not be covered by the frames or any glare, reflection or shadow.
+
+## Digital Photo for Passport Renewal
+
+Renewing an adult passport online uses exactly the same digital photo rules as a first application. The difference is what you should watch out for:
+
+1. **You cannot reuse the photo from your old passport.** GOV.UK needs a photo taken in the last month, even if you look the same.
+2. **Check your old passport is eligible for online renewal.** Most adult passports are. If the online service sends you to a paper form, you need 2 printed photos instead (see our guide to [printing passport photos online](/tool/order-passport-photos-online)).
+3. **Have your digital photo ready before you start.** The online form times out, so prepare and check your photo first, then upload it in one go.
+4. **Renewing a child's passport?** Children under 6 have relaxed expression rules. See our [UK baby passport photo guide](/tool/uk-baby-passport-photo).
+
+For the full renewal walkthrough, read our [passport renewal photo guide](/tool/passport-renewal-photo-online).
+
+### Photo Code vs Your Own Digital File: Which Is Better?
+
+| | Photo code (booth or shop) | Your own digital photo |
+| :--- | :--- | :--- |
+| Typical cost | Usually around £7 to £15 at a booth or shop | Free to take; check free on PixPassport, download £7.99 |
+| Where | Photo booth, pharmacy or photo shop | At home, with someone to help |
+| Approval odds | GOV.UK says these are more likely to be approved | Good if you follow the rules and check the photo first |
+| Best for | People who want a printed and digital photo in one visit | People who want to avoid a trip out, or retake as often as they like |
 
 ## Digital vs Printed Passport Photos
 
@@ -91,7 +111,7 @@ Need prints for a paper form? See our [UK passport photo size and requirements](
 
 For full shooting instructions, see our guides on [how to take a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone) and [how to take a passport photo at home](/tool/passport-photo-at-home).
 
-## Check Your Photo Before You Submit
+## Check Your Digital Passport Photo Before You Submit
 
 Upload your picture to our [UK passport photo checker](/tool/passport-photo-checker-uk) and it checks your background, head position and framing against these rules, so you can spot problems before GOV.UK does. If you are applying on paper instead, you can download a 6×4″ print sheet to take to a photo shop using our [print template generator](/passport-photo-print-template-generator).
 
@@ -99,6 +119,7 @@ Upload your picture to our [UK passport photo checker](/tool/passport-photo-chec
 - **Applying for a child?** See the [UK baby passport photo guide](/tool/uk-baby-passport-photo).
 - **Need a driving licence photo?** Check the [UK driving licence photo guide](/tool/uk-driving-licence-photo).
 - **Need a photo for another country?** Use the [passport size photo maker](/passport-size-photo-maker) or check the [35×45 mm photo size guide](/tool/photo-size-35x45mm).
+- **Need a staff, student or CSCS card photo?** Use our [online ID photo maker](/tool/online-id-photo-maker).
 
 ## Frequently Asked Questions
 
@@ -129,6 +150,18 @@ No. An online application only needs the digital photo. Printed photos are only 
 ### Is a booth photo better than a phone photo?
 
 GOV.UK says photos from a booth or shop are more likely to be approved than photos taken on your own device.
+
+### Can I use a digital photo for passport renewal?
+
+Yes. Online adult renewals on GOV.UK use a digital photo. It must be new (taken in the last month), at least 600 × 750 pixels and between 50KB and 10MB.
+
+### Can I use the photo from my old passport to renew?
+
+No. You need a new photo for every passport, even if your appearance has not changed.
+
+### Is the PixPassport digital photo free?
+
+Uploading, checking and previewing your photo is free. Downloading the finished, correctly sized digital photo and print sheet costs £7.99.
 
 ### Will my digital passport photo definitely be accepted?
 

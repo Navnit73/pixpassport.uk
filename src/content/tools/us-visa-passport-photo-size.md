@@ -1,12 +1,12 @@
 ---
 slug: "us-visa-passport-photo-size"
-title: "US Visa Passport Photo: Size, Requirements and Free Photo Check (2x2 inch, 600x600 px)"
-meta_title: "US Visa Passport Photo: Size, Requirements & Photo Check"
-meta_description: "US visa photo size is 2x2 inches (51x51 mm) or 600x600 px for DS-160. See requirements, head size, background, file size, and check your photo online."
+title: "US Visa Photo Size: 2x2 Inch, 51x51 mm and 600x600 px (DS-160)"
+meta_title: "US Visa Photo Size: 2x2 Inch & 600x600 px (DS-160)"
+meta_description: "US visa photo size: 2x2 inch (51x51 mm) print or 600x600 px DS-160 JPEG under 240 KB. Head and eye height, UK vs US sizes, plus a free photo preview."
 country_code: "US"
 document_type: "passport"
-badge: "US Visa Passport Photo"
-hero_title: "US Visa Photo: Size, Requirements and Online Photo Check"
+badge: "US Visa Photo Size"
+hero_title: "US Visa Photo Size: 2x2 Inch, 51x51 mm and 600x600 px"
 cta_button_text: "Check My US Visa Photo"
 how_it_works_title: "How to Get a Compliant US Visa Photo in 3 Steps"
 hero_subtitle: "A US visa photo is square, not the usual 35 × 45 mm passport size. Here are the exact size, head position, background and file rules for DS-160, plus how to check your photo before you upload it."
@@ -21,7 +21,7 @@ A US visa photo must be **square: 2 × 2 inches (51 × 51 mm) for a print, or be
 
 This is different from a standard UK passport photo (35 × 45 mm), so a UK photo booth strip is the wrong size for a US visa.
 
-Want to skip the reading? [Check your US visa photo now](/tool/us-visa-passport-photo-size#studio) before you upload it.
+Want to skip the reading? Use our [US visa photo maker](/tool/us-visa-photo-tool) to crop any picture to a 2 × 2 inch, 600 × 600 px photo with a free preview. For pose, glasses and background rules in more depth, see the [US visa photo requirements guide](/how-to/us-visa-photo-requirements).
 
 ## US Visa Photo Requirements at a Glance
 
@@ -137,7 +137,7 @@ Search for a photo studio or photo lab near you and ask specifically for a **US 
 
 ### Free US Visa Photo Tool and Photo Cropping
 
-The US Department of State offers a free photo tool that crops an image you already have to exactly 600 × 600 px. It is for cropping only, and an official makes the final decision on whether your photo is acceptable. Use our [photo checker](/tool/us-visa-passport-photo-size#studio) to review the background, head position and framing first, then crop.
+The US Department of State offers a free photo tool that crops an image you already have to exactly 600 × 600 px. It is for cropping only, and an official makes the final decision on whether your photo is acceptable. Our [US visa photo maker](/tool/us-visa-photo-tool) also replaces the background and checks head size, with a free preview before you pay £7.99.
 
 ### US Visa Photo App and Online Services
 
@@ -172,7 +172,7 @@ Step-by-step guides: [how to take a passport photo at home](/tool/passport-photo
 
 ## Check Your US Visa Photo Before You Apply
 
-Upload your photo to our [passport photo checker](/tool/us-visa-passport-photo-size#studio) to check your background, head position and framing before you upload it to the DS-160 or print it. If you need a print, use the [passport photo print template generator](/passport-photo-print-template-generator) to lay out a sheet for your photo lab.
+Upload your photo to the [studio above](#studio) or our [US visa photo maker](/tool/us-visa-photo-tool) to check your background, head position and framing before you upload it to the DS-160 or print it. If you need a print, use the [passport photo print template generator](/passport-photo-print-template-generator) to lay out a sheet for your photo lab.
 
 - **Need another country's size?** Try the [passport size photo maker](/passport-size-photo-maker) or our [Australian passport photo guide](/tool/australian-passport-photo-uk).
 - **Applying for a UK passport instead?** See our [UK passport photo size and requirements](/tool/uk-passport-photo) guide.
@@ -229,7 +229,7 @@ Some embassies and consulates do. Check your appointment instructions and the we
 
 ### Is there a free US visa photo tool?
 
-Yes. The US Department of State has a free photo tool that crops an existing image to 600 × 600 px. It only crops, so check the background, head size and lighting yourself or with our [photo checker](/tool/us-visa-passport-photo-size#studio).
+Yes. The US Department of State has a free photo tool that crops an existing image to 600 × 600 px. It only crops, so check the background, head size and lighting yourself or with our [US visa photo maker](/tool/us-visa-photo-tool), which has a free preview.
 
 ### Can I use a UK passport photo for a US visa?
 
@@ -245,6 +245,6 @@ They are similar in size and composition, but the rules for how recent the photo
 
 ### Will my US visa photo definitely be accepted?
 
-No tool can promise that. The US embassy or consulate makes the final decision, but checking your photo with our [passport photo checker](/tool/us-visa-passport-photo-size#studio) first helps you avoid the most common mistakes.
+No tool can promise that. The US embassy or consulate makes the final decision, but checking your photo with our [US visa photo maker](/tool/us-visa-photo-tool) first helps you avoid the most common mistakes.
 
 _PixPassport is an independent service and is not affiliated with the US Department of State, USCIS or any US embassy or consulate. Rules checked against the US Department of State visa photo requirements, digital image requirements and photo composition template in October 2026._

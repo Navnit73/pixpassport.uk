@@ -47,6 +47,19 @@ export const metadata: Metadata = {
   },
 };
 
+/** Task-based links to the key tool pages, each titled with the phrase a buyer searches. */
+const PHOTO_TASKS = [
+  { href: "/tool/uk-passport-photo", icon: "🇬🇧", spec: "35×45 mm", title: "UK Passport Photo Requirements", desc: "Size, background, head height and glasses rules for a new or renewed British passport, with the maker built in.", cta: "See the rules and create" },
+  { href: "/tool/digital-passport-photo", icon: "💻", spec: "600×750 px+", title: "Digital Photo for Passport Renewal", desc: "Applying or renewing on GOV.UK? Get the one digital photo you need, sized to the 50KB–10MB file rules.", cta: "Get a digital photo" },
+  { href: "/tool/passport-photo-checker-uk", icon: "✅", spec: "Free check", title: "Passport Photo Checker UK", desc: "Already have a photo? Test it free against HM Passport Office rules before you submit.", cta: "Check my photo free" },
+  { href: "/how-to/change-dvla-photo", icon: "🔁", spec: "DVLA", title: "Change the Photo on Your Driving Licence", desc: "Step-by-step DVLA renewal online or by post, the fee, and the photo rules to follow.", cta: "Change my licence photo" },
+  { href: "/tool/uk-driving-licence-photo", icon: "🚗", spec: "35×45 mm", title: "Driving Licence Photo Maker", desc: "Make a DVLA-style photo for a provisional or photocard licence, ready to upload or print for a D1 form.", cta: "Make a licence photo" },
+  { href: "/tool/photo-size-35x45mm", icon: "📐", spec: "3.5×4.5 cm", title: "35x45 mm Photo Resizer", desc: "Crop and resize any picture to exactly 35 × 45 mm, with a print-ready 6×4″ sheet.", cta: "Resize to 35×45 mm" },
+  { href: "/tool/photo-railcard", icon: "🚆", spec: "Railcard", title: "Railcard Photo Maker", desc: "A photo that uploads first time for 16-25, 26-30, Senior and other Railcards.", cta: "Make a Railcard photo" },
+  { href: "/tool/hijab-passport-photo", icon: "🧕", spec: "Religious headwear", title: "Hijab Passport Photo", desc: "How to wear a hijab, turban or other religious head covering so your face stays fully visible.", cta: "See hijab photo rules" },
+  { href: "/tool/us-visa-photo-tool", icon: "🇺🇸", spec: "2×2 inch", title: "US Visa Photo Maker", desc: "A square 2 × 2 inch (600 × 600 px) photo for DS-160 visa applications and US passports.", cta: "Make a US visa photo" },
+];
+
 const steps = [
   {
     icon: Globe,
@@ -730,6 +743,55 @@ export default function HomePage() {
         </section>
 
         {/* =========================================================================
+            6b. PHOTO BY TASK (Compact-keyword internal links to key tools)
+           ========================================================================= */}
+        <section className="bg-base-200 py-14 sm:py-20 border-b border-base-300" id="photo-by-task" aria-labelledby="photo-by-task-heading">
+          <div className="container-narrow">
+            <div className="text-center max-w-2xl mx-auto mb-12">
+              <span className="inline-block px-3 py-1 rounded-full bg-base-100 border border-base-300 text-primary text-xs font-bold mb-3">
+                Find Your Photo
+              </span>
+              <h2 id="photo-by-task-heading" className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-base-content tracking-tight mb-3">
+                What Do You Need a Photo For?
+              </h2>
+              <p className="text-base-content/80 text-sm sm:text-base">
+                Pick the job you are doing. Each page has the exact size, the official rules and the photo maker set up for that document.
+              </p>
+            </div>
+
+            <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto list-none p-0 m-0">
+              {PHOTO_TASKS.map((task) => (
+                <li key={task.href}>
+                  <Link
+                    href={task.href}
+                    className="bg-base-100 border border-base-300 hover:border-primary rounded-2xl p-5 sm:p-6 flex flex-col justify-between h-full transition-colors group"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-2xl" aria-hidden="true">{task.icon}</span>
+                        <span className="font-mono text-xs font-semibold bg-base-200 border border-base-300 text-base-content/80 px-2 py-0.5 rounded">
+                          {task.spec}
+                        </span>
+                      </div>
+                      <h3 className="font-bold text-base-content text-base sm:text-lg mb-1.5 group-hover:text-primary transition-colors">
+                        {task.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-base-content/80 leading-relaxed mb-4">
+                        {task.desc}
+                      </p>
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-primary">
+                      <span>{task.cta}</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* =========================================================================
             7. POPULAR COUNTRY & DOCUMENT FORMATS (Internal Linking SEO Grid)
            ========================================================================= */}
         <section className="bg-white py-14 sm:py-20 border-b border-slate-200/80" id="popular-tools" aria-label="Popular country and document photo formats">
@@ -851,8 +913,8 @@ export default function HomePage() {
                   { slug: "image-to-passport-size-converter", label: "Image to Passport Converter" },
                   { slug: "passport-photo-at-home", label: "Passport Photo at Home" },
                   { slug: "passport-photo-tool", label: "Online Passport Photo Tool" },
-                  { slug: "online-id-photo-maker", label: "Online ID Photo Maker" },
-                  { slug: "order-passport-photos-online", label: "Order Passport Photos" },
+                  { slug: "online-id-photo-maker", label: "ID Card Photo Maker" },
+                  { slug: "order-passport-photos-online", label: "Print Passport Photos Online" },
                 ].map((item) => (
                   <Link
                     key={item.slug}

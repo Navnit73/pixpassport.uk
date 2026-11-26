@@ -1,12 +1,13 @@
 ---
 title: "UK Driving Licence Photo Requirements: Can You Take Your Own?"
-meta_title: "Driving Licence Photo Requirements UK: Take Your Own Photo"
-meta_description: "UK driving licence photo requirements: can you take your own, the 35 × 45 mm passport-style size, plain background rules, costs and how to update it."
+meta_title: "Driving Licence Photo Requirements UK (DVLA Rules 2026)"
+meta_description: "UK driving licence photo requirements: 35 × 45 mm size, plain light background, no glasses, and whether you can take your own. Check your photo free."
 summary: "What a UK driving licence photo must look like, how much it costs to update, and how to take your own at home before you apply or renew."
 category: "Taking Your Photo"
 icon: "🪪"
 order: 5
 date_published: "2026-11-21"
+date_modified: "2026-11-26"
 hero_title: "UK Driving Licence Photo Requirements (Can You Take Your Own?)"
 hero_subtitle: "Yes, you can take your own driving licence photo. Here is what the DVLA expects, the size to aim for, what it costs to update, and how to get a clear passport-style photo at home."
 total_time: "PT15M"
@@ -139,29 +140,15 @@ Zoom in and look for shadows, blur, glare on glasses or hair over your eyes. If 
 
 Our free [passport photo checker](/tool/passport-photo-checker-uk) tests size, background and face position against UK passport-style rules.
 
-## How to change or retake your licence photo
+## How to change the photo on your driving licence
 
-You cannot swap the photo on its own. GOV.UK says you need to **renew your full or provisional licence** to update your photo, and you can do this online at any time.
+You cannot swap the photo on its own. GOV.UK says you need to **renew your full or provisional licence** to update your photo. It costs **£14 online**, **£17 by post** or **£21.50 at a Post Office**, and it is free if you are 70 or over.
 
-### Cost and timing at a glance
+Our step-by-step guide on [how to change the photo on your driving licence](/how-to/change-dvla-photo) covers every route, the fees, what happens to your old licence and when you cannot apply online.
 
-| Way to apply                                           | Cost   | How long it takes |
-| :----------------------------------------------------- | :----- | :---------------- |
-| Online                                                 | £14    | Within a week     |
-| Post Office (with a reminder letter or your photocard) | £21.50 | Within 3 weeks    |
-| By post (D1 form)                                      | £17    | Within 3 weeks    |
+### Already have a photo that meets these rules?
 
-There is no fee if you are 70 or over or have a medical short period licence. If you are 70 or over, use GOV.UK's separate page on renewing at 70. Fees change, so check GOV.UK before you apply.
-
-### What happens to your old licence?
-
-If you renew online, you must send your old photocard licence to the DVLA when your new one arrives. You are told the address at the end of the application. Your new licence is valid from the date your application is approved, not from the expiry date of your current one.
-
-If you apply by post or at a Post Office, GOV.UK says you can continue driving while you wait for your new licence.
-
-### When you cannot renew online
-
-You cannot renew online if your name or title has changed. If your signature has changed, you must apply by post or at a Post Office. For the full step-by-step, see our guide on [how to change your DVLA photo](/how-to/change-dvla-photo).
+Run it through the free [passport photo checker](/tool/passport-photo-checker-uk). If it needs cropping or a new background, the [UK driving licence photo tool](/tool/uk-driving-licence-photo) sizes it to 35 × 45 mm and replaces the background for you.
 
 ## Provisional licence photo rules
 

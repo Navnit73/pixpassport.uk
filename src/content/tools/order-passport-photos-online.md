@@ -1,174 +1,141 @@
 ---
 slug: "order-passport-photos-online"
-title: "Order Passport Photos Online: No Studio Visit Needed"
-meta_description: "Order passport photos online without visiting a studio. Upload a picture, get it checked and sized, then download or order prints."
-country_code: "ALL"
+title: "Print Passport Photos Online: 6×4 Sheet for Boots, Asda or Tesco"
+meta_title: "Print Passport Photos Online: 6×4 Sheet for Any Shop"
+meta_description: "Print passport photos online: get a print-ready 6×4 sheet of 35×45 mm photos and print it at Boots, Asda or Tesco. Preview free, download £7.99."
+country_code: "GB"
 document_type: "passport"
-badge: "Online Passport Photo Studio"
-hero_title: "Order Passport Photos Online"
-hero_subtitle: "Upload a picture, and our online passport photo studio sizes it for your country, fixes the background and checks your head size. Then download your photo or order prints."
-dimensions_mm: "Varies by country"
+badge: "Print-Ready 6×4 Sheet"
+hero_title: "Print Passport Photos Online (6×4 Sheet Ready for Any Photo Shop)"
+hero_subtitle: "Upload a phone photo, and we size it to 35 × 45 mm, clean the background and lay it out on a 6×4″ sheet. Print it at a supermarket kiosk or photo shop for the price of a single print, instead of £7 to £15 at a booth."
+cta_button_text: "Create My Print Sheet"
+how_it_works_title: "How to Print Passport Photos Online in 3 Steps"
+studio_title: "Create Your Printable Passport Photo Sheet"
+studio_description: "Upload your photo. We crop it to 35 × 45 mm and build a 6×4″ print sheet you can print anywhere."
+cta_description: "Get a print-ready 6×4″ sheet of correctly sized passport photos, then print it at your nearest photo kiosk."
+dimensions_mm: "35 × 45 mm on a 6×4″ (10 × 15 cm) sheet"
 # TODO: replace with a neutral image showing a digital photo and a print sheet
 feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790507890/uk_passport_size_photo_i5uujz.jpg"
-feature_image_alt: "Order passport photos online: digital file and printed passport photo sheet"
-dimensions_px: "Varies by country"
+feature_image_alt: "Printable 6×4 inch sheet of 35×45 mm UK passport photos ready to print online"
+dimensions_px: "1800 × 1200 px sheet at 300 DPI"
 price: "7.99"
 ---
 
-## Order Passport Photos Online in Minutes
+## How to Print Passport Photos Online
 
-You do not need to visit a studio, queue at a booth or take time off work to get passport photos. Take a picture on your phone, upload it to our online passport photo studio, and we size it, clean up the background and check your head against the official range. Then download the file, or order prints.
+Printing passport photos online means preparing a correctly sized photo yourself, then sending one standard 6×4″ print to a photo kiosk or shop. You skip the booth queue, you can retake as often as you like, and the print itself usually costs less than a coffee.
 
-Order for yourself, your partner or your children. Each photo takes about two minutes to prepare.
+**What PixPassport does:** crops your photo to 35 × 45 mm, replaces the background with plain light grey, checks your head size, and lays out several copies on a 6×4″ (10 × 15 cm) sheet.
 
-## How to Order a Passport Photo Online in 5 Steps
+**What PixPassport does not do:** we do not post printed photos to you. You print the sheet yourself, at home or at any photo shop.
 
-1. **Choose your country and document.** Pick the passport format you need, because sizes differ around the world.
-2. **Upload your picture.** Select a clear, front-facing photo from your phone or computer.
-3. **Review the automatic checks.** The tool crops your photo, replaces the background and tests your head size.
-4. **Retake or adjust if needed.** Try another picture until every check passes.
-5. **Download or order prints.** Save a digital file for online forms, or order printed photos for paper applications.
+### 5 Steps to a Printed Passport Photo
 
-<!-- TODO: confirm the print ordering flow, prices, delivery times and supported delivery countries, then edit steps 5 and the delivery section below -->
+1. **Take a photo at home.** Face a window, stand in front of a plain wall and ask someone to take the photo at eye level.
+2. **Upload it to the studio above.** Choose United Kingdom and passport (or another country and document).
+3. **Check the result.** The tool crops your photo, sets the head size and replaces the background. Preview is free.
+4. **Download your 6×4″ print sheet.** You get the sheet plus a single digital photo for online applications for £7.99.
+5. **Print the sheet as a standard 6×4″ photo.** Use an in-store kiosk, an online photo order with click-and-collect, or your own printer.
 
-## Online Studio vs High-Street Photo Booth
+## Where to Print Passport Photos Online in the UK
 
-An online passport photo order gives you more control than a booth or shop. Compare the options:
+Any shop that prints a standard 6×4″ (10 × 15 cm) photo can print your passport photo sheet. Popular options include:
 
-| | Online passport photo studio | Photo booth or high-street shop |
+| Where | How to order | Good to know |
 | :--- | :--- | :--- |
-| Location | At home, on any device | You travel to a branch |
-| Retakes | As many as you need | Limited, and often extra cost |
-| Background | Replaced and checked for you | Set by the booth or the operator |
-| Size checks | Automatic, per country | Depends on the operator |
-| Digital file | Yes, instantly | Sometimes, at extra cost |
-| Prints | Optional | Included |
+| **Boots Photo** | Upload online for click-and-collect, or use an in-store kiosk | Choose a standard 6×4″ print, not a passport photo product |
+| **Asda Photo** | Upload online or use a kiosk in larger stores | Often one of the cheapest options for single prints |
+| **Tesco Photo** | Upload online for collection | Check which stores have photo collection |
+| **Snappy Snaps** | Upload online or visit a branch | Staff can help if you are unsure about scaling |
+| **Supermarket and pharmacy kiosks** | Insert your phone or USB stick and print | Ask the kiosk to print at original size |
+| **Your own printer** | Print at home on glossy photo paper | See our [print passport photos at home](/print-passport-photos-at-home) guide |
 
-## What You Get When You Order Passport Photos Online
+Prices and services change, so check the retailer's site before you order. A single 6×4″ print is typically a fraction of the cost of a booth session.
 
-- **Country-specific sizing:** The tool offers the exact format your country requires.
-- **Background replacement:** It swaps your wall or room for a plain background.
-- **Head-size check:** It measures your head against the official range.
-- **Photo converter:** Turn an existing picture into a passport photo without a retake.
-- **Phone-friendly design:** Upload straight from your camera roll.
-- **Digital file:** Download a JPEG for online applications.
-- **Print options:** Order printed photos, or print a sheet yourself.
+### The One Setting That Matters: Print at 100% Scale
 
-## Passport Photo Sizes by Country
+Always order a **6×4″ (10 × 15 cm) print with no cropping, borders or "fit to page"**. If the shop crops or shrinks the sheet, your photos will no longer measure 35 × 45 mm. After printing, measure one photo with a ruler: it must be 45 mm tall and 35 mm wide.
 
-Passport photo sizes vary, so choose the right format when you order. Here are common sizes:
+## Print Passport Photos Online vs Photo Booth: Cost Compared
 
-| Country or region | Photo size | Notes |
+| | Print online (PixPassport sheet) | Photo booth | Studio or shop photo service |
+| :--- | :--- | :--- | :--- |
+| Typical cost | £7.99 download + one 6×4″ print (usually under £1) | Usually around £7 to £10 | Usually around £10 to £15 |
+| Photos per order | Several copies on one sheet, reprint any time | Usually 4 | Usually 2 to 4 |
+| Retakes | Unlimited, at home | Limited per session | Depends on the shop |
+| Digital photo for GOV.UK | Included | Only with a photo code option | Sometimes, at extra cost |
+| Background | Replaced and checked for you | Fixed booth background | Set by the operator |
+
+## Passport Photo Print Sizes by Document
+
+Choose the right document in the studio, because sizes differ:
+
+| Document | Photo size | Copies needed |
 | :--- | :--- | :--- |
-| United Kingdom | 35 × 45 mm | Cream or light grey background |
-| United States | 2 × 2 in (51 × 51 mm) | Square, white or off-white background |
-| European Union (Schengen) | 35 × 45 mm | Plain, light background |
-| India | 35 × 45 mm (630 × 810 px online) | Some missions abroad set their own rules |
-| Canada | 50 × 70 mm | Larger portrait format |
-| Australia | 35 × 45 mm | Plain, light background |
+| UK passport (paper form) | 35 × 45 mm | 2 identical photos |
+| UK driving licence (D1 form) | 35 × 45 mm | 1 photo |
+| Schengen visa | 35 × 45 mm | Usually 1 or 2 |
+| US visa or passport | 2 × 2 in (51 × 51 mm) | 1 to 2 |
+| Indian passport or OCI | 35 × 45 mm or 51 × 51 mm, depending on the form | Check your centre's checklist |
 
-<!-- TODO: verify every size and background note against the official source for each country before publishing -->
+See the dedicated pages for the [UK passport photo](/tool/uk-passport-photo), [35×45 mm photo size](/tool/photo-size-35x45mm), [UK driving licence photo](/tool/uk-driving-licence-photo) and [US visa photo](/tool/us-visa-photo-tool).
 
-Need a specific format? See our dedicated pages for the [UK passport photo](/tool/uk-passport-photo), [UK passport renewal photo](/tool/passport-renewal-photo-online), [Indian passport photo](/tool/indian-passport-photo-maker) and [US visa and passport photo](/tool/us-visa-photo-tool).
+## Printed Photos or a Digital Photo?
 
-## Passport Photo Requirements to Check Before You Order
+You only need printed passport photos for **paper application forms**. If you are applying or renewing online on GOV.UK, you need a digital photo instead. Read our guide to getting a [digital photo for passport applications](/tool/digital-passport-photo).
 
-Each country sets its own rules, but most follow the same ICAO principles. Check these points before you upload your picture.
-
-### Pose and Expression
-
-- **Face the camera.** Look straight at the lens with your head level.
-- **Keep a neutral expression.** Close your mouth and keep your eyes open.
-- **Show your full face.** Keep hair away from your eyes, and keep your face uncovered from chin to forehead.
-
-### Background and Lighting
-
-- **Use a plain background.** Most countries ask for white, cream or light grey.
-- **Avoid shadows.** Even lighting on your face and the wall gives a cleaner cut-out.
-- **Keep the frame clear.** Other people, objects and patterns cause rejections.
-
-### Glasses, Headwear and Editing
-
-- **Remove your glasses.** Many countries no longer accept them, except for documented medical reasons.
-- **Wear headwear only for religious or medical reasons.** Show your full face.
-- **Do not retouch the photo.** Filters, smoothing and heavy editing lead to rejection.
-
-<!-- TODO: remind users to check their own country's current rules, as glasses and headwear rules vary -->
-
-## How to Take a Good Picture at Home
-
-A clear picture gives the cleanest result, so take a few minutes to set up.
-
-- **Ask someone to help.** Selfies distort your face, so have a friend hold the camera at eye level.
-- **Face a window.** Soft daylight removes shadows from your face.
-- **Stand about one metre from the camera.** Keep the lens level with your eyes.
-- **Use a plain wall.** A simple backdrop gives a sharper background cut-out.
-- **Leave space around your head.** The tool needs room to crop correctly.
-- **Look straight ahead.** Relax your face and keep your head level.
-
-## Digital Photo or Printed Photos?
-
-Choose the output that fits your application.
-
-| | Digital photo | Printed photos |
+| | Printed photos | Digital photo |
 | :--- | :--- | :--- |
-| Best for | Online applications and portals | Paper forms and in-person visits |
-| Output | JPEG at the required pixel size | Prints at the exact millimetre size |
-| Checking | Portals often check it automatically | You check it yourself |
-| Delivery | Instant download | Posted or printed by you |
+| Used for | Paper passport forms, D1 driving licence form, some visa centres | GOV.UK online passport applications and renewals |
+| Size | 35 × 45 mm on photographic paper | At least 600 × 750 px, 50KB to 10MB |
+| Included with PixPassport | Yes, as a 6×4″ sheet | Yes |
 
-If you print at home or at a shop, choose 100% scale with no fit-to-page setting. Our guide to [printing passport photos at home](/print-passport-photos-at-home) walks through paper and printer settings. Cut each photo to the exact size, or ask for your country's passport format.
+## Tips for Sharp, Accepted Prints
 
-## Passport Photos Delivered to Your Door
+- **Choose glossy or lustre photo paper.** Plain office paper is not accepted.
+- **Do not add borders or text.** The photo must be unmarked.
+- **Cut cleanly.** Use a ruler and craft knife or a paper trimmer, not scissors, for straight edges.
+- **Keep both photos identical.** Use two copies from the same sheet.
+- **Do not fold or staple across the face.** Attach photos as the form instructs.
 
-If your application needs printed photos, order them online and have them delivered, so you skip the trip to a shop. Check the delivery time and cost at checkout, and allow extra days if your deadline is tight.
-
-<!-- TODO: confirm that print delivery is offered, plus prices, delivery times and countries. Delete this section if you do not offer delivery. -->
-
-## Looking for Passport Photos Near Me?
-
-You can order online from anywhere, so you do not need to search for a studio. If you would rather have someone else take the picture, many pharmacies, supermarkets and Post Office branches offer passport photo services, and prices vary. Ask about the size and background before you pay.
-
-For most people, an online order costs less and saves time. Take the picture at home, and check it against the official rules before you submit.
-
-## Passport Photos for Children and Babies
-
-Children need the same size and background, but many countries relax some rules for young ones. Babies often do not need to look at the camera, and no one else may appear in the photo. Check your country's guidance for children before you apply.
+Before you print, run your photo through the free [UK passport photo checker](/tool/passport-photo-checker-uk). Want a blank layout for photos you already have? Use the [passport photo print template generator](/passport-photo-print-template-generator).
 
 ## Frequently Asked Questions
 
-### Can I order passport photos online?
+### Can I print passport photos online?
 
-Yes. Upload your picture, choose your country, and we prepare the photo. Then download the file or order prints.
+Yes. Prepare a correctly sized 35 × 45 mm photo online, download it as a 6×4″ sheet, then print the sheet as a normal photo at a kiosk, a photo shop or at home.
 
-### How much does it cost to order a passport photo online?
+### Does PixPassport post printed passport photos?
 
-<!-- TODO: confirm pricing for the digital file and for prints. -->
-A digital photo costs 7.99. Check the price of printed photos at checkout.
+No. We give you a print-ready 6×4″ sheet and a digital photo. You print the sheet wherever is convenient for you.
 
-### Are there free passport photos near me?
+### How much does it cost to print passport photos online?
 
-Free options are rare, and the quality varies. You can upload your picture and preview the result before you pay, so you see the outcome first. Confirm the current terms in the editor.
+Previewing your photo on PixPassport is free. The download costs £7.99, and a single 6×4″ print at a supermarket or photo shop typically costs well under £1.
 
-### Can I get passport photos delivered?
+### Can I print passport photos at Boots, Asda or Tesco?
 
-<!-- TODO: edit to match your real print delivery offer. -->
-Yes, if you order prints. Choose the print option at checkout, and check the delivery time before you pay.
+Yes. Order a standard 6×4″ (10 × 15 cm) print of your sheet. Choose no cropping or borders so each photo stays at 35 × 45 mm.
 
-### Do I need to visit an online passport photo studio?
+### What size should I print a passport photo sheet?
 
-No. The studio is online, so you upload a picture from your phone or computer and never visit in person.
+Print it as a 6×4″ (10 × 15 cm) photo at 100% scale. Each photo on the sheet then measures 35 × 45 mm.
 
-### Can I use a selfie?
+### How many passport photos are on a 6×4 sheet?
 
-Yes, if it is sharp, front-facing and well lit. Use the rear camera, and have someone else take the picture if you can.
+A 6×4″ sheet fits several 35 × 45 mm photos, enough for a passport application plus spares for a driving licence or railcard.
 
-### Will my passport photo definitely be accepted?
+### Can I print passport photos on my home printer?
 
-No service can promise that. The issuing authority makes the final decision, but our checks help you avoid the most common mistakes.
+Yes, on glossy photo paper at 100% scale with no fit-to-page setting. Follow our [print passport photos at home](/print-passport-photos-at-home) guide.
 
-## Order Your Passport Photos Online Now
+### Do I need printed photos to renew my passport online?
 
-Upload your picture, choose your country, and get correctly sized passport photos in minutes. Download your file or order prints, with no studio visit needed.
+No. Online renewals use a digital photo only. Printed photos are for paper application forms.
 
-<!-- Recommended notice: "We are an independent service, not affiliated with any government. The issuing authority makes the final decision on every photo." -->
+### Will my printed passport photo definitely be accepted?
+
+No service can promise that. HM Passport Office makes the final decision, but checking the photo and printing at the correct size avoids the most common rejections.
+
+*PixPassport is an independent service and is not affiliated with HM Passport Office, GOV.UK or any retailer named on this page. Retailer services and prices change; check before you order.*

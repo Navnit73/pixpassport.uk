@@ -1,13 +1,13 @@
 ---
 slug: "photo-railcard"
-title: "Photo Railcard: UK Passport-Style Photo Size, Rules and Upload Help"
-meta_title: "Photo Railcard Size, Rules and Upload Fixes (UK)"
-meta_description: "Make a Railcard photo that uploads first time: 35×45 mm, 413 × 531 px, JPEG under 5MB. UK rules, upload fixes and how to change your photo. Free preview."
+title: "Railcard Photo Maker: Requirements, Size and Upload Fix"
+meta_title: "Railcard Photo Maker: Requirements, Size & Upload Fix"
+meta_description: "Make a 16-25, 26-30 or Two Together Railcard photo online: 35×45 mm JPEG under 5MB that uploads first time. Requirements, fixes, free preview."
 country_code: "GB"
 document_type: "railcard"
 badge: "UK Railcard Photo"
-hero_title: "Railcard Photo Maker for the UK"
-hero_subtitle: "Turn any picture into a passport-style photo that Railcard websites accept. Fix the size, lighten the background and check your face before you upload."
+hero_title: "Railcard Photo Maker: Requirements, Size and Upload Fix"
+hero_subtitle: "Turn any phone picture into a passport-style photo that Railcard websites accept, for the 16-25, 26-30, Two Together, Senior and Network Railcards. Preview free, download for £7.99."
 dimensions_mm: "35 × 45 mm (3.5 × 4.5 cm)"
 # TODO: replace with a neutral image showing a Railcard photo upload screen or a 35×45 mm size guide
 feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1790579164/Online-Passport-Photo-Tool_uohrxk.webp"
@@ -16,7 +16,7 @@ dimensions_px: "413 × 531 px at 300 DPI"
 price: "7.99"
 ---
 
-## Get Your Railcard Photo Right First Time
+## Railcard Photo Maker: Upload First Time
 
 A digital Railcard needs a passport-style photo, and the upload step turns away blurry, badly lit or oddly cropped pictures. Our tool solves that. It crops your picture to 35×45 mm, lightens the background and checks your face size, so your photo railcard application goes through without a retake.
 
@@ -24,9 +24,11 @@ Upload a picture from your phone, review the checks and download a JPEG. The who
 
 Many people search for this as a photo rail card. The official name is Railcard, written as one word, and the rules below cover both spellings.
 
-## Which Railcards Need a Photo?
+## Railcard Photo Requirements by Railcard Type
 
-Most Railcards that you buy online need a photo. This table shows what each one asks for:
+Most Railcards that you buy online need a photo, and every one that does asks for the same passport-style picture: head and shoulders, a plain light background, a sharp colour image that looks like you today, and a JPEG or PNG of 5MB or less. This table shows which Railcards ask for one.
+
+> **Need the full rules for your Railcard?** Our [Railcard photo requirements guide](/how-to/railcard-photo-requirements) explains what each Railcard asks for, whether a selfie is allowed and how to upload it without errors.
 
 | Railcard | Photo needed? |
 | :--- | :--- |
@@ -39,9 +41,9 @@ Most Railcards that you buy online need a photo. This table shows what each one 
 
 In short, every digital Railcard works as a photo railcard, because the card itself shows your face. Rail staff compare that face with you when they check your ticket. If staff cannot confirm that the person on the Railcard is you, the train company can charge the full Standard Single fare and, in some cases, a Penalty Fare.
 
-## Railcard Photo Requirements in the UK
+## Railcard Photo Rules: Pose, Background and File Size
 
-The Railcard rules are simpler than the GOV.UK passport rules, but the issuer still rejects pictures that fail these checks.
+The Railcard rules are simpler than the GOV.UK passport rules, but the issuer still rejects pictures that fail these checks. Railcard says it follows the same principles as the DVLA and HM Passport Office, so a recent UK passport photo usually works too.
 
 ### Pose and Framing
 
@@ -75,7 +77,7 @@ The Railcard rules are simpler than the GOV.UK passport rules, but the issuer st
 
 Each Railcard website words its upload rules slightly differently, so always read the instructions on the screen where you upload.
 
-## Passport Photo Railcard Size: 35×45 mm
+## Railcard Photo Size: 35×45 mm (413 × 531 px)
 
 Railcard websites ask for a passport-style photo. In the UK, that means 35×45 mm, the same size as a UK passport photo. Treat your passport photo railcard file the same way: portrait frame, head and shoulders, plain light background.
 
@@ -225,16 +227,15 @@ Staff can refuse the discount. If they cannot confirm that the person on the Rai
 
 ### Can I use the tool for free?
 
-<!-- TODO: confirm what is free (for example, a free preview) and edit this answer to match your real offer. -->
-You can upload your picture and preview the result before you pay. The final file is a paid download, so check the current price in the editor.
+You can upload your picture and preview the result for free, and retake it as often as you like. The final JPEG and print sheet cost £7.99 to download.
 
 ### Will my photo definitely be accepted?
 
 No tool can promise that. The Railcard issuer makes the final decision, but our checks help you avoid the most common mistakes.
 
-## Make Your Photo Railcard Image Now
+## Make Your Railcard Photo Now
 
-Upload your picture and download a correctly sized 35×45 mm Railcard photo in minutes. You need no studio visit and no editing skills.
+Upload your picture and download a correctly sized 35×45 mm Railcard photo in minutes. You need no studio visit and no editing skills. If you are still checking whether your Railcard needs a photo, read the [Railcard photo requirements guide](/how-to/railcard-photo-requirements) first, or check your picture with the [UK passport photo checker](/tool/passport-photo-checker-uk).
 
 <!-- TODO: verify file types, 5MB limit and 300 DPI against the current upload screen of each Railcard before publishing, because sites word these rules differently. -->
 <!-- TODO: confirm the 70% face-fill guideline, the £10 fee and the 30-day renewal window against railcard.co.uk before publishing. -->

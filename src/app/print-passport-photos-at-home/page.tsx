@@ -21,9 +21,9 @@ const SITE_URL =
 const PAGE_URL = `${SITE_URL}/print-passport-photos-at-home`;
 
 export const metadata: Metadata = {
-  title: "Print Passport Photos at Home: UK Guide & Free Template",
+  title: "Print Passport Photos at Home UK: Free 35×45mm Template",
   description:
-    "Print passport photos at home on A4 or 4×6″ paper. Free 300 DPI template, exact printer settings, phone and Word tips, and costs compared with kiosks and booths.",
+    "Print passport photos at home on A4 or 6×4″ photo paper. Free 300 DPI template, printer settings for exact 35×45 mm, cutting tips and cost vs shops.",
   alternates: {
     canonical: PAGE_URL,
     languages: {
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Print Passport Photos at Home: UK Guide & Free Template",
+    title: "Print Passport Photos at Home UK: Free 35×45mm Template",
     description:
       "Free 300 DPI passport photo sheet for home printers, plus the settings that keep every photo at exactly 35×45 mm.",
     images: [`${SITE_URL}/pixpassport.jpg`],
@@ -123,14 +123,24 @@ const HOME_PRINT_FAQS: FaqItem[] = [
       "At home, one sheet of photo paper and a little ink costs well under £1 and gives you many copies. A 4×6″ kiosk print usually costs around 10p–25p. A photo booth often charges £10–£15 for four photos. Prices vary by shop, so check your local branch.",
   },
   {
+    question: "How do I check my printed passport photo is the right size?",
+    answer:
+      "Lay a ruler across one photo before you cut. It must measure 35 mm wide and 45 mm tall, and the head from chin to crown should be 29–34 mm. If it is even 1–2 mm out, your printer has scaled the sheet: reprint at 100% with borderless off.",
+  },
+  {
+    question: "What is the best way to cut passport photos?",
+    answer:
+      "Use a paper trimmer or a craft knife with a metal ruler on a cutting mat. Cut along the crop marks after the ink has dried. Scissors work but make it harder to keep edges straight and corners square.",
+  },
+  {
     question: "How much is a passport photo printer?",
     answer:
       "You do not need one. A standard colour inkjet and photo paper are enough. Dedicated compact photo printers cost more than a basic inkjet and only suit people who print photos often.",
   },
   {
-    question: "Can I print passport photos online and have them delivered?",
+    question: "Can I print passport photos online instead of at home?",
     answer:
-      "Yes. Several online photo services print 4×6″ sheets and post them to you. Upload a correctly sized sheet, choose a glossy or lustre finish, and check the preview for any automatic cropping before you pay.",
+      "Yes. Upload your 6×4″ sheet to Boots, Asda, Tesco or another photo service for click-and-collect or delivery. Order a standard 6×4″ print with no cropping or borders so each photo stays at 35×45 mm. PixPassport creates the sheet; it does not post prints.",
   },
 ];
 
@@ -224,8 +234,9 @@ const RELATED_TOOLS = [
   { href: "/tool/uk-passport-photo", title: "UK Passport Photo", spec: "35×45 mm", flag: "🇬🇧" },
   { href: "/tool/passport-renewal-photo-online", title: "UK Passport Renewal", spec: "Digital Code", flag: "🔄" },
   { href: "/tool/passport-photo-checker-uk", title: "Passport Photo Checker", spec: "Compliance Check", flag: "✅" },
-  { href: "/tool/order-passport-photos-online", title: "Order Passport Photos Online", spec: "No Printer Needed", flag: "📦" },
-  { href: "/tool/digital-passport-photo", title: "Digital Passport Photo", spec: "Online Upload", flag: "💻" },
+  { href: "/tool/order-passport-photos-online", title: "Print Passport Photos Online", spec: "No Printer Needed", flag: "📦" },
+  { href: "/tool/photo-size-35x45mm", title: "35×45 mm Photo Resizer", spec: "Exact Size", flag: "📐" },
+  { href: "/tool/digital-passport-photo", title: "Digital Photo for Passport", spec: "GOV.UK Upload", flag: "💻" },
   { href: "/tool/uk-baby-passport-photo", title: "UK Baby Passport Photo", spec: "Infant Rules", flag: "👶" },
   { href: "/tool/us-visa-photo-tool", title: "US Visa & Passport", spec: "2×2 inches", flag: "🇺🇸" },
   { href: "/tool/uk-driving-licence-photo", title: "UK Driving Licence", spec: "DVLA 35×45 mm", flag: "🚗" },
@@ -236,6 +247,7 @@ const TOC = [
   { href: "#steps", label: "4 steps" },
   { href: "#printer-settings", label: "Printer settings" },
   { href: "#paper-and-rules", label: "Paper and UK rules" },
+  { href: "#measure-cut", label: "Measure and cut" },
   { href: "#word-photoshop", label: "Word and Photoshop" },
   { href: "#two-by-two", label: "2×2 photos" },
   { href: "#no-printer", label: "No printer?" },
@@ -309,7 +321,7 @@ export default function PrintPassportPhotosAtHomePage() {
             </nav>
 
             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0F172A] tracking-tight leading-[1.15] mb-2 sm:mb-3">
-              How to Print Passport Photos at Home
+              How to Print Passport Photos at Home (UK, 35×45 mm)
             </h1>
             <p className="text-xs sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed mb-4">
               Upload your photo, choose <strong>A4</strong> or <strong>4×6″</strong> photo paper and download a 300 DPI sheet with crop marks. Then follow the printer settings below to get exact <strong>35×45 mm</strong> UK passport photos from your own printer.
@@ -508,6 +520,43 @@ export default function PrintPassportPhotosAtHomePage() {
           </div>
         </section>
 
+        {/* 6b. MEASURE + CUT */}
+        <section className="py-14 sm:py-20 bg-base-100 border-b border-base-300" id="measure-cut">
+          <div className="container-narrow max-w-4xl">
+            <h2 className={h2Cls}>Measure and Cut Your Passport Photos Accurately</h2>
+            <p className={pCls}>
+              A home print that is 2 mm too small looks fine to the eye but can still be rejected. Spend one minute checking the size before you cut, and a few more cutting neatly.
+            </p>
+
+            <h3 className={h3Cls}>Measure one photo before you cut</h3>
+            <ol className="space-y-2 text-slate-600 text-sm sm:text-base leading-relaxed list-decimal pl-5 mb-4">
+              <li>Let the ink dry for at least five minutes.</li>
+              <li>Lay a ruler along the bottom edge of one photo: it must read <strong>35 mm</strong>.</li>
+              <li>Measure the side edge: it must read <strong>45 mm</strong>.</li>
+              <li>Measure from the chin to the top of the head: it should be between <strong>29 mm and 34 mm</strong>.</li>
+              <li>If any figure is out, reprint at 100% with Fit to Page and borderless printing off. Do not trim a large photo down, because that changes the head position.</li>
+            </ol>
+
+            <h3 className={h3Cls}>Cut cleanly along the crop marks</h3>
+            <ul className="space-y-2 text-slate-600 text-sm sm:text-base leading-relaxed list-none p-0 mb-4">
+              <Check><strong>Best:</strong> a rotary or guillotine paper trimmer gives perfectly straight edges and square corners.</Check>
+              <Check><strong>Good:</strong> a craft knife against a metal ruler on a cutting mat.</Check>
+              <Check><strong>Fine:</strong> sharp scissors, cutting slowly along the crop marks.</Check>
+              <Check>Cut on the photo side so you can see the marks, and keep fingerprints off the face.</Check>
+              <Check>Keep two identical copies together for a paper application, and do not fold, staple or write on the front.</Check>
+            </ul>
+
+            <h3 className={h3Cls}>Home printing vs shop printing: cost per photo</h3>
+            <p className={pCls}>
+              One sheet of A4 photo paper plus ink typically costs well under £1 and holds around 25 UK photos, so each photo costs a few pence. A 6×4″ kiosk print holds up to 8 photos for the price of one print. Both are far cheaper than a photo booth, which usually charges around £7 to £15 for four. If you do not have a colour printer, our guide to{" "}
+              <Link href="/tool/order-passport-photos-online" className={linkCls}>printing passport photos online at Boots, Asda or Tesco</Link>{" "}
+              is the next cheapest route. Need to resize a photo to exactly 35×45 mm first? Use the{" "}
+              <Link href="/tool/photo-size-35x45mm" className={linkCls}>35×45 mm photo resizer</Link>, then build the sheet with the{" "}
+              <Link href="/passport-photo-print-template-generator" className={linkCls}>print template generator</Link>.
+            </p>
+          </div>
+        </section>
+
         {/* 7. WORD + PHOTOSHOP */}
         <section className="py-14 sm:py-20 bg-white border-b border-slate-200/80" id="word-photoshop">
           <div className="container-narrow max-w-4xl">
@@ -626,9 +675,9 @@ export default function PrintPassportPhotosAtHomePage() {
               Prices vary by shop and change over time. Check your local branch before you go.
             </p>
 
-            <h3 className={h3Cls}>Print passport photos online and get them delivered</h3>
+            <h3 className={h3Cls}>Print passport photos online for collection or delivery</h3>
             <p className={pCls}>
-              Upload a correctly sized 4×6″ sheet to an online photo service and choose a glossy or lustre finish. Turn off any auto-crop or auto-enhance option, and check the preview so the service does not trim your crop marks. Our guide to <Link href="/tool/order-passport-photos-online" className={linkCls}>ordering passport photos online</Link> explains what to look for.
+              Upload a correctly sized 4×6″ sheet to an online photo service and choose a glossy or lustre finish. Turn off any auto-crop or auto-enhance option, and check the preview so the service does not trim your crop marks. Our guide to <Link href="/tool/order-passport-photos-online" className={linkCls}>printing passport photos online</Link> explains what to look for.
             </p>
 
             <h3 className={h3Cls}>Do I need a special passport photo printer?</h3>

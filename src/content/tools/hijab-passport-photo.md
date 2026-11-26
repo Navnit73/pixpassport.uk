@@ -1,199 +1,212 @@
 ---
 slug: "hijab-passport-photo"
-title: "Hijab Passport Photo: Rules, Positioning and Practical Tips"
-meta_title: "Hijab Passport Photo: Rules, Tips and Size Guide"
-meta_description: "Planning a hijab passport photo? Learn how head coverings are usually treated, how to position a hijab, lighting and background tips, and where to check official rules."
+title: "Hijab Passport Photo UK: Headscarf, Turban and Glasses Rules"
+meta_title: "Hijab Passport Photo UK: Headscarf, Turban & Glasses Rules"
+meta_description: "Make a UK hijab passport photo online. HMPO rules for headscarves, turbans and glasses, how to pin your hijab, and a free preview before you pay £7.99."
 document_type: "passport"
-badge: "Hijab Passport Photo Guide"
-hero_title: "Hijab Passport Photo Guide"
-hero_subtitle: "Most passport offices accept religious head coverings when the face stays fully visible. Here is how to prepare the photo, what changes by country, and how to check it before submitting."
-cta_button_text: "Check My Photo"
-how_it_works_title: "How to Check a Hijab Photo in 3 Steps"
-dimensions_mm: "Varies by country"
-dimensions_px: "Varies by country"
+badge: "Religious Head Covering Rules"
+hero_title: "Hijab Passport Photo UK: Headscarf, Turban and Glasses Rules"
+hero_subtitle: "You can wear a hijab, turban or other religious head covering in a UK passport photo if your whole face is visible from forehead to chin with no shadows. Here is how to prepare it, and how to check it before you apply."
+cta_button_text: "Make My Hijab Passport Photo"
+how_it_works_title: "How to Make a Hijab Passport Photo in 3 Steps"
+dimensions_mm: "35 × 45 mm"
+dimensions_px: "600 × 750 px minimum"
 feature_image: "https://res.cloudinary.com/dipzpwbbk/image/upload/v1792940874/hijab-passport-photo_anledf.webp"
 
 feature_image_alt: "Woman wearing a plain hijab in front of a light background for a passport photo"
 ---
 
-# Hijab Passport Photo: Rules, Positioning and Practical Tips
+A hijab passport photo is a routine request in the UK. HM Passport Office accepts a head covering worn for religious or medical reasons, as long as nothing covers your face and there are no shadows on your face or behind you. You do not need to remove a hijab, turban or other religious covering, and GOV.UK does not ask for a signed statement.
 
-A hijab passport photo is a routine request, and the short answer is reassuring: many countries accept religious head coverings in official photos. What passport offices care about is rarely the hijab itself. They care about whether the face can be seen clearly enough to identify the person.
+This page covers the UK rules first, then how to pin and light a hijab, Sikh turbans, other religious headwear, medical coverings and glasses. It is general guidance only. Always check the current wording on [GOV.UK](https://www.gov.uk/photos-for-passports/photo-requirements) before you apply.
 
-Rules still differ from one country to the next, and they change from time to time. This guide covers what authorities generally look for, how to position a hijab, how to handle lighting and background, and where photo sizes differ. It is general guidance only. The issuing authority's current rules always come first, and no article can guarantee that a photo will be accepted.
+## UK Hijab Passport Photo Requirements at a Glance
 
-## Is a Hijab Allowed in a Passport Photo?
+| Requirement          | UK rule for a photo with a head covering                                       |
+| :------------------- | :----------------------------------------------------------------------------- |
+| When it is allowed   | Religious or medical reasons only, not fashion headwear                        |
+| Face visibility      | Full face visible, from the top of the forehead to the bottom of the chin      |
+| Face edges           | Both sides of the face clear, with no fabric across the cheeks or jaw          |
+| Shadows              | None on the face or on the background                                          |
+| Printed size         | 45 mm high × 35 mm wide, head 29 mm to 34 mm from chin to crown                |
+| Digital size         | At least 600 × 750 px, JPEG, 50 KB to 10 MB                                    |
+| Background           | Plain cream or light grey, with no pattern or objects                          |
+| Signed statement     | Not required by GOV.UK                                                         |
 
-In many countries, yes. Passport authorities commonly allow a head covering worn for religious reasons, provided the face stays fully visible. But "commonly" does not mean "everywhere", and the conditions vary. Some authorities ask for a signed statement. Some ask for plain fabric. Others focus on shadows or on the edges of the face.
+The size rules are the same with or without a hijab. If you are unsure about measurements, our [35×45 mm photo size guide](/tool/photo-size-35x45mm) and [UK passport photo requirements](/tool/uk-passport-photo) page explain them in full.
 
-People searching for passport photo hijab guidance often find conflicting advice because of this. The safest approach is simple: read the official photo page of the authority that will process the application, then use practical tips to meet those rules.
+## Can You Wear a Hijab in a UK Passport Photo?
 
-## General Guidance vs Official Rules
+Yes. GOV.UK says you can wear a head covering for religious or medical reasons. What HM Passport Office checks is not the hijab itself but whether your face can be identified. A hijab photo is usually rejected for the same reasons as any other photo: shadows, fabric over the face, a busy background or poor framing.
 
-It helps to keep three things apart:
+### Do I Need to Show My Hair or Ears?
 
-- **Official rules** are published by the passport authority. These decide what is required.
-- **General guidance** is practical advice, such as choosing a plain, matte fabric. It often helps, but it is not a requirement unless the authority says so.
-- **Final decisions** always belong to the authority. A photo that follows every tip can still be questioned, and a photo checker can only point out likely problems.
+No. GOV.UK does not ask you to show your hair, hairline or ears. Your full face, from the top of your forehead to the bottom of your chin, and both edges of your face must be visible.
 
-## What Passport Authorities Generally Look For
+### Do I Need a Letter or Signed Statement?
 
-Although details differ, most authorities share the same core expectations for any head covering:
+No. Unlike the US passport process, the UK does not ask for a signed statement for a religious head covering. Rules can change, so check the current GOV.UK wording before you apply.
 
-- The full face is visible, from the bottom of the chin to the top of the forehead.
-- Both edges of the face are clear, with no fabric across the cheeks, chin or forehead.
-- The covering does not cast shadows on the face.
-- The person faces the camera directly with a plain expression and open eyes.
-- The background is plain, and the covering stands out from it.
-- The photo looks like the person's everyday appearance.
+## How to Wear Your Hijab for a Passport Photo
 
-## Hijab Photo Rules in Different Countries
+The fabric should frame your face, not cross it. These steps give HM Passport Office's systems a clear, even face to read.
 
-The summaries below reflect official guidance reviewed in October 2026. Pages can change, so each one links to the source.
+1. **Pin the hijab behind the forehead line.** Use an underscarf or pins so the fabric does not slip over your eyebrows.
+2. **Keep your chin and jaw clear.** Fold the fabric under your jaw, not over it, so the bottom of your chin is visible.
+3. **Flatten the fabric at the cheeks.** Loose folds near the face cast shadows, which are one of the most common rejection reasons.
+4. **Choose a plain, matte fabric.** Patterns, sequins and shiny satin reflect light and distract from your face.
+5. **Pick a colour that contrasts with the background.** A white hijab against a cream wall can blur the outline of your head, so a mid-tone or darker shade usually works better.
+6. **Remove decorative pins and brooches.** Keep it simple so nothing catches the light.
 
-### United Kingdom
+### Best Hijab Colour for a Passport Photo
 
-GOV.UK allows a head covering when it is worn for religious or medical reasons. Nothing may cover the face, and there must be no shadows on the face or behind the person. For digital photos, the picture must be taken against a plain light-coloured background and include the head, shoulders and upper body. GOV.UK also says photos from a booth or shop are more likely to be approved than photos taken on a personal device. See the [GOV.UK digital photo rules](https://www.gov.uk/photos-for-passports/rules-for-digital-photos) and the [UK passport photo size and requirements guide](/tool/uk-passport-photo).
+GOV.UK does not set a colour. In practice, black, navy, grey, burgundy or another solid mid-to-dark colour stands out best against a cream or light grey background.
 
-### United States
+## Turban Passport Photo UK (Sikh Turban and Patka)
 
-US passport photo rules do not generally allow head coverings, with an exception for religious attire. The applicant submits a signed statement with the application, the full face must be visible, and the covering must not obscure the hairline or cast shadows on the face. The wording expected in the statement has been updated in recent years, so applicants should read the current instructions on [travel.state.gov](https://travel.state.gov/content/travel/en/passports/requirements/photos.html) before submitting.
+A Sikh turban, dastar or patka is a religious head covering, so you can wear it in a UK passport photo. The same rules apply as for a hijab.
 
-### Canada
+- Your face must be visible from the top of the forehead to the bottom of the chin.
+- The turban should not cast a shadow across your forehead or eyes.
+- Both sides of your face must be visible, so tuck in any loose ends.
+- A beard is fine. It is part of your everyday appearance and does not need to be tied differently.
 
-Canadian guidance allows head coverings worn daily for religious beliefs or medical reasons, as long as the covering does not create shadows on the face. Photo format rules differ between printed and digital applications, so applicants should check the [official Canadian passport photo page](https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/photos.html).
+### How Head Size Is Measured With a Turban
 
-### Australia
+The 29 mm to 34 mm head height runs from the chin to the crown of the head. A tall turban can make the head look larger in the frame. Our [photo maker](#studio) sizes the photo from your face, so the turban does not push your face out of position. If in doubt, check the result with our [UK passport photo checker](/tool/passport-photo-checker-uk).
 
-Australian guidance accepts religious head coverings that are plain, without patterns, even small ones. The edges of the face on both sides must be visible. The passport office also recommends using a professional passport photo provider. See the [Australian passport photo guidelines](https://www.passports.gov.au/PhotoGuidelines).
+## Other Religious Head Coverings: Kippah, Niqab, Tichel and Habit
 
-### Other Countries
+GOV.UK's rule covers every religious head covering in the same way. What matters is that your face is not covered.
 
-Many other authorities follow a similar principle of religious coverings allowed, face visible, no shadows. Some add extra conditions, and a few apply different rules to visas, national ID cards or residence permits. Anyone applying outside the countries above should check the official passport or immigration website for the exact document.
+### Kippah or Yarmulke
 
-## How to Prepare a Hijab Passport Photo
+A kippah sits on the crown of the head and does not cover the face, so it can usually be worn without any change.
 
-Good preparation prevents most problems. The goal is a clean, even frame where the face is easy to read.
+### Tichel, Snood or Headscarf
 
-### Keep the Forehead, Chin and Face Edges Visible
+Treat a tichel or snood like a hijab. Keep it behind the forehead line with both sides of your face clear.
 
-The fabric should frame the face, not cross it. Pins and underscarves can help keep the hijab from slipping forward over the eyebrows or down over the chin. The jawline and both sides of the face should be clear, and nothing should sit across the cheeks or under the lips.
+### Niqab, Burqa or Face Veil
 
-Some authorities also mention the hairline or the ears. Since requirements differ, applicants should follow the official wording instead of assuming one rule fits every country.
+A face veil must be removed for the photo, because your face must not be covered. If you would prefer a female photographer, many high-street studios can arrange one if you ask in advance. Taking the photo at home with a family member is another private option.
 
-### Pick a Plain, Contrasting Fabric
+### Religious Habits and Other Coverings
 
-A solid colour without patterns is the safest choice, and Australia explicitly asks for it. A matte fabric also reflects less light than a glossy or satin one. Contrast matters too. A white hijab against a white wall can blur the outline of the head, so a mid-tone or darker shade usually reads better against a light background.
+The same test applies: full face visible, no shadows, plain background.
 
-### Smooth Out Folds and Shadows
+## Medical Head Coverings in a Passport Photo
 
-Loose pleats near the forehead or cheeks can create shadows, and shadows are a common reason for rejection. Smoothing the fabric flat and securing it neatly helps. It is worth checking the result on camera first, since folds that look fine in a mirror can look heavier in a photo.
+GOV.UK allows head coverings worn for medical reasons too, for example a scarf or cap worn during chemotherapy or after surgery. Follow the same rules as for a hijab: the full face stays visible, there are no shadows and the fabric is plain. If you have a medical condition that affects how you look or pose, the GOV.UK photo guidance explains what to do.
 
-### Skip Decorations
+## Can You Wear Glasses in a Hijab Passport Photo?
 
-Brooches, sequins, bold edges and dangling pins can distract from the face or catch the light. Simple and tidy is better for an official photo.
+The UK rule is that you should not wear glasses in your passport photo unless you have to. If you do need to wear them:
 
-## Lighting, Background and Camera Setup
+- Your eyes must be clearly visible, with no glare or reflection on the lenses.
+- The frames must not cover your eyes.
+- Tinted lenses and sunglasses are not allowed.
 
-A passport picture with hijab can look uneven if the light comes from one side or from above. A few habits make a big difference:
+Glasses often slide forward when worn with a hijab, which pushes the frames over the eyes. If you can take them off for the photo, do so. If you must keep them on, tilt the lenses down slightly and face a window to reduce glare.
 
-- **Face a window.** Soft daylight from the front lights both sides of the face evenly.
-- **Avoid overhead lighting and flash.** Both can create shadows under the fabric or glare on it.
-- **Stand a step or two from the wall.** This keeps a shadow from falling on the background.
-- **Use a plain background.** UK digital photos need a plain light-coloured background, while other countries may require white or off-white. Check the authority's colour rule.
-- **Set the camera at eye level.** Tilting up or down changes how the head and fabric appear.
-- **Ask someone else to take the photo.** Selfies distort the face and are rarely accepted when official rules require help.
-- **Turn off filters and beauty modes.** Official photos must not be altered by software.
+## Lighting and Background for a Hijab Photo at Home
 
-For step-by-step shooting advice, see the guides on [taking a passport photo at home](/tool/passport-photo-at-home) and [taking a passport photo on iPhone](/tool/take-a-passport-photo-on-iphone).
+A hijab photo can look uneven if light comes from one side or from above, because the fabric shades part of the face.
 
-## Passport Size Photo With Hijab: Dimensions to Check
+- **Face a window.** Soft daylight from the front lights both sides of your face evenly.
+- **Avoid flash and overhead lights.** Both create shadows under the fabric and glare on it.
+- **Stand a step or two from the wall.** This stops your shadow falling on the background.
+- **Use a plain cream or light grey wall.** Our [photo maker](/passport-size-photo-maker) can also clean up the background for you.
+- **Ask someone else to take the photo.** GOV.UK says you cannot take a selfie, so the camera should be at eye level, held by a helper or a tripod.
+- **Switch off filters and beauty modes.** Official photos must not be retouched.
 
-A passport size photo with hijab follows the same size rules as any other photo from that country. Wearing a hijab does not change the dimensions, although some authorities describe how the head should be measured when it is covered. The table shows a few examples. Applicants should confirm the numbers with the official source, because sizes depend on the country and on whether the application is digital or printed.
+For a full walkthrough, see [how to take a passport photo at home](/how-to/take-a-passport-photo-at-home).
 
-| Country              | Typical requirement                 | Notes                                                                        |
-| :------------------- | :---------------------------------- | :--------------------------------------------------------------------------- |
-| UK (digital)         | At least 600 × 750 px, 50KB to 10MB | Include head, shoulders and upper body; the service crops the photo          |
-| UK (printed)         | 45 mm high × 35 mm wide             | Head 29 mm to 34 mm; plain cream or light grey background                    |
-| US                   | 2 × 2 inches (51 × 51 mm)           | Head 1 to 1 3/8 inches (25 to 35 mm) from chin to top of head                |
-| Canada               | Face 31 mm to 36 mm, chin to crown  | Printed and digital rules differ; check canada.ca                            |
-| Many other countries | Often 35 × 45 mm                    | Not universal; see the [35×45 mm photo size guide](/tool/photo-size-35x45mm) |
+## Hijab Passport Photo: Online, Booth or Studio?
 
-For paper applications, the [passport photo print template generator](/passport-photo-print-template-generator) can lay out a print sheet, and the [passport size photo maker](/passport-size-photo-maker) can help with other countries.
+| Option                     | Typical cost (UK)  | Pros                                                     | Cons                                                    |
+| :------------------------- | :----------------- | :------------------------------------------------------- | :------------------------------------------------------ |
+| PixPassport online         | Free preview, £7.99 download | Private, taken at home, retake as often as you like | You need a helper and good daylight                     |
+| Photo booth                | About £8 to £10    | Gives a GOV.UK photo code on the spot                    | Lighting can shadow the fabric; no privacy for the pose |
+| High-street studio         | About £10 to £15   | Controlled lighting; you can ask for a female photographer | Costs more and needs a visit                            |
 
-## Common Hijab Photo Mistakes
+Booth and studio prices vary by provider and location, so treat these as rough guides. If you need a printed photo for a paper form, our [print template generator](/passport-photo-print-template-generator) lays out a 6×4″ sheet.
 
-Most problems with a passport photo hijab setup come down to a handful of avoidable issues.
+## Common Hijab Passport Photo Mistakes
 
-| Problem ❌                                 | Fix ✅                                                     |
-| :----------------------------------------- | :--------------------------------------------------------- |
-| Fabric across the forehead, chin or cheeks | Reposition and pin the hijab so the full face is clear     |
-| Shadows from folds or loose fabric         | Smooth the fabric and light the face evenly from the front |
-| Patterned or shiny hijab                   | Choose a plain, matte fabric if the rules ask for plain    |
-| Hijab colour close to the background       | Use a contrasting shade or a different background          |
-| Selfie or tilted camera                    | Ask someone to take the photo at eye level                 |
-| Heavy filters or retouching                | Switch them off; official photos must be unaltered         |
-| Outdated photo                             | Take a new one that meets the authority's recency rule     |
+| Problem ❌                                   | Fix ✅                                                      |
+| :------------------------------------------- | :---------------------------------------------------------- |
+| Fabric over the forehead, chin or cheeks     | Re-pin the hijab so your full face is clear                 |
+| Shadows from folds under the fabric          | Smooth the fabric and light your face evenly from the front |
+| Patterned or shiny hijab                     | Choose a plain, matte fabric                                |
+| Hijab colour close to the background         | Use a contrasting shade                                     |
+| Glasses pushed over the eyes or glaring      | Take them off, or tilt them and face a window               |
+| Selfie or tilted camera                      | Ask someone to take the photo at eye level                  |
+| Filters or retouching                        | Switch them off; the photo must be unaltered                |
 
-## Booth, Studio or Home: Where to Take the Photo
+If your photo has already been turned down, our guide to [why passport photos get rejected in the UK](/how-to/passport-photo-rejected-uk) lists the most common causes and fixes.
 
-Each option has trade-offs.
+## Hijab Passport Photos for Other Countries
 
-**Photo booths and studios** know the local photo standards, control the lighting and can often provide a code or prints in the right size. A hijab passport photo taken this way is less likely to run into lighting or framing problems. Some studios can arrange a female photographer, so it is worth asking in advance.
+The UK rule is not universal. If you are applying to another country, check its official photo page.
 
-**Home photos** are convenient and private, and a passport photo with hijab taken at home can work well with good light, a plain wall and a helper. They do need more care, and some authorities discourage app-based or online services, so the official guidance should be checked first.
+- **United States:** religious head coverings are allowed with a signed statement, and the full face must be visible. See [travel.state.gov](https://travel.state.gov/content/travel/en/passports/requirements/photos.html) and our [US visa photo size](/tool/us-visa-passport-photo-size) page.
+- **Canada:** coverings worn daily for religious or medical reasons are allowed if they do not cast shadows on the face. See [canada.ca](https://www.canada.ca/en/immigration-refugees-citizenship/services/canadian-passports/photos.html).
+- **Australia:** religious coverings must be plain, with both edges of the face visible. See the [Australian passport photo guidelines](https://www.passports.gov.au/PhotoGuidelines) and our [Australian passport photo in the UK](/tool/australian-passport-photo-uk) page.
+- **Schengen visas:** most consulates follow the ICAO standard, so religious coverings are accepted if the face is clear. See our [Schengen visa photo](/tool/schengen-visa-photo) page.
 
-## Checklist for a Passport Photo With Hijab
+## Checklist Before You Submit
 
-Before submitting, applicants can run through this list:
+- My full face is visible from the top of the forehead to the bottom of the chin.
+- Both sides of my face are clear of fabric.
+- There are no shadows on my face or the background.
+- My hijab or turban is plain, tidy and contrasts with the background.
+- I am not wearing glasses, or if I am, there is no glare.
+- The photo is unedited and was not taken as a selfie.
+- The photo is 35 × 45 mm for print, or at least 600 × 750 px for a digital application.
 
-- Official rules for the issuing country have been read.
-- The full face is visible, with both edges of the face clear.
-- The hijab is plain, tidy and free of shadows.
-- The fabric contrasts with the background.
-- Lighting is even, with no glare on the face or fabric.
-- The photo is the correct size and file format or print size.
-- Any required signed statement or supporting document is ready.
-- The photo is recent and has not been filtered or edited.
-
-An upload to a [UK passport photo checker](/tool/passport-photo-checker-uk) can flag background, framing and head position issues before submission, though only the passport authority makes the final decision.
+Upload your photo to the [UK passport photo checker](/tool/passport-photo-checker-uk) to flag background, framing and head-position problems before you apply. Only HM Passport Office makes the final decision.
 
 ## Frequently Asked Questions
 
-### Is a passport photo with hijab accepted everywhere?
+### Can I wear a hijab in my UK passport photo?
 
-No. Many countries allow religious head coverings, but the conditions differ, and a few treat different documents differently. The issuing authority's official page is the only reliable source.
+Yes. GOV.UK allows head coverings worn for religious or medical reasons, as long as your full face is visible and there are no shadows on your face or the background.
 
-### Do the ears need to be visible in a hijab photo?
+### Do I need to show my hair or ears in a hijab passport photo?
 
-It depends on the country. Some authorities focus on the edges of the face and do not mention ears, while others have their own wording. Applicants should follow the official text rather than a general rule.
+No. The UK rules ask for your full face to be visible from forehead to chin. They do not ask you to show your hair, hairline or ears.
 
-### Does a hijab need to be a particular colour?
+### Do I need a signed letter to wear a hijab in a UK passport photo?
 
-Usually no specific colour is required, but plain fabric with good contrast against the background is the safest choice. Some countries, such as Australia, specifically ask for no patterns.
+No. GOV.UK does not ask for a signed statement. The US does, so check the rules if you are applying for a US document.
 
-### Is a signed statement needed for a hijab?
+### Can I wear a turban in a UK passport photo?
 
-Not everywhere. The United States, for example, asks for a signed statement for religious head coverings, while the UK and Canada guidance describes religious coverings as allowed without mentioning one. Rules can change, so the current instructions should be checked.
+Yes. A Sikh turban or patka is a religious head covering and is allowed, as long as your face is fully visible and the turban does not cast shadows on it.
 
-### Can a passport picture with hijab be taken on a phone?
+### Do I have to remove a niqab for a passport photo?
 
-Often yes, where the authority accepts personal photos, but a helper is usually needed and the photo must be unaltered, evenly lit and correctly framed. Some authorities prefer professional photos.
+Yes. Your face must not be covered, so a niqab or other face veil has to be removed for the photo. You can take the photo at home or ask a studio for a female photographer.
 
-### Do glasses or earrings affect a hijab photo?
+### What colour hijab is best for a passport photo?
 
-Glasses are discouraged in many countries unless medically necessary, and they must not cause glare or hide the eyes. Simple earrings are not usually the main concern, but nothing should cover the face or create shadows.
+GOV.UK does not set a colour. A plain, matte fabric in a solid mid-to-dark colour stands out best against a cream or light grey background.
 
-### Can the same photo be reused for other documents?
+### Can I wear glasses with a hijab in my passport photo?
 
-Not always. Visa, ID card and passport photos can have different sizes and rules, so each application should be checked separately.
+Only if you have to. Your eyes must be clearly visible, with no glare, no tinted lenses and no frames across your eyes.
 
-### Does a checker guarantee approval?
+### Can I take a hijab passport photo at home?
 
-No. A checker can flag likely problems, but the passport authority makes the final decision.
+Yes. Ask someone to take it at eye level in front of a plain light wall, facing a window. Upload it to our photo maker to crop it to 35 × 45 mm and check the background. The preview is free and the download costs £7.99.
 
-## Final Thoughts
+### Is a hijab passport photo the same size as a normal one?
 
-A hijab passport photo usually comes down to clarity: a visible face, even light, a plain background and a tidy, shadow-free covering. Rules vary by country, so the best habit is to read the official guidance first, prepare the photo carefully, and double-check it before submitting.
+Yes. A UK passport photo is 35 × 45 mm in print, or at least 600 × 750 px for digital applications, with or without a head covering.
 
-_PixPassport is an independent service and is not affiliated with HM Passport Office, GOV.UK or any other passport authority. This article is general guidance and does not guarantee approval or official compliance. Rules were reviewed against official sources in October 2026 and may change._
+### Does a photo checker guarantee my hijab photo will be accepted?
+
+No. A checker flags likely problems such as shadows or framing, but HM Passport Office makes the final decision.
+
+_PixPassport is an independent service and is not affiliated with HM Passport Office or GOV.UK. This page is general guidance and does not guarantee approval. Rules were reviewed against GOV.UK in November 2026 and may change._
